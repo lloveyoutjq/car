@@ -18,6 +18,7 @@ public class PermissionsService {
      * @return
      */
     public List<Permissions> selectUserMenuAll(Integer uid){
+        System.out.println("1111");
         return permissionsMapper.selectUserMenuAll(uid);
     }
 
