@@ -30,9 +30,4 @@ public class PermissionsController {
         return permissionsService.selectUserPerm(uid);
     }
 
-    @RequestMapping("tjq")
-    @ResponseBody
-    public String tjq(){
-        return "tjq";
-    }
 }
