@@ -1,4 +1,4 @@
 package com.accp.controller;
 
-public class Data {
+public class FrontController {
 }
