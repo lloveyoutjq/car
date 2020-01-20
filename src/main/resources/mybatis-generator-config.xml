@@ -41,21 +41,124 @@
 <!-- 		<table schema="Sys_users_roles" tableName="sys_users_roles"></table> -->
 		<!--<table schema="Module" tableName="module">
 		</table>-->
-		<table schema="Roles" tableName="roles">
+		<table schema="Client_carinfo" tableName="client_carinfo">
 
 		</table>
-		<table schema="Users" tableName="users">
+		<table schema="Client_clientdata" tableName="client_clientdata">
 
 		</table>
-		<table schema="RolesPerms" tableName="roles_perms">
+		<table schema="Client_clienttype" tableName="client_clienttype">
 
 		</table>
-		<table schema="UsersRoles" tableName="users_roles">
+		<table schema="Data_car_importdomestic" tableName="data_car_importdomestic">
 
 		</table>
-		<table schema="Permissions" tableName="permissions">
+		<table schema="Data_car" tableName="data_car">
 
 		</table>
+		<table schema="Data_carbrand" tableName="data_carbrand">
+
+		</table>
+		<table schema="Data_coin_spray" tableName="data_coin_spray">
+
+		</table>
+		<table schema="Data_commodity" tableName="data_commodity">
+
+		</table>
+		<table schema="Data_commoditybrand" tableName="data_commoditybrand">
+
+		</table>
+		<table schema="Data_commoditytype" tableName="data_commoditytype">
+
+		</table>
+		<table schema="Data_engine_brand" tableName="data_engine_brand">
+
+		</table>
+		<table schema="Data_incomebrackets" tableName="data_incomebrackets">
+
+		</table>
+		<table schema="Data_linkman" tableName="data_linkman">
+
+		</table>
+		<table schema="Data_maintain" tableName="data_maintain">
+
+		</table>
+		<table schema="Data_maintenance_items" tableName="data_maintenance_items">
+
+		</table>
+		<table schema="Data_manufacturer" tableName="data_manufacturer">
+
+		</table>
+		<table schema="Data_minor_repair" tableName="data_minor_repair">
+
+		</table>
+		<table schema="Data_theoriginal" tableName="data_theoriginal">
+
+		</table>
+		<table schema="Front_cashier" tableName="front_cashier">
+
+		</table>
+		<table schema="Front_interior" tableName="front_interior">
+
+		</table>
+		<table schema="Maintain_completed" tableName="maintain_completed">
+
+		</table>
+		<table schema="Maintain_ewitem" tableName="maintain_ewitem">
+
+		</table>
+		<table schema="Maintain_maintenance_registration" tableName="maintain_maintenance_registration">
+
+		</table>
+		<table schema="Maintain_repair" tableName="maintain_repair">
+
+		</table>
+		<table schema="Maintain_rescue" tableName="maintain_rescue">
+
+		</table>
+		<table schema="Personnel_addressbook" tableName="personnel_addressbook">
+
+		</table>
+		<table schema="Personnel_artisan" tableName="personnel_artisan">
+
+		</table>
+		<table schema="Personnel_artisanclass" tableName="personnel_artisanclass">
+
+		</table>
+		<table schema="Personnel_artisanlevel" tableName="personnel_artisanlevel">
+
+		</table>
+		<table schema="Personnel_department" tableName="personnel_department">
+
+		</table>
+		<table schema="Personnel_departmenttype" tableName="personnel_departmenttype">
+
+		</table>
+		<table schema="Personnel_dimission" tableName="personnel_dimission">
+
+		</table>
+		<table schema="Personnel_legworkcat" tableName="personnel_legworkcat">
+
+		</table>
+		<table schema="Personnel_post" tableName="personnel_post">
+
+		</table>
+		<table schema="Personnel_staff" tableName="personnel_staff">
+
+		</table>
+		<table schema="System_permissions" tableName="system_permissions">
+
+		</table>
+		<table schema="System_roles" tableName="system_roles">
+
+		</table>
+		<table schema="System_roles_perms" tableName="system_roles_perms">
+
+		</table>
+		<table schema="System_users_roles" tableName="system_users_roles">
+
+		</table>
+
 	</context>
 </generatorConfiguration>
 

@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.PersonnelArtisanclassMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.PersonnelArtisanclass" >
+    <id column="artisanClassId" property="artisanclassid" jdbcType="INTEGER" />
+    <result column="artisanClassName" property="artisanclassname" jdbcType="VARCHAR" />
+    <result column="artisanClassWeight" property="artisanclassweight" jdbcType="VARCHAR" />
+    <result column="parentId" property="parentid" jdbcType="INTEGER" />
+    <result column="instationWhite" property="instationwhite" jdbcType="VARCHAR" />
+    <result column="instationBlack" property="instationblack" jdbcType="VARCHAR" />
+    <result column="outsideWhite" property="outsidewhite" jdbcType="VARCHAR" />
+    <result column="outsideBlack" property="outsideblack" jdbcType="VARCHAR" />
+    <result column="wayWhite" property="waywhite" jdbcType="VARCHAR" />
+    <result column="wayBlack" property="wayblack" jdbcType="VARCHAR" />
+    <result column="oilCost" property="oilcost" jdbcType="VARCHAR" />
+    <result column="default1" property="default1" jdbcType="VARCHAR" />
+    <result column="default2" property="default2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    artisanClassId, artisanClassName, artisanClassWeight, parentId, instationWhite, instationBlack, 
+    outsideWhite, outsideBlack, wayWhite, wayBlack, oilCost, default1, default2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.PersonnelArtisanclassExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from personnel_artisanclass
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from personnel_artisanclass
+    where artisanClassId = #{artisanclassid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from personnel_artisanclass
+    where artisanClassId = #{artisanclassid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.PersonnelArtisanclassExample" >
+    delete from personnel_artisanclass
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.PersonnelArtisanclass" >
+    insert into personnel_artisanclass (artisanClassId, artisanClassName, 
+      artisanClassWeight, parentId, instationWhite, 
+      instationBlack, outsideWhite, outsideBlack, 
+      wayWhite, wayBlack, oilCost, 
+      default1, default2)
+    values (#{artisanclassid,jdbcType=INTEGER}, #{artisanclassname,jdbcType=VARCHAR}, 
+      #{artisanclassweight,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, #{instationwhite,jdbcType=VARCHAR}, 
+      #{instationblack,jdbcType=VARCHAR}, #{outsidewhite,jdbcType=VARCHAR}, #{outsideblack,jdbcType=VARCHAR}, 
+      #{waywhite,jdbcType=VARCHAR}, #{wayblack,jdbcType=VARCHAR}, #{oilcost,jdbcType=VARCHAR}, 
+      #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.PersonnelArtisanclass" >
+    insert into personnel_artisanclass
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="artisanclassid != null" >
+        artisanClassId,
+      </if>
+      <if test="artisanclassname != null" >
+        artisanClassName,
+      </if>
+      <if test="artisanclassweight != null" >
+        artisanClassWeight,
+      </if>
+      <if test="parentid != null" >
+        parentId,
+      </if>
+      <if test="instationwhite != null" >
+        instationWhite,
+      </if>
+      <if test="instationblack != null" >
+        instationBlack,
+      </if>
+      <if test="outsidewhite != null" >
+        outsideWhite,
+      </if>
+      <if test="outsideblack != null" >
+        outsideBlack,
+      </if>
+      <if test="waywhite != null" >
+        wayWhite,
+      </if>
+      <if test="wayblack != null" >
+        wayBlack,
+      </if>
+      <if test="oilcost != null" >
+        oilCost,
+      </if>
+      <if test="default1 != null" >
+        default1,
+      </if>
+      <if test="default2 != null" >
+        default2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="artisanclassid != null" >
+        #{artisanclassid,jdbcType=INTEGER},
+      </if>
+      <if test="artisanclassname != null" >
+        #{artisanclassname,jdbcType=VARCHAR},
+      </if>
+      <if test="artisanclassweight != null" >
+        #{artisanclassweight,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="instationwhite != null" >
+        #{instationwhite,jdbcType=VARCHAR},
+      </if>
+      <if test="instationblack != null" >
+        #{instationblack,jdbcType=VARCHAR},
+      </if>
+      <if test="outsidewhite != null" >
+        #{outsidewhite,jdbcType=VARCHAR},
+      </if>
+      <if test="outsideblack != null" >
+        #{outsideblack,jdbcType=VARCHAR},
+      </if>
+      <if test="waywhite != null" >
+        #{waywhite,jdbcType=VARCHAR},
+      </if>
+      <if test="wayblack != null" >
+        #{wayblack,jdbcType=VARCHAR},
+      </if>
+      <if test="oilcost != null" >
+        #{oilcost,jdbcType=VARCHAR},
+      </if>
+      <if test="default1 != null" >
+        #{default1,jdbcType=VARCHAR},
+      </if>
+      <if test="default2 != null" >
+        #{default2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.PersonnelArtisanclassExample" resultType="java.lang.Integer" >
+    select count(*) from personnel_artisanclass
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update personnel_artisanclass
+    <set >
+      <if test="record.artisanclassid != null" >
+        artisanClassId = #{record.artisanclassid,jdbcType=INTEGER},
+      </if>
+      <if test="record.artisanclassname != null" >
+        artisanClassName = #{record.artisanclassname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.artisanclassweight != null" >
+        artisanClassWeight = #{record.artisanclassweight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentid != null" >
+        parentId = #{record.parentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.instationwhite != null" >
+        instationWhite = #{record.instationwhite,jdbcType=VARCHAR},
+      </if>
+      <if test="record.instationblack != null" >
+        instationBlack = #{record.instationblack,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outsidewhite != null" >
+        outsideWhite = #{record.outsidewhite,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outsideblack != null" >
+        outsideBlack = #{record.outsideblack,jdbcType=VARCHAR},
+      </if>
+      <if test="record.waywhite != null" >
+        wayWhite = #{record.waywhite,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wayblack != null" >
+        wayBlack = #{record.wayblack,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oilcost != null" >
+        oilCost = #{record.oilcost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.default1 != null" >
+        default1 = #{record.default1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.default2 != null" >
+        default2 = #{record.default2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update personnel_artisanclass
+    set artisanClassId = #{record.artisanclassid,jdbcType=INTEGER},
+      artisanClassName = #{record.artisanclassname,jdbcType=VARCHAR},
+      artisanClassWeight = #{record.artisanclassweight,jdbcType=VARCHAR},
+      parentId = #{record.parentid,jdbcType=INTEGER},
+      instationWhite = #{record.instationwhite,jdbcType=VARCHAR},
+      instationBlack = #{record.instationblack,jdbcType=VARCHAR},
+      outsideWhite = #{record.outsidewhite,jdbcType=VARCHAR},
+      outsideBlack = #{record.outsideblack,jdbcType=VARCHAR},
+      wayWhite = #{record.waywhite,jdbcType=VARCHAR},
+      wayBlack = #{record.wayblack,jdbcType=VARCHAR},
+      oilCost = #{record.oilcost,jdbcType=VARCHAR},
+      default1 = #{record.default1,jdbcType=VARCHAR},
+      default2 = #{record.default2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.PersonnelArtisanclass" >
+    update personnel_artisanclass
+    <set >
+      <if test="artisanclassname != null" >
+        artisanClassName = #{artisanclassname,jdbcType=VARCHAR},
+      </if>
+      <if test="artisanclassweight != null" >
+        artisanClassWeight = #{artisanclassweight,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        parentId = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="instationwhite != null" >
+        instationWhite = #{instationwhite,jdbcType=VARCHAR},
+      </if>
+      <if test="instationblack != null" >
+        instationBlack = #{instationblack,jdbcType=VARCHAR},
+      </if>
+      <if test="outsidewhite != null" >
+        outsideWhite = #{outsidewhite,jdbcType=VARCHAR},
+      </if>
+      <if test="outsideblack != null" >
+        outsideBlack = #{outsideblack,jdbcType=VARCHAR},
+      </if>
+      <if test="waywhite != null" >
+        wayWhite = #{waywhite,jdbcType=VARCHAR},
+      </if>
+      <if test="wayblack != null" >
+        wayBlack = #{wayblack,jdbcType=VARCHAR},
+      </if>
+      <if test="oilcost != null" >
+        oilCost = #{oilcost,jdbcType=VARCHAR},
+      </if>
+      <if test="default1 != null" >
+        default1 = #{default1,jdbcType=VARCHAR},
+      </if>
+      <if test="default2 != null" >
+        default2 = #{default2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where artisanClassId = #{artisanclassid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.PersonnelArtisanclass" >
+    update personnel_artisanclass
+    set artisanClassName = #{artisanclassname,jdbcType=VARCHAR},
+      artisanClassWeight = #{artisanclassweight,jdbcType=VARCHAR},
+      parentId = #{parentid,jdbcType=INTEGER},
+      instationWhite = #{instationwhite,jdbcType=VARCHAR},
+      instationBlack = #{instationblack,jdbcType=VARCHAR},
+      outsideWhite = #{outsidewhite,jdbcType=VARCHAR},
+      outsideBlack = #{outsideblack,jdbcType=VARCHAR},
+      wayWhite = #{waywhite,jdbcType=VARCHAR},
+      wayBlack = #{wayblack,jdbcType=VARCHAR},
+      oilCost = #{oilcost,jdbcType=VARCHAR},
+      default1 = #{default1,jdbcType=VARCHAR},
+      default2 = #{default2,jdbcType=VARCHAR}
+    where artisanClassId = #{artisanclassid,jdbcType=INTEGER}
+  </update>
+</mapper>

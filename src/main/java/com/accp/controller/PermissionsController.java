@@ -1,6 +1,6 @@
 package com.accp.controller;
 
-import com.accp.domain.Permissions;
+import com.accp.domain.SystemPermissions;
 import com.accp.service.PermissionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,13 +21,13 @@ public class PermissionsController {
     }
 
     @RequestMapping("/selectUserMenuAll")
-    public List<Permissions> selectUserMenuAll(Integer uid){
-        return permissionsService.selectUserMenuAll(uid);
+    public List<SystemPermissions> selectUserMenuAll(Integer uid){
+        return permissionsService.selectUserMenuAll(1,uid);
     }
 
     @RequestMapping("/selectUserPerm")
-    public List<Permissions> selectUserPerm(Integer uid){
-        return permissionsService.selectUserPerm(uid);
+    public List<SystemPermissions> selectUserPerm(Integer uid){
+        return permissionsService.selectUserPerm(1,uid);
     }
 
 }
