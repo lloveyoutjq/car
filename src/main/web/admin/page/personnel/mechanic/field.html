@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>人事-技工管理-外勤车俩</title>
+		<link rel="stylesheet" type="text/css" href="../../../static/layui/css/layui.css" />
+		<link rel="stylesheet" href="../../../static/css/admin.css"/>
+
+		<style>
+
+			.search-ul {
+				min-width: 600px;
+			}
+
+			.search-ul > li, .row-ul > li {
+				display: inline-block;
+			}
+
+			.margin-top1 {
+				margin-top: 10px;
+			}
+
+			.layui-card-header .layui-icon {
+				line-height: unset;
+				position: unset;
+				margin-top: 0px;
+			}
+
+			.soul-table-contextmenu {
+				z-index: 999999999;
+			}
+
+			.ul-tool > li {
+			/ / margin: 0 px 2 px;
+				width: 92px;
+			}
+
+			.ul-tool > li:nth-child(1) {
+				font-weight: bold;
+				font-size: 13px;
+				width: 95px;
+			}
+
+			.packUp {
+				cursor: pointer;
+				transition: all 0.5s;
+				color: #666;
+			}
+
+			.packUp:hover {
+				transition: all 1s;
+				color: #2d2d2d;
+			}
+		</style>
+	</head>
+
+
+	<body>
+	<div class="layui-fluid">
+		<div class="layui-row layui-col-space15">
+			<div class="layui-card layui-col-md12">
+				<div class="layui-card-header">
+					<h1>外勤车辆</h1>
+				</div>
+			</div>
+		</div>
+		<div class="layui-row layui-col-space15 margin-top1">
+			<div class="layui-card layui-col-md12">
+				<div class="layui-card-header">
+					<div style="text-align: center">
+						<div class="layui-btn-group">
+							<button type="button" class="layui-btn layui-btn-sm" click="add">
+								<i class="layui-icon ">&#xe642;</i>添加
+							</button>
+							<button type="button" class="layui-btn layui-btn-sm">
+								<i class="layui-icon">&#xe60a;</i>修改
+							</button>
+							<button type="button" class="layui-btn layui-btn-sm">
+								<i class="layui-icon">&#xe656;</i>删除
+							</button>
+
+						</div>
+					</div>
+				</div>
+				<div class="layui-card-body">
+					<table class="layui-hide" id="test" lay-filter="test"></table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../../../static/js/jquery-3.4.1.min .js " type="text/javascript " charset="utf-8 "></script>
+	<script src="../../../static/js/vue.js " type="text/javascript " charset="utf-8 "></script>
+	<script src="../../../static/layui/layui.js " type="text/javascript " charset="utf-8 "></script>
+	<script src="../../../static/js/xadmin.js" type="text/javascript" ></script>
+
+	<script type="text/html" id="toolbarDemo">
+		<div class="layui-btn-container">
+			<button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+		</div>
+	</script>
+
+	<template id="addTemplate">
+		<div style="padding: 15px">
+			<form class="layui-form" action="">
+				<div class="layui-form-item">
+					<label class="layui-form-label">车牌号</label>
+					<div class="layui-input-block">
+						<input type="text" autocomplete="off" placeholder="请输入标题" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">品牌</label>
+					<div class="layui-input-block">
+						<input type="text" autocomplete="off" placeholder="请输入标题" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">车型</label>
+					<div class="layui-input-block">
+						<input type="text" autocomplete="off" placeholder="请输入标题" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">当前里程</label>
+					<div class="layui-input-block">
+						<input type="text" autocomplete="off" placeholder="请输入标题" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">班组</label>
+					<div class="layui-input-block">
+						<input type="text" autocomplete="off" placeholder="请输入标题" class="layui-input">
+					</div>
+				</div>
+			</form>
+		</div>
+	</template>
+
+	<script>
+		layui.use('table', function () {
+			var table = layui.table;
+
+			table.render({
+				elem: '#test',
+				/*url: '/demo/table/user/',*/
+				toolbar: '#toolbarDemo',
+				cols: [
+					[
+						{type: 'radio'},
+						{field: 'id', width: 120, title: '车牌号', sort: true},
+						{field: 'a', width: 120, title: '品牌'},
+						{field: 'a', width: 120, title: '车型'},
+						{field: 'a', width: 120, title: '当前里程'},
+						{field: 'a', width: 120, title: '归属班组'}
+					]
+				],
+				data: [{
+					"id": "10001",
+					"username": "杜甫",
+					"a": "斗者1"
+				}, {
+					"id": "10002",
+					"username": "李白",
+					"a": "斗者2"
+				}, {
+					"id": "10003",
+					"username": "王勃",
+					"a": "斗者3"
+				}, {
+					"id": "10004",
+					"username": "贤心",
+					"a": "斗者4"
+				}],
+				page: true
+			});
+			//头工具栏事件
+			table.on('toolbar(test)', function (obj) {
+				var checkStatus = table.checkStatus(obj.config.id); //获取选中行状态
+				switch (obj.event) {
+					case 'getCheckData':
+						var data = checkStatus.data; //获取选中行数据
+						var name = JSON.stringify(data.ID());
+						alert(name);
+						layer.alert(JSON.stringify(data));
+						break;
+				}
+            });
+
+			$("[click=\"add\"]").click(function () {
+				xadmin.open("添加",1,$("#addTemplate").html(),"400","300",false,false,function () {
+
+				},function () {
+
+				})
+			})
+		});
+	</script>
+	</body>
+
+
+</html>

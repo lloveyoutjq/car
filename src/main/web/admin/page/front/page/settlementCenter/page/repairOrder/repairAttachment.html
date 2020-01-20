@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../../../../../static/layui/css/layui.css" media="all"/>
+</head>
+<body>
+<div class="layui-fluid" >
+    <div class="layui-row" style="margin-top: 30px;">
+        <div class="layui-col-lg-offset1 layui-col-lg3">
+            <h1>维修附单</h1>
+        </div>
+        <div class="layui-col-lg-offset4 layui-col-lg-offset4">
+            <div class="layui-col-lg-offset9 layui-col-lg2">
+                <button type="button" class="layui-btn">保存</button>
+                <button type="button" class="layui-btn layui-btn-primary" id="close">取消</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="layui-row">
+        <div class="layui-col-lg2">
+            <div style="margin-top:20px ;">
+                单号：<span>0</span>
+            </div>
+        </div>
+        <div class="layui-col-lg-offset2 layui-col-lg4" style="margin-top: 10px ;">
+            <div class="layui-col-lg4" style="margin: 10px 0 0 25px;">
+                附单下次保养里程：
+            </div>
+            <div class="layui-col-lg5">
+                <input type="text" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-col-lg-offset3 layui-col-lg1 btn-group" style="margin-top: 10px ;">
+            <button type="button" class="layui-btn-warm layui-btn">
+                结算单
+            </button>
+        </div>
+    </div>
+
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">维修项目</li>
+            <li>领料情况</li>
+        </ul>
+        <div class="layui-tab-content" style="height: 100px;">
+            <div class="layui-tab-item layui-show">
+                <div class="layui-row">
+                    <div class="layui-col-lg-offset1">
+                        <button type="button" class="layui-btn-primary layui-btn">
+                            增加
+                        </button>
+                        <button type="button" class="layui-btn-primary layui-btn">
+                            刪除
+                        </button>
+                    </div>
+                </div>
+                <table class="layui-hide" id="demo" lay-filter="test"></table>
+            </div>
+            <div class="layui-tab-item">
+                2
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="../../../../../../static/js/jquery-3.4.1.min%20.js"></script>
+<script type="text/javascript" src="../../../../../../static/layui/layui.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../../../../../../static/js/vue.js"></script>
+<script type="text/javascript" src="../../../../../../static/js/xadmin.js"></script>
+<script>
+    layui.use(['table', 'element'], function () {
+        var table = layui.table //表格
+            , element = layui.element;//元素操作
+        //执行一个 table 实例
+        table.render({
+            elem: '#demo'
+            , height: 420
+            , url: '/demo/table/user/' //数据接口
+            , title: '用户表'
+            , page: true //开启分页
+            , cols: [[ //表头
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'id', title: '销售单号', width: 150, sort: true, fixed: 'left'}
+                , {field: 'username', title: '单据类型', width: 110, sort: true}
+                , {field: 'experience', title: '业务类型', width: 110, sort: true}
+                , {field: 'sex', title: '施工班次', width: 110, sort: true}
+                , {field: 'score', title: '车主姓名', width: 110, sort: true}
+                , {field: 'city', title: '车牌号', width: 130, sort: true}
+                , {field: 'sign', title: '车型', width: 90, sort: true}
+                , {field: 'wealth', title: '车架号', width: 130, sort: true}
+                , {field: 'wealth', title: '接车时间', width: 130, sort: true}
+                , {field: 'wealth', title: '预计完工', width: 135, sort: true}
+                , {field: 'wealth', title: '完工时间', width: 135, sort: true}
+                , {field: 'wealth', title: '误工原因', width: 135, sort: true}
+                , {field: 'wealth', title: '返工数', width: 90, sort: true}
+                , {field: 'wealth', title: '返工原因', width: 135, sort: true}
+                , {field: 'wealth', title: '责任人', width: 90, sort: true}
+                , {field: 'wealth', title: '处罚金额', width: 100, sort: true}
+            ]]
+        });
+    });
+    $("#close").click(function () {
+        xadmin.close();
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../../../static/layui/css/layui.css">
+    <style>
+        .prerequisite{
+            color: red;
+        }
+        .layui-form-label {
+            width: 85px;
+        }
+    </style>
+</head>
+<body layadmin-themealias="green-header">
+
+        <div class="layui-form" style="padding: 20px 30px 0 0;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="prerequisite">*</span>
+                    客户编号
+                </label>
+                <div class="layui-input-inline">
+                    <input class="layui-input layui-unselect" name="id">
+                </div>
+                <label class="layui-form-label">
+                    <span class="prerequisite">*</span>
+                    客户名称
+                </label>
+                <div class="layui-input-inline">
+                    <input class="layui-input layui-unselect">
+                </div>
+                <label class="layui-form-label">
+
+                    联系人
+                </label>
+
+                <div class="layui-input-inline">
+                    <input class="layui-input layui-unselect">
+                </div>
+
+
+
+
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="prerequisite">*</span>
+                    手机号码
+                </label>
+                <div class="layui-input-inline">
+                    <input class="layui-input layui-unselect">
+                </div>
+
+                <label class="layui-form-label">
+
+                    客户地址
+                </label>
+                <div class="layui-input-inline">
+                    <input class="layui-input layui-unselect">
+                </div>
+
+                <label class="layui-form-label">
+
+                    客户生日
+                </label>
+                <div class="layui-input-inline">
+                    <input class="layui-input layui-unselect" type="text" name="date" id="date1" autocomplete="off" >
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+
+                    账期(天)
+                </label>
+                <div class="layui-input-inline">
+                    <input class="layui-input layui-unselect" type="number">
+                </div>
+
+                <label class="layui-form-label">
+
+                    挂账额度
+                </label>
+                <div class="layui-input-inline">
+                    <input class="layui-input layui-unselect">
+                </div>
+
+                <label class="layui-form-label">
+
+                    专属顾问
+                </label>
+                <div class="layui-input-inline">
+                    <div class="layui-unselect layui-form-select">
+                        <div class="layui-select-title">
+                            <input type="text" name="exclusiveConsultant" placeholder="请选择市" value="" readonly="" class="layui-input layui-unselect">
+                            <i class="layui-edge"></i>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="layui-form-item" id="address">
+                <label class="layui-form-label">
+
+                    客户地址
+                </label>
+                <div class="layui-input-inline" style="width: 200px;">
+                    <select name="province" class="province-selector" data-value="广东省" lay-filter="province-1">
+                        <option value="">请选择省</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline" style="width: 200px;">
+                    <select name="city" class="city-selector" data-value="深圳市" lay-filter="city-1">
+                        <option value="">请选择市</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline" style="width: 200px;">
+                    <select name="county" class="county-selector" data-value="龙岗区" lay-filter="county-1">
+                        <option value="">请选择区</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+
+                    顾问电话
+                </label>
+                <div class="layui-input-inline">
+                    <input class="layui-input layui-unselect">
+                </div>
+
+                <label class="layui-form-label">
+
+                    备注
+                </label>
+                <div class="layui-input-inline">
+                    <input class="layui-input layui-unselect">
+                </div>
+
+            </div>
+            <!--其他信息-->
+            <div class="layui-form-item">
+                <label class="layui-form-label" style="font-size: 12px">
+
+                    纳税人识别号
+                </label>
+                <div class="layui-input-inline">
+                    <input class="layui-input layui-unselect">
+                </div>
+
+                <label class="layui-form-label">
+
+                    注册号码
+                </label>
+                <div class="layui-input-inline">
+                    <input class="layui-input layui-unselect">
+                </div>
+                <label class="layui-form-label">
+
+                    开户银行
+                </label>
+
+                <div class="layui-input-inline">
+                    <input class="layui-input layui-unselect">
+                </div>
+
+
+
+
+            </div>
+            <div class="layui-form-item">
+            <label class="layui-form-label">
+
+                银行账号
+            </label>
+            <div class="layui-input-inline">
+                <input class="layui-input layui-unselect">
+            </div>
+
+            <label class="layui-form-label">
+
+                注册地址
+            </label>
+            <div class="layui-input-inline">
+                <input class="layui-input layui-unselect">
+            </div>
+            <label class="layui-form-label">
+
+                其他一
+            </label>
+
+            <div class="layui-input-inline">
+                <input class="layui-input layui-unselect">
+            </div>
+
+
+
+
+        </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+
+                    其他二
+                </label>
+                <div class="layui-input-inline">
+                    <input class="layui-input layui-unselect">
+                </div>
+
+                <label class="layui-form-label">
+
+                    其他三
+                </label>
+                <div class="layui-input-inline">
+                    <input class="layui-input layui-unselect">
+                </div>
+                <label class="layui-form-label">
+
+                    其他四
+                </label>
+
+                <div class="layui-input-inline">
+                    <input class="layui-input layui-unselect">
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+<script src="../../../../static/layui/layui.js"></script>
+<script src="../../../../static/js/jquery-3.4.1.min%20.js"></script>
+<script src="../../../../static/js/xadmin.js"></script>
+<script>
+
+
+
+    layui.config({
+        base: '../../../../static/layui/module/addressSelect/'
+        , version: '1.0'
+    });
+
+    layui.use(['form', 'layarea', 'laydate'], function() {
+        var form = layui.form
+            , layer = layui.layer
+            , layarea = layui.layarea
+            , laydate = layui.laydate;
+
+        laydate.render({
+            elem: '#date1'
+        });
+
+        layarea.render({
+            elem: '#address',
+            change: function (res) {
+                //选择结果
+                console.log(res);
+            }
+        });
+
+        $("html").on("click","[name=exclusiveConsultant]",function(){
+            xadmin.open("选择员工",2,"page/addClientAndCar/exclusiveConsultant.html","","",false,false)
+        })
+
+    })
+</script>
+</body>
+</html>

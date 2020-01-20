@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="../../static/css/admin.css">
+    <style>
+
+        .search-ul {
+            min-width: 600px;
+        }
+
+        .search-ul > li, .row-ul > li {
+            display: inline-block;
+        }
+
+        .margin-top1 {
+            margin-top: 10px;
+        }
+
+        .layui-card-header .layui-icon {
+            line-height: unset;
+            position: unset;
+            margin-top: 0px;
+        }
+
+        .soul-table-contextmenu {
+            z-index: 999999999;
+        }
+
+        .ul-tool > li {
+        / / margin: 0 px 2 px;
+            width: 92px;
+        }
+
+        .ul-tool > li:nth-child(1) {
+            font-weight: bold;
+            font-size: 13px;
+            width: 95px;
+        }
+
+        .packUp {
+            cursor: pointer;
+            transition: all 0.5s;
+            color: #666;
+        }
+
+        .packUp:hover {
+            transition: all 1s;
+            color: #2d2d2d;
+        }
+
+        .ul-block > li {
+            display: block;
+            line-height: 30px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-card layui-col-md12">
+            <div class="layui-card-header">
+                <h1>接车登记</h1>
+            </div>
+            <div class="layui-card-body">
+                <ul class="search-ul">
+                    <li style="width: 400px;">
+                        <input class="layui-input" type="text" placeholder="匹配名称/名称简码/手机/会员卡号/车牌号">
+                    </li>
+                    <li>
+                        <button class="layui-btn layui-btn-normal">搜&nbsp;索</button>
+                    </li>
+                    <li>
+                        <button class="layui-btn layui-btn-danger">关&nbsp;闭</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row layui-col-space15 margin-top1">
+        <div class="layui-card layui-col-md12">
+            <div class="layui-card-body layui-form">
+                <ul class="search-ul">
+                    <li style="width: 100px;">
+                        <button type="button" class="layui-btn layui-btn-primary" id="pick">维修接单</button>
+                    </li>
+                    <li style="width: 100px;">
+                        <button type="button" class="layui-btn layui-btn-primary" id="rescue">救援开单</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-row layui-col-space15 margin-top1">
+        <div class="layui-card layui-col-md12">
+            <div class="layui-card-body">
+                <div class="layui-row">
+                    <div class="layui-col-md3" style="padding-left: 10px">
+                        <ul class="ul-block">
+                            <li>&nbsp;</li>
+                            <li>
+                                <input style="visibility: hidden" class="layui-input">
+                            </li>
+                            <li>车主信息</li>
+                            <li>姓名：--</li>
+                            <li>地址：--</li>
+                            <li>驾驶员：--</li>
+                        </ul>
+                    </div>
+                    <div class="layui-col-md3" style="padding-left: 10px">
+                        <ul class="ul-block">
+                            <li style="cursor: pointer" id="License">
+                                车牌号
+                                <i class="layui-icon">&#xe625;</i>
+                            </li>
+                            <li>
+                                <input class="layui-input"
+                                       style="border-left: 0px;border-right: 0px; border-top: 0px;border-color: #a4a4a4;">
+                            </li>
+                            <li>车辆信息</li>
+                            <li>品牌：--</li>
+                            <li>发动机：--</li>
+                            <li>保养日期：--</li>
+                        </ul>
+                    </div>
+                    <div class="layui-col-md6" style="padding-left: 10px">
+                        <ul class="ul-block">
+                            <li>积分：0分</li>
+                            <li>储值卡余额：0元</li>
+                            <li>挂账余额：0元</li>
+                            <li>订金余额：--</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="layui-row layui-col-space15 margin-top1">
+        <div class="layui-card layui-col-md12">
+            <div class="layui-card-body">
+                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">作业中车辆</li>
+                        <li>维修历史</li>
+                        <li>维修项目</li>
+                        <li>领料情况</li>
+                        <li>历史回访</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <table class="layui-hide" id="demo" lay-filter="test"></table>
+                        </div>
+                        <div class="layui-tab-item">
+                            2
+                        </div>
+                        <div class="layui-tab-item">
+                            3
+                        </div>
+                        <div class="layui-tab-item">
+                            4
+                        </div>
+                        <div class="layui-tab-item">
+                            5
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../static/js/jquery-3.4.1.min%20.js"></script>
+<script type="text/javascript" src="../../static/js/vue.js"></script>
+<script type="text/javascript" src="../../static/layui/layui.js"></script>
+<script type="text/javascript" src="../../static/js/xadmin.js"></script>
+<script>
+    layui.use(['table', 'element'], function () {
+        var table = layui.table //表格
+            , element = layui.element; //元素操作
+        //执行一个 table 实例
+        table.render({
+            elem: '#demo'
+            , height: 420
+            , url: '/demo/table/user/' //数据接口
+            , title: '用户表'
+            , page: true //开启分页
+            /*,totalRow: true //开启合计行*/
+            , cols: [[ //表头
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'id', title: '销售单号', width: 150, sort: true, fixed: 'left'}
+                , {field: 'username', title: '单据类型', width: 110, sort: true}
+                , {field: 'experience', title: '业务类型', width: 110, sort: true}
+                , {field: 'sex', title: '施工班次', width: 110, sort: true}
+                , {field: 'score', title: '车主姓名', width: 110, sort: true}
+                , {field: 'city', title: '车牌号', width: 130, sort: true}
+                , {field: 'sign', title: '车型', width: 90, sort: true}
+                , {field: 'wealth', title: '车架号', width: 130, sort: true}
+                , {field: 'wealth', title: '接车时间', width: 130, sort: true}
+                , {field: 'wealth', title: '预计完工', width: 135, sort: true}
+                , {field: 'wealth', title: '完工时间', width: 135, sort: true}
+                , {field: 'wealth', title: '误工原因', width: 135, sort: true}
+                , {field: 'wealth', title: '返工数', width: 90, sort: true}
+                , {field: 'wealth', title: '返工原因', width: 135, sort: true}
+                , {field: 'wealth', title: '责任人', width: 90, sort: true}
+                , {field: 'wealth', title: '处罚金额', width: 100, sort: true}
+            ]]
+        });
+
+
+    });
+    $("#License").click(function () {
+        xadmin.open("车资料", 2, "page/repairPickUp/CarInformation.html", ($(window).width()), ($(window).height()), false, false);
+    });
+
+    $("#pick").click(function () {
+        xadmin.open("维修单", 2, "page/repairPickUp/RepairOrder.html", ($(window).width()), ($(window).height()), false, false);
+    });
+    $("#rescue").click(function () {
+        xadmin.open("救援单", 2, "page/repairPickUp/RescueList.html", ($(window).width()), ($(window).height()), false, false);
+    })
+
+</script>
+</body>
+</html>

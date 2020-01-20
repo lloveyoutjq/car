@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>数据-维修项目</title>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css">
+    <link rel="stylesheet" href="../../static/css/admin.css"/>
+
+    <link rel="stylesheet" href="../../static/layui/module/dtreeTree/dtree/dtree.css"/>
+    <link rel="stylesheet" href="../../static/layui/module/dtreeTree/dtree/font/dtreefont.css"/>
+    <style>
+
+        .search-ul {
+            min-width: 600px;
+        }
+
+        .search-ul > li, .row-ul > li {
+            display: inline-block;
+        }
+
+        .margin-top1 {
+            margin-top: 10px;
+        }
+
+        .layui-card-header .layui-icon {
+            line-height: unset;
+            position: unset;
+            margin-top: 0px;
+        }
+
+        .soul-table-contextmenu {
+            z-index: 999999999;
+        }
+
+        .ul-tool > li {
+        / / margin: 0 px 2 px;
+            width: 92px;
+        }
+
+        .ul-tool > li:nth-child(1) {
+            font-weight: bold;
+            font-size: 13px;
+            width: 95px;
+        }
+
+        .packUp {
+            cursor: pointer;
+            transition: all 0.5s;
+            color: #666;
+        }
+
+        .packUp:hover {
+            transition: all 1s;
+            color: #2d2d2d;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-card layui-col-md12">
+            <div class="layui-card-header">
+                <h1>维修项目</h1>
+            </div>
+            <div class="layui-card-body">
+                <ul class="search-ul">
+                    <li style="width: 400px;">
+                        <input class="layui-input" type="text" placeholder="匹配编码/名称/名称简码">
+                    </li>
+                    <li>
+                        <button class="layui-btn layui-btn-normal">搜&nbsp;索</button>
+                    </li>
+                    <li>
+                        <button class="layui-btn layui-btn-danger">关&nbsp;闭</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row layui-col-space15 margin-top1">
+        <div class="layui-card layui-col-md12">
+            <div class="layui-card-header">
+                <div style="text-align: center">
+                    <div class="layui-btn-group">
+                        <button type="button" class="layui-btn layui-btn-sm" click="openAddStaff">
+                            <i class="layui-icon ">&#xe642;</i>添加
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-sm" click="openAddStaff">
+                            <i class="layui-icon">&#xe60a;</i>修改
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-sm">
+                            <i class="layui-icon">&#xe656;</i>删除
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-sm">
+                            <i class="layui-icon">&#xe615;</i>调价
+                        </button>
+                        <!--保存不懂什么意思-->
+                    </div>
+                </div>
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-row">
+                    <div class="layui-col-md3">
+
+                        <ul id="demoTree" class="dtree" data-id="0"></ul>
+                    </div>
+                    <div class="layui-col-md9">
+                        <table class="layui-hide" id="test" lay-filter="test"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../static/js/jquery-3.4.1.min .js"></script>
+<script src="../../static/js/vue.js"></script>
+<script src="../../static/layui/layui.js"></script>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+    </div>
+</script>
+<script>
+    layui.extend({
+        dtree: '../../static/layui/module/dtreeTree/dtree/dtree'
+    });
+    layui.use(['table','dtree'], function () {
+        var table = layui.table,
+            dtree = layui.dtree;
+
+        var DemoTree = dtree.render({
+            elem: "#demoTree",
+            /* data: demoTree, // 使用data加载*/
+            url: "../../static/json/json.json",
+            toolbar:true, //开启右工具栏
+            initLevel: "1", //全部不展开
+            checkbar: true, //开启复选框 注意 字段 必须有 checkArr
+            scroll:"#demoTree", //右击菜单出现在哪
+            toolbarShow:[], // 默认按钮制空
+
+            toolbarExt:[{toolbarId: "testAdd",icon:"dtree-icon-wefill",title:"自定义新增",handler: function(node,$div){
+                    layer.msg(JSON.stringify(node));
+                    // 你可以在此添加一个layer.open，里面天上你需要添加的表单元素，就跟你写新增页面是一样的
+
+                }
+            },
+                {toolbarId: "testEdit",icon:"dtree-icon-bianji",title:"自定义编辑",handler: function(node,$div){
+                        layer.msg(JSON.stringify(node));
+                        // 你可以在此添加一个layer.open，里面天上你需要添加的表单元素，就跟你写编辑页面是一样的
+
+                    }
+                },
+                {toolbarId: "testDel",icon:"dtree-icon-roundclose",title:"自定义删除",handler: function(node,$div){
+                        layer.msg(JSON.stringify(node));
+                        DemoTree.partialRefreshDel($div); // 这样即可删除节点
+                    }
+                }],
+
+        });
+
+
+
+        table.render({
+            elem: '#test',
+            /*url: '/demo/table/user/',*/
+            toolbar: '#toolbarDemo',
+            cols: [
+                [
+                    {type: 'radio'}, {field: 'id', width: 120, title: '机构', sort: true},
+                    {field: 'a', width: 120, title: '部门代码'}, {field: 's', width: 120, title: '部门名称'},
+                    {field: 'd', width: 120, title: '工号'}, {field: 'f', width: 120, title: '姓名'},
+                    {field: 'g', width: 120, title: '性别'}, {field: 'h', width: 120, title: '岗位名称'},
+                    {field: 'j', width: 120, title: '身体状况'}, {field: 'k', width: 120, title: '身高'},
+                    {field: 'l', width: 120, title: '籍贯'}, {field: 'z', width: 120, title: '民族'},
+                    {field: 'x', width: 120, title: '婚姻状况'}, {field: 'c', width: 120, title: '学历'},
+                    {field: 'v', width: 120, title: '毕业学校'}, {field: 'b', width: 120, title: '专业'},
+                    {field: 'n', width: 120, title: '专业资格'}, {field: 'm', width: 120, title: '学位'},
+                    {field: 'q', width: 120, title: '编制'}, {field: 'w', width: 120, title: '身份证号'},
+                    {field: 'v', width: 120, title: '户口地址'}, {field: 'b', width: 120, title: '邮编'},
+                    {field: 'v', width: 120, title: '现住地址'}, {field: 'b', width: 120, title: '邮编'},
+                    {field: 'v', width: 120, title: '联系电话'}, {field: 'b', width: 120, title: '手机'},
+                    {field: 'v', width: 120, title: 'Email'}, {field: 'b', width: 120, title: '紧急情况联系'},
+                    {field: 'v', width: 120, title: '联系电话'}, {field: 'b', width: 120, title: '身在何处'},
+                    {field: 'v', width: 120, title: '试用到期'}, {field: 'b', width: 120, title: '入职日期'},
+                    {field: 'v', width: 120, title: '出生日期'}, {field: 'b', width: 120, title: '合同开始日期'},
+                    {field: 'v', width: 120, title: '合同结束日期'}, {field: 'b', width: 120, title: '生日'},
+                    {field: 'v', width: 120, title: '年龄'}
+                ]
+            ],
+            data: [{
+                "id": "10001",
+                "username": "杜甫",
+                "a": "斗者1",
+                "s": "大斗者",
+                "d": "斗师",
+                "f": "斗王"
+            }, {
+                "id": "10002",
+                "username": "李白",
+                "a": "斗者2",
+                "s": "大斗者",
+                "d": "斗师",
+                "f": "斗王"
+            }, {
+                "id": "10003",
+                "username": "王勃",
+                "a": "斗者3",
+                "s": "大斗者",
+                "d": "斗师",
+                "f": "斗王"
+            }, {
+                "id": "10004",
+                "username": "贤心",
+                "a": "斗者4",
+                "s": "大斗者",
+                "d": "斗师",
+                "f": "斗王"
+            }],
+            page: true
+        });
+
+        //头工具栏事件
+        table.on('toolbar(test)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id); //获取选中行状态
+            switch (obj.event) {
+                case 'getCheckData':
+                    var data = checkStatus.data; //获取选中行数据
+                    var name = JSON.stringify(data.ID());
+                    alert(name);
+                    layer.alert(JSON.stringify(data));
+                    break;
+            }
+        });
+    });
+</script>
+</body>
+</html>

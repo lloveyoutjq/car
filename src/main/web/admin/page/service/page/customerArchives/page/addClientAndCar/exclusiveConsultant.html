@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>专属顾问</title>
+    <link rel="stylesheet" href="../../../../../../static/layui/css/layui.css">
+    <style>
+        .layui-elem-quote {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body layadmin-themealias="green-header">
+    <div class="layui-card">
+        <!--<div class="layui-card-header">
+            &lt;!&ndash;<blockquote class="layui-elem-quote">
+                <h4>选择员工</h4>
+            </blockquote>&ndash;&gt;
+        </div>-->
+        <div class="layui-card-body layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">多级1</label>
+                <div id="cat_ids1">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <table class="layui-hide" id="test"></table>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../../../../static/layui/layui.js"></script>
+    <script>
+        layui.config({
+            base : '../../../../../static/layui/module/alLevelSelect/'
+        }).extend({
+            selectN: '../../../../../static/layui/module/alLevelSelect/selectN',
+            selectM: '../../../../../static/layui/module/alLevelSelect/selectM',
+        });
+
+        var catData = [{"id":1,"name":"周边旅游","children":[{"id":24,"name":"广东","status":0,"children":[{"id":7,"name":"广州"},{"id":23,"name":"潮州"}]}]},{"id":5,"name":"国内旅游","children":[{"id":8,"name":"华北地区","children":[{"id":9,"name":"北京"}]}]},{"id":6,"name":"出境旅游","children":[{"id":10,"name":"东南亚","children":[{"id":11,"name":"马来西亚","children":[{"id":20,"name":"沙巴","children":[{"id":21,"name":"美人鱼岛","children":[{"id":22,"name":"潜水"}]}]}]}]}]}];
+        layui.use(['form', 'laydate','selectN','selectM','table'], function()
+        {
+            var form = layui . form,
+                layer = layui . layer,
+                selectN = layui.selectN,
+                selectM = layui.selectM,
+                table = layui.table;
+
+            //无限级分类-基本配置
+            var catIns1 = selectN({
+                //元素容器【必填】
+                elem: '#cat_ids1'
+                ,search:[false,true]
+                //候选数据【必填】
+                ,data: catData
+            });
+
+            table.render({
+                elem: '#test'
+                ,url:'/demo/table/user/'
+                ,width: 592
+                ,height: 300
+                ,cols: [[
+                    {type:'checkbox', fixed: 'left'}
+                    ,{field:'id', width:80, title: 'ID', sort: true, fixed: 'left'}
+                    ,{field:'username', width:80, title: '用户名'}
+                    ,{field:'sex', width:80, title: '性别', sort: true}
+                    ,{field:'city', width:80, title: '城市'}
+                ]]
+                ,page: true
+            });
+
+
+        })
+    </script>
+</body>
+</html>

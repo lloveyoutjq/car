@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css">
+    <link rel="stylesheet" href="../../static/css/admin.css" />
+    <link rel="stylesheet" href="../../static/layui/module/soulTable/ext/soulTable.css" />
+    <style>
+
+        .search-ul{
+            min-width: 600px;
+        }
+        .search-ul>li,.row-ul>li{
+            display: inline-block;
+        }
+        .margin-top1{
+            margin-top: 10px;
+        }
+        .layui-card-header .layui-icon {
+            line-height: unset;
+            position: unset;
+            margin-top: 0px;
+        }
+        .soul-table-contextmenu{
+            z-index: 999999999;
+        }
+        .ul-tool>li{
+            //margin:0px 2px;
+            width: 92px;
+        }
+        .ul-tool>li:nth-child(1){
+            font-weight: bold;
+            font-size: 13px;
+            width: 95px;
+        }
+        .packUp{
+            cursor: pointer;
+            transition: all 0.5s;
+            color: #666;
+        }
+        .packUp:hover{
+            transition: all 1s;
+            color: #2d2d2d;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-fluid" id="app">
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-card layui-col-md12">
+            <div class="layui-card-header">
+                <h1>车资料</h1>
+            </div>
+            <div class="layui-card-body">
+                <ul class="search-ul">
+                    <li style="width: 400px;">
+                        <input class="layui-input" type="text" placeholder="匹配名称/名称简码/手机/会员卡号/车牌号">
+                    </li>
+                    <li>
+                        <button class="layui-btn layui-btn-normal">搜&nbsp;索</button>
+                    </li>
+                    <li>
+                        <button class="layui-btn layui-btn-danger">关&nbsp;闭</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-row layui-col-space15 margin-top1">
+        <div class="layui-card layui-col-md12">
+            <div class="layui-card-body layui-form">
+                <fieldset class="layui-elem-field layui-field-title">
+                    <legend>子搜索</legend>
+                </fieldset>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">
+                        车牌号
+                    </label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input layui-unselect">
+                    </div>
+
+                    <label class="layui-form-label">
+                        车架号
+                    </label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input layui-unselect">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-row layui-col-space15 margin-top1">
+        <div class="layui-card layui-col-md12">
+            <div class="layui-card-header">
+                <div style="text-align: center">
+                    <div class="layui-btn-group">
+                        <button type="button" class="layui-btn layui-btn-sm" >
+                            <i class="layui-icon ">&#xe654;</i>添加
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-sm" >
+                            <i class="layui-icon">&#xe642;</i>修改
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-sm">
+                            <i class="layui-icon">&#xe640;</i>删除
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-sm">
+                            <i class="layui-icon">&#xe615;</i>查询
+                        </button>
+                        <button type="button" class="layui-btn layui-btn-sm" click="openUpkeep">
+                            <i class="layui-icon">&#xe7ae;</i>保养
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="layui-row layui-col-space15 margin-top1">
+        <div class="layui-card  layui-col-md12">
+            <div class="layui-card-body">
+                <table class="layui-hide" id="test1" lay-filter="test"></table>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row layui-col-space15 margin-top1">
+        <div class="layui-card  layui-col-md12">
+            <div class="layui-card-body">
+                <div class="layui-tab">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">客户信息</li>
+                        <li>历史维修</li>
+
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <table class="layui-hide" id="test" lay-filter="test"></table>
+                        </div>
+                        <div class="layui-tab-item">内容2</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<script src="../../static/layui/layui.js"></script>
+<script src="../../static/layui/moduleDefault.js"></script>
+<script src="../../static/js/vue.js"></script>
+<script src="../../static/js/jquery-3.4.1.min%20.js"></script>
+<script src="../../static/js/xadmin.js"></script>
+<script>
+    const vm = new Vue({
+        el:"#app",
+        data(){
+            return {
+                page:{
+                    customerEditor:false,
+                    vehicleMaterial:false
+                }
+            }
+        },
+        methods:{
+            customerEditor(){
+                console.log("hahha")
+            },
+            vehicleMaterial(){
+
+            }
+        }
+    })
+</script>
+<script>
+    var data = [{
+        "id": "10001"
+        ,"username": "杜甫"
+        ,"email": "xianxin@layui.com"
+        ,"sex": "男"
+        ,"city": "浙江杭州"
+        ,"sign": "人生恰似一场修行"
+        ,"experience": "116"
+        ,"ip": "192.168.0.8"
+        ,"logins": "108"
+        ,"joinTime": "2016-10-14"
+    }, {
+        "id": "10008"
+        ,"username": "贤心"
+        ,"email": "xianxin@layui.com"
+        ,"sex": "男"
+        ,"city": "浙江杭州"
+        ,"sign": "人生恰似一场修行"
+        ,"experience": "106"
+        ,"ip": "192.168.0.8"
+        ,"logins": "106"
+        ,"joinTime": "2016-10-14"
+    }];
+
+
+
+    layui.use(['table','element','soulTable'], function(){
+        var table = layui.table,
+            element = layui.element,
+            soulTable = layui.soulTable;
+
+        $("html").on("click","[click=openUpkeep]",function(){
+            xadmin.open("车辆保养登记",2,"page/carArchives/upkeep.html","1000","600",false,true,function (layero, index, html) {
+                console.log(html)
+            },function (layero, index) {
+                console.log(index)
+            })
+        });
+
+
+
+        table.render({
+            elem: '#test'
+            /*,url:'/test/table/demo1.json'*/
+            ,data:data
+            ,toolbar: true
+            ,title: '用户数据表'
+            ,contextmenu: {
+                // 表头右键菜单配置
+                header: [
+                    {
+                        name: '复制',
+                        icon: 'layui-icon layui-icon-template',
+                        click: function(obj) {
+                            console.log(obj);
+                            soulTable.copy(obj.text);
+
+                            layer.msg('复制成功！')
+                        }
+                    },
+                    {
+                        name: '导出excel',
+                        click: function() {
+                            soulTable.export(this.id)
+                        }
+                    },
+                    {
+                        name: '重载表格',
+                        icon: 'layui-icon layui-icon-refresh-1',
+                        click: function() {
+                            table.reload(this.id)
+                        }
+                    },
+                    {
+                        name: '字体颜色',
+                        icon: 'layui-icon layui-icon-theme',
+                        children: [
+                            {
+                                name: '红色',
+                                children: [
+                                    {
+                                        name: '大红色',
+                                        click: function(obj) {
+                                            obj.elem.css('color', 'red')
+                                        }
+                                    },
+                                    {
+                                        name: '粉红色',
+                                        click: function(obj) {
+                                            obj.elem.css('color', 'pink')
+                                        }
+                                    },
+                                ]
+                            },
+                            {
+                                name: '绿色',
+                                click: function(obj) {
+                                    obj.elem.css('color', '#009688')
+                                }
+                            }
+                        ]
+                    }
+                    ,
+                    {
+                        name: '背景色',
+                        icon: 'layui-icon layui-icon-theme',
+                        children: [
+                            {
+                                name: '蓝色',
+                                click: function(obj) {
+                                    obj.elem.css('background', '#01AAED')
+                                }
+                            },
+                            {
+                                name: '黄色',
+                                click: function(obj) {
+                                    obj.elem.css('background', '#FFB800')
+                                }
+                            }
+                        ]
+                    }
+                ],
+                // 表格内容右键菜单配置
+                body: [
+                    {
+                        name: '复制',
+                        icon: 'layui-icon layui-icon-template',
+                        click: function(obj) {
+                            console.log(obj);
+                            soulTable.copy(obj.text);
+                            layer.msg('复制成功！')
+                        }
+                    },
+                    {
+                        name: '删除当前行数据',
+                        click: function(obj) {
+                            obj.del()
+                        }
+                    },
+                    {
+                        name: '更新数据',
+                        click: function(obj) {
+                            obj.update({author: obj.row.author + '+1'})
+                        }
+                    },
+                    {
+                        name: '行-蓝色',
+                        click: function(obj) {
+                            obj.trElem.css('background', '#01AAED')
+                        }
+                    },
+                    {
+                        name: '红色',
+                        click: function(obj) {
+                            obj.elem.css('color', 'red')
+                        }
+                    }
+                ],
+                // 合计栏右键菜单配置
+                total: [
+                    {
+                        name: '背景黄色',
+                        click: function(obj) {
+                            obj.elem.css('background', '#FFB800')
+                        }
+                    }
+                ]
+            }
+            ,cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                ,{field:'id', title:'客户编号', width:80, fixed: 'left', sort: true}
+                ,{field:'username', title:'客户名称', width:120, edit: 'text'}
+                ,{field:'email', title:'详细地址', width:150, edit: 'text', templet: function(res){
+                        return '<em>'+ res.email +'</em>'
+                    }}
+                ,{field:'experience', title:'联系人', width:80, sort: true}
+                ,{field:'sex', title:'手机', width:80, edit: 'text', sort: true}
+                ,{field:'logins', title:'客户生日', width:100, sort: true}
+                ,{field:'sign', title:'客户类别'}
+                ,{field:'city', title:'会员卡号', width:100}
+                ,{field:'ip', title:'入会日期', width:120}
+                ,{field:'joinTime', title:'会员到期', width:120}
+                ,{field:'joinTime', title:'备注', width:120}
+                ,{field:'joinTime', title:'建档日期', width:120}
+                ,{field:'joinTime', title:'服务顾问', width:120}
+                ,{field:'joinTime', title:'业务员电话', width:120}
+                ,{field:'joinTime', title:'账期(天)', width:120}
+                ,{field:'joinTime', title:'挂账额度', width:120}
+                ,{field:'joinTime', title:'累计积分', width:120}
+                ,{field:'joinTime', title:'定金余额', width:120}
+                ,{field:'joinTime', title:'客户省', width:120}
+                ,{field:'joinTime', title:'客户市', width:120}
+                ,{field:'joinTime', title:'客户区', width:120}
+                ,{field:'joinTime', title:'纳税人识别号', width:120}
+                ,{field:'joinTime', title:'注册电话', width:120}
+                ,{field:'joinTime', title:'开户银行', width:120}
+                ,{field:'joinTime', title:'注册地址', width:120}
+                ,{field:'joinTime', title:'其他一', width:120}
+                ,{field:'joinTime', title:'其他二', width:120}
+                ,{field:'joinTime', title:'其他三', width:120}
+                ,{field:'joinTime', title:'其他四', width:120}
+
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+            ]]
+
+            ,page: true
+            ,done: function () {
+                soulTable.render(this)
+            }
+        });
+        table.render({
+            elem: '#test1'
+            /*,url:'/test/table/demo1.json'*/
+            ,data:data
+            ,toolbar: true
+            ,title: '用户数据表'
+            ,contextmenu: {
+                // 表头右键菜单配置
+                header: [
+                    {
+                        name: '复制',
+                        icon: 'layui-icon layui-icon-template',
+                        click: function(obj) {
+                            console.log(obj);
+                            soulTable.copy(obj.text);
+
+                            layer.msg('复制成功！')
+                        }
+                    },
+                    {
+                        name: '导出excel',
+                        click: function() {
+                            soulTable.export(this.id)
+                        }
+                    },
+                    {
+                        name: '重载表格',
+                        icon: 'layui-icon layui-icon-refresh-1',
+                        click: function() {
+                            table.reload(this.id)
+                        }
+                    },
+                    {
+                        name: '字体颜色',
+                        icon: 'layui-icon layui-icon-theme',
+                        children: [
+                            {
+                                name: '红色',
+                                children: [
+                                    {
+                                        name: '大红色',
+                                        click: function(obj) {
+                                            obj.elem.css('color', 'red')
+                                        }
+                                    },
+                                    {
+                                        name: '粉红色',
+                                        click: function(obj) {
+                                            obj.elem.css('color', 'pink')
+                                        }
+                                    },
+                                ]
+                            },
+                            {
+                                name: '绿色',
+                                click: function(obj) {
+                                    obj.elem.css('color', '#009688')
+                                }
+                            }
+                        ]
+                    }
+                    ,
+                    {
+                        name: '背景色',
+                        icon: 'layui-icon layui-icon-theme',
+                        children: [
+                            {
+                                name: '蓝色',
+                                click: function(obj) {
+                                    obj.elem.css('background', '#01AAED')
+                                }
+                            },
+                            {
+                                name: '黄色',
+                                click: function(obj) {
+                                    obj.elem.css('background', '#FFB800')
+                                }
+                            }
+                        ]
+                    }
+                ],
+                // 表格内容右键菜单配置
+                body: [
+                    {
+                        name: '复制',
+                        icon: 'layui-icon layui-icon-template',
+                        click: function(obj) {
+                            console.log(obj);
+                            soulTable.copy(obj.text);
+                            layer.msg('复制成功！')
+                        }
+                    },
+                    {
+                        name: '删除当前行数据',
+                        click: function(obj) {
+                            obj.del()
+                        }
+                    },
+                    {
+                        name: '更新数据',
+                        click: function(obj) {
+                            obj.update({author: obj.row.author + '+1'})
+                        }
+                    },
+                    {
+                        name: '行-蓝色',
+                        click: function(obj) {
+                            obj.trElem.css('background', '#01AAED')
+                        }
+                    },
+                    {
+                        name: '红色',
+                        click: function(obj) {
+                            obj.elem.css('color', 'red')
+                        }
+                    }
+                ],
+                // 合计栏右键菜单配置
+                total: [
+                    {
+                        name: '背景黄色',
+                        click: function(obj) {
+                            obj.elem.css('background', '#FFB800')
+                        }
+                    }
+                ]
+            }
+            ,cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                ,{field:'id', title:'客户编号', width:80, fixed: 'left', sort: true}
+                ,{field:'username', title:'客户名称', width:120, edit: 'text'}
+                ,{field:'email', title:'详细地址', width:150, edit: 'text', templet: function(res){
+                        return '<em>'+ res.email +'</em>'
+                    }}
+                ,{field:'experience', title:'联系人', width:80, sort: true}
+                ,{field:'sex', title:'手机', width:80, edit: 'text', sort: true}
+                ,{field:'logins', title:'客户生日', width:100, sort: true}
+                ,{field:'sign', title:'客户类别'}
+                ,{field:'city', title:'会员卡号', width:100}
+                ,{field:'ip', title:'入会日期', width:120}
+                ,{field:'joinTime', title:'会员到期', width:120}
+                ,{field:'joinTime', title:'备注', width:120}
+                ,{field:'joinTime', title:'建档日期', width:120}
+                ,{field:'joinTime', title:'服务顾问', width:120}
+                ,{field:'joinTime', title:'业务员电话', width:120}
+                ,{field:'joinTime', title:'账期(天)', width:120}
+                ,{field:'joinTime', title:'挂账额度', width:120}
+                ,{field:'joinTime', title:'累计积分', width:120}
+                ,{field:'joinTime', title:'定金余额', width:120}
+                ,{field:'joinTime', title:'客户省', width:120}
+                ,{field:'joinTime', title:'客户市', width:120}
+                ,{field:'joinTime', title:'客户区', width:120}
+                ,{field:'joinTime', title:'纳税人识别号', width:120}
+                ,{field:'joinTime', title:'注册电话', width:120}
+                ,{field:'joinTime', title:'开户银行', width:120}
+                ,{field:'joinTime', title:'注册地址', width:120}
+                ,{field:'joinTime', title:'其他一', width:120}
+                ,{field:'joinTime', title:'其他二', width:120}
+                ,{field:'joinTime', title:'其他三', width:120}
+                ,{field:'joinTime', title:'其他四', width:120}
+
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+            ]]
+
+            ,page: true
+            ,done: function () {
+                soulTable.render(this)
+            }
+        });
+
+        //工具栏事件
+        table.on('toolbar(test)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'getCheckData':
+                    var data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    layer.msg('选中了：'+ data.length + ' 个');
+                    break;
+                case 'isAll':
+                    layer.msg(checkStatus.isAll ? '全选': '未全选');
+                    break;
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+		<link rel="stylesheet" type="text/css" href="../../../../../../static/layui/css/layui.css" />
+		<style>
+			.prerequisite {
+				color: red;
+			}
+			
+			.layui-form-label {
+				width: 85px;
+			}
+		</style>
+	</head>
+
+	<body layadmin-themealias="green-header">
+
+		<div class="layui-form" style="padding: 20px 30px 0 0;">
+			<div class="layui-form-item">
+				<label class="layui-form-label">
+					<span class="prerequisite">*</span>
+					技工编号
+                </label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input class="layui-input layui-unselect" style="width: 100px;">
+				</div>
+				<label class="layui-form-label">
+					<span class="prerequisite">*</span>
+					技工姓名
+                </label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input class="layui-input layui-unselect" style="width: 100px;">
+				</div>
+				<label class="layui-form-label">
+					<span class="prerequisite">*</span>
+					性别
+                </label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<select name="province" class="province-selector" data-value="广东省" lay-filter="province-1" style="width: 100px;">
+						<option value=""></option>
+					</select>
+				</div>
+				<label class="layui-form-label">
+					组长
+                </label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input class="layui-input layui-unselect" style="width: 100px;">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">
+					<span class="prerequisite">*</span>
+					所在班级
+                </label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<select name="province" class="province-selector" data-value="广东省" lay-filter="province-1" style="width: 100px;">
+						<option value=""></option>
+					</select>
+				</div>
+				<label class="layui-form-label">
+					<span class="prerequisite">*</span>
+					手机
+                </label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input class="layui-input layui-unselect" style="width: 100px;">
+				</div>
+				<label class="layui-form-label">
+					登陆账号
+                </label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input class="layui-input layui-unselect" style="width: 100px;">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">
+					地址
+                </label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input class="layui-input layui-unselect" style="width: 100px;">
+				</div>
+				<label class="layui-form-label">
+					出生日期
+                </label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input class="layui-input layui-unselect" type="text" name="date" id="date1" autocomplete="off" >
+				</div>
+				<label class="layui-form-label">
+					微信号
+                </label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input class="layui-input layui-unselect" style="width: 100px;">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">
+					身份证号
+                </label>
+				<div class="layui-input-inline" style="width: 200px;">
+					<input class="layui-input layui-unselect" style="width: 200px;">
+				</div>
+				<label class="layui-form-label">
+					户口地址
+                </label>
+				<div class="layui-input-inline" style="width: 200px;">
+					<input class="layui-input layui-unselect" style="width: 200px;">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">
+					开户银行
+                </label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<select name="province" class="province-selector" data-value="广东省" lay-filter="province-1" style="width: 100px;">
+						<option value=""></option>
+					</select>
+				</div>
+				<label class="layui-form-label">
+					银行账号
+                </label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input class="layui-input layui-unselect" style="width: 100px;">
+				</div>
+				<label class="layui-form-label">
+					<span class="prerequisite">*</span>
+					星级
+                </label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<select name="province" class="province-selector" data-value="广东省" lay-filter="province-1" style="width: 100px;">
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">
+					维修工种
+                </label>
+				<div class="layui-input-inline" style="width: 600px;">
+					<input class="layui-input layui-unselect" style="width: 600px;">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">
+					维修品牌
+                </label>
+				<div class="layui-input-inline" style="width: 600px;">
+					<input class="layui-input layui-unselect" style="width: 600px;">
+				</div>
+			</div>
+		</div>
+
+		<script src="../../../../../../static/layui/layui.js"></script>
+		<script src="../../../../../../static/js/jquery-3.4.1.min%20.js"></script>
+		<script src="../../../../../../static/js/xadmin.js"></script>
+		<script>
+			alert($("[name=id]").val());
+
+			layui.config({
+				base: '../../../../../../static/layui/module/addressSelect/',
+				version: '1.0'
+			});
+
+			layui.use(['form', 'layarea', 'laydate'], function() {
+				var form = layui.form,
+					layer = layui.layer,
+					layarea = layui.layarea,
+					laydate = layui.laydate;
+
+				laydate.render({
+					elem: '#date1'
+				});
+
+				layarea.render({
+					elem: '#address',
+					change: function(res) {
+						//选择结果
+						console.log(res);
+					}
+				});
+
+				$("html").on("click", "[name=exclusiveConsultant]", function() {
+					xadmin.open("选择员工", 2, "page/addClientAndCar/exclusiveConsultant.html", "", "", false, false)
+				})
+
+			})
+		</script>
+	</body>
+
+</html>

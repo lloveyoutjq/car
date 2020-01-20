@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" media="all"/>
+</head>
+<body>
+<div id="ctx" class="layui-fluid">
+    <div class="layui-row" style="margin-top: 30px;">
+        <div class="layui-col-lg-offset1 layui-col-lg3">
+            <h1>结算中心</h1>
+        </div>
+        <div class="layui-col-lg-offset4 layui-col-lg-offset4">
+            <div class="layui-col-lg-offset9 layui-col-lg2">
+                <button type="button" class="layui-btn"><i class="layui-icon">&#xe615;</i>查询</button>
+            </div>
+        </div>
+    </div>
+    <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 20px;">
+        <form class="layui-form">
+            <div class="layui-row">
+                <div class="layui-col-lg2">
+                    <label class="layui-form-label">销售日期：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="date" id="date" lay-verify="date" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-col-lg2">
+                    <div class="layui-input-block">
+                        <input type="text" name="date" id="date1" lay-verify="date" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-col-lg2">
+                    <label class="layui-form-label">销售单号：</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-col-lg2">
+                    <label class="layui-form-label">结算状态：</label>
+                    <div class="layui-input-block">
+                        <select class="layui-form-select" lay-filter="chooses">
+                            <option>未结算</option>
+                            <option>已结算</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-col-lg2">
+                    <label class="layui-form-label">车牌号：</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row" style="margin-top: 10px;">
+                <div class="layui-col-lg2">
+                    <label class="layui-form-label">客户名称：</label>
+                    <div class="layui-input-block">
+                        <select class="layui-form-select" lay-search>
+                            <option>1</option>
+                            <option>1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-col-lg2">
+                    <label class="layui-form-label">服务顾问：</label>
+                    <div class="layui-input-block">
+                        <select class="layui-form-select" lay-search>
+                            <option>1</option>
+                            <option>1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-col-lg2">
+                    <label class="layui-form-label">业务类型：</label>
+                    <div class="layui-input-block">
+                        <select class="layui-form-select" lay-search>
+                            <option>1</option>
+                            <option>1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-col-lg2">
+                    <label class="layui-form-label">单据类型：</label>
+                    <div class="layui-input-block">
+                        <select class="layui-form-select" lay-search>
+                            <option>1</option>
+                            <option>1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-col-lg2">
+                    <label class="layui-form-label">备注：</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </blockquote>
+
+    <table class="layui-hide" id="demo" lay-filter="test"></table>
+
+</div>
+<script type="text/html" id="barDemo1">
+    <button id="selects" class="layui-btn layui-btn-xs"><a lay-event="detail" style="color: white;">打开单据</a></button>
+    <button id="CashRegister" class="layui-btn layui-btn-xs"><a lay-event="edit" style="color: white;">收银</a></button>
+    <button id="rollback" class="layui-btn layui-btn-xs"><a lay-event="rollback" style="color: white;">回滚</a></button>
+</script>
+
+<script type="text/javascript" src="../../static/js/jquery-3.4.1.min%20.js"></script>
+<script type="text/javascript" src="../../static/js/vue.js"></script>
+<script type="text/javascript" src="../../static/js/xadmin.js"></script>
+<script type="text/javascript" src="../../static/layui/layui.js"></script>
+<script>
+    var vm = new Vue({
+        el: "#ctx",
+        data() {
+            return {
+                documentStatus: "未结算"
+            }
+        }
+    })
+
+</script>
+<script>
+    var data1 = [
+        {
+            saleid: 'e2333',
+            documentType: 1,
+            settlementMethod: 1,
+            documentStatus: 1,
+            settlementStatus: 1
+        }
+    ];
+
+    layui.use(['layer', 'form', 'table', 'element', 'laydate'], function () {
+        var table = layui.table
+            , element = layui.element
+            , form = layui.form
+            , layer = layui.layer
+            , laydate = layui.laydate
+            , $ = layui.jquery;
+
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+
+        table.render({
+            elem: '#demo'
+            , height: 420
+            /*,url: '/demo/table/user/' */
+            , data: data1
+            , title: '用户表'
+            , page: true
+            , toolbar: '#barDemo1'
+            , cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'saleid', title: '销售单号', width: 160, sort: true, fixed: 'left'}
+                , {field: 'documentType', title: '单据类型', width: 90, sort: true}
+                , {field: 'settlementMethod', title: '结算方式', width: 90, sort: true}
+                , {field: 'documentStatus', title: '单据状态', width: 100, sort: true}
+                , {field: 'settlementStatus', title: '结算状态', width: 100, sort: true}
+                , {field: 'settlementTime', title: '结算时间', width: 150, sort: true}
+                , {field: 'clearer', title: '结算人', width: 80, sort: true}
+                , {field: 'settlementAmount', title: '结算金额', width: 100, sort: true, totalRow: true}
+                , {field: 'clientName', title: '客户名称', width: 135, sort: true}
+                , {field: 'numberPlate', title: '车牌号', width: 135, sort: true}
+                , {field: 'model', title: '车型', width: 135, sort: true}
+                , {field: 'frameNumber', title: '车架号', width: 135, sort: true}
+                , {field: 'phone', title: '联系电话', width: 135, sort: true}
+                , {field: 'insurer', title: '保险公司', width: 135, sort: true}
+                , {field: 'indemnityCompany', title: '赔款公司', width: 135, sort: true}
+                , {field: 'licensePlate', title: '对方车牌', width: 135, sort: true}
+                , {field: 'serviceAdvisor', title: '服务顾问', width: 135, sort: true}
+                , {field: 'completionTime', title: '完工时间', width: 135, sort: true}
+                , {field: 'remark', title: '备注', width: 135, sort: true}
+            ]]
+        });
+
+
+        table.on('toolbar(test)', function (obj) {
+            var checkStatus = table.checkStatus(obj.config.id)
+                , data = checkStatus.data;
+
+            if (vm.documentStatus == "未结算") {
+                switch (obj.event) {
+                    case 'detail':
+                        if (data.length === 0) {
+                            layer.msg('请选择一行');
+                        } else if (data.length > 1) {
+                            layer.msg('只能同时打开一个');
+                        } else {
+                            xadmin.open("维修单", 2, "page/SettlementCenter/RepairOrder.html", ($(window).width()), ($(window).height()), false, false, function (layero, index, html) {
+                                $(html).find("[name=id]").val(data[0].saleid);
+                            });
+                        }
+                        break;
+                    case 'edit':
+                        if (data.length === 0) {
+                            layer.msg('请选择一行');
+                        } else if (data.length > 1) {
+                            layer.msg('只能同时收银一个');
+                        } else {
+                            xadmin.open("收银", 2, "page/SettlementCenter/CashRegister.html", ($(window).width() * 0.9), ($(window).height() - 50), false, false, function (layero, index, html) {
+                                $(html).find("[name=id]").val(data[0].saleid);
+                            });
+                        }
+                        break;
+                    case 'rollback':
+                        layer.msg("单子未结算");
+                        break;
+                }
+            } else {
+                switch (obj.event) {
+                    case 'detail':
+                        if (data.length === 0) {
+                            layer.msg('请选择一行');
+                        } else if (data.length > 1) {
+                            layer.msg('只能同时打开一个');
+                        } else {
+                            xadmin.open("维修单", 2, "page/SettlementCenter/RepairOrder.html", ($(window).width()), ($(window).height()), false, false, function (layero, index, html) {
+                                $(html).find("[name=id]").val(data[0].saleid);
+                            });
+                        }
+                        break;
+                    case 'rollback':
+                        if (data.length === 0) {
+                            layer.msg('请选择一行');
+                        } else {
+                            layer.alert('编辑 [id]：' + checkStatus.data[0].saleid);
+                        }
+                        break;
+                    case 'edit':
+                        layer.msg("单子已结算");
+                        break;
+                }
+            }
+
+        });
+
+        form.on('select(chooses)', function (datas) {
+            console.log(datas.elem);
+            console.log(datas.value);
+            console.log(datas.othis);
+            vm.documentStatus = datas.value;
+
+        });
+    });
+
+
+</script>
+</body>
+</html>
