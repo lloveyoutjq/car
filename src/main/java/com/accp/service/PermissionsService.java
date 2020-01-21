@@ -1,7 +1,7 @@
 package com.accp.service;
 
-import com.accp.domain.Permissions;
-import com.accp.mapper.PermissionsMapper;
+import com.accp.domain.SystemPermissions;
+import com.accp.mapper.SystemPermissionsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,29 +12,40 @@ import java.util.List;
 @Service
 public class PermissionsService {
     @Autowired(required = false)
-    PermissionsMapper permissionsMapper;
+    SystemPermissionsMapper permissionsMapper;
     /**
      * 查询用户菜单权限
+     * @param uid 根据用户id
      * @return
      */
-    public List<Permissions> selectUserMenuAll(Integer uid){
+    public List<SystemPermissions> selectUserMenuAll(Integer type,Integer uid){
         System.out.println("1111");
-        return permissionsMapper.selectUserMenuAll(uid);
+        return permissionsMapper.selectUserMenuAll(type,uid);
     }
 
-    public List<Permissions> selectUserPerm(Integer uid){
-        List<Permissions> list = selectUserMenuAll(uid);
-        Permissions parentPerms = new Permissions();
+    /**
+     * 遍历层次关系
+     * @param uid 根据用户id
+     * @return
+     */
+    public List<SystemPermissions> selectUserPerm(Integer type,Integer uid){
+        List<SystemPermissions> list = selectUserMenuAll(type,uid);
+        SystemPermissions parentPerms = new SystemPermissions();
         parentPerms.setId(0);
         recursionPerm(parentPerms, list);
         System.out.println(parentPerms);
         return parentPerms.getChildrens();
     }
 
-    private void recursionPerm(Permissions parentPerms,List<Permissions> list){
-        for(Permissions perm : list){
+    /**
+     * 递归层次关系
+     * @param parentPerms
+     * @param list
+     */
+    private void recursionPerm(SystemPermissions parentPerms,List<SystemPermissions> list){
+        for(SystemPermissions perm : list){
             if(perm.getParentid() == parentPerms.getId()){
-                Permissions newPerms = perm;
+                SystemPermissions newPerms = perm;
                 parentPerms.getChildrens().add(newPerms);
                 recursionPerm(newPerms,list);
             }
