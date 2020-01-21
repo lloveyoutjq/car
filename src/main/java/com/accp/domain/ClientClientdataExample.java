@@ -1395,73 +1395,73 @@ public class ClientClientdataExample {
             return (Criteria) this;
         }
 
-        public Criteria andElseIsNull() {
-            addCriterion("else is null");
+        public Criteria andRestIsNull() {
+            addCriterion("rest is null");
             return (Criteria) this;
         }
 
-        public Criteria andElseIsNotNull() {
-            addCriterion("else is not null");
+        public Criteria andRestIsNotNull() {
+            addCriterion("rest is not null");
             return (Criteria) this;
         }
 
-        public Criteria andElseEqualTo(String value) {
-            addCriterion("else =", value, "else");
+        public Criteria andRestEqualTo(String value) {
+            addCriterion("rest =", value, "rest");
             return (Criteria) this;
         }
 
-        public Criteria andElseNotEqualTo(String value) {
-            addCriterion("else <>", value, "else");
+        public Criteria andRestNotEqualTo(String value) {
+            addCriterion("rest <>", value, "rest");
             return (Criteria) this;
         }
 
-        public Criteria andElseGreaterThan(String value) {
-            addCriterion("else >", value, "else");
+        public Criteria andRestGreaterThan(String value) {
+            addCriterion("rest >", value, "rest");
             return (Criteria) this;
         }
 
-        public Criteria andElseGreaterThanOrEqualTo(String value) {
-            addCriterion("else >=", value, "else");
+        public Criteria andRestGreaterThanOrEqualTo(String value) {
+            addCriterion("rest >=", value, "rest");
             return (Criteria) this;
         }
 
-        public Criteria andElseLessThan(String value) {
-            addCriterion("else <", value, "else");
+        public Criteria andRestLessThan(String value) {
+            addCriterion("rest <", value, "rest");
             return (Criteria) this;
         }
 
-        public Criteria andElseLessThanOrEqualTo(String value) {
-            addCriterion("else <=", value, "else");
+        public Criteria andRestLessThanOrEqualTo(String value) {
+            addCriterion("rest <=", value, "rest");
             return (Criteria) this;
         }
 
-        public Criteria andElseLike(String value) {
-            addCriterion("else like", value, "else");
+        public Criteria andRestLike(String value) {
+            addCriterion("rest like", value, "rest");
             return (Criteria) this;
         }
 
-        public Criteria andElseNotLike(String value) {
-            addCriterion("else not like", value, "else");
+        public Criteria andRestNotLike(String value) {
+            addCriterion("rest not like", value, "rest");
             return (Criteria) this;
         }
 
-        public Criteria andElseIn(List<String> values) {
-            addCriterion("else in", values, "else");
+        public Criteria andRestIn(List<String> values) {
+            addCriterion("rest in", values, "rest");
             return (Criteria) this;
         }
 
-        public Criteria andElseNotIn(List<String> values) {
-            addCriterion("else not in", values, "else");
+        public Criteria andRestNotIn(List<String> values) {
+            addCriterion("rest not in", values, "rest");
             return (Criteria) this;
         }
 
-        public Criteria andElseBetween(String value1, String value2) {
-            addCriterion("else between", value1, value2, "else");
+        public Criteria andRestBetween(String value1, String value2) {
+            addCriterion("rest between", value1, value2, "rest");
             return (Criteria) this;
         }
 
-        public Criteria andElseNotBetween(String value1, String value2) {
-            addCriterion("else not between", value1, value2, "else");
+        public Criteria andRestNotBetween(String value1, String value2) {
+            addCriterion("rest not between", value1, value2, "rest");
             return (Criteria) this;
         }
 

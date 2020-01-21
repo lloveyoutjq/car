@@ -7,7 +7,7 @@ public class PersonnelArtisanlevel {
 
     private String artisanlevelweight;
 
-    private String default
+    private String default1;
 
     private String default2;
 
@@ -35,12 +35,12 @@ public class PersonnelArtisanlevel {
         this.artisanlevelweight = artisanlevelweight;
     }
 
-    public String getDefault() {
-        return default
+    public String getDefault1() {
+        return default1;
     }
 
-    public void setDefault(String default) {
-        this.default = default
+    public void setDefault1(String default1) {
+        this.default1 = default1;
     }
 
     public String getDefault2() {

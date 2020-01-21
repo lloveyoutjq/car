@@ -41,7 +41,7 @@ public class ClientClientdata {
 
     private String registeraddress;
 
-    private String else
+    private String rest;
 
     private Integer typeid;
 
@@ -203,12 +203,12 @@ public class ClientClientdata {
         this.registeraddress = registeraddress;
     }
 
-    public String getElse() {
-        return else
+    public String getRest() {
+        return rest;
     }
 
-    public void setElse(String else) {
-        this.else = else
+    public void setRest(String rest) {
+        this.rest = rest;
     }
 
     public Integer getTypeid() {

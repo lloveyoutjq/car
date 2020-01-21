@@ -27,7 +27,7 @@ public class SystemPermissions {
     }
 
     public void setChildrens(List<SystemPermissions> childrens) {
-        childrens = childrens;
+        this.childrens = childrens;
     }
 
     public Integer getId() {

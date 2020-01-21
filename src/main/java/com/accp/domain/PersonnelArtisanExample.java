@@ -1315,73 +1315,73 @@ public class PersonnelArtisanExample {
             return (Criteria) this;
         }
 
-        public Criteria andDefaultIsNull() {
-            addCriterion("default is null");
+        public Criteria andDefault1IsNull() {
+            addCriterion("default1 is null");
             return (Criteria) this;
         }
 
-        public Criteria andDefaultIsNotNull() {
-            addCriterion("default is not null");
+        public Criteria andDefault1IsNotNull() {
+            addCriterion("default1 is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDefaultEqualTo(String value) {
-            addCriterion("default =", value, "default");
+        public Criteria andDefault1EqualTo(String value) {
+            addCriterion("default1 =", value, "default1");
             return (Criteria) this;
         }
 
-        public Criteria andDefaultNotEqualTo(String value) {
-            addCriterion("default <>", value, "default");
+        public Criteria andDefault1NotEqualTo(String value) {
+            addCriterion("default1 <>", value, "default1");
             return (Criteria) this;
         }
 
-        public Criteria andDefaultGreaterThan(String value) {
-            addCriterion("default >", value, "default");
+        public Criteria andDefault1GreaterThan(String value) {
+            addCriterion("default1 >", value, "default1");
             return (Criteria) this;
         }
 
-        public Criteria andDefaultGreaterThanOrEqualTo(String value) {
-            addCriterion("default >=", value, "default");
+        public Criteria andDefault1GreaterThanOrEqualTo(String value) {
+            addCriterion("default1 >=", value, "default1");
             return (Criteria) this;
         }
 
-        public Criteria andDefaultLessThan(String value) {
-            addCriterion("default <", value, "default");
+        public Criteria andDefault1LessThan(String value) {
+            addCriterion("default1 <", value, "default1");
             return (Criteria) this;
         }
 
-        public Criteria andDefaultLessThanOrEqualTo(String value) {
-            addCriterion("default <=", value, "default");
+        public Criteria andDefault1LessThanOrEqualTo(String value) {
+            addCriterion("default1 <=", value, "default1");
             return (Criteria) this;
         }
 
-        public Criteria andDefaultLike(String value) {
-            addCriterion("default like", value, "default");
+        public Criteria andDefault1Like(String value) {
+            addCriterion("default1 like", value, "default1");
             return (Criteria) this;
         }
 
-        public Criteria andDefaultNotLike(String value) {
-            addCriterion("default not like", value, "default");
+        public Criteria andDefault1NotLike(String value) {
+            addCriterion("default1 not like", value, "default1");
             return (Criteria) this;
         }
 
-        public Criteria andDefaultIn(List<String> values) {
-            addCriterion("default in", values, "default");
+        public Criteria andDefault1In(List<String> values) {
+            addCriterion("default1 in", values, "default1");
             return (Criteria) this;
         }
 
-        public Criteria andDefaultNotIn(List<String> values) {
-            addCriterion("default not in", values, "default");
+        public Criteria andDefault1NotIn(List<String> values) {
+            addCriterion("default1 not in", values, "default1");
             return (Criteria) this;
         }
 
-        public Criteria andDefaultBetween(String value1, String value2) {
-            addCriterion("default between", value1, value2, "default");
+        public Criteria andDefault1Between(String value1, String value2) {
+            addCriterion("default1 between", value1, value2, "default1");
             return (Criteria) this;
         }
 
-        public Criteria andDefaultNotBetween(String value1, String value2) {
-            addCriterion("default not between", value1, value2, "default");
+        public Criteria andDefault1NotBetween(String value1, String value2) {
+            addCriterion("default1 not between", value1, value2, "default1");
             return (Criteria) this;
         }
 

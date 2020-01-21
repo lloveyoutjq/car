@@ -7,7 +7,7 @@
     <result column="brand" property="brand" jdbcType="VARCHAR" />
     <result column="model" property="model" jdbcType="VARCHAR" />
     <result column="mileage" property="mileage" jdbcType="VARCHAR" />
-    <result column="default" property="default" jdbcType="VARCHAR" />
+    <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    legworkCatId, licensePlateNumber, brand, model, mileage, default, default2
+    legworkCatId, licensePlateNumber, brand, model, mileage, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.PersonnelLegworkcatExample" >
     select
@@ -104,10 +104,10 @@
   <insert id="insert" parameterType="com.accp.domain.PersonnelLegworkcat" >
     insert into personnel_legworkcat (legworkCatId, licensePlateNumber, 
       brand, model, mileage, 
-      default, default2)
+      default1, default2)
     values (#{legworkcatid,jdbcType=INTEGER}, #{licenseplatenumber,jdbcType=VARCHAR}, 
       #{brand,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, #{mileage,jdbcType=VARCHAR}, 
-      #{default,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR})
+      #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.PersonnelLegworkcat" >
     insert into personnel_legworkcat
@@ -127,8 +127,8 @@
       <if test="mileage != null" >
         mileage,
       </if>
-      <if test="default != null" >
-        default,
+      <if test="default1 != null" >
+        default1,
       </if>
       <if test="default2 != null" >
         default2,
@@ -150,8 +150,8 @@
       <if test="mileage != null" >
         #{mileage,jdbcType=VARCHAR},
       </if>
-      <if test="default != null" >
-        #{default,jdbcType=VARCHAR},
+      <if test="default1 != null" >
+        #{default1,jdbcType=VARCHAR},
       </if>
       <if test="default2 != null" >
         #{default2,jdbcType=VARCHAR},
@@ -182,8 +182,8 @@
       <if test="record.mileage != null" >
         mileage = #{record.mileage,jdbcType=VARCHAR},
       </if>
-      <if test="record.default != null" >
-        default = #{record.default,jdbcType=VARCHAR},
+      <if test="record.default1 != null" >
+        default1 = #{record.default1,jdbcType=VARCHAR},
       </if>
       <if test="record.default2 != null" >
         default2 = #{record.default2,jdbcType=VARCHAR},
@@ -200,7 +200,7 @@
       brand = #{record.brand,jdbcType=VARCHAR},
       model = #{record.model,jdbcType=VARCHAR},
       mileage = #{record.mileage,jdbcType=VARCHAR},
-      default = #{record.default,jdbcType=VARCHAR},
+      default1 = #{record.default1,jdbcType=VARCHAR},
       default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -221,8 +221,8 @@
       <if test="mileage != null" >
         mileage = #{mileage,jdbcType=VARCHAR},
       </if>
-      <if test="default != null" >
-        default = #{default,jdbcType=VARCHAR},
+      <if test="default1 != null" >
+        default1 = #{default1,jdbcType=VARCHAR},
       </if>
       <if test="default2 != null" >
         default2 = #{default2,jdbcType=VARCHAR},
@@ -236,7 +236,7 @@
       brand = #{brand,jdbcType=VARCHAR},
       model = #{model,jdbcType=VARCHAR},
       mileage = #{mileage,jdbcType=VARCHAR},
-      default = #{default,jdbcType=VARCHAR},
+      default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
     where legworkCatId = #{legworkcatid,jdbcType=INTEGER}
   </update>

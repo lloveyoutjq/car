@@ -7,7 +7,7 @@ public class FrontCashier {
 
     private Float totalnum;
 
-    private String static
+    private String settlementstatus;
 
     private String paymenttype;
 
@@ -45,12 +45,12 @@ public class FrontCashier {
         this.totalnum = totalnum;
     }
 
-    public String getStatic() {
-        return static
+    public String getSettlementstatus() {
+        return settlementstatus;
     }
 
-    public void setStatic(String static) {
-        this.static = static
+    public void setSettlementstatus(String settlementstatus) {
+        this.settlementstatus = settlementstatus;
     }
 
     public String getPaymenttype() {

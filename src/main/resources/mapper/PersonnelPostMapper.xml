@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.accp.domain.PersonnelPost" >
     <id column="postId" property="postid" jdbcType="INTEGER" />
     <result column="postName" property="postname" jdbcType="VARCHAR" />
-    <result column="default" property="default" jdbcType="VARCHAR" />
+    <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    postId, postName, default, default2
+    postId, postName, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.PersonnelPostExample" >
     select
@@ -99,9 +99,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.accp.domain.PersonnelPost" >
-    insert into personnel_post (postId, postName, default, 
+    insert into personnel_post (postId, postName, default1, 
       default2)
-    values (#{postid,jdbcType=INTEGER}, #{postname,jdbcType=VARCHAR}, #{default,jdbcType=VARCHAR}, 
+    values (#{postid,jdbcType=INTEGER}, #{postname,jdbcType=VARCHAR}, #{default1,jdbcType=VARCHAR}, 
       #{default2,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.PersonnelPost" >
@@ -113,8 +113,8 @@
       <if test="postname != null" >
         postName,
       </if>
-      <if test="default != null" >
-        default,
+      <if test="default1 != null" >
+        default1,
       </if>
       <if test="default2 != null" >
         default2,
@@ -127,8 +127,8 @@
       <if test="postname != null" >
         #{postname,jdbcType=VARCHAR},
       </if>
-      <if test="default != null" >
-        #{default,jdbcType=VARCHAR},
+      <if test="default1 != null" >
+        #{default1,jdbcType=VARCHAR},
       </if>
       <if test="default2 != null" >
         #{default2,jdbcType=VARCHAR},
@@ -150,8 +150,8 @@
       <if test="record.postname != null" >
         postName = #{record.postname,jdbcType=VARCHAR},
       </if>
-      <if test="record.default != null" >
-        default = #{record.default,jdbcType=VARCHAR},
+      <if test="record.default1 != null" >
+        default1 = #{record.default1,jdbcType=VARCHAR},
       </if>
       <if test="record.default2 != null" >
         default2 = #{record.default2,jdbcType=VARCHAR},
@@ -165,7 +165,7 @@
     update personnel_post
     set postId = #{record.postid,jdbcType=INTEGER},
       postName = #{record.postname,jdbcType=VARCHAR},
-      default = #{record.default,jdbcType=VARCHAR},
+      default1 = #{record.default1,jdbcType=VARCHAR},
       default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,8 +177,8 @@
       <if test="postname != null" >
         postName = #{postname,jdbcType=VARCHAR},
       </if>
-      <if test="default != null" >
-        default = #{default,jdbcType=VARCHAR},
+      <if test="default1 != null" >
+        default1 = #{default1,jdbcType=VARCHAR},
       </if>
       <if test="default2 != null" >
         default2 = #{default2,jdbcType=VARCHAR},
@@ -189,7 +189,7 @@
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.PersonnelPost" >
     update personnel_post
     set postName = #{postname,jdbcType=VARCHAR},
-      default = #{default,jdbcType=VARCHAR},
+      default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
     where postId = #{postid,jdbcType=INTEGER}
   </update>

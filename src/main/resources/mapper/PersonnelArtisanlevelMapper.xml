@@ -5,7 +5,7 @@
     <id column="artisanLevelId" property="artisanlevelid" jdbcType="INTEGER" />
     <result column="artisanLevelName" property="artisanlevelname" jdbcType="VARCHAR" />
     <result column="artisanLevelWeight" property="artisanlevelweight" jdbcType="VARCHAR" />
-    <result column="default" property="default" jdbcType="VARCHAR" />
+    <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    artisanLevelId, artisanLevelName, artisanLevelWeight, default, default2
+    artisanLevelId, artisanLevelName, artisanLevelWeight, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.PersonnelArtisanlevelExample" >
     select
@@ -101,10 +101,10 @@
   </delete>
   <insert id="insert" parameterType="com.accp.domain.PersonnelArtisanlevel" >
     insert into personnel_artisanlevel (artisanLevelId, artisanLevelName, 
-      artisanLevelWeight, default, default2
+      artisanLevelWeight, default1, default2
       )
     values (#{artisanlevelid,jdbcType=INTEGER}, #{artisanlevelname,jdbcType=VARCHAR}, 
-      #{artisanlevelweight,jdbcType=VARCHAR}, #{default,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}
+      #{artisanlevelweight,jdbcType=VARCHAR}, #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.PersonnelArtisanlevel" >
@@ -119,8 +119,8 @@
       <if test="artisanlevelweight != null" >
         artisanLevelWeight,
       </if>
-      <if test="default != null" >
-        default,
+      <if test="default1 != null" >
+        default1,
       </if>
       <if test="default2 != null" >
         default2,
@@ -136,8 +136,8 @@
       <if test="artisanlevelweight != null" >
         #{artisanlevelweight,jdbcType=VARCHAR},
       </if>
-      <if test="default != null" >
-        #{default,jdbcType=VARCHAR},
+      <if test="default1 != null" >
+        #{default1,jdbcType=VARCHAR},
       </if>
       <if test="default2 != null" >
         #{default2,jdbcType=VARCHAR},
@@ -162,8 +162,8 @@
       <if test="record.artisanlevelweight != null" >
         artisanLevelWeight = #{record.artisanlevelweight,jdbcType=VARCHAR},
       </if>
-      <if test="record.default != null" >
-        default = #{record.default,jdbcType=VARCHAR},
+      <if test="record.default1 != null" >
+        default1 = #{record.default1,jdbcType=VARCHAR},
       </if>
       <if test="record.default2 != null" >
         default2 = #{record.default2,jdbcType=VARCHAR},
@@ -178,7 +178,7 @@
     set artisanLevelId = #{record.artisanlevelid,jdbcType=INTEGER},
       artisanLevelName = #{record.artisanlevelname,jdbcType=VARCHAR},
       artisanLevelWeight = #{record.artisanlevelweight,jdbcType=VARCHAR},
-      default = #{record.default,jdbcType=VARCHAR},
+      default1 = #{record.default1,jdbcType=VARCHAR},
       default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -193,8 +193,8 @@
       <if test="artisanlevelweight != null" >
         artisanLevelWeight = #{artisanlevelweight,jdbcType=VARCHAR},
       </if>
-      <if test="default != null" >
-        default = #{default,jdbcType=VARCHAR},
+      <if test="default1 != null" >
+        default1 = #{default1,jdbcType=VARCHAR},
       </if>
       <if test="default2 != null" >
         default2 = #{default2,jdbcType=VARCHAR},
@@ -206,7 +206,7 @@
     update personnel_artisanlevel
     set artisanLevelName = #{artisanlevelname,jdbcType=VARCHAR},
       artisanLevelWeight = #{artisanlevelweight,jdbcType=VARCHAR},
-      default = #{default,jdbcType=VARCHAR},
+      default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
     where artisanLevelId = #{artisanlevelid,jdbcType=INTEGER}
   </update>

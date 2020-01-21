@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.accp.domain.FrontCashier" >
     <id column="cashierId" property="cashierid" jdbcType="INTEGER" />
     <result column="totalNum" property="totalnum" jdbcType="REAL" />
-    <result column="static" property="static" jdbcType="VARCHAR" />
+    <result column="settlementStatus" property="settlementstatus" jdbcType="VARCHAR" />
     <result column="paymentType" property="paymenttype" jdbcType="VARCHAR" />
     <result column="invoiceId" property="invoiceid" jdbcType="INTEGER" />
     <result column="cashierTime" property="cashiertime" jdbcType="TIMESTAMP" />
@@ -75,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    cashierId, totalNum, static, paymentType, invoiceId, cashierTime, staffId, onCredit, 
-    clientId, change, vipBalance, default1, default2
+    cashierId, totalNum, settlementStatus, paymentType, invoiceId, cashierTime, staffId, 
+    onCredit, clientId, change, vipBalance, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.FrontCashierExample" >
     select
@@ -109,12 +109,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.accp.domain.FrontCashier" >
-    insert into front_cashier (cashierId, totalNum, static, 
+    insert into front_cashier (cashierId, totalNum, settlementStatus, 
       paymentType, invoiceId, cashierTime, 
       staffId, onCredit, clientId, 
       change, vipBalance, default1, 
       default2)
-    values (#{cashierid,jdbcType=INTEGER}, #{totalnum,jdbcType=REAL}, #{static,jdbcType=VARCHAR}, 
+    values (#{cashierid,jdbcType=INTEGER}, #{totalnum,jdbcType=REAL}, #{settlementstatus,jdbcType=VARCHAR}, 
       #{paymenttype,jdbcType=VARCHAR}, #{invoiceid,jdbcType=INTEGER}, #{cashiertime,jdbcType=TIMESTAMP}, 
       #{staffid,jdbcType=VARCHAR}, #{oncredit,jdbcType=REAL}, #{clientid,jdbcType=INTEGER}, 
       #{change,jdbcType=REAL}, #{vipbalance,jdbcType=REAL}, #{default1,jdbcType=VARCHAR}, 
@@ -129,8 +129,8 @@
       <if test="totalnum != null" >
         totalNum,
       </if>
-      <if test="static != null" >
-        static,
+      <if test="settlementstatus != null" >
+        settlementStatus,
       </if>
       <if test="paymenttype != null" >
         paymentType,
@@ -170,8 +170,8 @@
       <if test="totalnum != null" >
         #{totalnum,jdbcType=REAL},
       </if>
-      <if test="static != null" >
-        #{static,jdbcType=VARCHAR},
+      <if test="settlementstatus != null" >
+        #{settlementstatus,jdbcType=VARCHAR},
       </if>
       <if test="paymenttype != null" >
         #{paymenttype,jdbcType=VARCHAR},
@@ -220,8 +220,8 @@
       <if test="record.totalnum != null" >
         totalNum = #{record.totalnum,jdbcType=REAL},
       </if>
-      <if test="record.static != null" >
-        static = #{record.static,jdbcType=VARCHAR},
+      <if test="record.settlementstatus != null" >
+        settlementStatus = #{record.settlementstatus,jdbcType=VARCHAR},
       </if>
       <if test="record.paymenttype != null" >
         paymentType = #{record.paymenttype,jdbcType=VARCHAR},
@@ -262,7 +262,7 @@
     update front_cashier
     set cashierId = #{record.cashierid,jdbcType=INTEGER},
       totalNum = #{record.totalnum,jdbcType=REAL},
-      static = #{record.static,jdbcType=VARCHAR},
+      settlementStatus = #{record.settlementstatus,jdbcType=VARCHAR},
       paymentType = #{record.paymenttype,jdbcType=VARCHAR},
       invoiceId = #{record.invoiceid,jdbcType=INTEGER},
       cashierTime = #{record.cashiertime,jdbcType=TIMESTAMP},
@@ -283,8 +283,8 @@
       <if test="totalnum != null" >
         totalNum = #{totalnum,jdbcType=REAL},
       </if>
-      <if test="static != null" >
-        static = #{static,jdbcType=VARCHAR},
+      <if test="settlementstatus != null" >
+        settlementStatus = #{settlementstatus,jdbcType=VARCHAR},
       </if>
       <if test="paymenttype != null" >
         paymentType = #{paymenttype,jdbcType=VARCHAR},
@@ -322,7 +322,7 @@
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.FrontCashier" >
     update front_cashier
     set totalNum = #{totalnum,jdbcType=REAL},
-      static = #{static,jdbcType=VARCHAR},
+      settlementStatus = #{settlementstatus,jdbcType=VARCHAR},
       paymentType = #{paymenttype,jdbcType=VARCHAR},
       invoiceId = #{invoiceid,jdbcType=INTEGER},
       cashierTime = #{cashiertime,jdbcType=TIMESTAMP},

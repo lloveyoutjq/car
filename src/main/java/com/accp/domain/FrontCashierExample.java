@@ -225,73 +225,73 @@ public class FrontCashierExample {
             return (Criteria) this;
         }
 
-        public Criteria andStaticIsNull() {
-            addCriterion("static is null");
+        public Criteria andSettlementstatusIsNull() {
+            addCriterion("settlementStatus is null");
             return (Criteria) this;
         }
 
-        public Criteria andStaticIsNotNull() {
-            addCriterion("static is not null");
+        public Criteria andSettlementstatusIsNotNull() {
+            addCriterion("settlementStatus is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStaticEqualTo(String value) {
-            addCriterion("static =", value, "static");
+        public Criteria andSettlementstatusEqualTo(String value) {
+            addCriterion("settlementStatus =", value, "settlementstatus");
             return (Criteria) this;
         }
 
-        public Criteria andStaticNotEqualTo(String value) {
-            addCriterion("static <>", value, "static");
+        public Criteria andSettlementstatusNotEqualTo(String value) {
+            addCriterion("settlementStatus <>", value, "settlementstatus");
             return (Criteria) this;
         }
 
-        public Criteria andStaticGreaterThan(String value) {
-            addCriterion("static >", value, "static");
+        public Criteria andSettlementstatusGreaterThan(String value) {
+            addCriterion("settlementStatus >", value, "settlementstatus");
             return (Criteria) this;
         }
 
-        public Criteria andStaticGreaterThanOrEqualTo(String value) {
-            addCriterion("static >=", value, "static");
+        public Criteria andSettlementstatusGreaterThanOrEqualTo(String value) {
+            addCriterion("settlementStatus >=", value, "settlementstatus");
             return (Criteria) this;
         }
 
-        public Criteria andStaticLessThan(String value) {
-            addCriterion("static <", value, "static");
+        public Criteria andSettlementstatusLessThan(String value) {
+            addCriterion("settlementStatus <", value, "settlementstatus");
             return (Criteria) this;
         }
 
-        public Criteria andStaticLessThanOrEqualTo(String value) {
-            addCriterion("static <=", value, "static");
+        public Criteria andSettlementstatusLessThanOrEqualTo(String value) {
+            addCriterion("settlementStatus <=", value, "settlementstatus");
             return (Criteria) this;
         }
 
-        public Criteria andStaticLike(String value) {
-            addCriterion("static like", value, "static");
+        public Criteria andSettlementstatusLike(String value) {
+            addCriterion("settlementStatus like", value, "settlementstatus");
             return (Criteria) this;
         }
 
-        public Criteria andStaticNotLike(String value) {
-            addCriterion("static not like", value, "static");
+        public Criteria andSettlementstatusNotLike(String value) {
+            addCriterion("settlementStatus not like", value, "settlementstatus");
             return (Criteria) this;
         }
 
-        public Criteria andStaticIn(List<String> values) {
-            addCriterion("static in", values, "static");
+        public Criteria andSettlementstatusIn(List<String> values) {
+            addCriterion("settlementStatus in", values, "settlementstatus");
             return (Criteria) this;
         }
 
-        public Criteria andStaticNotIn(List<String> values) {
-            addCriterion("static not in", values, "static");
+        public Criteria andSettlementstatusNotIn(List<String> values) {
+            addCriterion("settlementStatus not in", values, "settlementstatus");
             return (Criteria) this;
         }
 
-        public Criteria andStaticBetween(String value1, String value2) {
-            addCriterion("static between", value1, value2, "static");
+        public Criteria andSettlementstatusBetween(String value1, String value2) {
+            addCriterion("settlementStatus between", value1, value2, "settlementstatus");
             return (Criteria) this;
         }
 
-        public Criteria andStaticNotBetween(String value1, String value2) {
-            addCriterion("static not between", value1, value2, "static");
+        public Criteria andSettlementstatusNotBetween(String value1, String value2) {
+            addCriterion("settlementStatus not between", value1, value2, "settlementstatus");
             return (Criteria) this;
         }
 

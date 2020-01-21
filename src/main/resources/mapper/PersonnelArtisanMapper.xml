@@ -20,7 +20,7 @@
     <result column="maintainType" property="maintaintype" jdbcType="VARCHAR" />
     <result column="maintainBrand" property="maintainbrand" jdbcType="VARCHAR" />
     <result column="jurisdictionId" property="jurisdictionid" jdbcType="INTEGER" />
-    <result column="default" property="default" jdbcType="VARCHAR" />
+    <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -84,7 +84,7 @@
   <sql id="Base_Column_List" >
     artisanId, artisanName, artisanSex, artisanClassId, phone, account, address, birthday, 
     WeChat, identityCard, residence, bank, bankAccount, artisanLevelId, groupLeader, 
-    maintainType, maintainBrand, jurisdictionId, default, default2
+    maintainType, maintainBrand, jurisdictionId, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.PersonnelArtisanExample" >
     select
@@ -123,14 +123,14 @@
       identityCard, residence, bank, 
       bankAccount, artisanLevelId, groupLeader, 
       maintainType, maintainBrand, jurisdictionId, 
-      default, default2)
+      default1, default2)
     values (#{artisanid,jdbcType=VARCHAR}, #{artisanname,jdbcType=VARCHAR}, #{artisansex,jdbcType=VARCHAR}, 
       #{artisanclassid,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{wechat,jdbcType=VARCHAR}, 
       #{identitycard,jdbcType=VARCHAR}, #{residence,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, 
       #{bankaccount,jdbcType=VARCHAR}, #{artisanlevelid,jdbcType=INTEGER}, #{groupleader,jdbcType=BIT}, 
       #{maintaintype,jdbcType=VARCHAR}, #{maintainbrand,jdbcType=VARCHAR}, #{jurisdictionid,jdbcType=INTEGER}, 
-      #{default,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR})
+      #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.PersonnelArtisan" >
     insert into personnel_artisan
@@ -189,8 +189,8 @@
       <if test="jurisdictionid != null" >
         jurisdictionId,
       </if>
-      <if test="default != null" >
-        default,
+      <if test="default1 != null" >
+        default1,
       </if>
       <if test="default2 != null" >
         default2,
@@ -251,8 +251,8 @@
       <if test="jurisdictionid != null" >
         #{jurisdictionid,jdbcType=INTEGER},
       </if>
-      <if test="default != null" >
-        #{default,jdbcType=VARCHAR},
+      <if test="default1 != null" >
+        #{default1,jdbcType=VARCHAR},
       </if>
       <if test="default2 != null" >
         #{default2,jdbcType=VARCHAR},
@@ -322,8 +322,8 @@
       <if test="record.jurisdictionid != null" >
         jurisdictionId = #{record.jurisdictionid,jdbcType=INTEGER},
       </if>
-      <if test="record.default != null" >
-        default = #{record.default,jdbcType=VARCHAR},
+      <if test="record.default1 != null" >
+        default1 = #{record.default1,jdbcType=VARCHAR},
       </if>
       <if test="record.default2 != null" >
         default2 = #{record.default2,jdbcType=VARCHAR},
@@ -353,7 +353,7 @@
       maintainType = #{record.maintaintype,jdbcType=VARCHAR},
       maintainBrand = #{record.maintainbrand,jdbcType=VARCHAR},
       jurisdictionId = #{record.jurisdictionid,jdbcType=INTEGER},
-      default = #{record.default,jdbcType=VARCHAR},
+      default1 = #{record.default1,jdbcType=VARCHAR},
       default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -413,8 +413,8 @@
       <if test="jurisdictionid != null" >
         jurisdictionId = #{jurisdictionid,jdbcType=INTEGER},
       </if>
-      <if test="default != null" >
-        default = #{default,jdbcType=VARCHAR},
+      <if test="default1 != null" >
+        default1 = #{default1,jdbcType=VARCHAR},
       </if>
       <if test="default2 != null" >
         default2 = #{default2,jdbcType=VARCHAR},
@@ -441,7 +441,7 @@
       maintainType = #{maintaintype,jdbcType=VARCHAR},
       maintainBrand = #{maintainbrand,jdbcType=VARCHAR},
       jurisdictionId = #{jurisdictionid,jdbcType=INTEGER},
-      default = #{default,jdbcType=VARCHAR},
+      default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
     where artisanId = #{artisanid,jdbcType=VARCHAR}
   </update>

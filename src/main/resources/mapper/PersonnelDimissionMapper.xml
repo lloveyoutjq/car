@@ -7,7 +7,7 @@
     <result column="dimissionDate" property="dimissiondate" jdbcType="TIMESTAMP" />
     <result column="dimissionCause" property="dimissioncause" jdbcType="VARCHAR" />
     <result column="staffId" property="staffid" jdbcType="INTEGER" />
-    <result column="default" property="default" jdbcType="VARCHAR" />
+    <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, department, dimissionDate, dimissionCause, staffId, default, default2
+    id, department, dimissionDate, dimissionCause, staffId, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.PersonnelDimissionExample" >
     select
@@ -103,10 +103,10 @@
   </delete>
   <insert id="insert" parameterType="com.accp.domain.PersonnelDimission" >
     insert into personnel_dimission (id, department, dimissionDate, 
-      dimissionCause, staffId, default, 
+      dimissionCause, staffId, default1, 
       default2)
     values (#{id,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, #{dimissiondate,jdbcType=TIMESTAMP}, 
-      #{dimissioncause,jdbcType=VARCHAR}, #{staffid,jdbcType=INTEGER}, #{default,jdbcType=VARCHAR}, 
+      #{dimissioncause,jdbcType=VARCHAR}, #{staffid,jdbcType=INTEGER}, #{default1,jdbcType=VARCHAR}, 
       #{default2,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.PersonnelDimission" >
@@ -127,8 +127,8 @@
       <if test="staffid != null" >
         staffId,
       </if>
-      <if test="default != null" >
-        default,
+      <if test="default1 != null" >
+        default1,
       </if>
       <if test="default2 != null" >
         default2,
@@ -150,8 +150,8 @@
       <if test="staffid != null" >
         #{staffid,jdbcType=INTEGER},
       </if>
-      <if test="default != null" >
-        #{default,jdbcType=VARCHAR},
+      <if test="default1 != null" >
+        #{default1,jdbcType=VARCHAR},
       </if>
       <if test="default2 != null" >
         #{default2,jdbcType=VARCHAR},
@@ -182,8 +182,8 @@
       <if test="record.staffid != null" >
         staffId = #{record.staffid,jdbcType=INTEGER},
       </if>
-      <if test="record.default != null" >
-        default = #{record.default,jdbcType=VARCHAR},
+      <if test="record.default1 != null" >
+        default1 = #{record.default1,jdbcType=VARCHAR},
       </if>
       <if test="record.default2 != null" >
         default2 = #{record.default2,jdbcType=VARCHAR},
@@ -200,7 +200,7 @@
       dimissionDate = #{record.dimissiondate,jdbcType=TIMESTAMP},
       dimissionCause = #{record.dimissioncause,jdbcType=VARCHAR},
       staffId = #{record.staffid,jdbcType=INTEGER},
-      default = #{record.default,jdbcType=VARCHAR},
+      default1 = #{record.default1,jdbcType=VARCHAR},
       default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -221,8 +221,8 @@
       <if test="staffid != null" >
         staffId = #{staffid,jdbcType=INTEGER},
       </if>
-      <if test="default != null" >
-        default = #{default,jdbcType=VARCHAR},
+      <if test="default1 != null" >
+        default1 = #{default1,jdbcType=VARCHAR},
       </if>
       <if test="default2 != null" >
         default2 = #{default2,jdbcType=VARCHAR},
@@ -236,7 +236,7 @@
       dimissionDate = #{dimissiondate,jdbcType=TIMESTAMP},
       dimissionCause = #{dimissioncause,jdbcType=VARCHAR},
       staffId = #{staffid,jdbcType=INTEGER},
-      default = #{default,jdbcType=VARCHAR},
+      default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

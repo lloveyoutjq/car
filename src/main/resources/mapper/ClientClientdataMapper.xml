@@ -21,7 +21,7 @@
     <result column="bank" property="bank" jdbcType="VARCHAR" />
     <result column="bankNumber" property="banknumber" jdbcType="VARCHAR" />
     <result column="registerAddress" property="registeraddress" jdbcType="VARCHAR" />
-    <result column="else" property="else" jdbcType="VARCHAR" />
+    <result column="rest" property="rest" jdbcType="VARCHAR" />
     <result column="typeId" property="typeid" jdbcType="INTEGER" />
     <result column="date" property="date" jdbcType="TIMESTAMP" />
     <result column="default1" property="default1" jdbcType="VARCHAR" />
@@ -88,7 +88,7 @@
   <sql id="Base_Column_List" >
     number, name, linkMan, phone, address, bornDate, paymentDays, paymentSize, counselorId, 
     counselorName, province, city, region, remark, taxpayerNumber, regosterPhone, bank, 
-    bankNumber, registerAddress, else, typeId, date, default1, default2
+    bankNumber, registerAddress, rest, typeId, date, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ClientClientdataExample" >
     select
@@ -127,7 +127,7 @@
       counselorName, province, city, 
       region, remark, taxpayerNumber, 
       regosterPhone, bank, bankNumber, 
-      registerAddress, else, typeId, 
+      registerAddress, rest, typeId, 
       date, default1, default2
       )
     values (#{number,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, 
@@ -136,7 +136,7 @@
       #{counselorname,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
       #{region,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{taxpayernumber,jdbcType=VARCHAR}, 
       #{regosterphone,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, #{banknumber,jdbcType=VARCHAR}, 
-      #{registeraddress,jdbcType=VARCHAR}, #{else,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}, 
+      #{registeraddress,jdbcType=VARCHAR}, #{rest,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}, 
       #{date,jdbcType=TIMESTAMP}, #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}
       )
   </insert>
@@ -200,8 +200,8 @@
       <if test="registeraddress != null" >
         registerAddress,
       </if>
-      <if test="else != null" >
-        else,
+      <if test="rest != null" >
+        rest,
       </if>
       <if test="typeid != null" >
         typeId,
@@ -274,8 +274,8 @@
       <if test="registeraddress != null" >
         #{registeraddress,jdbcType=VARCHAR},
       </if>
-      <if test="else != null" >
-        #{else,jdbcType=VARCHAR},
+      <if test="rest != null" >
+        #{rest,jdbcType=VARCHAR},
       </if>
       <if test="typeid != null" >
         #{typeid,jdbcType=INTEGER},
@@ -357,8 +357,8 @@
       <if test="record.registeraddress != null" >
         registerAddress = #{record.registeraddress,jdbcType=VARCHAR},
       </if>
-      <if test="record.else != null" >
-        else = #{record.else,jdbcType=VARCHAR},
+      <if test="record.rest != null" >
+        rest = #{record.rest,jdbcType=VARCHAR},
       </if>
       <if test="record.typeid != null" >
         typeId = #{record.typeid,jdbcType=INTEGER},
@@ -398,7 +398,7 @@
       bank = #{record.bank,jdbcType=VARCHAR},
       bankNumber = #{record.banknumber,jdbcType=VARCHAR},
       registerAddress = #{record.registeraddress,jdbcType=VARCHAR},
-      else = #{record.else,jdbcType=VARCHAR},
+      rest = #{record.rest,jdbcType=VARCHAR},
       typeId = #{record.typeid,jdbcType=INTEGER},
       date = #{record.date,jdbcType=TIMESTAMP},
       default1 = #{record.default1,jdbcType=VARCHAR},
@@ -464,8 +464,8 @@
       <if test="registeraddress != null" >
         registerAddress = #{registeraddress,jdbcType=VARCHAR},
       </if>
-      <if test="else != null" >
-        else = #{else,jdbcType=VARCHAR},
+      <if test="rest != null" >
+        rest = #{rest,jdbcType=VARCHAR},
       </if>
       <if test="typeid != null" >
         typeId = #{typeid,jdbcType=INTEGER},
@@ -502,7 +502,7 @@
       bank = #{bank,jdbcType=VARCHAR},
       bankNumber = #{banknumber,jdbcType=VARCHAR},
       registerAddress = #{registeraddress,jdbcType=VARCHAR},
-      else = #{else,jdbcType=VARCHAR},
+      rest = #{rest,jdbcType=VARCHAR},
       typeId = #{typeid,jdbcType=INTEGER},
       date = #{date,jdbcType=TIMESTAMP},
       default1 = #{default1,jdbcType=VARCHAR},
