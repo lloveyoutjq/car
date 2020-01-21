@@ -13,8 +13,9 @@ import java.util.List;
 @RequestMapping("/permissions")
 public class PermissionsController {
 
-    @Autowired
+    @Autowired(required = false)
     PermissionsService permissionsService;
+
     @RequestMapping("/a")
     public String a(){
         return "成功";
