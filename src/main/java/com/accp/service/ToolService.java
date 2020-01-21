@@ -6,6 +6,9 @@ import java.util.List;
 
 @Service
 public class ToolService {
+    public void ts(){
+
+    }
 
 //    private <T> void  recursionPerm  (T parentPerms, List<T> list){
 //        for(T perm : list){
