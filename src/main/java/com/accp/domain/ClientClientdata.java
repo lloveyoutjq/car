@@ -51,6 +51,12 @@ public class ClientClientdata {
 
     private String default2;
 
+    private String default3;
+
+    private String default4;
+
+    private String default5;
+
     public String getNumber() {
         return number;
     }
@@ -241,5 +247,29 @@ public class ClientClientdata {
 
     public void setDefault2(String default2) {
         this.default2 = default2;
+    }
+
+    public String getDefault3() {
+        return default3;
+    }
+
+    public void setDefault3(String default3) {
+        this.default3 = default3;
+    }
+
+    public String getDefault4() {
+        return default4;
+    }
+
+    public void setDefault4(String default4) {
+        this.default4 = default4;
+    }
+
+    public String getDefault5() {
+        return default5;
+    }
+
+    public void setDefault5(String default5) {
+        this.default5 = default5;
     }
 }
