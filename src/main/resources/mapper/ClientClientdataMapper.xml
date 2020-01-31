@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.accp.mapper.ClientClientdataMapper" >
+<mapper namespace="com.accp.dao.ClientClientdataMapper" >
   <resultMap id="BaseResultMap" type="com.accp.domain.ClientClientdata" >
     <id column="number" property="number" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -26,6 +26,9 @@
     <result column="date" property="date" jdbcType="TIMESTAMP" />
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
+    <result column="default3" property="default3" jdbcType="VARCHAR" />
+    <result column="default4" property="default4" jdbcType="VARCHAR" />
+    <result column="default5" property="default5" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -88,7 +91,8 @@
   <sql id="Base_Column_List" >
     number, name, linkMan, phone, address, bornDate, paymentDays, paymentSize, counselorId, 
     counselorName, province, city, region, remark, taxpayerNumber, regosterPhone, bank, 
-    bankNumber, registerAddress, rest, typeId, date, default1, default2
+    bankNumber, registerAddress, rest, typeId, date, default1, default2, default3, default4, 
+    default5
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ClientClientdataExample" >
     select
@@ -128,7 +132,8 @@
       region, remark, taxpayerNumber, 
       regosterPhone, bank, bankNumber, 
       registerAddress, rest, typeId, 
-      date, default1, default2
+      date, default1, default2, 
+      default3, default4, default5
       )
     values (#{number,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{borndate,jdbcType=TIMESTAMP}, 
@@ -137,7 +142,8 @@
       #{region,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{taxpayernumber,jdbcType=VARCHAR}, 
       #{regosterphone,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, #{banknumber,jdbcType=VARCHAR}, 
       #{registeraddress,jdbcType=VARCHAR}, #{rest,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}, 
-      #{date,jdbcType=TIMESTAMP}, #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}
+      #{date,jdbcType=TIMESTAMP}, #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}, 
+      #{default3,jdbcType=VARCHAR}, #{default4,jdbcType=VARCHAR}, #{default5,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.ClientClientdata" >
@@ -215,6 +221,15 @@
       <if test="default2 != null" >
         default2,
       </if>
+      <if test="default3 != null" >
+        default3,
+      </if>
+      <if test="default4 != null" >
+        default4,
+      </if>
+      <if test="default5 != null" >
+        default5,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="number != null" >
@@ -288,6 +303,15 @@
       </if>
       <if test="default2 != null" >
         #{default2,jdbcType=VARCHAR},
+      </if>
+      <if test="default3 != null" >
+        #{default3,jdbcType=VARCHAR},
+      </if>
+      <if test="default4 != null" >
+        #{default4,jdbcType=VARCHAR},
+      </if>
+      <if test="default5 != null" >
+        #{default5,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -372,6 +396,15 @@
       <if test="record.default2 != null" >
         default2 = #{record.default2,jdbcType=VARCHAR},
       </if>
+      <if test="record.default3 != null" >
+        default3 = #{record.default3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.default4 != null" >
+        default4 = #{record.default4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.default5 != null" >
+        default5 = #{record.default5,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -402,7 +435,10 @@
       typeId = #{record.typeid,jdbcType=INTEGER},
       date = #{record.date,jdbcType=TIMESTAMP},
       default1 = #{record.default1,jdbcType=VARCHAR},
-      default2 = #{record.default2,jdbcType=VARCHAR}
+      default2 = #{record.default2,jdbcType=VARCHAR},
+      default3 = #{record.default3,jdbcType=VARCHAR},
+      default4 = #{record.default4,jdbcType=VARCHAR},
+      default5 = #{record.default5,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -479,6 +515,15 @@
       <if test="default2 != null" >
         default2 = #{default2,jdbcType=VARCHAR},
       </if>
+      <if test="default3 != null" >
+        default3 = #{default3,jdbcType=VARCHAR},
+      </if>
+      <if test="default4 != null" >
+        default4 = #{default4,jdbcType=VARCHAR},
+      </if>
+      <if test="default5 != null" >
+        default5 = #{default5,jdbcType=VARCHAR},
+      </if>
     </set>
     where number = #{number,jdbcType=VARCHAR}
   </update>
@@ -506,7 +551,10 @@
       typeId = #{typeid,jdbcType=INTEGER},
       date = #{date,jdbcType=TIMESTAMP},
       default1 = #{default1,jdbcType=VARCHAR},
-      default2 = #{default2,jdbcType=VARCHAR}
+      default2 = #{default2,jdbcType=VARCHAR},
+      default3 = #{default3,jdbcType=VARCHAR},
+      default4 = #{default4,jdbcType=VARCHAR},
+      default5 = #{default5,jdbcType=VARCHAR}
     where number = #{number,jdbcType=VARCHAR}
   </update>
 </mapper>
