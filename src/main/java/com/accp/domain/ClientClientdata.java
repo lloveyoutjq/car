@@ -23,11 +23,13 @@ public class ClientClientdata {
 
     private String counselorname;
 
+    private String advisorytelephone;
+
     private String province;
 
     private String city;
 
-    private String region;
+    private String county;
 
     private String remark;
 
@@ -137,6 +139,14 @@ public class ClientClientdata {
         this.counselorname = counselorname;
     }
 
+    public String getAdvisorytelephone() {
+        return advisorytelephone;
+    }
+
+    public void setAdvisorytelephone(String advisorytelephone) {
+        this.advisorytelephone = advisorytelephone;
+    }
+
     public String getProvince() {
         return province;
     }
@@ -153,12 +163,12 @@ public class ClientClientdata {
         this.city = city;
     }
 
-    public String getRegion() {
-        return region;
+    public String getCounty() {
+        return county;
     }
 
-    public void setRegion(String region) {
-        this.region = region;
+    public void setCounty(String county) {
+        this.county = county;
     }
 
     public String getRemark() {
