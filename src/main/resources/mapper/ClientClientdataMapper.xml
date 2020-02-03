@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.accp.dao.ClientClientdataMapper" >
   <resultMap id="BaseResultMap" type="com.accp.domain.ClientClientdata" >
-    <id column="number" property="number" jdbcType="VARCHAR" />
+    <id column="number" property="number" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="linkMan" property="linkman" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
@@ -109,15 +109,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from client_clientdata
-    where number = #{number,jdbcType=VARCHAR}
+    where number = #{number,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from client_clientdata
-    where number = #{number,jdbcType=VARCHAR}
+    where number = #{number,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.accp.domain.ClientClientdataExample" >
     delete from client_clientdata
@@ -136,7 +136,7 @@
       typeId, date, default1, 
       default2, default3, default4, 
       default5)
-    values (#{number,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, 
+    values (#{number,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{borndate,jdbcType=TIMESTAMP}, 
       #{paymentdays,jdbcType=INTEGER}, #{paymentsize,jdbcType=INTEGER}, #{counselorid,jdbcType=INTEGER}, 
       #{counselorname,jdbcType=VARCHAR}, #{advisorytelephone,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
@@ -237,7 +237,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="number != null" >
-        #{number,jdbcType=VARCHAR},
+        #{number,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -332,7 +332,7 @@
     update client_clientdata
     <set >
       <if test="record.number != null" >
-        number = #{record.number,jdbcType=VARCHAR},
+        number = #{record.number,jdbcType=INTEGER},
       </if>
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
@@ -422,7 +422,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update client_clientdata
-    set number = #{record.number,jdbcType=VARCHAR},
+    set number = #{record.number,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       linkMan = #{record.linkman,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
@@ -539,7 +539,7 @@
         default5 = #{default5,jdbcType=VARCHAR},
       </if>
     </set>
-    where number = #{number,jdbcType=VARCHAR}
+    where number = #{number,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.ClientClientdata" >
     update client_clientdata
@@ -570,6 +570,6 @@
       default3 = #{default3,jdbcType=VARCHAR},
       default4 = #{default4,jdbcType=VARCHAR},
       default5 = #{default5,jdbcType=VARCHAR}
-    where number = #{number,jdbcType=VARCHAR}
+    where number = #{number,jdbcType=INTEGER}
   </update>
 </mapper>

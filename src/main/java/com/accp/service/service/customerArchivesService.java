@@ -17,6 +17,7 @@ public class customerArchivesService {
         int result = clientClientdataMapper.insertSelective(clientClientdata);
         return result;
     }
+
     public int updateClient(ClientClientdata clientClientdata){
         int result = clientClientdataMapper.updateByPrimaryKeySelective(clientClientdata);
         return result;

@@ -3,7 +3,7 @@ package com.accp.domain;
 import java.util.Date;
 
 public class ClientClientdata {
-    private String number;
+    private Integer number;
 
     private String name;
 
@@ -59,11 +59,11 @@ public class ClientClientdata {
 
     private String default5;
 
-    public String getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 
