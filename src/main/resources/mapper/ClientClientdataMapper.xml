@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.accp.dao.ClientClientdataMapper" >
+<mapper namespace="com.accp.mapper.ClientClientdataMapper" >
   <resultMap id="BaseResultMap" type="com.accp.domain.ClientClientdata" >
     <id column="number" property="number" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -31,6 +31,19 @@
     <result column="default4" property="default4" jdbcType="VARCHAR" />
     <result column="default5" property="default5" jdbcType="VARCHAR" />
   </resultMap>
+<!--  <resultMap id="BaseResultMapInner" type="com.accp.domain.ClientClientdata" extends="BaseResultMap">
+    <collection property="typeid" select=""></collection>
+  </resultMap>
+
+  <select id="selectAll" resultMap="BaseResultMapInner" >
+    select
+    *
+    FROM `client_clientdata` AS `client`
+    LEFT JOIN `client_clienttype` AS `client_type` ON `client_type`.`id` = `client`.typeId
+  </select>-->
+
+
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

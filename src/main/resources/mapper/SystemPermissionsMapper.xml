@@ -11,11 +11,13 @@
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+
   <select id="selectUserMenuAll" resultMap="BaseResultMap">
     SELECT `system_permissions`.* FROM `system_permissions`
     INNER JOIN `system_roles_perms` ON `system_roles_perms`.`pid` = `system_permissions`.`id`
     INNER JOIN `system_roles` ON `system_roles`.`id` = `system_roles_perms`.`rid`
   </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

@@ -59,6 +59,16 @@ public class ClientClientdata {
 
     private String default5;
 
+    private ClientClienttype clientClienttype;
+
+    public ClientClienttype getClientClienttype() {
+        return clientClienttype;
+    }
+
+    public void setClientClienttype(ClientClienttype clientClienttype) {
+        this.clientClienttype = clientClienttype;
+    }
+
     public Integer getNumber() {
         return number;
     }
