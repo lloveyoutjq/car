@@ -24,7 +24,7 @@ public class ServiceController {
             map.put("code","0");
             map.put("msg","成功");
         }else{
-            map.put("code","0");
+            map.put("code","-1");
             map.put("msg","失败");
         }
         //map.put("a",clientClientdata);
@@ -38,7 +38,7 @@ public class ServiceController {
             map.put("code","0");
             map.put("msg","成功");
         }else{
-            map.put("code","0");
+            map.put("code","-1");
             map.put("msg","失败");
         }
         return map;
@@ -62,7 +62,7 @@ public class ServiceController {
     public Map deleteClient(Integer id){
         Map<String,Object> map = new HashMap<>();
         if(id == null){
-            map.put("code","0");
+            map.put("code","-1");
             map.put("msg","失败");
             return map;
         }
@@ -70,7 +70,7 @@ public class ServiceController {
             map.put("code","0");
             map.put("msg","成功");
         }else{
-            map.put("code","0");
+            map.put("code","-1");
             map.put("msg","失败");
         }
         return map;
