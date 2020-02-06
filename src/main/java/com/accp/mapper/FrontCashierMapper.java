@@ -2,8 +2,9 @@ package com.accp.mapper;
 
 import com.accp.domain.FrontCashier;
 import com.accp.domain.FrontCashierExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface FrontCashierMapper {
     int countByExample(FrontCashierExample example);

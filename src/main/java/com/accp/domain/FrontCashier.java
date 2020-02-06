@@ -25,6 +25,8 @@ public class FrontCashier {
 
     private Float vipbalance;
 
+    private String number;
+
     private String default1;
 
     private String default2;
@@ -115,6 +117,14 @@ public class FrontCashier {
 
     public void setVipbalance(Float vipbalance) {
         this.vipbalance = vipbalance;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getDefault1() {
