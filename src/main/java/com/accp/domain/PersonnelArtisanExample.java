@@ -115,62 +115,52 @@ public class PersonnelArtisanExample {
             return (Criteria) this;
         }
 
-        public Criteria andArtisanidEqualTo(String value) {
+        public Criteria andArtisanidEqualTo(Integer value) {
             addCriterion("artisanId =", value, "artisanid");
             return (Criteria) this;
         }
 
-        public Criteria andArtisanidNotEqualTo(String value) {
+        public Criteria andArtisanidNotEqualTo(Integer value) {
             addCriterion("artisanId <>", value, "artisanid");
             return (Criteria) this;
         }
 
-        public Criteria andArtisanidGreaterThan(String value) {
+        public Criteria andArtisanidGreaterThan(Integer value) {
             addCriterion("artisanId >", value, "artisanid");
             return (Criteria) this;
         }
 
-        public Criteria andArtisanidGreaterThanOrEqualTo(String value) {
+        public Criteria andArtisanidGreaterThanOrEqualTo(Integer value) {
             addCriterion("artisanId >=", value, "artisanid");
             return (Criteria) this;
         }
 
-        public Criteria andArtisanidLessThan(String value) {
+        public Criteria andArtisanidLessThan(Integer value) {
             addCriterion("artisanId <", value, "artisanid");
             return (Criteria) this;
         }
 
-        public Criteria andArtisanidLessThanOrEqualTo(String value) {
+        public Criteria andArtisanidLessThanOrEqualTo(Integer value) {
             addCriterion("artisanId <=", value, "artisanid");
             return (Criteria) this;
         }
 
-        public Criteria andArtisanidLike(String value) {
-            addCriterion("artisanId like", value, "artisanid");
-            return (Criteria) this;
-        }
-
-        public Criteria andArtisanidNotLike(String value) {
-            addCriterion("artisanId not like", value, "artisanid");
-            return (Criteria) this;
-        }
-
-        public Criteria andArtisanidIn(List<String> values) {
+        public Criteria andArtisanidIn(List<Integer> values) {
             addCriterion("artisanId in", values, "artisanid");
             return (Criteria) this;
         }
 
-        public Criteria andArtisanidNotIn(List<String> values) {
+        public Criteria andArtisanidNotIn(List<Integer> values) {
             addCriterion("artisanId not in", values, "artisanid");
             return (Criteria) this;
         }
 
-        public Criteria andArtisanidBetween(String value1, String value2) {
+        public Criteria andArtisanidBetween(Integer value1, Integer value2) {
             addCriterion("artisanId between", value1, value2, "artisanid");
             return (Criteria) this;
         }
 
-        public Criteria andArtisanidNotBetween(String value1, String value2) {
+        public Criteria andArtisanidNotBetween(Integer value1, Integer value2) {
             addCriterion("artisanId not between", value1, value2, "artisanid");
             return (Criteria) this;
         }

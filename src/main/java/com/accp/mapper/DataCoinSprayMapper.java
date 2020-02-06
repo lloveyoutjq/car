@@ -2,8 +2,9 @@ package com.accp.mapper;
 
 import com.accp.domain.DataCoinSpray;
 import com.accp.domain.DataCoinSprayExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface DataCoinSprayMapper {
     int countByExample(DataCoinSprayExample example);

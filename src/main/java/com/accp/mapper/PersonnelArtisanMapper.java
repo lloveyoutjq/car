@@ -2,15 +2,16 @@ package com.accp.mapper;
 
 import com.accp.domain.PersonnelArtisan;
 import com.accp.domain.PersonnelArtisanExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PersonnelArtisanMapper {
     int countByExample(PersonnelArtisanExample example);
 
     int deleteByExample(PersonnelArtisanExample example);
 
-    int deleteByPrimaryKey(String artisanid);
+    int deleteByPrimaryKey(Integer artisanid);
 
     int insert(PersonnelArtisan record);
 
@@ -18,7 +19,7 @@ public interface PersonnelArtisanMapper {
 
     List<PersonnelArtisan> selectByExample(PersonnelArtisanExample example);
 
-    PersonnelArtisan selectByPrimaryKey(String artisanid);
+    PersonnelArtisan selectByPrimaryKey(Integer artisanid);
 
     int updateByExampleSelective(@Param("record") PersonnelArtisan record, @Param("example") PersonnelArtisanExample example);
 

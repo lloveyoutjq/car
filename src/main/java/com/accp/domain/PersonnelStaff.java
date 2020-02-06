@@ -3,7 +3,7 @@ package com.accp.domain;
 import java.util.Date;
 
 public class PersonnelStaff {
-    private String id;
+    private Integer id;
 
     private String staffname;
 
@@ -105,11 +105,11 @@ public class PersonnelStaff {
 
     private String default2;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

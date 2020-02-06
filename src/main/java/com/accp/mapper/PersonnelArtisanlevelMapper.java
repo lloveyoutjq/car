@@ -2,8 +2,9 @@ package com.accp.mapper;
 
 import com.accp.domain.PersonnelArtisanlevel;
 import com.accp.domain.PersonnelArtisanlevelExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PersonnelArtisanlevelMapper {
     int countByExample(PersonnelArtisanlevelExample example);
