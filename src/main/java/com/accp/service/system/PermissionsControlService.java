@@ -1,7 +1,9 @@
 package com.accp.service.system;
 
 import com.accp.domain.SystemRoles;
+import com.accp.domain.SystemRolesExample;
 import com.accp.domain.SystemRolesPerms;
+import com.accp.domain.SystemRolesPermsExample;
 import com.accp.mapper.SystemRolesMapper;
 import com.accp.mapper.SystemRolesPermsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +26,13 @@ public class PermissionsControlService {
     }
     public List<SystemRoles> selectSystemRolesAll(){
         return systemRolesMapper.selectByExample(null);
+    }
+    public int updatePerm(Integer pid,Integer rid,Integer state){
+        SystemRolesPerms record = new SystemRolesPerms();
+        SystemRolesPermsExample example = new SystemRolesPermsExample();
+        record.setState(state);
+        example.createCriteria().andPidEqualTo(pid).andRidEqualTo(rid);
+
+        return systemRolesPermsMapper.updateByExampleSelective(record,example);
     }
 }

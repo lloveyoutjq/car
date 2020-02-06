@@ -71,10 +71,18 @@ public class SystemController {
 
         return map;
     }
+    @RequestMapping("updatePerm")
+    public Map updatePerm(Integer pid,Integer rid,Integer state){
+        Map<String,Object> code = new HashMap<>();
 
-    public Map updatePerm(){
-
-        return null;
+        if(permissionsControlService.updatePerm(pid,rid,state)>0){
+            code.put("code","0");
+            code.put("msg","成功");
+        }else{
+            code.put("code","-1");
+            code.put("msg","失败");
+        }
+        return code;
     }
 
 
