@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Transactional
 @Service
@@ -34,7 +36,7 @@ public class PermissionsService {
         parentPerms.setId(0);
         recursionPerm(parentPerms, list);
         System.out.println(parentPerms);
-        return parentPerms.getChildrens();
+        return parentPerms.getChildren();
     }
 
     /**
@@ -45,11 +47,24 @@ public class PermissionsService {
     private void recursionPerm(SystemPermissions parentPerms,List<SystemPermissions> list){
         for(SystemPermissions perm : list){
             if(perm.getParentid() == parentPerms.getId()){
+
+                Map map = new HashMap();
+                map.put("type",0);
+                map.put("checked",perm.getState());
+                perm.setTitle(perm.getName());
+                perm.setCheckArr(map);
+
                 SystemPermissions newPerms = perm;
-                parentPerms.getChildrens().add(newPerms);
+                parentPerms.getChildren().add(newPerms);
                 recursionPerm(newPerms,list);
             }
         }
+    }
+
+
+
+    public void recursionTopPerm(int pid){
+
     }
 
 }

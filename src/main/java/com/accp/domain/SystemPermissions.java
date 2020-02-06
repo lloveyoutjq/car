@@ -1,7 +1,9 @@
 package com.accp.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SystemPermissions {
     private Integer id;
@@ -20,14 +22,44 @@ public class SystemPermissions {
 
     private String default2;
 
-    private List<SystemPermissions> childrens = new ArrayList<SystemPermissions>();
+    private List<SystemPermissions> children = new ArrayList<SystemPermissions>();
 
-    public List<SystemPermissions> getChildrens() {
-        return childrens;
+    private String title;
+
+    private Map checkArr;
+
+    private Integer state;
+
+    public Integer getState() {
+        return state;
     }
 
-    public void setChildrens(List<SystemPermissions> childrens) {
-        this.childrens = childrens;
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Map getCheckArr() {
+        return checkArr;
+    }
+
+    public void setCheckArr(Map checkArr) {
+        this.checkArr = checkArr;
+    }
+
+    public List<SystemPermissions> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<SystemPermissions> childrens) {
+        this.children = childrens;
     }
 
     public Integer getId() {
