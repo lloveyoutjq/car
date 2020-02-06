@@ -3,7 +3,7 @@ package com.accp.domain;
 import java.util.Date;
 
 public class ClientClientdata {
-    private String number;
+    private Integer number;
 
     private String name;
 
@@ -23,11 +23,13 @@ public class ClientClientdata {
 
     private String counselorname;
 
+    private String advisorytelephone;
+
     private String province;
 
     private String city;
 
-    private String region;
+    private String county;
 
     private String remark;
 
@@ -51,11 +53,27 @@ public class ClientClientdata {
 
     private String default2;
 
-    public String getNumber() {
+    private String default3;
+
+    private String default4;
+
+    private String default5;
+
+    private ClientClienttype clientClienttype;
+
+    public ClientClienttype getClientClienttype() {
+        return clientClienttype;
+    }
+
+    public void setClientClienttype(ClientClienttype clientClienttype) {
+        this.clientClienttype = clientClienttype;
+    }
+
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 
@@ -131,6 +149,14 @@ public class ClientClientdata {
         this.counselorname = counselorname;
     }
 
+    public String getAdvisorytelephone() {
+        return advisorytelephone;
+    }
+
+    public void setAdvisorytelephone(String advisorytelephone) {
+        this.advisorytelephone = advisorytelephone;
+    }
+
     public String getProvince() {
         return province;
     }
@@ -147,12 +173,12 @@ public class ClientClientdata {
         this.city = city;
     }
 
-    public String getRegion() {
-        return region;
+    public String getCounty() {
+        return county;
     }
 
-    public void setRegion(String region) {
-        this.region = region;
+    public void setCounty(String county) {
+        this.county = county;
     }
 
     public String getRemark() {
@@ -241,5 +267,29 @@ public class ClientClientdata {
 
     public void setDefault2(String default2) {
         this.default2 = default2;
+    }
+
+    public String getDefault3() {
+        return default3;
+    }
+
+    public void setDefault3(String default3) {
+        this.default3 = default3;
+    }
+
+    public String getDefault4() {
+        return default4;
+    }
+
+    public void setDefault4(String default4) {
+        this.default4 = default4;
+    }
+
+    public String getDefault5() {
+        return default5;
+    }
+
+    public void setDefault5(String default5) {
+        this.default5 = default5;
     }
 }

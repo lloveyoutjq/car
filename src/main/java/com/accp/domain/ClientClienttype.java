@@ -1,5 +1,7 @@
 package com.accp.domain;
 
+import java.util.Date;
+
 public class ClientClienttype {
     private Integer id;
 
@@ -16,6 +18,10 @@ public class ClientClienttype {
     private Float discount;
 
     private Integer integral;
+
+    private Date starttime;
+
+    private Date endtime;
 
     private String default1;
 
@@ -83,6 +89,22 @@ public class ClientClienttype {
 
     public void setIntegral(Integer integral) {
         this.integral = integral;
+    }
+
+    public Date getStarttime() {
+        return starttime;
+    }
+
+    public void setStarttime(Date starttime) {
+        this.starttime = starttime;
+    }
+
+    public Date getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(Date endtime) {
+        this.endtime = endtime;
     }
 
     public String getDefault1() {

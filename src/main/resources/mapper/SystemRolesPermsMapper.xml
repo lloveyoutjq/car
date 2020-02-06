@@ -5,6 +5,8 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="rid" property="rid" jdbcType="INTEGER" />
     <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="default1" property="default1" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, rid, pid
+    id, rid, pid, state, default1
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.SystemRolesPermsExample" >
     select
@@ -98,8 +100,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.accp.domain.SystemRolesPerms" >
-    insert into system_roles_perms (id, rid, pid)
-    values (#{id,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER})
+    insert into system_roles_perms (id, rid, pid, 
+      state, default1)
+    values (#{id,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, 
+      #{state,jdbcType=INTEGER}, #{default1,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.SystemRolesPerms" >
     insert into system_roles_perms
@@ -113,6 +117,12 @@
       <if test="pid != null" >
         pid,
       </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="default1 != null" >
+        default1,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -123,6 +133,12 @@
       </if>
       <if test="pid != null" >
         #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="default1 != null" >
+        #{default1,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -144,6 +160,12 @@
       <if test="record.pid != null" >
         pid = #{record.pid,jdbcType=INTEGER},
       </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.default1 != null" >
+        default1 = #{record.default1,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -153,7 +175,9 @@
     update system_roles_perms
     set id = #{record.id,jdbcType=INTEGER},
       rid = #{record.rid,jdbcType=INTEGER},
-      pid = #{record.pid,jdbcType=INTEGER}
+      pid = #{record.pid,jdbcType=INTEGER},
+      state = #{record.state,jdbcType=INTEGER},
+      default1 = #{record.default1,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -167,13 +191,21 @@
       <if test="pid != null" >
         pid = #{pid,jdbcType=INTEGER},
       </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="default1 != null" >
+        default1 = #{default1,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.SystemRolesPerms" >
     update system_roles_perms
     set rid = #{rid,jdbcType=INTEGER},
-      pid = #{pid,jdbcType=INTEGER}
+      pid = #{pid,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      default1 = #{default1,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -10,7 +10,7 @@ public interface ClientClientdataMapper {
 
     int deleteByExample(ClientClientdataExample example);
 
-    int deleteByPrimaryKey(String number);
+    int deleteByPrimaryKey(Integer number);
 
     int insert(ClientClientdata record);
 
@@ -18,7 +18,7 @@ public interface ClientClientdataMapper {
 
     List<ClientClientdata> selectByExample(ClientClientdataExample example);
 
-    ClientClientdata selectByPrimaryKey(String number);
+    ClientClientdata selectByPrimaryKey(Integer number);
 
     int updateByExampleSelective(@Param("record") ClientClientdata record, @Param("example") ClientClientdataExample example);
 
