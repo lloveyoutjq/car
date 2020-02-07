@@ -1,7 +1,7 @@
 package com.accp.domain;
 
 public class DataManufacturer {
-    private String number;
+    private Integer number;
 
     private String name;
 
@@ -27,11 +27,11 @@ public class DataManufacturer {
 
     private String default2;
 
-    public String getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 

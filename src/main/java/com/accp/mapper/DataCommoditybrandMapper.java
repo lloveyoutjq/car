@@ -2,8 +2,9 @@ package com.accp.mapper;
 
 import com.accp.domain.DataCommoditybrand;
 import com.accp.domain.DataCommoditybrandExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface DataCommoditybrandMapper {
     int countByExample(DataCommoditybrandExample example);

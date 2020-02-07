@@ -2,15 +2,16 @@ package com.accp.mapper;
 
 import com.accp.domain.ClientClientdata;
 import com.accp.domain.ClientClientdataExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ClientClientdataMapper {
     int countByExample(ClientClientdataExample example);
 
     int deleteByExample(ClientClientdataExample example);
 
-    int deleteByPrimaryKey(String number);
+    int deleteByPrimaryKey(Integer number);
 
     int insert(ClientClientdata record);
 
@@ -18,7 +19,7 @@ public interface ClientClientdataMapper {
 
     List<ClientClientdata> selectByExample(ClientClientdataExample example);
 
-    ClientClientdata selectByPrimaryKey(String number);
+    ClientClientdata selectByPrimaryKey(Integer number);
 
     int updateByExampleSelective(@Param("record") ClientClientdata record, @Param("example") ClientClientdataExample example);
 

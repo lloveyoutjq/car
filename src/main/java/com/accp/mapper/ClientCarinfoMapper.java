@@ -2,8 +2,9 @@ package com.accp.mapper;
 
 import com.accp.domain.ClientCarinfo;
 import com.accp.domain.ClientCarinfoExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ClientCarinfoMapper {
     int countByExample(ClientCarinfoExample example);

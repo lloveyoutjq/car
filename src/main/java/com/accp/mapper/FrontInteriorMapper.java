@@ -2,8 +2,9 @@ package com.accp.mapper;
 
 import com.accp.domain.FrontInterior;
 import com.accp.domain.FrontInteriorExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface FrontInteriorMapper {
     int countByExample(FrontInteriorExample example);

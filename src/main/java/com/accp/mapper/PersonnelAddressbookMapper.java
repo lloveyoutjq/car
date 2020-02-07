@@ -2,8 +2,9 @@ package com.accp.mapper;
 
 import com.accp.domain.PersonnelAddressbook;
 import com.accp.domain.PersonnelAddressbookExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PersonnelAddressbookMapper {
     int countByExample(PersonnelAddressbookExample example);

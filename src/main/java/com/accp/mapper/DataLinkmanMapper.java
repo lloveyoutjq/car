@@ -2,8 +2,9 @@ package com.accp.mapper;
 
 import com.accp.domain.DataLinkman;
 import com.accp.domain.DataLinkmanExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface DataLinkmanMapper {
     int countByExample(DataLinkmanExample example);

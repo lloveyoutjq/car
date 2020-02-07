@@ -1,7 +1,7 @@
 package com.accp.domain;
 
 public class DataCommodity {
-    private String id;
+    private Integer id;
 
     private String name;
 
@@ -57,11 +57,11 @@ public class DataCommodity {
 
     private String default2;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

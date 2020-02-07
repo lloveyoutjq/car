@@ -2,15 +2,16 @@ package com.accp.mapper;
 
 import com.accp.domain.DataCommodity;
 import com.accp.domain.DataCommodityExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface DataCommodityMapper {
     int countByExample(DataCommodityExample example);
 
     int deleteByExample(DataCommodityExample example);
 
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(DataCommodity record);
 
@@ -18,7 +19,7 @@ public interface DataCommodityMapper {
 
     List<DataCommodity> selectByExample(DataCommodityExample example);
 
-    DataCommodity selectByPrimaryKey(String id);
+    DataCommodity selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") DataCommodity record, @Param("example") DataCommodityExample example);
 

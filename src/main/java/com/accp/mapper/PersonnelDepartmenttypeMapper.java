@@ -2,8 +2,9 @@ package com.accp.mapper;
 
 import com.accp.domain.PersonnelDepartmenttype;
 import com.accp.domain.PersonnelDepartmenttypeExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PersonnelDepartmenttypeMapper {
     int countByExample(PersonnelDepartmenttypeExample example);

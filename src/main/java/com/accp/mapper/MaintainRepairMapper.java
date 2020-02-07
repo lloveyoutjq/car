@@ -2,8 +2,9 @@ package com.accp.mapper;
 
 import com.accp.domain.MaintainRepair;
 import com.accp.domain.MaintainRepairExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface MaintainRepairMapper {
     int countByExample(MaintainRepairExample example);
