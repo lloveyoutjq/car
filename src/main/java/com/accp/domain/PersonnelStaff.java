@@ -1,6 +1,7 @@
 package com.accp.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class PersonnelStaff {
     private String id;
@@ -104,6 +105,25 @@ public class PersonnelStaff {
     private String default1;
 
     private String default2;
+
+    private PersonnelAddressbook personnelAddressbook;
+
+    private List<PersonnelDimission> personnelDimissionList;
+
+    public PersonnelAddressbook getPersonnelAddressbook() {
+        return personnelAddressbook;
+    }
+
+    public void setPersonnelAddressbook(PersonnelAddressbook personnelAddressbook) {
+        this.personnelAddressbook = personnelAddressbook;
+    }
+
+    public List<PersonnelDimission> getPersonnelDimissionList() {
+        return personnelDimissionList;
+    }
+    public void setPersonnelDimissionList(List<PersonnelDimission> personnelDimissionList) {
+        this.personnelDimissionList = personnelDimissionList;
+    }
 
     public String getId() {
         return id;

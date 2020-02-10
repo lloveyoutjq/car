@@ -1,5 +1,7 @@
 package com.accp.domain;
 
+import java.util.List;
+
 public class PersonnelAddressbook {
     private Integer id;
 
@@ -18,6 +20,7 @@ public class PersonnelAddressbook {
     private String default1;
 
     private String default2;
+
 
     public Integer getId() {
         return id;

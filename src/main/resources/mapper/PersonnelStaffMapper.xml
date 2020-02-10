@@ -54,6 +54,61 @@
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+
+  <!--通讯表-->
+  <resultMap id="BaseResultMapTwo" type="com.accp.domain.PersonnelStaff" extends="BaseResultMap">
+    <association property="personnelAddressbook" column="id" javaType="com.accp.domain.PersonnelAddressbook">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="department" property="department" jdbcType="VARCHAR" />
+      <result column="staffId" property="staffid" jdbcType="INTEGER" />
+      <result column="cornet" property="cornet" jdbcType="VARCHAR" />
+      <result column="dialDirectly" property="dialdirectly" jdbcType="VARCHAR" />
+      <result column="phone" property="phone" jdbcType="VARCHAR" />
+      <result column="email" property="email" jdbcType="VARCHAR" />
+      <result column="default1" property="default1" jdbcType="VARCHAR" />
+      <result column="default2" property="default2" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+
+  <!--离职表-->
+  <resultMap id="BaseResultMapThree" type="com.accp.domain.PersonnelStaff" extends="BaseResultMap">
+    <association property="personnelDimissionList" column="did" javaType="com.accp.domain.PersonnelDimission">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="department" property="department" jdbcType="VARCHAR" />
+      <result column="dimissionDate" property="dimissiondate" jdbcType="TIMESTAMP" />
+      <result column="dimissionCause" property="dimissioncause" jdbcType="VARCHAR" />
+      <result column="staffId" property="staffid" jdbcType="INTEGER" />
+      <result column="default1" property="default1" jdbcType="VARCHAR" />
+      <result column="default2" property="default2" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+
+  <!--通讯-->
+  <select id="communicationSelect" resultMap="BaseResultMapTwo">
+SELECT `personnel_addressbook`.*,`personnel_staff`.* FROM `personnel_addressbook`
+INNER JOIN `personnel_staff` ON `personnel_staff`.id = `personnel_addressbook`.staffId
+  </select>
+
+
+  <select id="communicationSelectId" resultMap="BaseResultMapTwo">
+SELECT * FROM `personnel_staff`
+INNER JOIN `personnel_addressbook` ON `personnel_addressbook`.`staffid` = `personnel_staff`.`id`
+WHERE `personnel_addressbook`.`staffId`=#{staffid} OR `personnel_staff`.`staffName`=#{staffname}
+  </select>
+  <!--离职-->
+  <select id="departureSelect" resultMap="BaseResultMapThree">
+SELECT * FROM `personnel_staff`
+INNER JOIN `personnel_addressbook` ON `personnel_addressbook`.`id` = `personnel_staff`.`did`
+  </select>
+  <select id="departureSelectId" resultMap="BaseResultMapThree">
+SELECT * FROM `personnel_staff` sta
+INNER JOIN `personnel_addressbook` ad ON ad.`id` = sta.`did`
+WHERE ad.staffId=#{staffid} OR sta.staffName=#{staffname}
+  </select>
+
+
+
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
