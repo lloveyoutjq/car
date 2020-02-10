@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.accp.mapper.PersonnelArtisanMapper" >
   <resultMap id="BaseResultMap" type="com.accp.domain.PersonnelArtisan" >
-    <id column="artisanId" property="artisanid" jdbcType="VARCHAR" />
+    <id column="artisanId" property="artisanid" jdbcType="INTEGER" />
     <result column="artisanName" property="artisanname" jdbcType="VARCHAR" />
     <result column="artisanSex" property="artisansex" jdbcType="VARCHAR" />
     <result column="artisanClassId" property="artisanclassid" jdbcType="INTEGER" />
@@ -100,15 +100,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from personnel_artisan
-    where artisanId = #{artisanid,jdbcType=VARCHAR}
+    where artisanId = #{artisanid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from personnel_artisan
-    where artisanId = #{artisanid,jdbcType=VARCHAR}
+    where artisanId = #{artisanid,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.accp.domain.PersonnelArtisanExample" >
     delete from personnel_artisan
@@ -124,7 +124,7 @@
       bankAccount, artisanLevelId, groupLeader, 
       maintainType, maintainBrand, jurisdictionId, 
       default1, default2)
-    values (#{artisanid,jdbcType=VARCHAR}, #{artisanname,jdbcType=VARCHAR}, #{artisansex,jdbcType=VARCHAR}, 
+    values (#{artisanid,jdbcType=INTEGER}, #{artisanname,jdbcType=VARCHAR}, #{artisansex,jdbcType=VARCHAR}, 
       #{artisanclassid,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{wechat,jdbcType=VARCHAR}, 
       #{identitycard,jdbcType=VARCHAR}, #{residence,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, 
@@ -198,7 +198,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="artisanid != null" >
-        #{artisanid,jdbcType=VARCHAR},
+        #{artisanid,jdbcType=INTEGER},
       </if>
       <if test="artisanname != null" >
         #{artisanname,jdbcType=VARCHAR},
@@ -269,7 +269,7 @@
     update personnel_artisan
     <set >
       <if test="record.artisanid != null" >
-        artisanId = #{record.artisanid,jdbcType=VARCHAR},
+        artisanId = #{record.artisanid,jdbcType=INTEGER},
       </if>
       <if test="record.artisanname != null" >
         artisanName = #{record.artisanname,jdbcType=VARCHAR},
@@ -335,7 +335,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update personnel_artisan
-    set artisanId = #{record.artisanid,jdbcType=VARCHAR},
+    set artisanId = #{record.artisanid,jdbcType=INTEGER},
       artisanName = #{record.artisanname,jdbcType=VARCHAR},
       artisanSex = #{record.artisansex,jdbcType=VARCHAR},
       artisanClassId = #{record.artisanclassid,jdbcType=INTEGER},
@@ -420,7 +420,7 @@
         default2 = #{default2,jdbcType=VARCHAR},
       </if>
     </set>
-    where artisanId = #{artisanid,jdbcType=VARCHAR}
+    where artisanId = #{artisanid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.PersonnelArtisan" >
     update personnel_artisan
@@ -443,6 +443,6 @@
       jurisdictionId = #{jurisdictionid,jdbcType=INTEGER},
       default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
-    where artisanId = #{artisanid,jdbcType=VARCHAR}
+    where artisanId = #{artisanid,jdbcType=INTEGER}
   </update>
 </mapper>

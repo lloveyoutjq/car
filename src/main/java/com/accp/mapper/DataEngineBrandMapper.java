@@ -2,9 +2,8 @@ package com.accp.mapper;
 
 import com.accp.domain.DataEngineBrand;
 import com.accp.domain.DataEngineBrandExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface DataEngineBrandMapper {
     int countByExample(DataEngineBrandExample example);

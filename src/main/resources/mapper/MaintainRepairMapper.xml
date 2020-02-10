@@ -17,8 +17,6 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="VARCHAR" />
     <result column="itemId" property="itemid" jdbcType="INTEGER" />
-    <result column="fault" property="fault" jdbcType="VARCHAR" />
-    <result column="faultResult" property="faultresult" jdbcType="VARCHAR" />
     <result column="teamId" property="teamid" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="default1" property="default1" jdbcType="VARCHAR" />
@@ -84,8 +82,7 @@
   </sql>
   <sql id="Base_Column_List" >
     number, carInfoId, counselorId, oil, type, workTime, getMan, overWorkDate, setter, 
-    company, before, price, remark, state, itemId, fault, faultResult, teamId, status, 
-    default1, default2
+    company, before, price, remark, state, itemId, teamId, status, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.MaintainRepairExample" >
     select
@@ -123,17 +120,15 @@
       getMan, overWorkDate, setter, 
       company, before, price, 
       remark, state, itemId, 
-      fault, faultResult, teamId, 
-      status, default1, default2
-      )
+      teamId, status, default1, 
+      default2)
     values (#{number,jdbcType=VARCHAR}, #{carinfoid,jdbcType=INTEGER}, #{counselorid,jdbcType=INTEGER}, 
       #{oil,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{worktime,jdbcType=VARCHAR}, 
       #{getman,jdbcType=VARCHAR}, #{overworkdate,jdbcType=TIMESTAMP}, #{setter,jdbcType=VARCHAR}, 
       #{company,jdbcType=VARCHAR}, #{before,jdbcType=TIMESTAMP}, #{price,jdbcType=REAL}, 
       #{remark,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{itemid,jdbcType=INTEGER}, 
-      #{fault,jdbcType=VARCHAR}, #{faultresult,jdbcType=VARCHAR}, #{teamid,jdbcType=INTEGER}, 
-      #{status,jdbcType=VARCHAR}, #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}
-      )
+      #{teamid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{default1,jdbcType=VARCHAR}, 
+      #{default2,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.MaintainRepair" >
     insert into maintain_repair
@@ -182,12 +177,6 @@
       </if>
       <if test="itemid != null" >
         itemId,
-      </if>
-      <if test="fault != null" >
-        fault,
-      </if>
-      <if test="faultresult != null" >
-        faultResult,
       </if>
       <if test="teamid != null" >
         teamId,
@@ -247,12 +236,6 @@
       </if>
       <if test="itemid != null" >
         #{itemid,jdbcType=INTEGER},
-      </if>
-      <if test="fault != null" >
-        #{fault,jdbcType=VARCHAR},
-      </if>
-      <if test="faultresult != null" >
-        #{faultresult,jdbcType=VARCHAR},
       </if>
       <if test="teamid != null" >
         #{teamid,jdbcType=INTEGER},
@@ -322,12 +305,6 @@
       <if test="record.itemid != null" >
         itemId = #{record.itemid,jdbcType=INTEGER},
       </if>
-      <if test="record.fault != null" >
-        fault = #{record.fault,jdbcType=VARCHAR},
-      </if>
-      <if test="record.faultresult != null" >
-        faultResult = #{record.faultresult,jdbcType=VARCHAR},
-      </if>
       <if test="record.teamid != null" >
         teamId = #{record.teamid,jdbcType=INTEGER},
       </if>
@@ -362,8 +339,6 @@
       remark = #{record.remark,jdbcType=VARCHAR},
       state = #{record.state,jdbcType=VARCHAR},
       itemId = #{record.itemid,jdbcType=INTEGER},
-      fault = #{record.fault,jdbcType=VARCHAR},
-      faultResult = #{record.faultresult,jdbcType=VARCHAR},
       teamId = #{record.teamid,jdbcType=INTEGER},
       status = #{record.status,jdbcType=VARCHAR},
       default1 = #{record.default1,jdbcType=VARCHAR},
@@ -417,12 +392,6 @@
       <if test="itemid != null" >
         itemId = #{itemid,jdbcType=INTEGER},
       </if>
-      <if test="fault != null" >
-        fault = #{fault,jdbcType=VARCHAR},
-      </if>
-      <if test="faultresult != null" >
-        faultResult = #{faultresult,jdbcType=VARCHAR},
-      </if>
       <if test="teamid != null" >
         teamId = #{teamid,jdbcType=INTEGER},
       </if>
@@ -454,8 +423,6 @@
       remark = #{remark,jdbcType=VARCHAR},
       state = #{state,jdbcType=VARCHAR},
       itemId = #{itemid,jdbcType=INTEGER},
-      fault = #{fault,jdbcType=VARCHAR},
-      faultResult = #{faultresult,jdbcType=VARCHAR},
       teamId = #{teamid,jdbcType=INTEGER},
       status = #{status,jdbcType=VARCHAR},
       default1 = #{default1,jdbcType=VARCHAR},

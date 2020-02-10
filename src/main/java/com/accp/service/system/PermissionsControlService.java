@@ -1,11 +1,10 @@
 package com.accp.service.system;
 
-import com.accp.domain.SystemRoles;
-import com.accp.domain.SystemRolesExample;
-import com.accp.domain.SystemRolesPerms;
-import com.accp.domain.SystemRolesPermsExample;
+import com.accp.domain.*;
+import com.accp.mapper.SystemPermissionsMapper;
 import com.accp.mapper.SystemRolesMapper;
 import com.accp.mapper.SystemRolesPermsMapper;
+import com.accp.service.PermissionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,13 +19,34 @@ public class PermissionsControlService {
     SystemRolesPermsMapper systemRolesPermsMapper;
     @Autowired(required = false)
     SystemRolesMapper systemRolesMapper;
+    @Autowired(required = false)
+    SystemPermissionsMapper systemPermissionsMapper;
 
+
+    /**
+     * 查询角色权限表
+     * @param rid
+     * @return
+     */
     public SystemRolesPerms selectSystemRolesPerms(Integer rid) {
         return systemRolesPermsMapper.selectByPrimaryKey(rid);
     }
+
+    /**
+     * 查询所有角色
+     * @return
+     */
     public List<SystemRoles> selectSystemRolesAll(){
         return systemRolesMapper.selectByExample(null);
     }
+
+    /**
+     * 修改角色
+     * @param pid
+     * @param rid
+     * @param state
+     * @return
+     */
     public int updatePerm(Integer pid,Integer rid,Integer state){
         SystemRolesPerms record = new SystemRolesPerms();
         SystemRolesPermsExample example = new SystemRolesPermsExample();
@@ -35,4 +55,7 @@ public class PermissionsControlService {
 
         return systemRolesPermsMapper.updateByExampleSelective(record,example);
     }
+
+
+
 }

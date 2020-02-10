@@ -33,10 +33,6 @@ public class MaintainRepair {
 
     private Integer itemid;
 
-    private String fault;
-
-    private String faultresult;
-
     private Integer teamid;
 
     private String status;
@@ -163,22 +159,6 @@ public class MaintainRepair {
 
     public void setItemid(Integer itemid) {
         this.itemid = itemid;
-    }
-
-    public String getFault() {
-        return fault;
-    }
-
-    public void setFault(String fault) {
-        this.fault = fault;
-    }
-
-    public String getFaultresult() {
-        return faultresult;
-    }
-
-    public void setFaultresult(String faultresult) {
-        this.faultresult = faultresult;
     }
 
     public Integer getTeamid() {

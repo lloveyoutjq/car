@@ -11,9 +11,7 @@ public class MaintainEwitem {
 
     private String remark;
 
-    private Integer rescueid;
-
-    private Integer repairid;
+    private String outerid;
 
     private String default1;
 
@@ -59,20 +57,12 @@ public class MaintainEwitem {
         this.remark = remark;
     }
 
-    public Integer getRescueid() {
-        return rescueid;
+    public String getOuterid() {
+        return outerid;
     }
 
-    public void setRescueid(Integer rescueid) {
-        this.rescueid = rescueid;
-    }
-
-    public Integer getRepairid() {
-        return repairid;
-    }
-
-    public void setRepairid(Integer repairid) {
-        this.repairid = repairid;
+    public void setOuterid(String outerid) {
+        this.outerid = outerid;
     }
 
     public String getDefault1() {

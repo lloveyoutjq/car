@@ -2,9 +2,8 @@ package com.accp.mapper;
 
 import com.accp.domain.DataTheoriginal;
 import com.accp.domain.DataTheoriginalExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface DataTheoriginalMapper {
     int countByExample(DataTheoriginalExample example);

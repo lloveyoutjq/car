@@ -2,9 +2,8 @@ package com.accp.mapper;
 
 import com.accp.domain.PersonnelStaff;
 import com.accp.domain.PersonnelStaffExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface PersonnelStaffMapper {
     int countByExample(PersonnelStaffExample example);

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.accp.mapper.PersonnelStaffMapper" >
   <resultMap id="BaseResultMap" type="com.accp.domain.PersonnelStaff" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
     <result column="staffName" property="staffname" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="VARCHAR" />
     <result column="did" property="did" jdbcType="INTEGER" />
@@ -136,15 +136,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from personnel_staff
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from personnel_staff
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.accp.domain.PersonnelStaffExample" >
     delete from personnel_staff
@@ -171,7 +171,7 @@
       employmentAdvice, picture, roleId, 
       jurisdictionId, default1, default2
       )
-    values (#{id,jdbcType=VARCHAR}, #{staffname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{staffname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{did,jdbcType=INTEGER}, #{staffaccount,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{post,jdbcType=VARCHAR}, #{physicalcondition,jdbcType=VARCHAR}, #{height,jdbcType=VARCHAR}, 
       #{nativeplace,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{maritalstatus,jdbcType=VARCHAR}, 
@@ -349,7 +349,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="staffname != null" >
         #{staffname,jdbcType=VARCHAR},
@@ -513,7 +513,7 @@
     update personnel_staff
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=VARCHAR},
+        id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.staffname != null" >
         staffName = #{record.staffname,jdbcType=VARCHAR},
@@ -672,7 +672,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update personnel_staff
-    set id = #{record.id,jdbcType=VARCHAR},
+    set id = #{record.id,jdbcType=INTEGER},
       staffName = #{record.staffname,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=VARCHAR},
       did = #{record.did,jdbcType=INTEGER},
@@ -881,7 +881,7 @@
         default2 = #{default2,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.PersonnelStaff" >
     update personnel_staff
@@ -935,6 +935,6 @@
       jurisdictionId = #{jurisdictionid,jdbcType=INTEGER},
       default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

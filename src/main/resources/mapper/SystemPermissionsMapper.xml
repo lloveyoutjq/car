@@ -14,10 +14,18 @@
   </resultMap>
 
   <select id="selectUserMenuAll" resultMap="BaseResultMap">
-    SELECT `system_permissions`.* ,`system_roles_perms`.`state` as state FROM `system_permissions`
+    SELECT `system_permissions`.* ,`system_roles_perms`.`state` AS state FROM `system_permissions`
     INNER JOIN `system_roles_perms` ON `system_roles_perms`.`pid` = `system_permissions`.`id`
     INNER JOIN `system_roles` ON `system_roles`.`id` = `system_roles_perms`.`rid`
+    WHERE `system_roles_perms`.`state` = 1
   </select>
+  <select id="selectUserMenuById" resultMap="BaseResultMap">
+    SELECT `system_permissions`.* ,`system_roles_perms`.`state` AS state FROM `system_permissions`
+    INNER JOIN `system_roles_perms` ON `system_roles_perms`.`pid` = `system_permissions`.`id`
+    INNER JOIN `system_roles` ON `system_roles`.`id` = `system_roles_perms`.`rid`
+    WHERE `system_roles`.`id` = #{rid}
+  </select>
+
 
   <sql id="Example_Where_Clause" >
     <where >
@@ -95,7 +103,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from system_permissions
     where id = #{id,jdbcType=INTEGER}
@@ -111,14 +119,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.accp.domain.SystemPermissions" >
-    insert into system_permissions (id, name, ename, 
-      catalog, parentid, path, 
+    insert into system_permissions (id, name, ename,
+      catalog, parentid, path,
       default1, default2)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{ename,jdbcType=VARCHAR}, 
-      #{catalog,jdbcType=INTEGER}, #{parentid,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{ename,jdbcType=VARCHAR},
+      #{catalog,jdbcType=INTEGER}, #{parentid,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR},
       #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.accp.domain.SystemPermissions" >
+  <insert id="insertSelective" parameterType="com.accp.domain.SystemPermissions" keyProperty="id" useGeneratedKeys="true" >
     insert into system_permissions
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -214,13 +222,13 @@
   <update id="updateByExample" parameterType="map" >
     update system_permissions
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      ename = #{record.ename,jdbcType=VARCHAR},
-      catalog = #{record.catalog,jdbcType=INTEGER},
-      parentid = #{record.parentid,jdbcType=INTEGER},
-      path = #{record.path,jdbcType=VARCHAR},
-      default1 = #{record.default1,jdbcType=VARCHAR},
-      default2 = #{record.default2,jdbcType=VARCHAR}
+    name = #{record.name,jdbcType=VARCHAR},
+    ename = #{record.ename,jdbcType=VARCHAR},
+    catalog = #{record.catalog,jdbcType=INTEGER},
+    parentid = #{record.parentid,jdbcType=INTEGER},
+    path = #{record.path,jdbcType=VARCHAR},
+    default1 = #{record.default1,jdbcType=VARCHAR},
+    default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

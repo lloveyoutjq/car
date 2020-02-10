@@ -7,8 +7,7 @@
     <result column="priceType" property="pricetype" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="REAL" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="rescueId" property="rescueid" jdbcType="INTEGER" />
-    <result column="repairid" property="repairid" jdbcType="INTEGER" />
+    <result column="outerId" property="outerid" jdbcType="VARCHAR" />
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
@@ -71,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, priceType, price, remark, rescueId, repairid, default1, default2
+    id, name, priceType, price, remark, outerId, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.MaintainEwitemExample" >
     select
@@ -105,13 +104,11 @@
   </delete>
   <insert id="insert" parameterType="com.accp.domain.MaintainEwitem" >
     insert into maintain_ewitem (id, name, priceType, 
-      price, remark, rescueId, 
-      repairid, default1, default2
-      )
+      price, remark, outerId, 
+      default1, default2)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{pricetype,jdbcType=VARCHAR}, 
-      #{price,jdbcType=REAL}, #{remark,jdbcType=VARCHAR}, #{rescueid,jdbcType=INTEGER}, 
-      #{repairid,jdbcType=INTEGER}, #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}
-      )
+      #{price,jdbcType=REAL}, #{remark,jdbcType=VARCHAR}, #{outerid,jdbcType=VARCHAR}, 
+      #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.MaintainEwitem" >
     insert into maintain_ewitem
@@ -131,11 +128,8 @@
       <if test="remark != null" >
         remark,
       </if>
-      <if test="rescueid != null" >
-        rescueId,
-      </if>
-      <if test="repairid != null" >
-        repairid,
+      <if test="outerid != null" >
+        outerId,
       </if>
       <if test="default1 != null" >
         default1,
@@ -160,11 +154,8 @@
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="rescueid != null" >
-        #{rescueid,jdbcType=INTEGER},
-      </if>
-      <if test="repairid != null" >
-        #{repairid,jdbcType=INTEGER},
+      <if test="outerid != null" >
+        #{outerid,jdbcType=VARCHAR},
       </if>
       <if test="default1 != null" >
         #{default1,jdbcType=VARCHAR},
@@ -198,11 +189,8 @@
       <if test="record.remark != null" >
         remark = #{record.remark,jdbcType=VARCHAR},
       </if>
-      <if test="record.rescueid != null" >
-        rescueId = #{record.rescueid,jdbcType=INTEGER},
-      </if>
-      <if test="record.repairid != null" >
-        repairid = #{record.repairid,jdbcType=INTEGER},
+      <if test="record.outerid != null" >
+        outerId = #{record.outerid,jdbcType=VARCHAR},
       </if>
       <if test="record.default1 != null" >
         default1 = #{record.default1,jdbcType=VARCHAR},
@@ -222,8 +210,7 @@
       priceType = #{record.pricetype,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=REAL},
       remark = #{record.remark,jdbcType=VARCHAR},
-      rescueId = #{record.rescueid,jdbcType=INTEGER},
-      repairid = #{record.repairid,jdbcType=INTEGER},
+      outerId = #{record.outerid,jdbcType=VARCHAR},
       default1 = #{record.default1,jdbcType=VARCHAR},
       default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -245,11 +232,8 @@
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
       </if>
-      <if test="rescueid != null" >
-        rescueId = #{rescueid,jdbcType=INTEGER},
-      </if>
-      <if test="repairid != null" >
-        repairid = #{repairid,jdbcType=INTEGER},
+      <if test="outerid != null" >
+        outerId = #{outerid,jdbcType=VARCHAR},
       </if>
       <if test="default1 != null" >
         default1 = #{default1,jdbcType=VARCHAR},
@@ -266,8 +250,7 @@
       priceType = #{pricetype,jdbcType=VARCHAR},
       price = #{price,jdbcType=REAL},
       remark = #{remark,jdbcType=VARCHAR},
-      rescueId = #{rescueid,jdbcType=INTEGER},
-      repairid = #{repairid,jdbcType=INTEGER},
+      outerId = #{outerid,jdbcType=VARCHAR},
       default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
