@@ -434,123 +434,73 @@ public class MaintainEwitemExample {
             return (Criteria) this;
         }
 
-        public Criteria andRescueidIsNull() {
-            addCriterion("rescueId is null");
+        public Criteria andOuteridIsNull() {
+            addCriterion("outerId is null");
             return (Criteria) this;
         }
 
-        public Criteria andRescueidIsNotNull() {
-            addCriterion("rescueId is not null");
+        public Criteria andOuteridIsNotNull() {
+            addCriterion("outerId is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRescueidEqualTo(Integer value) {
-            addCriterion("rescueId =", value, "rescueid");
+        public Criteria andOuteridEqualTo(String value) {
+            addCriterion("outerId =", value, "outerid");
             return (Criteria) this;
         }
 
-        public Criteria andRescueidNotEqualTo(Integer value) {
-            addCriterion("rescueId <>", value, "rescueid");
+        public Criteria andOuteridNotEqualTo(String value) {
+            addCriterion("outerId <>", value, "outerid");
             return (Criteria) this;
         }
 
-        public Criteria andRescueidGreaterThan(Integer value) {
-            addCriterion("rescueId >", value, "rescueid");
+        public Criteria andOuteridGreaterThan(String value) {
+            addCriterion("outerId >", value, "outerid");
             return (Criteria) this;
         }
 
-        public Criteria andRescueidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("rescueId >=", value, "rescueid");
+        public Criteria andOuteridGreaterThanOrEqualTo(String value) {
+            addCriterion("outerId >=", value, "outerid");
             return (Criteria) this;
         }
 
-        public Criteria andRescueidLessThan(Integer value) {
-            addCriterion("rescueId <", value, "rescueid");
+        public Criteria andOuteridLessThan(String value) {
+            addCriterion("outerId <", value, "outerid");
             return (Criteria) this;
         }
 
-        public Criteria andRescueidLessThanOrEqualTo(Integer value) {
-            addCriterion("rescueId <=", value, "rescueid");
+        public Criteria andOuteridLessThanOrEqualTo(String value) {
+            addCriterion("outerId <=", value, "outerid");
             return (Criteria) this;
         }
 
-        public Criteria andRescueidIn(List<Integer> values) {
-            addCriterion("rescueId in", values, "rescueid");
+        public Criteria andOuteridLike(String value) {
+            addCriterion("outerId like", value, "outerid");
             return (Criteria) this;
         }
 
-        public Criteria andRescueidNotIn(List<Integer> values) {
-            addCriterion("rescueId not in", values, "rescueid");
+        public Criteria andOuteridNotLike(String value) {
+            addCriterion("outerId not like", value, "outerid");
             return (Criteria) this;
         }
 
-        public Criteria andRescueidBetween(Integer value1, Integer value2) {
-            addCriterion("rescueId between", value1, value2, "rescueid");
+        public Criteria andOuteridIn(List<String> values) {
+            addCriterion("outerId in", values, "outerid");
             return (Criteria) this;
         }
 
-        public Criteria andRescueidNotBetween(Integer value1, Integer value2) {
-            addCriterion("rescueId not between", value1, value2, "rescueid");
+        public Criteria andOuteridNotIn(List<String> values) {
+            addCriterion("outerId not in", values, "outerid");
             return (Criteria) this;
         }
 
-        public Criteria andRepairidIsNull() {
-            addCriterion("repairid is null");
+        public Criteria andOuteridBetween(String value1, String value2) {
+            addCriterion("outerId between", value1, value2, "outerid");
             return (Criteria) this;
         }
 
-        public Criteria andRepairidIsNotNull() {
-            addCriterion("repairid is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepairidEqualTo(Integer value) {
-            addCriterion("repairid =", value, "repairid");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepairidNotEqualTo(Integer value) {
-            addCriterion("repairid <>", value, "repairid");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepairidGreaterThan(Integer value) {
-            addCriterion("repairid >", value, "repairid");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepairidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("repairid >=", value, "repairid");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepairidLessThan(Integer value) {
-            addCriterion("repairid <", value, "repairid");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepairidLessThanOrEqualTo(Integer value) {
-            addCriterion("repairid <=", value, "repairid");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepairidIn(List<Integer> values) {
-            addCriterion("repairid in", values, "repairid");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepairidNotIn(List<Integer> values) {
-            addCriterion("repairid not in", values, "repairid");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepairidBetween(Integer value1, Integer value2) {
-            addCriterion("repairid between", value1, value2, "repairid");
-            return (Criteria) this;
-        }
-
-        public Criteria andRepairidNotBetween(Integer value1, Integer value2) {
-            addCriterion("repairid not between", value1, value2, "repairid");
+        public Criteria andOuteridNotBetween(String value1, String value2) {
+            addCriterion("outerId not between", value1, value2, "outerid");
             return (Criteria) this;
         }
 

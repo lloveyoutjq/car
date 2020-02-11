@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.accp.mapper.DataCommodityMapper" >
   <resultMap id="BaseResultMap" type="com.accp.domain.DataCommodity" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="brand" property="brand" jdbcType="VARCHAR" />
     <result column="carType" property="cartype" jdbcType="VARCHAR" />
@@ -109,15 +109,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from data_commodity
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from data_commodity
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.accp.domain.DataCommodityExample" >
     delete from data_commodity
@@ -136,7 +136,7 @@
       memberPrice, vipPrice, negotiatedPrice, 
       claimPrice, insurancePrice, default1, 
       default2)
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, 
       #{cartype,jdbcType=VARCHAR}, #{unit,jdbcType=VARCHAR}, #{commditytypeid,jdbcType=INTEGER}, 
       #{income,jdbcType=VARCHAR}, #{original,jdbcType=VARCHAR}, #{commoditygrade,jdbcType=VARCHAR}, 
       #{commodityplace,jdbcType=VARCHAR}, #{firmnameid,jdbcType=INTEGER}, #{firmnumber,jdbcType=VARCHAR}, 
@@ -237,7 +237,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -332,7 +332,7 @@
     update data_commodity
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=VARCHAR},
+        id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
@@ -422,7 +422,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update data_commodity
-    set id = #{record.id,jdbcType=VARCHAR},
+    set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       brand = #{record.brand,jdbcType=VARCHAR},
       carType = #{record.cartype,jdbcType=VARCHAR},
@@ -539,7 +539,7 @@
         default2 = #{default2,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.DataCommodity" >
     update data_commodity
@@ -570,6 +570,6 @@
       insurancePrice = #{insuranceprice,jdbcType=REAL},
       default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

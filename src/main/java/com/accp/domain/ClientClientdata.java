@@ -49,6 +49,8 @@ public class ClientClientdata {
 
     private Date date;
 
+    private String password;
+
     private String default1;
 
     private String default2;
@@ -251,6 +253,14 @@ public class ClientClientdata {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getDefault1() {

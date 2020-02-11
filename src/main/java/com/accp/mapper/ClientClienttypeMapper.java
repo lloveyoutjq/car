@@ -2,9 +2,8 @@ package com.accp.mapper;
 
 import com.accp.domain.ClientClienttype;
 import com.accp.domain.ClientClienttypeExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface ClientClienttypeMapper {
     int countByExample(ClientClienttypeExample example);

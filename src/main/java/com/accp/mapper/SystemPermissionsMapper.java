@@ -2,9 +2,8 @@ package com.accp.mapper;
 
 import com.accp.domain.SystemPermissions;
 import com.accp.domain.SystemPermissionsExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface SystemPermissionsMapper {
     int countByExample(SystemPermissionsExample example);
@@ -22,6 +21,8 @@ public interface SystemPermissionsMapper {
     SystemPermissions selectByPrimaryKey(Integer id);
 
     List<SystemPermissions> selectUserMenuAll(Integer type,Integer uid);
+
+    List<SystemPermissions> selectUserMenuById(@Param("rid")Integer rid);
 
     int updateByExampleSelective(@Param("record") SystemPermissions record, @Param("example") SystemPermissionsExample example);
 

@@ -2,9 +2,8 @@ package com.accp.mapper;
 
 import com.accp.domain.MaintainCompleted;
 import com.accp.domain.MaintainCompletedExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface MaintainCompletedMapper {
     int countByExample(MaintainCompletedExample example);

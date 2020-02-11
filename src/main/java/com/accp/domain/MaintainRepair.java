@@ -33,10 +33,6 @@ public class MaintainRepair {
 
     private Integer itemid;
 
-    private String fault;
-
-    private String faultresult;
-
     private Integer teamid;
 
     private String status;
@@ -44,6 +40,10 @@ public class MaintainRepair {
     private String default1;
 
     private String default2;
+
+    private ClientCarinfo clientCarinfo;
+
+    private ClientClientdata clientClientdata;
 
     public String getNumber() {
         return number;
@@ -165,22 +165,6 @@ public class MaintainRepair {
         this.itemid = itemid;
     }
 
-    public String getFault() {
-        return fault;
-    }
-
-    public void setFault(String fault) {
-        this.fault = fault;
-    }
-
-    public String getFaultresult() {
-        return faultresult;
-    }
-
-    public void setFaultresult(String faultresult) {
-        this.faultresult = faultresult;
-    }
-
     public Integer getTeamid() {
         return teamid;
     }
@@ -211,5 +195,21 @@ public class MaintainRepair {
 
     public void setDefault2(String default2) {
         this.default2 = default2;
+    }
+
+    public ClientCarinfo getClientCarinfo() {
+        return clientCarinfo;
+    }
+
+    public void setClientCarinfo(ClientCarinfo clientCarinfo) {
+        this.clientCarinfo = clientCarinfo;
+    }
+
+    public ClientClientdata getClientClientdata() {
+        return clientClientdata;
+    }
+
+    public void setClientClientdata(ClientClientdata clientClientdata) {
+        this.clientClientdata = clientClientdata;
     }
 }

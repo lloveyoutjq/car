@@ -2,9 +2,8 @@ package com.accp.mapper;
 
 import com.accp.domain.PersonnelArtisanclass;
 import com.accp.domain.PersonnelArtisanclassExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface PersonnelArtisanclassMapper {
     int countByExample(PersonnelArtisanclassExample example);

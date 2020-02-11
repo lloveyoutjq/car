@@ -2,9 +2,8 @@ package com.accp.mapper;
 
 import com.accp.domain.DataCommoditytype;
 import com.accp.domain.DataCommoditytypeExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface DataCommoditytypeMapper {
     int countByExample(DataCommoditytypeExample example);

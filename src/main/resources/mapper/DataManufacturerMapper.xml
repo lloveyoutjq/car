@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.accp.mapper.DataManufacturerMapper" >
   <resultMap id="BaseResultMap" type="com.accp.domain.DataManufacturer" >
-    <id column="number" property="number" jdbcType="VARCHAR" />
+    <id column="number" property="number" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="manage" property="manage" jdbcType="VARCHAR" />
@@ -92,15 +92,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from data_manufacturer
-    where number = #{number,jdbcType=VARCHAR}
+    where number = #{number,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from data_manufacturer
-    where number = #{number,jdbcType=VARCHAR}
+    where number = #{number,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.accp.domain.DataManufacturerExample" >
     delete from data_manufacturer
@@ -114,7 +114,7 @@
       bankNumber, payment, laver, 
       brank, type, default1, 
       default2)
-    values (#{number,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+    values (#{number,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
       #{manage,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, 
       #{banknumber,jdbcType=VARCHAR}, #{payment,jdbcType=VARCHAR}, #{laver,jdbcType=VARCHAR}, 
       #{brank,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{default1,jdbcType=VARCHAR}, 
@@ -165,7 +165,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="number != null" >
-        #{number,jdbcType=VARCHAR},
+        #{number,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -215,7 +215,7 @@
     update data_manufacturer
     <set >
       <if test="record.number != null" >
-        number = #{record.number,jdbcType=VARCHAR},
+        number = #{record.number,jdbcType=INTEGER},
       </if>
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
@@ -260,7 +260,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update data_manufacturer
-    set number = #{record.number,jdbcType=VARCHAR},
+    set number = #{record.number,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
       manage = #{record.manage,jdbcType=VARCHAR},
@@ -317,7 +317,7 @@
         default2 = #{default2,jdbcType=VARCHAR},
       </if>
     </set>
-    where number = #{number,jdbcType=VARCHAR}
+    where number = #{number,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.DataManufacturer" >
     update data_manufacturer
@@ -333,6 +333,6 @@
       type = #{type,jdbcType=VARCHAR},
       default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
-    where number = #{number,jdbcType=VARCHAR}
+    where number = #{number,jdbcType=INTEGER}
   </update>
 </mapper>

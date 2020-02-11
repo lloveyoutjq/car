@@ -2,9 +2,8 @@ package com.accp.mapper;
 
 import com.accp.domain.DataCarImportdomestic;
 import com.accp.domain.DataCarImportdomesticExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface DataCarImportdomesticMapper {
     int countByExample(DataCarImportdomesticExample example);
