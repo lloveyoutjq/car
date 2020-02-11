@@ -1,8 +1,12 @@
 package com.accp.controller;
 
+import com.accp.domain.ClientCarinfo;
 import com.accp.domain.ClientClientdata;
 import com.accp.domain.ClientClienttype;
+import com.accp.service.service.CarArchivesService;
 import com.accp.service.service.CustomerArchivesService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +22,9 @@ import java.util.Map;
 public class ServiceController {
     @Autowired
     CustomerArchivesService customerArchivesService;
+
+    @Autowired
+    CarArchivesService carArchivesService;
 
     @RequestMapping("addClient")
     public Map addClient(@RequestBody ClientClientdata clientClientdata){
@@ -154,6 +161,81 @@ public class ServiceController {
     }
 
     /****************************************添加车**************************************************/
+    /**
+     * 添加车
+     * @param clientCarinfo
+     * @return
+     */
+    @RequestMapping("addCar")
+    public String addCar(@RequestBody  ClientCarinfo clientCarinfo,String callback) throws JsonProcessingException {
+        Map<String,Object> map = new HashMap<>();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        int count = carArchivesService.addCar(clientCarinfo);
+        if(count > 0){
+            map.put("code",0);
+            map.put("msg","成功");
+        }else{
+            map.put("code",-1);
+            map.put("msg","失败");
+        }
+        String data = objectMapper.writeValueAsString(map);
+        return callback+"("+data+")";
+
+    }
+
+    /**
+     * 删除车
+     * @param id
+     * @return
+     */
+    @RequestMapping("deleteCar")
+    public Map deleteCar(Integer id){
+        Map<String,Object> map = new HashMap<>();
+        int count = carArchivesService.deleteCar(id);
+        if(count > 0){
+            map.put("code",0);
+            map.put("msg","成功");
+        }else{
+            map.put("code",-1);
+            map.put("msg","失败");
+        }
+        return map;
+    }
+
+    /**
+     * 修改车
+     * @param clientCarinfo
+     * @return
+     */
+    @RequestMapping("updateCar")
+    public Map updateCar(ClientCarinfo clientCarinfo){
+        Map<String,Object> map = new HashMap<>();
+        int count = carArchivesService.updateCar(clientCarinfo);
+        if(count > 0){
+            map.put("code",0);
+            map.put("msg","成功");
+        }else{
+            map.put("code",-1);
+            map.put("msg","失败");
+        }
+        return map;
+
+    }
+
+    /**
+     * 查询车
+     * @return
+     */
+    @RequestMapping("selectCar")
+    public Map selectCar(Integer page, Integer limit){
+        Map<String,Object> map = new HashMap<>();
+        PageInfo pageInfo = carArchivesService.selectCar(page, limit);
+        map.put("code",0);
+        map.put("data",pageInfo.getList());
+        map.put("count",pageInfo.getSize());
+        return map;
+    }
 
 
 
