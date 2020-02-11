@@ -4,8 +4,14 @@ import com.accp.domain.MaintainRepair;
 import com.accp.domain.MaintainRepairExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface MaintainRepairMapper {
+    List<MaintainRepair> maintenanceHistory(String carnumber);
+
+    List<MaintainRepair> vehiclesInOperation();
+
     int countByExample(MaintainRepairExample example);
 
     int deleteByExample(MaintainRepairExample example);

@@ -41,6 +41,10 @@ public class MaintainRepair {
 
     private String default2;
 
+    private ClientCarinfo clientCarinfo;
+
+    private ClientClientdata clientClientdata;
+
     public String getNumber() {
         return number;
     }
@@ -191,5 +195,21 @@ public class MaintainRepair {
 
     public void setDefault2(String default2) {
         this.default2 = default2;
+    }
+
+    public ClientCarinfo getClientCarinfo() {
+        return clientCarinfo;
+    }
+
+    public void setClientCarinfo(ClientCarinfo clientCarinfo) {
+        this.clientCarinfo = clientCarinfo;
+    }
+
+    public ClientClientdata getClientClientdata() {
+        return clientClientdata;
+    }
+
+    public void setClientClientdata(ClientClientdata clientClientdata) {
+        this.clientClientdata = clientClientdata;
     }
 }
