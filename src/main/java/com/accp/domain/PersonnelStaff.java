@@ -108,7 +108,7 @@ public class PersonnelStaff {
 
     private PersonnelAddressbook personnelAddressbook;
 
-    private List<PersonnelDimission> personnelDimissionList;
+    private PersonnelDimission personnelDimission;
 
     public PersonnelAddressbook getPersonnelAddressbook() {
         return personnelAddressbook;
@@ -118,11 +118,12 @@ public class PersonnelStaff {
         this.personnelAddressbook = personnelAddressbook;
     }
 
-    public List<PersonnelDimission> getPersonnelDimissionList() {
-        return personnelDimissionList;
+    public PersonnelDimission getPersonnelDimission() {
+        return personnelDimission;
     }
-    public void setPersonnelDimissionList(List<PersonnelDimission> personnelDimissionList) {
-        this.personnelDimissionList = personnelDimissionList;
+
+    public void setPersonnelDimission(PersonnelDimission personnelDimission) {
+        this.personnelDimission = personnelDimission;
     }
 
     public String getId() {

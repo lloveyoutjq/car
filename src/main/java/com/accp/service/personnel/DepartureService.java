@@ -1,7 +1,9 @@
 package com.accp.service.personnel;
 
 import com.accp.domain.PersonnelDimission;
+import com.accp.domain.PersonnelStaff;
 import com.accp.mapper.PersonnelDimissionMapper;
+import com.accp.mapper.PersonnelStaffMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,38 +16,38 @@ import java.util.List;
 @Transactional
 @Service
 public class DepartureService {
-    //离职登记
+    //员工表
     @Autowired(required = false)
-    PersonnelDimissionMapper personnelDimissionMapper;
+    PersonnelStaffMapper personnelStaffMapper;
 
     /**
      * 查询所有
      */
-    public List<PersonnelDimission> departureSelect(){
-        return personnelDimissionMapper.selectByExample(null);
+    public List<PersonnelStaff> departureSelect(){
+        return personnelStaffMapper.departureSelect();
     }
     /**
      * 根据条件查询
      */
-    public PersonnelDimission departureSelectId(Integer id){
-        return null;
+    public PersonnelStaff departureSelectId(Integer id,String staffname){
+        return personnelStaffMapper.departureSelectId(id,staffname);
     }
     /**
      * 新增
      */
-    public int departureAdd(PersonnelDimission personnelDimission){
-        return personnelDimissionMapper.insert(personnelDimission);
+    public int departureAdd(PersonnelStaff personnelStaff){
+        return personnelStaffMapper.insert(personnelStaff);
     }
     /**
      * 修改
      */
-    public int departureUpdate(PersonnelDimission personnelDimission){
-        return personnelDimissionMapper.updateByPrimaryKey(personnelDimission);
+    public int departureUpdate(PersonnelStaff personnelStaff){
+        return personnelStaffMapper.updateByPrimaryKey(personnelStaff);
     }
     /**
      * 删除
      */
-    public int departureRemove(Integer id){
-        return personnelDimissionMapper.deleteByPrimaryKey(id);
+    public int departureRemove(String id){
+        return personnelStaffMapper.deleteByPrimaryKey(id);
     }
 }

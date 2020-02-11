@@ -16,9 +16,6 @@ import java.util.List;
 @Transactional
 @Service
 public class CommunicationService {
-    //通讯名单
-    @Autowired(required = false)
-    PersonnelAddressbookMapper personnelAddressbookMapper;
     //员工表
     @Autowired(required = false)
     PersonnelStaffMapper personnelStaffMapper;
@@ -32,8 +29,8 @@ public class CommunicationService {
     /**
      * 根据条件查询
      */
-    public PersonnelStaff communicationSelectId(Integer staffid,String staffname){
-        return personnelStaffMapper.communicationSelectId(staffid,staffname);
+    public PersonnelStaff communicationSelectId(Integer id,String staffname){
+        return personnelStaffMapper.communicationSelectId(id,staffname);
     }
     /**
      * 新增

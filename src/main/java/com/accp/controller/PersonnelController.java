@@ -187,8 +187,8 @@ public class PersonnelController {
      */
     @RequestMapping("/communicationSelectId")
     @ResponseBody
-    public PersonnelStaff communicationSelectId(Integer staffid,String staffname){
-        return communicationService.communicationSelectId(staffid,staffname);
+    public PersonnelStaff communicationSelectId(Integer id,String staffname){
+        return communicationService.communicationSelectId(id,staffname);
     }
     /**
      * 新增通讯名单
@@ -218,7 +218,7 @@ public class PersonnelController {
      * 查询所有离职登记
      */
     @RequestMapping("/departureSelect")
-    public List<PersonnelDimission> departureSelect(){
+    public List<PersonnelStaff> departureSelect(){
         return departureService.departureSelect();
     }
 
@@ -226,30 +226,30 @@ public class PersonnelController {
      * 根据条件查询离职登记
      */
     @RequestMapping("/departureSelectId")
-    public PersonnelDimission departureSelectId(Integer id){
-
-        return null;
+    @ResponseBody
+    public PersonnelStaff departureSelectId(Integer id,String staffname){
+        return departureService.departureSelectId(id,staffname);
     }
     /**
      * 新增离职登记
      */
     @RequestMapping("/departureAdd")
     @ResponseBody
-    public int departureAdd(PersonnelDimission personnelDimission){
-        return departureService.departureAdd(personnelDimission);
+    public int departureAdd(PersonnelStaff personnelStaff){
+        return departureService.departureAdd(personnelStaff);
     }
     /**
      * 修改离职登记
      */
     @RequestMapping("/departureUpdate")
-    public int departureUpdate(PersonnelDimission personnelDimission){
-        return departureService.departureUpdate(personnelDimission);
+    public int departureUpdate(PersonnelStaff personnelStaff){
+        return departureService.departureUpdate(personnelStaff);
     }
     /**
      * 删除离职登记
      */
     @RequestMapping("/departureRemove")
-    public int departureRemove(Integer id){
+    public int departureRemove(String id){
         return departureService.departureRemove(id);
     }
 }

@@ -69,10 +69,9 @@
       <result column="default2" property="default2" jdbcType="VARCHAR" />
     </association>
   </resultMap>
-
   <!--离职表-->
   <resultMap id="BaseResultMapThree" type="com.accp.domain.PersonnelStaff" extends="BaseResultMap">
-    <association property="personnelDimissionList" column="did" javaType="com.accp.domain.PersonnelDimission">
+    <association property="personnelDimission" column="id" javaType="com.accp.domain.PersonnelDimission">
       <id column="id" property="id" jdbcType="INTEGER" />
       <result column="department" property="department" jdbcType="VARCHAR" />
       <result column="dimissionDate" property="dimissiondate" jdbcType="TIMESTAMP" />
@@ -89,21 +88,20 @@ SELECT `personnel_addressbook`.*,`personnel_staff`.* FROM `personnel_addressbook
 INNER JOIN `personnel_staff` ON `personnel_staff`.id = `personnel_addressbook`.staffId
   </select>
 
-
   <select id="communicationSelectId" resultMap="BaseResultMapTwo">
-SELECT * FROM `personnel_staff`
-INNER JOIN `personnel_addressbook` ON `personnel_addressbook`.`staffid` = `personnel_staff`.`id`
-WHERE `personnel_addressbook`.`staffId`=#{staffid} OR `personnel_staff`.`staffName`=#{staffname}
+SELECT `personnel_addressbook`.*,`personnel_staff`.* FROM `personnel_addressbook`
+INNER JOIN `personnel_staff` ON `personnel_staff`.id = `personnel_addressbook`.staffId
+WHERE `personnel_staff`.`id`=#{id} OR `personnel_staff`.`staffName`=#{staffname}
   </select>
   <!--离职-->
   <select id="departureSelect" resultMap="BaseResultMapThree">
-SELECT * FROM `personnel_staff`
-INNER JOIN `personnel_addressbook` ON `personnel_addressbook`.`id` = `personnel_staff`.`did`
+SELECT `personnel_dimission`.*,`personnel_staff`.* FROM `personnel_staff`
+INNER JOIN `personnel_dimission` ON `personnel_staff`.`id`=`personnel_dimission`.`staffId`
   </select>
   <select id="departureSelectId" resultMap="BaseResultMapThree">
-SELECT * FROM `personnel_staff` sta
-INNER JOIN `personnel_addressbook` ad ON ad.`id` = sta.`did`
-WHERE ad.staffId=#{staffid} OR sta.staffName=#{staffname}
+SELECT `personnel_dimission`.*,`personnel_staff`.* FROM `personnel_staff`
+INNER JOIN `personnel_dimission` ON `personnel_staff`.`id`=`personnel_dimission`.`staffId`
+WHERE `personnel_staff`.`id`=#{id} OR `personnel_staff`.`staffName`=#{staffname}
   </select>
 
 

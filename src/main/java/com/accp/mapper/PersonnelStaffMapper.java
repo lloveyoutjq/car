@@ -8,10 +8,12 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface PersonnelStaffMapper {
-
+    /*通讯名单*/
     List<PersonnelStaff> communicationSelect();
-    PersonnelStaff communicationSelectId(Integer staffid,String staffname);
-
+    PersonnelStaff communicationSelectId(Integer id,String staffname);
+    /*离职登记*/
+    List<PersonnelStaff> departureSelect();
+    PersonnelStaff departureSelectId(Integer id,String staffname);
 
 
     int countByExample(PersonnelStaffExample example);
