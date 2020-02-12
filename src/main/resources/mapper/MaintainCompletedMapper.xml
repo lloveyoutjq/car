@@ -16,6 +16,62 @@
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="BaseResultMapPlus" type="com.accp.domain.MaintainCompleted" extends="BaseResultMap">
+    <association property="dataMaintenanceItems" javaType="com.accp.domain.DataMaintenanceItems">
+      <id column="dmiid" property="id"/>
+    </association>
+    <association property="maintainRescue" javaType="com.accp.domain.MaintainRescue">
+      <id column="mrsitemid" property="itemid"/>
+      <result column="mrsnumber" property="number"/>
+      <result column="mrsworkteam" property="workteam"/>
+      <result column="mrspickdate" property="pickdate"/>
+    </association>
+    <association property="dataItemtype" javaType="com.accp.domain.DataItemtype">
+      <id column="diid" property="id"/>
+      <result column="diname" property="name"/>
+    </association>
+    <association property="clientCarinfo" javaType="com.accp.domain.ClientCarinfo">
+      <id column="ccid" property="id"/>
+      <result column="cccarnumber" property="carnumber"/>
+      <result column="ccframenumber" property="framenumber"/>
+    </association>
+    <association property="clientClientdata" javaType="com.accp.domain.ClientClientdata">
+      <id column="ccdnumber" property="number"/>
+      <result column="ccdname" property="name"/>
+    </association>
+    <association property="dataCar" javaType="com.accp.domain.DataCar">
+      <id column="daid" property="id"/>
+      <result column="dacartypename" property="cartypename"/>
+    </association>
+    <association property="personnelStaff" javaType="com.accp.domain.PersonnelStaff">
+      <id column="psid" property="id"/>
+      <result column="psstaffname" property="staffname"/>
+    </association>
+  </resultMap>
+  <select id="completionInspection" resultMap="BaseResultMapPlus">
+    SELECT mrs.`number` as mrsnumber ,di.`name` as diname , mrs.`workTeam` as mrsworkteam,ccd.`name` as ccdname ,
+    cc.`carNumber` as cccarnumber, da.`carTypeName` as dacartypename ,cc.`frameNumber` as ccframenumber ,mrs.`pickDate` as mrspickdate,
+    mc.`predictTime`,mc.`nowTime`,mc.`reason`,mc.`reworkCount`,mc.`reasonforRework`,ps.`staffName` as psstaffname ,mc.`price`,
+    dmi.`id` as dmiid , mrs.`itemId` as mrsitemid , di.`id` as diid , cc.`id` as ccid , ccd.`number` as ccdnumber ,
+    da.`id` as daid , ps.`id` as psid ,mc.`eligibility`
+    FROM `maintain_completed` AS mc
+    STRAIGHT_JOIN `data_maintenance_items` AS dmi
+    ON mc.`maintenanceId` = dmi.`id`
+    STRAIGHT_JOIN `maintain_rescue` AS mrs
+    ON dmi.`id` = mrs.`itemId`
+    STRAIGHT_JOIN `data_itemtype` AS di
+    ON dmi.`typeId` = di.`id`
+    STRAIGHT_JOIN `client_carinfo` AS cc
+    ON mrs.`carInfoId` = cc.`id`
+    STRAIGHT_JOIN `client_clientdata` ccd
+    ON cc.`clientId` = ccd.`number`
+    STRAIGHT_JOIN `data_car` AS da
+    ON cc.`carId` = da.`id`
+    STRAIGHT_JOIN `personnel_staff` AS ps
+    ON mc.`dutyId` = ps.`id`
+    WHERE mrs.`number` LIKE #{number} AND cc.`carNumber` LIKE #{carNumber} AND cc.`frameNumber` LIKE #{frameNumber}
+    AND mc.`eligibility` = #{eligibility}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

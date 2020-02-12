@@ -4,8 +4,16 @@ import com.accp.domain.DataMaintenanceItems;
 import com.accp.domain.DataMaintenanceItemsExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface DataMaintenanceItemsMapper {
+    List<DataMaintenanceItems> itemsSels(String number);
+
+    List<DataMaintenanceItems> attached(String number);
+
+    List<DataMaintenanceItems> items(String carNumber);
+
     int countByExample(DataMaintenanceItemsExample example);
 
     int deleteByExample(DataMaintenanceItemsExample example);

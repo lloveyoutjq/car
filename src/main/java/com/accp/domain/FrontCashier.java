@@ -31,6 +31,20 @@ public class FrontCashier {
 
     private String default2;
 
+    private ClientClientdata clientClientdata;
+
+    private MaintainRepair maintainRepair;
+
+    private ClientCarinfo clientCarinfo;
+
+    private DataEngineBrand dataEngineBrand;
+
+    private DataCarbrand dataCarbrand;
+
+    private PersonnelArtisanclass personnelArtisanclass;
+
+    private  MaintainRescue maintainRescue;
+
     public Integer getCashierid() {
         return cashierid;
     }
@@ -141,5 +155,61 @@ public class FrontCashier {
 
     public void setDefault2(String default2) {
         this.default2 = default2;
+    }
+
+    public ClientClientdata getClientClientdata() {
+        return clientClientdata;
+    }
+
+    public void setClientClientdata(ClientClientdata clientClientdata) {
+        this.clientClientdata = clientClientdata;
+    }
+
+    public MaintainRepair getMaintainRepair() {
+        return maintainRepair;
+    }
+
+    public void setMaintainRepair(MaintainRepair maintainRepair) {
+        this.maintainRepair = maintainRepair;
+    }
+
+    public ClientCarinfo getClientCarinfo() {
+        return clientCarinfo;
+    }
+
+    public void setClientCarinfo(ClientCarinfo clientCarinfo) {
+        this.clientCarinfo = clientCarinfo;
+    }
+
+    public DataEngineBrand getDataEngineBrand() {
+        return dataEngineBrand;
+    }
+
+    public void setDataEngineBrand(DataEngineBrand dataEngineBrand) {
+        this.dataEngineBrand = dataEngineBrand;
+    }
+
+    public DataCarbrand getDataCarbrand() {
+        return dataCarbrand;
+    }
+
+    public void setDataCarbrand(DataCarbrand dataCarbrand) {
+        this.dataCarbrand = dataCarbrand;
+    }
+
+    public PersonnelArtisanclass getPersonnelArtisanclass() {
+        return personnelArtisanclass;
+    }
+
+    public void setPersonnelArtisanclass(PersonnelArtisanclass personnelArtisanclass) {
+        this.personnelArtisanclass = personnelArtisanclass;
+    }
+
+    public MaintainRescue getMaintainRescue() {
+        return maintainRescue;
+    }
+
+    public void setMaintainRescue(MaintainRescue maintainRescue) {
+        this.maintainRescue = maintainRescue;
     }
 }

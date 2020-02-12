@@ -4,8 +4,12 @@ import com.accp.domain.ClientCarinfo;
 import com.accp.domain.ClientCarinfoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ClientCarinfoMapper {
+    ClientCarinfo ownerInformation(String carNumber);
+
     int countByExample(ClientCarinfoExample example);
 
     int deleteByExample(ClientCarinfoExample example);

@@ -53,6 +53,8 @@ public class MaintainRescue {
 
     private String default2;
 
+    private String tname;
+
     public String getNumber() {
         return number;
     }
@@ -251,5 +253,13 @@ public class MaintainRescue {
 
     public void setDefault2(String default2) {
         this.default2 = default2;
+    }
+
+    public String getTname() {
+        return tname;
+    }
+
+    public void setTname(String tname) {
+        this.tname = tname;
     }
 }

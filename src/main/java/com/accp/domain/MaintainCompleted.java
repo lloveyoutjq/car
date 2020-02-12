@@ -29,6 +29,20 @@ public class MaintainCompleted {
 
     private String default2;
 
+    private DataMaintenanceItems dataMaintenanceItems;
+
+    private MaintainRescue maintainRescue;
+
+    private DataItemtype dataItemtype;
+
+    private ClientCarinfo clientCarinfo;
+
+    private ClientClientdata clientClientdata;
+
+    private DataCar dataCar;
+
+    private PersonnelStaff personnelStaff;
+
     public Integer getId() {
         return id;
     }
@@ -131,5 +145,61 @@ public class MaintainCompleted {
 
     public void setDefault2(String default2) {
         this.default2 = default2;
+    }
+
+    public DataMaintenanceItems getDataMaintenanceItems() {
+        return dataMaintenanceItems;
+    }
+
+    public void setDataMaintenanceItems(DataMaintenanceItems dataMaintenanceItems) {
+        this.dataMaintenanceItems = dataMaintenanceItems;
+    }
+
+    public MaintainRescue getMaintainRescue() {
+        return maintainRescue;
+    }
+
+    public void setMaintainRescue(MaintainRescue maintainRescue) {
+        this.maintainRescue = maintainRescue;
+    }
+
+    public DataItemtype getDataItemtype() {
+        return dataItemtype;
+    }
+
+    public void setDataItemtype(DataItemtype dataItemtype) {
+        this.dataItemtype = dataItemtype;
+    }
+
+    public ClientCarinfo getClientCarinfo() {
+        return clientCarinfo;
+    }
+
+    public void setClientCarinfo(ClientCarinfo clientCarinfo) {
+        this.clientCarinfo = clientCarinfo;
+    }
+
+    public ClientClientdata getClientClientdata() {
+        return clientClientdata;
+    }
+
+    public void setClientClientdata(ClientClientdata clientClientdata) {
+        this.clientClientdata = clientClientdata;
+    }
+
+    public DataCar getDataCar() {
+        return dataCar;
+    }
+
+    public void setDataCar(DataCar dataCar) {
+        this.dataCar = dataCar;
+    }
+
+    public PersonnelStaff getPersonnelStaff() {
+        return personnelStaff;
+    }
+
+    public void setPersonnelStaff(PersonnelStaff personnelStaff) {
+        this.personnelStaff = personnelStaff;
     }
 }
