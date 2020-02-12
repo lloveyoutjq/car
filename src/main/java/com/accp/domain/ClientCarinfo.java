@@ -1,5 +1,7 @@
 package com.accp.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class ClientCarinfo {
@@ -17,11 +19,11 @@ public class ClientCarinfo {
 
     private String carerphone;
 
-    private Date borndate;
+    private String borndate;
 
     private String affiliation;
 
-    private Date drivinglicence;
+    private String drivinglicence;
 
     private String framenumber;
 
@@ -33,13 +35,13 @@ public class ClientCarinfo {
 
     private Integer engineid;
 
-    private String load;
+    private String carrying;
 
-    private Date buydate;
+    private String buydate;
 
-    private Date dutydate;
+    private String dutydate;
 
-    private Date carcheckdate;
+    private String carcheckdate;
 
     private String fueloiltype;
 
@@ -47,15 +49,15 @@ public class ClientCarinfo {
 
     private String jqinsurance;
 
-    private Date jqinsurancedate;
+    private String jqinsurancedate;
 
     private String syinsurance;
 
-    private Date syinsurancedate;
+    private String syinsurancedate;
 
     private String maintain;
 
-    private Date maintaindate;
+    private String maintaindate;
 
     private String default1;
 
@@ -123,11 +125,11 @@ public class ClientCarinfo {
         this.carerphone = carerphone;
     }
 
-    public Date getBorndate() {
+    public String getBorndate() {
         return borndate;
     }
 
-    public void setBorndate(Date borndate) {
+    public void setBorndate(String borndate) {
         this.borndate = borndate;
     }
 
@@ -139,11 +141,11 @@ public class ClientCarinfo {
         this.affiliation = affiliation;
     }
 
-    public Date getDrivinglicence() {
+    public String getDrivinglicence() {
         return drivinglicence;
     }
 
-    public void setDrivinglicence(Date drivinglicence) {
+    public void setDrivinglicence(String drivinglicence) {
         this.drivinglicence = drivinglicence;
     }
 
@@ -187,35 +189,35 @@ public class ClientCarinfo {
         this.engineid = engineid;
     }
 
-    public String getLoad() {
-        return load;
+    public String getCarrying() {
+        return carrying;
     }
 
-    public void setLoad(String load) {
-        this.load = load;
+    public void setCarrying(String carrying) {
+        this.carrying = carrying;
     }
 
-    public Date getBuydate() {
+    public String getBuydate() {
         return buydate;
     }
 
-    public void setBuydate(Date buydate) {
+    public void setBuydate(String buydate) {
         this.buydate = buydate;
     }
 
-    public Date getDutydate() {
+    public String getDutydate() {
         return dutydate;
     }
 
-    public void setDutydate(Date dutydate) {
+    public void setDutydate(String dutydate) {
         this.dutydate = dutydate;
     }
 
-    public Date getCarcheckdate() {
+    public String getCarcheckdate() {
         return carcheckdate;
     }
 
-    public void setCarcheckdate(Date carcheckdate) {
+    public void setCarcheckdate(String carcheckdate) {
         this.carcheckdate = carcheckdate;
     }
 
@@ -243,11 +245,11 @@ public class ClientCarinfo {
         this.jqinsurance = jqinsurance;
     }
 
-    public Date getJqinsurancedate() {
+    public String getJqinsurancedate() {
         return jqinsurancedate;
     }
 
-    public void setJqinsurancedate(Date jqinsurancedate) {
+    public void setJqinsurancedate(String jqinsurancedate) {
         this.jqinsurancedate = jqinsurancedate;
     }
 
@@ -259,11 +261,11 @@ public class ClientCarinfo {
         this.syinsurance = syinsurance;
     }
 
-    public Date getSyinsurancedate() {
+    public String getSyinsurancedate() {
         return syinsurancedate;
     }
 
-    public void setSyinsurancedate(Date syinsurancedate) {
+    public void setSyinsurancedate(String syinsurancedate) {
         this.syinsurancedate = syinsurancedate;
     }
 
@@ -275,11 +277,11 @@ public class ClientCarinfo {
         this.maintain = maintain;
     }
 
-    public Date getMaintaindate() {
+    public String getMaintaindate() {
         return maintaindate;
     }
 
-    public void setMaintaindate(Date maintaindate) {
+    public void setMaintaindate(String maintaindate) {
         this.maintaindate = maintaindate;
     }
 

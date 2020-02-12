@@ -20,6 +20,8 @@ public interface ClientClientdataMapper {
 
     ClientClientdata selectByPrimaryKey(Integer number);
 
+    List<ClientClientdata> selectClient(@Param("clientClientdata") ClientClientdata clientClientdata);
+
     int updateByExampleSelective(@Param("record") ClientClientdata record, @Param("example") ClientClientdataExample example);
 
     int updateByExample(@Param("record") ClientClientdata record, @Param("example") ClientClientdataExample example);

@@ -3,6 +3,7 @@ package com.accp.config;
 import com.accp.intercetor.MyInterceptor;
 import com.accp.intercetor.PermInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -21,6 +22,8 @@ public class MyWebMvcConfig extends WebMvcConfigurationSupport {
 //	classpath:public
 //	覆盖原有的静态资源配置，必须重新配置
 
+    @Value("${pathUpload-url}")
+    String pathUploadUrl;
     /**
      * 过滤静态资源
      * @param registry
@@ -28,7 +31,7 @@ public class MyWebMvcConfig extends WebMvcConfigurationSupport {
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/")
-                .addResourceLocations("file:/C://images/");
+                .addResourceLocations("file:/"+pathUploadUrl);
         super.addResourceHandlers(registry);
     }
 

@@ -2,8 +2,9 @@ package com.accp.mapper;
 
 import com.accp.domain.DataItemtype;
 import com.accp.domain.DataItemtypeExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface DataItemtypeMapper {
     int countByExample(DataItemtypeExample example);

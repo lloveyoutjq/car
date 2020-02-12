@@ -34,12 +34,22 @@ public class CustomerArchivesService {
     }
 
 
-    public PageInfo<ClientClientdata> selectClient(int index, int limit){
+    public PageInfo<ClientClientdata> selectClient(int index, int limit,ClientClientdata clientClientdata){
         Page<ClientClientdata> page = PageHelper.startPage(index,limit);
-        List<ClientClientdata> lists = clientClientdataMapper.selectByExample(null);
-        for (ClientClientdata item : lists){
-            item.setClientClienttype(clientClienttypeMapper.selectByPrimaryKey(item.getTypeid()));
+
+        //System.out.println("abgVBBG".matches());
+        if(clientClientdata.getSearchData() != null && clientClientdata.getSearchData() != "") {
+            if (clientClientdata.getSearchData().matches("[a-zA-Z]+")) {
+
+            } else if (clientClientdata.getSearchData().matches("1[3,4,5,8]\\d[\\s,-]?\\d{4}[\\s,-]?\\d{4}+")) {
+
+            } else if (clientClientdata.getSearchData().matches("^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z|a-z]{1}[(A-Z|a-z)0-9]{4}[(A-Z|a-z)0-9挂学警港澳]{1}$")) {
+
+            }else{
+
+            }
         }
+        List<ClientClientdata> lists = clientClientdataMapper.selectClient(clientClientdata);
         return page.toPageInfo();
     }
 
@@ -91,7 +101,7 @@ public class CustomerArchivesService {
      * @param id
      * @return
      */
-    public int deleteClientType(int id){
+    public int deleteClientType(Integer id){
         int count = clientClienttypeMapper.deleteByPrimaryKey(id);
         return count;
     }
