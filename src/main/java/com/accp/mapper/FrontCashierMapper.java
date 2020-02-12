@@ -6,6 +6,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface FrontCashierMapper {
+    List<FrontCashier> rescue(String number);
+
+    List<FrontCashier> repair(String number);
+
     int countByExample(FrontCashierExample example);
 
     int deleteByExample(FrontCashierExample example);

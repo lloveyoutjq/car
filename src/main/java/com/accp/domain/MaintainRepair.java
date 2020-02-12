@@ -45,6 +45,8 @@ public class MaintainRepair {
 
     private ClientClientdata clientClientdata;
 
+    private String tname;
+
     public String getNumber() {
         return number;
     }
@@ -211,5 +213,13 @@ public class MaintainRepair {
 
     public void setClientClientdata(ClientClientdata clientClientdata) {
         this.clientClientdata = clientClientdata;
+    }
+
+    public String getTname() {
+        return tname;
+    }
+
+    public void setTname(String tname) {
+        this.tname = tname;
     }
 }

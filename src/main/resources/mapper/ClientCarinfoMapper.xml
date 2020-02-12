@@ -32,6 +32,34 @@
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="BaseResultMapPlus" type="com.accp.domain.ClientCarinfo" extends="BaseResultMap">
+    <association property="clientClientdata" javaType="com.accp.domain.ClientClientdata">
+      <id column="ccdnumber" property="number"/>
+      <result column="ccdname" property="name"/>
+      <result column="ccdaddress" property="address"/>
+    </association>
+    <association property="dataCarbrand" javaType="com.accp.domain.DataCarbrand">
+      <id column="dcbid" property="id"/>
+      <result column="dcbcarbrandname" property="carbrandname"/>
+    </association>
+    <association property="dataEngineBrand" javaType="com.accp.domain.DataEngineBrand">
+      <id column="debid" property="id"/>
+      <result column="debenginebrandname" property="enginebrandname"/>
+    </association>
+  </resultMap>
+  <select id="ownerInformation" resultMap="BaseResultMapPlus">
+    SELECT ccd.`name` as ccdname ,ccd.`address` as ccdaddress ,cci.`carer`, cci.`carerPhone`,dcb.`carBrandName` as dcbcarbrandname,
+    deb.`engineBrandName` as debenginebrandname , cci.`engineNumber`,ccd.`number` as ccdnumber , dcb.`id` as dcbid , deb.`id` as debid
+    FROM `client_carinfo` AS cci
+    STRAIGHT_JOIN `client_clientdata` AS ccd
+    ON cci.`clientId` = ccd.`number`
+    STRAIGHT_JOIN `data_carbrand` AS dcb
+    ON cci.`carBrandId` = dcb.`id`
+    STRAIGHT_JOIN `data_engine_brand` AS deb
+    ON cci.`engineId` = deb.`id`
+    WHERE cci.`carNumber` = #{carNumber}
+
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

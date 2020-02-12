@@ -4,8 +4,12 @@ import com.accp.domain.MaintainCompleted;
 import com.accp.domain.MaintainCompletedExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface MaintainCompletedMapper {
+    List<MaintainCompleted> completionInspection(@Param("number") String number,@Param("carNumber") String carNumber,@Param("frameNumber") String frameNumber,@Param("eligibility") String eligibility);
+
     int countByExample(MaintainCompletedExample example);
 
     int deleteByExample(MaintainCompletedExample example);

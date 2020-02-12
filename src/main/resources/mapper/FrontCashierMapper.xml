@@ -17,6 +17,134 @@
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="BaseResultMapPlus" type="com.accp.domain.FrontCashier" extends="BaseResultMap">
+    <association property="clientClientdata" javaType="com.accp.domain.ClientClientdata">
+      <id column="ccnumber" property="number"/>
+      <result column="ccname" property="name"/>
+      <result column="ccphone" property="phone"/>
+      <result column="cccounselorname" property="counselorname"/>
+    </association>
+    <association property="maintainRepair" javaType="com.accp.domain.MaintainRepair">
+      <id column="mrnumber" property="number"/>
+      <result column="mrtype" property="type"/>
+      <result column="mrworktime" property="worktime"/>
+      <result column="mrgetman" property="getman"/>
+      <result column="mroverworkdate" property="overworkdate"/>
+      <result column="mrcompletedate" property="completedate"/>
+      <result column="mrcompany" property="company"/>
+      <result column="mrbefore" property="before"/>
+      <result column="mrprice" property="price"/>
+      <result column="mrremark" property="remark"/>
+      <result column="mrstate" property="state"/>
+    </association>
+    <association property="clientCarinfo" javaType="com.accp.domain.ClientCarinfo">
+      <id column="caclientid" property="clientid"/>
+      <result column="cacarnumber" property="carnumber"/>
+      <result column="caframenumber" property="framenumber"/>
+      <result column="cacarid" property="carid"/>
+      <result column="caenginenumber" property="enginenumber"/>
+      <result column="cacarer" property="carer"/>
+      <result column="camileage" property="mileage"/>
+    </association>
+    <association property="dataEngineBrand" javaType="com.accp.domain.DataEngineBrand">
+      <id column="debid" property="id"/>
+      <result column="debenginebrandname" property="enginebrandname"/>
+    </association>
+    <association property="dataCarbrand" javaType="com.accp.domain.DataCarbrand">
+      <id column="dcid" property="id"/>
+      <result column="dccarbrandname" property="carbrandname"/>
+    </association>
+  </resultMap>
+
+  <resultMap id="BaseResultMapPlus2" type="com.accp.domain.FrontCashier" extends="BaseResultMap">
+    <association property="clientClientdata" javaType="com.accp.domain.ClientClientdata">
+      <id column="ccnumber" property="number"/>
+      <result column="ccname" property="name"/>
+      <result column="ccphone" property="phone"/>
+      <result column="cccounselorname" property="counselorname"/>
+    </association>
+    <association property="maintainRescue" javaType="com.accp.domain.MaintainRescue">
+      <id column="mrnumber" property="number"/>
+      <result column="mrtype" property="type"/>
+      <result column="mrworktime" property="worktime"/>
+      <result column="mroverworkdate" property="overworkdate"/>
+      <result column="mrcompletedate" property="completedate"/>
+      <result column="mrcompany" property="company"/>
+      <result column="mrprice" property="price"/>
+      <result column="mrremark" property="remark"/>
+      <result column="mrstate" property="state"/>
+      <result column="mraddress" property="address"/>
+      <result column="mrcar" property="car"/>
+      <result column="mrrescueaddress" property="rescueaddress"/>
+    </association>
+    <association property="clientCarinfo" javaType="com.accp.domain.ClientCarinfo">
+      <id column="caclientid" property="clientid"/>
+      <result column="cacarnumber" property="carnumber"/>
+      <result column="cacarid" property="carid"/>
+      <result column="cacarer" property="carer"/>
+      <result column="camileage" property="mileage"/>
+    </association>
+    <association property="dataEngineBrand" javaType="com.accp.domain.DataEngineBrand">
+      <id column="debid" property="id"/>
+      <result column="debenginebrandname" property="enginebrandname"/>
+    </association>
+    <association property="dataCarbrand" javaType="com.accp.domain.DataCarbrand">
+      <id column="dcid" property="id"/>
+      <result column="dccarbrandname" property="carbrandname"/>
+    </association>
+    <association property="personnelArtisanclass" javaType="com.accp.domain.PersonnelArtisanclass">
+      <id column="paartisanclassid" property="artisanclassid"/>
+      <result column="paartisanclassname" property="artisanclassname"/>
+    </association>
+  </resultMap>
+  <select id="repair" resultMap="BaseResultMapPlus">
+    SELECT mr.`number` as mrnumber ,ca.`carNumber` as cacarnumber ,ca.`frameNumber` as caframenumber ,
+    ca.`carId` as cacarid ,dc.`carBrandName` as dccarbrandname ,ca.`engineNumber` as caenginenumber ,
+    deb.`engineBrandName` as debenginebrandname ,fc.`paymentType`, cc.`name` as ccname ,ca.`carer` as cacarer , cc.`phone` as ccphone ,ca.`mileage` as camileage ,
+    mr.`type` mrtype , mr.`workTime` as mrworktime ,mr.`getMan` as mrgetman , mr.`overWorkDate` as mroverworkdate ,mr.`completeDate` as mrcompletedate,
+    mr.`company` as mrcompany ,cc.`counselorName` as cccounselorname , mr.`before` as mrbefore ,mr.`price` as mrprice ,mr.`remark` as mrremark ,mr.`state` as mrstate,
+    cc.`number` as ccnumber , ca.`clientId` as caclientid , deb.`id` as debid ,dc.`id` as dcid
+    FROM `front_cashier` AS fc
+    STRAIGHT_JOIN `client_clientdata` AS cc
+    ON fc.`clientId` = cc.`number`
+    STRAIGHT_JOIN `maintain_repair` AS mr
+    ON fc.`number` = mr.`number`
+    STRAIGHT_JOIN `client_carinfo` AS ca
+    ON cc.`number` = ca.`clientId`
+    STRAIGHT_JOIN `data_engine_brand` AS deb
+    ON ca.`engineId` = deb.`id`
+    STRAIGHT_JOIN `data_carbrand` AS dc
+    ON ca.`carBrandId` = dc.`id`
+    WHERE mr.`number` = #{number}
+  </select>
+
+  <select id="rescue" resultMap="BaseResultMapPlus2">
+    SELECT mr.`number` as mrnumber ,ca.`carNumber` as cacarnumber ,
+    ca.`carId` as cacarid ,dc.`carBrandName` as dccarbrandname,
+    deb.`engineBrandName` as debenginebrandname,fc.`paymentType`,
+    cc.`name` as ccname ,ca.`carer` as cacarer ,
+    cc.`phone` as ccphone ,ca.`mileage` as camileage ,
+    mr.`type` mrtype ,mr.`address` as mraddress ,mr.`rescueAddress` as mrrescueaddress ,
+    mr.`workTime` as mrworktime ,mr.`car` as mrcar ,
+    mr.`completeDate` as mrcompletedate ,pa.`artisanClassName` as paartisanclassname ,
+    mr.`company` as mrcompany ,cc.`counselorName` as cccounselorname ,
+    mr.`price` as mrprice ,mr.`remark` as mrremark ,mr.`state` as mrstate,
+    cc.`number` as ccnumber , ca.`clientId` as caclientid , deb.`id` as debid ,dc.`id` as dcid , pa.`artisanClassId` as paartisanclassid
+    FROM `front_cashier` AS fc
+    STRAIGHT_JOIN `client_clientdata` AS cc
+    ON fc.`clientId` = cc.`number`
+    STRAIGHT_JOIN `maintain_rescue` AS mr
+    ON fc.`number` = mr.`number`
+    STRAIGHT_JOIN `client_carinfo` AS ca
+    ON cc.`number` = ca.`clientId`
+    STRAIGHT_JOIN `data_engine_brand` AS deb
+    ON ca.`engineId` = deb.`id`
+    STRAIGHT_JOIN `data_carbrand` AS dc
+    ON ca.`carBrandId` = dc.`carBrandName`
+    STRAIGHT_JOIN `personnel_artisanclass` AS pa
+    ON mr.`rescueTeamId` = pa.`artisanClassId`
+    WHERE mr.`number` = #{number}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

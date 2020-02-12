@@ -47,6 +47,14 @@ public class DataMaintenanceItems {
 
     private String default2;
 
+    private MaintainRepair maintainRepair;
+
+    private ClientCarinfo clientCarinfo;
+
+    private PersonnelArtisanclass personnelArtisanclass;
+
+    private  PersonnelStaff personnelStaff;
+
     public Integer getId() {
         return id;
     }
@@ -221,5 +229,37 @@ public class DataMaintenanceItems {
 
     public void setDefault2(String default2) {
         this.default2 = default2;
+    }
+
+    public MaintainRepair getMaintainRepair() {
+        return maintainRepair;
+    }
+
+    public void setMaintainRepair(MaintainRepair maintainRepair) {
+        this.maintainRepair = maintainRepair;
+    }
+
+    public ClientCarinfo getClientCarinfo() {
+        return clientCarinfo;
+    }
+
+    public void setClientCarinfo(ClientCarinfo clientCarinfo) {
+        this.clientCarinfo = clientCarinfo;
+    }
+
+    public PersonnelArtisanclass getPersonnelArtisanclass() {
+        return personnelArtisanclass;
+    }
+
+    public void setPersonnelArtisanclass(PersonnelArtisanclass personnelArtisanclass) {
+        this.personnelArtisanclass = personnelArtisanclass;
+    }
+
+    public PersonnelStaff getPersonnelStaff() {
+        return personnelStaff;
+    }
+
+    public void setPersonnelStaff(PersonnelStaff personnelStaff) {
+        this.personnelStaff = personnelStaff;
     }
 }
