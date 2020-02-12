@@ -17,7 +17,7 @@
     <result column="yearPrice" property="yearprice" jdbcType="REAL" />
     <result column="mileage" property="mileage" jdbcType="REAL" />
     <result column="engineId" property="engineid" jdbcType="INTEGER" />
-    <result column="load" property="load" jdbcType="VARCHAR" />
+    <result column="carrying" property="carrying" jdbcType="VARCHAR" />
     <result column="buyDate" property="buydate" jdbcType="TIMESTAMP" />
     <result column="dutyDate" property="dutydate" jdbcType="TIMESTAMP" />
     <result column="carcheckDate" property="carcheckdate" jdbcType="TIMESTAMP" />
@@ -92,9 +92,9 @@
   </sql>
   <sql id="Base_Column_List" >
     id, clientId, carNumber, carBrandId, carId, carer, carerPhone, bornDate, affiliation, 
-    drivingLicence, frameNumber, engineNumber, yearPrice, mileage, engineId, load, buyDate, 
-    dutyDate, carcheckDate, fuelOilType, carSeries, jqinsurance, jqinsuranceDate, syinsurance, 
-    syinsuranceDate, maintain, maintainDate, default1, default2
+    drivingLicence, frameNumber, engineNumber, yearPrice, mileage, engineId, carrying, 
+    buyDate, dutyDate, carcheckDate, fuelOilType, carSeries, jqinsurance, jqinsuranceDate, 
+    syinsurance, syinsuranceDate, maintain, maintainDate, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ClientCarinfoExample" >
     select
@@ -132,7 +132,7 @@
       carerPhone, bornDate, affiliation, 
       drivingLicence, frameNumber, engineNumber, 
       yearPrice, mileage, engineId, 
-      load, buyDate, dutyDate, 
+      carrying, buyDate, dutyDate, 
       carcheckDate, fuelOilType, carSeries, 
       jqinsurance, jqinsuranceDate, syinsurance, 
       syinsuranceDate, maintain, maintainDate, 
@@ -142,7 +142,7 @@
       #{carerphone,jdbcType=VARCHAR}, #{borndate,jdbcType=TIMESTAMP}, #{affiliation,jdbcType=VARCHAR}, 
       #{drivinglicence,jdbcType=TIMESTAMP}, #{framenumber,jdbcType=VARCHAR}, #{enginenumber,jdbcType=VARCHAR}, 
       #{yearprice,jdbcType=REAL}, #{mileage,jdbcType=REAL}, #{engineid,jdbcType=INTEGER}, 
-      #{load,jdbcType=VARCHAR}, #{buydate,jdbcType=TIMESTAMP}, #{dutydate,jdbcType=TIMESTAMP}, 
+      #{carrying,jdbcType=VARCHAR}, #{buydate,jdbcType=TIMESTAMP}, #{dutydate,jdbcType=TIMESTAMP}, 
       #{carcheckdate,jdbcType=TIMESTAMP}, #{fueloiltype,jdbcType=VARCHAR}, #{carseries,jdbcType=VARCHAR}, 
       #{jqinsurance,jdbcType=VARCHAR}, #{jqinsurancedate,jdbcType=TIMESTAMP}, #{syinsurance,jdbcType=VARCHAR}, 
       #{syinsurancedate,jdbcType=TIMESTAMP}, #{maintain,jdbcType=VARCHAR}, #{maintaindate,jdbcType=TIMESTAMP}, 
@@ -196,8 +196,8 @@
       <if test="engineid != null" >
         engineId,
       </if>
-      <if test="load != null" >
-        load,
+      <if test="carrying != null" >
+        carrying,
       </if>
       <if test="buydate != null" >
         buyDate,
@@ -285,8 +285,8 @@
       <if test="engineid != null" >
         #{engineid,jdbcType=INTEGER},
       </if>
-      <if test="load != null" >
-        #{load,jdbcType=VARCHAR},
+      <if test="carrying != null" >
+        #{carrying,jdbcType=VARCHAR},
       </if>
       <if test="buydate != null" >
         #{buydate,jdbcType=TIMESTAMP},
@@ -383,8 +383,8 @@
       <if test="record.engineid != null" >
         engineId = #{record.engineid,jdbcType=INTEGER},
       </if>
-      <if test="record.load != null" >
-        load = #{record.load,jdbcType=VARCHAR},
+      <if test="record.carrying != null" >
+        carrying = #{record.carrying,jdbcType=VARCHAR},
       </if>
       <if test="record.buydate != null" >
         buyDate = #{record.buydate,jdbcType=TIMESTAMP},
@@ -447,7 +447,7 @@
       yearPrice = #{record.yearprice,jdbcType=REAL},
       mileage = #{record.mileage,jdbcType=REAL},
       engineId = #{record.engineid,jdbcType=INTEGER},
-      load = #{record.load,jdbcType=VARCHAR},
+      carrying = #{record.carrying,jdbcType=VARCHAR},
       buyDate = #{record.buydate,jdbcType=TIMESTAMP},
       dutyDate = #{record.dutydate,jdbcType=TIMESTAMP},
       carcheckDate = #{record.carcheckdate,jdbcType=TIMESTAMP},
@@ -510,8 +510,8 @@
       <if test="engineid != null" >
         engineId = #{engineid,jdbcType=INTEGER},
       </if>
-      <if test="load != null" >
-        load = #{load,jdbcType=VARCHAR},
+      <if test="carrying != null" >
+        carrying = #{carrying,jdbcType=VARCHAR},
       </if>
       <if test="buydate != null" >
         buyDate = #{buydate,jdbcType=TIMESTAMP},
@@ -571,7 +571,7 @@
       yearPrice = #{yearprice,jdbcType=REAL},
       mileage = #{mileage,jdbcType=REAL},
       engineId = #{engineid,jdbcType=INTEGER},
-      load = #{load,jdbcType=VARCHAR},
+      carrying = #{carrying,jdbcType=VARCHAR},
       buyDate = #{buydate,jdbcType=TIMESTAMP},
       dutyDate = #{dutydate,jdbcType=TIMESTAMP},
       carcheckDate = #{carcheckdate,jdbcType=TIMESTAMP},

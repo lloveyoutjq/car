@@ -10,11 +10,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -27,7 +25,14 @@ public class ServiceController {
     CarArchivesService carArchivesService;
 
     @RequestMapping("addClient")
-    public Map addClient(@RequestBody ClientClientdata clientClientdata){
+    public Map addClient(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        ClientClientdata clientClientdata = null;
+        try {
+            clientClientdata = objectMapper.readValue(data,ClientClientdata.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
         Map<String,Object> map = new HashMap<>();
         if(customerArchivesService.addClient(clientClientdata)>0){
             map.put("code","0");
@@ -41,7 +46,15 @@ public class ServiceController {
     }
 
     @RequestMapping("updateClient")
-    public Map updateClient(HttpSession session,@RequestBody ClientClientdata clientClientdata){
+    public Map updateClient(HttpSession session,String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        ClientClientdata clientClientdata = null;
+        try {
+            clientClientdata = objectMapper.readValue(data,ClientClientdata.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+
         System.out.println(session.getId()+"修改客户");
         Map<String,Object> map = new HashMap<>();
         if(customerArchivesService.updateClient(clientClientdata)>0){
@@ -55,7 +68,19 @@ public class ServiceController {
     }
 
     @RequestMapping("selectClient")
-    public Map selectClient(HttpSession session, Integer page, Integer limit){
+    public Map selectClient(HttpSession session, Integer page, Integer limit,String clientData,String carData) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ClientClientdata clientClientdata = null;
+        ClientCarinfo clientClienttype = null;
+        try {
+            clientClientdata = objectMapper.readValue(clientData,ClientClientdata.class);
+            clientClienttype = objectMapper.readValue(carData,ClientCarinfo.class);
+            clientClientdata.setClientCarinfo(clientClienttype);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+
+
         System.out.println(session.getId()+"查询客户");
         if(page == null){
             page = 1;
@@ -64,7 +89,7 @@ public class ServiceController {
             limit = 10;
         }
         Map<String,Object> map = new HashMap<>();
-        PageInfo<ClientClientdata> pageInfo =  customerArchivesService.selectClient(page,limit);
+        PageInfo<ClientClientdata> pageInfo =  customerArchivesService.selectClient(page,limit,clientClientdata);
         map.put("code",0);
         map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getSize());
@@ -147,7 +172,7 @@ public class ServiceController {
      * @return
      */
     @GetMapping("deleteClientType")
-    public Map deleteClientType(int id){
+    public Map deleteClientType(Integer id){
         Map<String,Object> map = new HashMap<>();
         int count = customerArchivesService.deleteClientType(id);
         if(count > 0){
@@ -163,13 +188,40 @@ public class ServiceController {
     /****************************************添加车**************************************************/
     /**
      * 添加车
-     * @param clientCarinfo
+     * @param data
      * @return
      */
     @RequestMapping("addCar")
-    public String addCar(@RequestBody  ClientCarinfo clientCarinfo,String callback) throws JsonProcessingException {
+    public String addCar(String data) throws JsonProcessingException {
         Map<String,Object> map = new HashMap<>();
         ObjectMapper objectMapper = new ObjectMapper();
+        ClientCarinfo clientCarinfo = null;
+        try {
+            clientCarinfo = objectMapper.readValue(data,ClientCarinfo.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+        if("".equals(clientCarinfo.getBorndate())){
+            clientCarinfo.setBorndate(null);
+        }
+        if("".equals(clientCarinfo.getBuydate())){
+            clientCarinfo.setBuydate(null);
+        }
+        if("".equals(clientCarinfo.getCarcheckdate())){
+            clientCarinfo.setCarcheckdate(null);
+        }
+        if("".equals(clientCarinfo.getDutydate())){
+            clientCarinfo.setDutydate(null);
+        }
+        if("".equals(clientCarinfo.getJqinsurancedate())){
+            clientCarinfo.setJqinsurancedate(null);
+        }
+        if("".equals(clientCarinfo.getMaintaindate())){
+            clientCarinfo.setMaintaindate(null);
+        }
+        if("".equals(clientCarinfo.getSyinsurancedate())){
+            clientCarinfo.setSyinsurancedate(null);
+        }
 
         int count = carArchivesService.addCar(clientCarinfo);
         if(count > 0){
@@ -179,8 +231,8 @@ public class ServiceController {
             map.put("code",-1);
             map.put("msg","失败");
         }
-        String data = objectMapper.writeValueAsString(map);
-        return callback+"("+data+")";
+
+        return objectMapper.writeValueAsString(map);
 
     }
 
@@ -211,6 +263,27 @@ public class ServiceController {
     @RequestMapping("updateCar")
     public Map updateCar(ClientCarinfo clientCarinfo){
         Map<String,Object> map = new HashMap<>();
+        if("".equals(clientCarinfo.getBorndate())){
+            clientCarinfo.setBorndate(null);
+        }
+        if("".equals(clientCarinfo.getBuydate())){
+            clientCarinfo.setBuydate(null);
+        }
+        if("".equals(clientCarinfo.getCarcheckdate())){
+            clientCarinfo.setCarcheckdate(null);
+        }
+        if("".equals(clientCarinfo.getDutydate())){
+            clientCarinfo.setDutydate(null);
+        }
+        if("".equals(clientCarinfo.getJqinsurancedate())){
+            clientCarinfo.setJqinsurancedate(null);
+        }
+        if("".equals(clientCarinfo.getMaintaindate())){
+            clientCarinfo.setMaintaindate(null);
+        }
+        if("".equals(clientCarinfo.getSyinsurancedate())){
+            clientCarinfo.setSyinsurancedate(null);
+        }
         int count = carArchivesService.updateCar(clientCarinfo);
         if(count > 0){
             map.put("code",0);
@@ -228,9 +301,9 @@ public class ServiceController {
      * @return
      */
     @RequestMapping("selectCar")
-    public Map selectCar(Integer page, Integer limit){
+    public Map selectCar(Integer clientId ,Integer page, Integer limit){
         Map<String,Object> map = new HashMap<>();
-        PageInfo pageInfo = carArchivesService.selectCar(page, limit);
+        PageInfo pageInfo = carArchivesService.selectCar(clientId,page, limit);
         map.put("code",0);
         map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getSize());

@@ -13,7 +13,7 @@ public class ClientClientdata {
 
     private String address;
 
-    private Date borndate;
+    private String borndate;
 
     private Integer paymentdays;
 
@@ -47,7 +47,7 @@ public class ClientClientdata {
 
     private Integer typeid;
 
-    private Date date;
+    private String date;
 
     private String password;
 
@@ -63,12 +63,16 @@ public class ClientClientdata {
 
     private ClientClienttype clientClienttype;
 
-    public ClientClienttype getClientClienttype() {
-        return clientClienttype;
+    private ClientCarinfo clientCarinfo;
+
+    private String searchData;
+
+    public String getSearchData() {
+        return searchData;
     }
 
-    public void setClientClienttype(ClientClienttype clientClienttype) {
-        this.clientClienttype = clientClienttype;
+    public void setSearchData(String searchData) {
+        this.searchData = searchData;
     }
 
     public Integer getNumber() {
@@ -111,11 +115,11 @@ public class ClientClientdata {
         this.address = address;
     }
 
-    public Date getBorndate() {
+    public String getBorndate() {
         return borndate;
     }
 
-    public void setBorndate(Date borndate) {
+    public void setBorndate(String borndate) {
         this.borndate = borndate;
     }
 
@@ -247,11 +251,11 @@ public class ClientClientdata {
         this.typeid = typeid;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -301,5 +305,21 @@ public class ClientClientdata {
 
     public void setDefault5(String default5) {
         this.default5 = default5;
+    }
+
+    public ClientClienttype getClientClienttype() {
+        return clientClienttype;
+    }
+
+    public void setClientClienttype(ClientClienttype clientClienttype) {
+        this.clientClienttype = clientClienttype;
+    }
+
+    public ClientCarinfo getClientCarinfo() {
+        return clientCarinfo;
+    }
+
+    public void setClientCarinfo(ClientCarinfo clientCarinfo) {
+        this.clientCarinfo = clientCarinfo;
     }
 }

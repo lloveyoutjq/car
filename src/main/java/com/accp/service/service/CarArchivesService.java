@@ -1,6 +1,7 @@
 package com.accp.service.service;
 
 import com.accp.domain.ClientCarinfo;
+import com.accp.domain.ClientCarinfoExample;
 import com.accp.mapper.ClientCarinfoMapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -46,9 +47,11 @@ public class CarArchivesService {
      * 查询车
      * @return
      */
-    public PageInfo<ClientCarinfo> selectCar(Integer index, Integer size){
+    public PageInfo<ClientCarinfo> selectCar(Integer clientId,Integer index, Integer size){
         Page<ClientCarinfo> page = PageHelper.startPage(index,size);
-        clientCarinfoMapper.selectByExample(null);
+        ClientCarinfoExample example = new ClientCarinfoExample();
+        example.createCriteria().andClientidEqualTo(clientId);
+        clientCarinfoMapper.selectByExample(example);
         return page.toPageInfo();
     }
 

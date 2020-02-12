@@ -1,5 +1,6 @@
 package com.accp.intercetor;
 
+import com.accp.controller.FilesUploadController;
 import com.accp.controller.SystemController;
 import com.accp.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,6 +21,7 @@ public class MyInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        //response.addHeader("Access-Control-Allow-Origin", "*");//解决跨域问题的方法之一，但有弊端
         //return true;
         response.setContentType("text/html;charset=utf-8");
         if(handler instanceof HandlerMethod) {
@@ -30,6 +32,10 @@ public class MyInterceptor implements HandlerInterceptor {
                     return true;
                 }
             }
+        }
+
+        if(request.getRequestURI().indexOf("filesUpload") != -1 || request.getRequestURI().indexOf(".") != -1){
+            return true;
         }
 
         HttpSession session = request.getSession();
