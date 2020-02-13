@@ -54,6 +54,9 @@
     LEFT JOIN `client_clienttype` ON `client_clienttype`.`id` = `client_clientdata`.typeId
     LEFT JOIN `client_carinfo` ON `client_carinfo`.`clientId` = `client_clientdata`.`number`
     where 1=1
+    <if test="clientClientdata.searchData != null and clientClientdata.searchData !=''">/*拼音*/
+      AND(`to_pinyin`(`client_clientdata`.`name`) LIKE CONCAT("%",#{clientClientdata.searchData},"%") OR `getPY`(`client_clientdata`.`name`) LIKE CONCAT("%",#{clientClientdata.searchData},"%"))
+    </if>
     <if test="clientClientdata.number != null and clientClientdata.number !=''">/*id*/
       and `client_clientdata`.number = #{clientClientdata.number}
     </if>
@@ -262,7 +265,7 @@
       #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}, #{default3,jdbcType=VARCHAR}, 
       #{default4,jdbcType=VARCHAR}, #{default5,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.accp.domain.ClientClientdata" >
+  <insert id="insertSelective" parameterType="com.accp.domain.ClientClientdata" useGeneratedKeys="true" keyProperty="number"  >
     insert into client_clientdata
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="number != null" >

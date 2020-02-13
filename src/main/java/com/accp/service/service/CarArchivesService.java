@@ -50,7 +50,9 @@ public class CarArchivesService {
     public PageInfo<ClientCarinfo> selectCar(Integer clientId,Integer index, Integer size){
         Page<ClientCarinfo> page = PageHelper.startPage(index,size);
         ClientCarinfoExample example = new ClientCarinfoExample();
-        example.createCriteria().andClientidEqualTo(clientId);
+        if(clientId != null && clientId != 0){
+            example.createCriteria().andClientidEqualTo(clientId);
+        }
         clientCarinfoMapper.selectByExample(example);
         return page.toPageInfo();
     }

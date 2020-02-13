@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -37,6 +38,7 @@ public class ServiceController {
         if(customerArchivesService.addClient(clientClientdata)>0){
             map.put("code","0");
             map.put("msg","成功");
+            map.put("id",clientClientdata.getNumber());
         }else{
             map.put("code","-1");
             map.put("msg","失败");
@@ -79,20 +81,28 @@ public class ServiceController {
         }catch (JsonProcessingException e){
             System.out.println("发送异常");
         }
-
-
-        System.out.println(session.getId()+"查询客户");
-        if(page == null){
-            page = 1;
-        }
-        if(limit == null){
-            limit = 10;
-        }
         Map<String,Object> map = new HashMap<>();
-        PageInfo<ClientClientdata> pageInfo =  customerArchivesService.selectClient(page,limit,clientClientdata);
-        map.put("code",0);
-        map.put("data",pageInfo.getList());
-        map.put("count",pageInfo.getSize());
+        PageInfo<ClientClientdata> pageInfo = null;
+        if(page == null && limit==null){
+            System.out.println("全部查询");
+            List<ClientClientdata> lists = customerArchivesService.selectClientAll(clientClientdata);
+            map.put("code",0);
+            map.put("data",lists);
+        }else{
+            System.out.println(session.getId()+"查询客户");
+            if(page == null){
+                page = 1;
+            }
+            if(limit == null){
+                limit = 10;
+            }
+            pageInfo = customerArchivesService.selectClient(page,limit,clientClientdata);
+            map.put("code",0);
+            map.put("data",pageInfo.getList());
+            map.put("count",pageInfo.getTotal());
+        }
+
+
         return map;
     }
 
@@ -124,7 +134,7 @@ public class ServiceController {
         PageInfo<ClientClienttype> pageInfo = customerArchivesService.selectClientTypeAll(page,limit);
         map.put("code",0);
         map.put("data",pageInfo.getList());
-        map.put("count",pageInfo.getSize());
+        map.put("count",pageInfo.getTotal());
         return map;
     }
 
@@ -306,7 +316,7 @@ public class ServiceController {
         PageInfo pageInfo = carArchivesService.selectCar(clientId,page, limit);
         map.put("code",0);
         map.put("data",pageInfo.getList());
-        map.put("count",pageInfo.getSize());
+        map.put("count",pageInfo.getTotal());
         return map;
     }
 
