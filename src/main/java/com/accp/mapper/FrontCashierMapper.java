@@ -3,12 +3,19 @@ package com.accp.mapper;
 import com.accp.domain.FrontCashier;
 import com.accp.domain.FrontCashierExample;
 import java.util.List;
+
+import com.accp.domain.MaintainRepair;
+import com.accp.domain.MaintainRescue;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface FrontCashierMapper {
-    List<FrontCashier> rescue(String number);
+    List<FrontCashier> bill(@Param("cashierId") String cashierId,@Param("status") String status,@Param("carNumber") String carNumber,@Param("name") String name,@Param("counselorName") String counselorName,@Param("tname") String tname,@Param("settlementStatus") String settlementStatus,@Param("remark") String remark);
 
-    List<FrontCashier> repair(String number);
+    MaintainRescue rescue(String number);
+
+    MaintainRepair repair(String number);
 
     int countByExample(FrontCashierExample example);
 

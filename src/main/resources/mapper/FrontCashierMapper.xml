@@ -97,6 +97,37 @@
       <result column="paartisanclassname" property="artisanclassname"/>
     </association>
   </resultMap>
+
+  <resultMap id="BaseResultMapPlus3" type="com.accp.domain.FrontCashier" extends="BaseResultMap">
+    <association property="clientClientdata" javaType="com.accp.domain.ClientClientdata">
+      <id column="ccnumber" property="number"/>
+      <result column="ccname" property="name"/>
+      <result column="ccphone" property="phone"/>
+      <result column="cccounselorname" property="counselorname"/>
+    </association>
+    <association property="maintainRepair" javaType="com.accp.domain.MaintainRepair">
+      <id column="mrnumber" property="number"/>
+      <result column="mrstatus" property="status"/>
+      <result column="mrcompany" property="company"/>
+      <result column="mrcompletedate" property="completedate"/>
+      <result column="mrremark" property="remark"/>
+      <result column="tname" property="tname"/>
+    </association>
+    <association property="personnelArtisan" javaType="com.accp.domain.PersonnelArtisan">
+      <id column="paartisanid" property="artisanid"/>
+      <result column="paartisanname" property="artisanname"/>
+    </association>
+    <association property="clientCarinfo" javaType="com.accp.domain.ClientCarinfo">
+      <id column="caclientid" property="clientid"/>
+      <result column="cacarnumber" property="carnumber"/>
+      <result column="caframenumber" property="framenumber"/>
+      <result column="cajqinsurance" property="jqinsurance"/>
+    </association>
+    <association property="dataCar" javaType="com.accp.domain.DataCar">
+      <id column="dcid" property="id"/>
+      <result column="dccartypename" property="cartypename"/>
+    </association>
+  </resultMap>
   <select id="repair" resultMap="BaseResultMapPlus">
     SELECT mr.`number` as mrnumber ,ca.`carNumber` as cacarnumber ,ca.`frameNumber` as caframenumber ,
     ca.`carId` as cacarid ,dc.`carBrandName` as dccarbrandname ,ca.`engineNumber` as caenginenumber ,
@@ -144,6 +175,33 @@
     STRAIGHT_JOIN `personnel_artisanclass` AS pa
     ON mr.`rescueTeamId` = pa.`artisanClassId`
     WHERE mr.`number` = #{number}
+  </select>
+
+  <select id="bill" resultMap="BaseResultMapPlus3">
+    SELECT fc.`cashierId` ,fc.`invoiceId`, fc.`paymentType`,mr.`status` as mrstatus ,
+    fc.`settlementStatus`,fc.`cashierTime`, pa.`artisanName` as paartisanname ,fc.`totalNum`,
+    cc.`name` as ccname ,ca.`carNumber` as cacarnumber , dc.`carTypeName` as dccartypename ,ca.`frameNumber` as caframenumber , cc.`phone` as ccphone ,ca.`jqinsurance` as cajqinsurance ,
+    mr.`company` as mrcompany ,cc.`counselorName` as cccounselorname , mr.`completeDate` as mrcompletedate ,mr.`remark` as mrremark ,tname ,
+    pa.`artisanId` as paartisanid ,ca.`clientId` as caclientid , dc.`id` as dcid , cc.`number` as ccnumber ,mr.`number` as mrnumber
+    FROM `front_cashier` AS fc
+    STRAIGHT_JOIN `client_clientdata` AS cc
+    ON fc.`clientId` = cc.`number`
+    STRAIGHT_JOIN (
+    SELECT mrp.`number`,mrp.`completeDate`,mrp.`status`,mrp.`company`,mrp.`remark`,'维修单' AS tname FROM `maintain_repair` AS mrp
+    UNION ALL
+    SELECT mrs.`number`,mrs.`completeDate`,mrs.`status`,mrs.`company`,mrs.`remark`,'救援单' AS tname FROM `maintain_rescue` AS mrs
+    ) AS mr
+    ON fc.`number` = mr.`number`
+    STRAIGHT_JOIN `personnel_artisan` AS pa
+    ON fc.`staffId` = pa.`artisanId`
+    STRAIGHT_JOIN `client_carinfo` AS ca
+    ON cc.`number` = ca.`clientId`
+    STRAIGHT_JOIN `data_car` AS dc
+    ON ca.`carId` = dc.`id`
+    WHERE fc.`cashierId` LIKE #{cashierId} AND mr.`status` LIKE #{status}
+    AND ca.`carNumber` LIKE #{carNumber} AND cc.`name` LIKE #{name}
+    AND cc.`counselorName` LIKE #{counselorName} AND tname LIKE #{tname}
+    AND fc.`settlementStatus` = #{settlementStatus} AND mr.`remark` LIKE #{remark}
   </select>
   <sql id="Example_Where_Clause" >
     <where >

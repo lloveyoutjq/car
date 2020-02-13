@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface DataMaintenanceItemsMapper {
     List<DataMaintenanceItems> itemsSels(String number);
 
-    List<DataMaintenanceItems> attached(String number);
+    List<DataMaintenanceItems> attached(String number);  //附单
 
     List<DataMaintenanceItems> items(String carNumber);
 

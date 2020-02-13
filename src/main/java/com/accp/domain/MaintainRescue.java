@@ -1,6 +1,7 @@
 package com.accp.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class MaintainRescue {
     private String number;
@@ -54,6 +55,10 @@ public class MaintainRescue {
     private String default2;
 
     private String tname;
+
+    private List<DataMaintenanceItems> dataMaintenanceItemsList;
+
+    private List<MaintainEwitem> maintainEwitemList;
 
     public String getNumber() {
         return number;
@@ -261,5 +266,21 @@ public class MaintainRescue {
 
     public void setTname(String tname) {
         this.tname = tname;
+    }
+
+    public List<DataMaintenanceItems> getDataMaintenanceItemsList() {
+        return dataMaintenanceItemsList;
+    }
+
+    public void setDataMaintenanceItemsList(List<DataMaintenanceItems> dataMaintenanceItemsList) {
+        this.dataMaintenanceItemsList = dataMaintenanceItemsList;
+    }
+
+    public List<MaintainEwitem> getMaintainEwitemList() {
+        return maintainEwitemList;
+    }
+
+    public void setMaintainEwitemList(List<MaintainEwitem> maintainEwitemList) {
+        this.maintainEwitemList = maintainEwitemList;
     }
 }
