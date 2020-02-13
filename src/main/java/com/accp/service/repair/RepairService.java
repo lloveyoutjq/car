@@ -42,6 +42,18 @@ public class RepairService {
         return clientCarinfoMapper.ownerInformation(carNumber);
     }
 
+    /**
+     *维修救援and维修接车
+     * */
+    //维修救援
+    public ClientCarinfo rescueS(String carnumber){
+        return clientCarinfoMapper.rescueS(carnumber);
+    }
+
+    //维修接车
+    public ClientCarinfo repairS(String carnumber){
+        return clientCarinfoMapper.repairS(carnumber);
+    }
 
     /**
      * 维修项目
@@ -94,6 +106,14 @@ public class RepairService {
     //修改
     public int updateMaintainEwitem(MaintainEwitem record){
         return maintainEwitemMapper.updateByPrimaryKey(record);
+    }
+
+    /**
+     * 附单
+     * */
+    //查询
+    public  List<DataMaintenanceItems> attached(String number){
+        return dataMaintenanceItemsMapper.attached(number);
     }
 
 }

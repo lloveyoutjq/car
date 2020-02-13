@@ -45,6 +45,10 @@ public class FrontCashier {
 
     private  MaintainRescue maintainRescue;
 
+    private PersonnelArtisan personnelArtisan;
+
+    private DataCar dataCar;
+
     public Integer getCashierid() {
         return cashierid;
     }
@@ -211,5 +215,21 @@ public class FrontCashier {
 
     public void setMaintainRescue(MaintainRescue maintainRescue) {
         this.maintainRescue = maintainRescue;
+    }
+
+    public PersonnelArtisan getPersonnelArtisan() {
+        return personnelArtisan;
+    }
+
+    public void setPersonnelArtisan(PersonnelArtisan personnelArtisan) {
+        this.personnelArtisan = personnelArtisan;
+    }
+
+    public DataCar getDataCar() {
+        return dataCar;
+    }
+
+    public void setDataCar(DataCar dataCar) {
+        this.dataCar = dataCar;
     }
 }

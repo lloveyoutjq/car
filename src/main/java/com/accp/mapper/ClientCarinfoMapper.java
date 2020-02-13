@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClientCarinfoMapper {
+    ClientCarinfo rescueS(String carnumber);   //维修救援
+
+    ClientCarinfo repairS(String carnumber);   //维修接车
+
     ClientCarinfo ownerInformation(String carNumber);
 
     int countByExample(ClientCarinfoExample example);

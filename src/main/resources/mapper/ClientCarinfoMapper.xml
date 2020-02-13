@@ -47,6 +47,22 @@
       <result column="debenginebrandname" property="enginebrandname"/>
     </association>
   </resultMap>
+  <resultMap id="BaseResultMapPlus1" type="com.accp.domain.ClientCarinfo" extends="BaseResultMap">
+    <association property="clientClientdata" javaType="com.accp.domain.ClientClientdata">
+      <id column="ccnumber" property="number"/>
+      <result column="ccname" property="name"/>
+      <result column="ccphone" property="phone"/>
+    </association>
+    <association property="dataEngineBrand" javaType="com.accp.domain.DataEngineBrand">
+      <id column="debid" property="id"/>
+      <result column="debenginebrandname" property="enginebrandname"/>
+    </association>
+    <association property="dataCarbrand" javaType="com.accp.domain.DataCarbrand">
+      <id column="dcid" property="id"/>
+      <result column="dccarbrandname" property="carbrandname"/>
+    </association>
+  </resultMap>
+
   <select id="ownerInformation" resultMap="BaseResultMapPlus">
     SELECT ccd.`name` as ccdname ,ccd.`address` as ccdaddress ,cci.`carer`, cci.`carerPhone`,dcb.`carBrandName` as dcbcarbrandname,
     deb.`engineBrandName` as debenginebrandname , cci.`engineNumber`,ccd.`number` as ccdnumber , dcb.`id` as dcbid , deb.`id` as debid
@@ -59,6 +75,34 @@
     ON cci.`engineId` = deb.`id`
     WHERE cci.`carNumber` = #{carNumber}
 
+  </select>
+
+  <select id="repairS" resultMap="BaseResultMapPlus1">
+    SELECT ca.`carNumber` ,ca.`frameNumber` , ca.`carId`, dc.`carBrandName` as dccarbrandname ,
+    ca.`engineNumber`, deb.`engineBrandName` as debenginebrandname , cc.`name` as ccname ,ca.`carer`, cc.`phone` as ccphone ,
+    cc.`number` as ccnumber ,deb.`id` as debid , dc.`id` as dcid
+    FROM `client_carinfo` AS ca
+    STRAIGHT_JOIN `client_clientdata` AS cc
+    ON ca.`clientId` = cc.`number`
+    STRAIGHT_JOIN `data_engine_brand` AS deb
+    ON ca.`engineId` = deb.`id`
+    STRAIGHT_JOIN `data_carbrand` AS dc
+    ON ca.`carBrandId` = dc.`id`
+    WHERE ca.`carNumber` = #{carnumber}
+  </select>
+
+  <select id="rescueS" resultMap="BaseResultMapPlus1">
+    SELECT ca.`carNumber`, ca.`carId` ,dc.`carBrandName` as dccarbrandname , deb.`engineBrandName` as debenginebrandname ,
+    cc.`name` as ccname ,ca.`carer`, cc.`phone` as ccphone ,ca.`mileage`,
+    cc.`number` as ccnumber ,deb.`id` as debid , dc.`id` as dcid
+    FROM `client_carinfo` AS ca
+    STRAIGHT_JOIN `client_clientdata` AS cc
+    ON ca.`clientId` = cc.`number`
+    STRAIGHT_JOIN `data_engine_brand` AS deb
+    ON ca.`engineId` = deb.`id`
+    STRAIGHT_JOIN `data_carbrand` AS dc
+    ON ca.`carBrandId` = dc.`carBrandName`
+    WHERE ca.`carNumber` =  #{carnumber}
   </select>
   <sql id="Example_Where_Clause" >
     <where >
