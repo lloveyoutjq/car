@@ -22,10 +22,10 @@ import java.util.List;
 @Service
 public class TeamService {
     //班组技工
-    @Autowired(required = false)
+    @Autowired
     PersonnelArtisanMapper personnelArtisanMapper;
     //班组名称
-    @Autowired(required = false)
+    @Autowired
     PersonnelArtisanclassMapper personnelArtisanclassMapper;
 
     /**

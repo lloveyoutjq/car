@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class JobsService {
     //岗位定义
-    @Autowired(required = false)
+    @Autowired
     PersonnelPostMapper personnelPostMapper;
 
     /**

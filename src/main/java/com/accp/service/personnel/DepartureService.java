@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class DepartureService {
     //员工表
-    @Autowired(required = false)
+    @Autowired
     PersonnelStaffMapper personnelStaffMapper;
 
     /**

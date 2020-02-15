@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class FieldService {
     //外勤车辆
-    @Autowired(required = false)
+    @Autowired
     PersonnelLegworkcatMapper personnelLegworkcatMapper;
 
     /**

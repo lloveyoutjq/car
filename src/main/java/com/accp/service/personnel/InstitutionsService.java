@@ -20,9 +20,9 @@ import java.util.List;
 @Transactional
 @Service
 public class InstitutionsService {
-    @Autowired(required = false)
+    @Autowired
     PersonnelStaffMapper personnelStaffMapper;
-    @Autowired(required = false)
+    @Autowired
     PersonnelDepartmentMapper personnelDepartmentMapper;
 
     /**
