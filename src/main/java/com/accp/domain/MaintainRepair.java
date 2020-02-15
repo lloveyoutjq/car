@@ -38,6 +38,12 @@ public class MaintainRepair {
 
     private String status;
 
+    private Date completedate;
+
+    private Date settledate;
+
+    private Date pickdate;
+
     private String default1;
 
     private String default2;
@@ -186,6 +192,30 @@ public class MaintainRepair {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getCompletedate() {
+        return completedate;
+    }
+
+    public void setCompletedate(Date completedate) {
+        this.completedate = completedate;
+    }
+
+    public Date getSettledate() {
+        return settledate;
+    }
+
+    public void setSettledate(Date settledate) {
+        this.settledate = settledate;
+    }
+
+    public Date getPickdate() {
+        return pickdate;
+    }
+
+    public void setPickdate(Date pickdate) {
+        this.pickdate = pickdate;
     }
 
     public String getDefault1() {

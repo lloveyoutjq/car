@@ -6,6 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface PersonnelArtisanMapper {
+    List<PersonnelArtisan> teamSelect();
+    PersonnelArtisan teamSelectId(String artisanid);
+
+
+
     int countByExample(PersonnelArtisanExample example);
 
     int deleteByExample(PersonnelArtisanExample example);

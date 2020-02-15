@@ -54,6 +54,104 @@
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+  <!--通讯表-->
+  <resultMap id="BaseResultMapTwo" type="com.accp.domain.PersonnelStaff" extends="BaseResultMap">
+    <association property="personnelAddressbook" column="id" javaType="com.accp.domain.PersonnelAddressbook">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="department" property="department" jdbcType="VARCHAR" />
+      <result column="staffId" property="staffid" jdbcType="INTEGER" />
+      <result column="cornet" property="cornet" jdbcType="VARCHAR" />
+      <result column="dialDirectly" property="dialdirectly" jdbcType="VARCHAR" />
+      <result column="phone" property="phone" jdbcType="VARCHAR" />
+      <result column="email" property="email" jdbcType="VARCHAR" />
+      <result column="default1" property="default1" jdbcType="VARCHAR" />
+      <result column="default2" property="default2" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <!--离职表-->
+  <resultMap id="BaseResultMapThree" type="com.accp.domain.PersonnelStaff" extends="BaseResultMap">
+    <association property="personnelDimission" column="id" javaType="com.accp.domain.PersonnelDimission">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="department" property="department" jdbcType="VARCHAR" />
+      <result column="dimissionDate" property="dimissiondate" jdbcType="TIMESTAMP" />
+      <result column="dimissionCause" property="dimissioncause" jdbcType="VARCHAR" />
+      <result column="staffId" property="staffid" jdbcType="INTEGER" />
+      <result column="default1" property="default1" jdbcType="VARCHAR" />
+      <result column="default2" property="default2" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <!--部门表-->
+  <resultMap id="BaseResultMapSix" type="com.accp.domain.PersonnelStaff" extends="BaseResultMap">
+    <association property="personnelDepartment" javaType="com.accp.domain.PersonnelDepartment">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="departmentName" property="departmentname" jdbcType="VARCHAR" />
+      <result column="dtid" property="dtid" jdbcType="INTEGER" />
+      <result column="parentId" property="parentid" jdbcType="INTEGER" />
+      <result column="default1" property="default1" jdbcType="VARCHAR" />
+      <result column="default2" property="default2" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+
+  <!--组织机构-->
+  <select id="institutionsSelect" resultMap="BaseResultMapSix">
+  SELECT `personnel_staff`.*,`personnel_department`.* FROM `personnel_staff`
+  INNER JOIN `personnel_department` ON `personnel_staff`.`did`=`personnel_department`.`id`
+  where 1=1
+  <if test="personnelStaff.ids !=null and personnelStaff.ids.size()>0">
+    and (
+    <foreach collection="personnelStaff.ids" item="item" separator="or">
+        <if test="item != null and item != ''">
+          `personnel_department`.id = #{item}
+        </if>
+
+    </foreach>
+    )
+  </if>
+
+  </select>
+  <select id="institutionsSelectTwo" resultMap="BaseResultMapSix">
+SELECT `personnel_staff`.*,`personnel_department`.* FROM `personnel_staff`
+INNER JOIN `personnel_department` ON `personnel_staff`.`did`=`personnel_department`.`id`
+    where 1=1
+    <if test="personnelStaff.id != null and personnelStaff.id !=''">/*工号*/
+      and `personnel_staff`.id = #{personnelStaff.id}
+    </if>
+    <if test="personnelStaff.staffname != null personnelStaff.staffname != ''">/*姓名*/
+      AND `personnel_staff`.staffname like CONCAT("%",#{personnelStaff.staffname},"%")
+    </if>
+  </select>
+  <!--通讯-->
+  <select id="communicationSelect" resultMap="BaseResultMapTwo">
+SELECT `personnel_addressbook`.*,`personnel_staff`.* FROM `personnel_addressbook`
+INNER JOIN `personnel_staff` ON `personnel_staff`.id = `personnel_addressbook`.staffId
+  </select>
+
+  <select id="communicationSelectId" resultMap="BaseResultMapTwo">
+    SELECT `personnel_addressbook`.*,`personnel_staff`.* FROM `personnel_addressbook`
+    INNER JOIN `personnel_staff` ON `personnel_staff`.id = `personnel_addressbook`.staffId
+    where 1=1
+      <if test="personnelStaff.id != null and personnelStaff.id !=''">/*工号*/
+          and `personnel_staff`.id = #{personnelStaff.id}
+      </if>
+      <if test="personnelStaff.staffname != null and personnelStaff.staffname != ''">/*姓名*/
+          AND `personnel_staff`.staffname like CONCAT("%",#{personnelStaff.staffname},"%")
+      </if>
+  </select>
+  <!--离职-->
+  <select id="departureSelect" resultMap="BaseResultMapThree">
+SELECT `personnel_dimission`.*,`personnel_staff`.* FROM `personnel_staff`
+INNER JOIN `personnel_dimission` ON `personnel_staff`.`id`=`personnel_dimission`.`staffId`
+  </select>
+  <select id="departureSelectId" resultMap="BaseResultMapThree">
+SELECT `personnel_dimission`.*,`personnel_staff`.* FROM `personnel_staff`
+INNER JOIN `personnel_dimission` ON `personnel_staff`.`id`=`personnel_dimission`.`staffId`
+WHERE `personnel_staff`.`id`=#{id} OR `personnel_staff`.`staffName`=#{staffname}
+  </select>
+
+
+
+
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

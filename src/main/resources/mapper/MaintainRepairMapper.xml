@@ -19,50 +19,12 @@
     <result column="itemId" property="itemid" jdbcType="INTEGER" />
     <result column="teamId" property="teamid" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="completeDate" property="completedate" jdbcType="TIMESTAMP" />
+    <result column="settleDate" property="settledate" jdbcType="TIMESTAMP" />
+    <result column="pickDate" property="pickdate" jdbcType="TIMESTAMP" />
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
-    <result column="tname" property="tname" jdbcType="VARCHAR"/>
   </resultMap>
-  <resultMap id="BaseResultMapPlus" extends="BaseResultMap" type="com.accp.domain.MaintainRepair">
-    <association property="clientCarinfo" javaType="com.accp.domain.ClientCarinfo">
-      <id column="ccaid" property="id"/>
-      <result column="ccaCarNumber" property="carnumber"/>
-    </association>
-    <association property="clientClientdata" javaType="com.accp.domain.ClientClientdata">
-      <id column="ccdNumber" property="number"/>
-      <result column="ccdname" property="name"/>
-      <result column="ccdphone" property="phone"/>
-      <result column="ccdnumber" property="number"/>
-    </association>
-  </resultMap>
-  <select id="vehiclesInOperation" resultMap="BaseResultMapPlus">
-    SELECT mr.`status`,mr.`type`,ccd.`name` as ccdname,ccd.`phone` as ccdphone,ccd.`number` as ccdnumber,cca.`carNumber` as ccaCarNumber,mr.`number`,mr.`tname`,
-mr.`pickDate`,mr.`overWorkDate`,mr.`completeDate`,mr.`settleDate`,mr.`price`,mr.`getMan`,cca.`id` as ccaid
-FROM (
-SELECT mrp.`number`,mrp.`carInfoId`,mrp.`type`,mrp.`getMan`,mrp.`pickDate`,mrp.`price`,mrp.`completeDate`,mrp.`settleDate`,mrp.`status`,mrp.`overWorkDate`,'维修单' AS tname FROM `maintain_repair` AS mrp
-UNION ALL
-SELECT mrs.`number`,mrs.`carInfoId`,mrs.`type`,mrs.`getMan`,mrs.`pickDate`,mrs.`price`,mrs.`completeDate`,mrs.`settleDate`,mrs.`status`,mrs.`overWorkDate`,'救援单' AS tname FROM `maintain_rescue` AS mrs
-) AS mr
-STRAIGHT_JOIN `client_carinfo` AS cca
-ON mr.`carInfoId` = cca.`id`
-STRAIGHT_JOIN `client_clientdata` AS ccd
-ON cca.`clientId` = ccd.`number`
-  </select>
-  <select id="maintenanceHistory" resultMap="BaseResultMapPlus">
-    SELECT mr.`number` ,mr.`pickDate` ,mr.`type`,mr.`completeDate`,
-    cca.`carNumber` as ccaCarNumber ,ccd.`name` as ccdname,ccd.`phone` as ccdphone,ccd.`number` as ccdnumber ,mr.`settleDate`,cca.`id` as ccaid ,ccd.`number` as ccdNumber
-FROM (
-SELECT mrp.`number`,mrp.`carInfoId`,mrp.`type`,mrp.`pickDate`,mrp.`completeDate`,mrp.`settleDate` FROM `maintain_repair` AS mrp
-UNION ALL
-SELECT mrs.`number`,mrs.`carInfoId`,mrs.`type`,mrs.`pickDate`,mrs.`completeDate`,mrs.`settleDate` FROM `maintain_rescue` AS mrs
-) AS mr
-STRAIGHT_JOIN `client_carinfo` AS cca
-ON mr.`carInfoId` = cca.`id`
-STRAIGHT_JOIN `client_clientdata` AS ccd
-ON cca.`clientId` = ccd.`number`
-WHERE cca.`carNumber` = #{carnumber}
-  </select>
-  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -123,7 +85,8 @@ WHERE cca.`carNumber` = #{carnumber}
   </sql>
   <sql id="Base_Column_List" >
     number, carInfoId, counselorId, oil, type, workTime, getMan, overWorkDate, setter, 
-    company, before, price, remark, state, itemId, teamId, status, default1, default2
+    company, before, price, remark, state, itemId, teamId, status, completeDate, settleDate, 
+    pickDate, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.MaintainRepairExample" >
     select
@@ -161,14 +124,16 @@ WHERE cca.`carNumber` = #{carnumber}
       getMan, overWorkDate, setter, 
       company, before, price, 
       remark, state, itemId, 
-      teamId, status, default1, 
+      teamId, status, completeDate, 
+      settleDate, pickDate, default1, 
       default2)
     values (#{number,jdbcType=VARCHAR}, #{carinfoid,jdbcType=INTEGER}, #{counselorid,jdbcType=INTEGER}, 
       #{oil,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{worktime,jdbcType=VARCHAR}, 
       #{getman,jdbcType=VARCHAR}, #{overworkdate,jdbcType=TIMESTAMP}, #{setter,jdbcType=VARCHAR}, 
       #{company,jdbcType=VARCHAR}, #{before,jdbcType=TIMESTAMP}, #{price,jdbcType=REAL}, 
       #{remark,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{itemid,jdbcType=INTEGER}, 
-      #{teamid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{default1,jdbcType=VARCHAR}, 
+      #{teamid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{completedate,jdbcType=TIMESTAMP}, 
+      #{settledate,jdbcType=TIMESTAMP}, #{pickdate,jdbcType=TIMESTAMP}, #{default1,jdbcType=VARCHAR}, 
       #{default2,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.MaintainRepair" >
@@ -224,6 +189,15 @@ WHERE cca.`carNumber` = #{carnumber}
       </if>
       <if test="status != null" >
         status,
+      </if>
+      <if test="completedate != null" >
+        completeDate,
+      </if>
+      <if test="settledate != null" >
+        settleDate,
+      </if>
+      <if test="pickdate != null" >
+        pickDate,
       </if>
       <if test="default1 != null" >
         default1,
@@ -283,6 +257,15 @@ WHERE cca.`carNumber` = #{carnumber}
       </if>
       <if test="status != null" >
         #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="completedate != null" >
+        #{completedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settledate != null" >
+        #{settledate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pickdate != null" >
+        #{pickdate,jdbcType=TIMESTAMP},
       </if>
       <if test="default1 != null" >
         #{default1,jdbcType=VARCHAR},
@@ -352,6 +335,15 @@ WHERE cca.`carNumber` = #{carnumber}
       <if test="record.status != null" >
         status = #{record.status,jdbcType=VARCHAR},
       </if>
+      <if test="record.completedate != null" >
+        completeDate = #{record.completedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.settledate != null" >
+        settleDate = #{record.settledate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pickdate != null" >
+        pickDate = #{record.pickdate,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.default1 != null" >
         default1 = #{record.default1,jdbcType=VARCHAR},
       </if>
@@ -382,6 +374,9 @@ WHERE cca.`carNumber` = #{carnumber}
       itemId = #{record.itemid,jdbcType=INTEGER},
       teamId = #{record.teamid,jdbcType=INTEGER},
       status = #{record.status,jdbcType=VARCHAR},
+      completeDate = #{record.completedate,jdbcType=TIMESTAMP},
+      settleDate = #{record.settledate,jdbcType=TIMESTAMP},
+      pickDate = #{record.pickdate,jdbcType=TIMESTAMP},
       default1 = #{record.default1,jdbcType=VARCHAR},
       default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -439,6 +434,15 @@ WHERE cca.`carNumber` = #{carnumber}
       <if test="status != null" >
         status = #{status,jdbcType=VARCHAR},
       </if>
+      <if test="completedate != null" >
+        completeDate = #{completedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settledate != null" >
+        settleDate = #{settledate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pickdate != null" >
+        pickDate = #{pickdate,jdbcType=TIMESTAMP},
+      </if>
       <if test="default1 != null" >
         default1 = #{default1,jdbcType=VARCHAR},
       </if>
@@ -466,6 +470,9 @@ WHERE cca.`carNumber` = #{carnumber}
       itemId = #{itemid,jdbcType=INTEGER},
       teamId = #{teamid,jdbcType=INTEGER},
       status = #{status,jdbcType=VARCHAR},
+      completeDate = #{completedate,jdbcType=TIMESTAMP},
+      settleDate = #{settledate,jdbcType=TIMESTAMP},
+      pickDate = #{pickdate,jdbcType=TIMESTAMP},
       default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
     where number = #{number,jdbcType=VARCHAR}

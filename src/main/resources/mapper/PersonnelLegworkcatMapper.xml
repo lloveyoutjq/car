@@ -7,9 +7,38 @@
     <result column="brand" property="brand" jdbcType="VARCHAR" />
     <result column="model" property="model" jdbcType="VARCHAR" />
     <result column="mileage" property="mileage" jdbcType="VARCHAR" />
+    <result column="artisanclassId" property="artisanclassid" jdbcType="INTEGER" />
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+  <!--班组-->
+  <resultMap id="BaseResultMapFive" type="com.accp.domain.PersonnelLegworkcat" extends="BaseResultMap">
+    <association property="personnelArtisanclass" column="artisanclassid" javaType="com.accp.domain.PersonnelArtisanclass">
+      <id column="artisanClassId" property="artisanclassid" jdbcType="INTEGER" />
+      <result column="artisanClassName" property="artisanclassname" jdbcType="VARCHAR" />
+      <result column="artisanClassWeight" property="artisanclassweight" jdbcType="VARCHAR" />
+      <result column="parentId" property="parentid" jdbcType="INTEGER" />
+      <result column="instationWhite" property="instationwhite" jdbcType="VARCHAR" />
+      <result column="instationBlack" property="instationblack" jdbcType="VARCHAR" />
+      <result column="outsideWhite" property="outsidewhite" jdbcType="VARCHAR" />
+      <result column="outsideBlack" property="outsideblack" jdbcType="VARCHAR" />
+      <result column="wayWhite" property="waywhite" jdbcType="VARCHAR" />
+      <result column="wayBlack" property="wayblack" jdbcType="VARCHAR" />
+      <result column="oilCost" property="oilcost" jdbcType="VARCHAR" />
+      <result column="default1" property="default1" jdbcType="VARCHAR" />
+      <result column="default2" property="default2" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+
+  <!--外勤车辆-->
+  <select id="fieldSelect" resultMap="BaseResultMapFive">
+SELECT `personnel_legworkcat`.*,`personnel_artisanclass`.* FROM `personnel_legworkcat`
+INNER JOIN `personnel_artisanclass` ON `personnel_legworkcat`.`artisanclassId`=`personnel_artisanclass`.`artisanClassId`
+  </select>
+
+
+
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -69,7 +98,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    legworkCatId, licensePlateNumber, brand, model, mileage, default1, default2
+    legworkCatId, licensePlateNumber, brand, model, mileage, artisanclassId, default1, 
+    default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.PersonnelLegworkcatExample" >
     select
@@ -104,10 +134,12 @@
   <insert id="insert" parameterType="com.accp.domain.PersonnelLegworkcat" >
     insert into personnel_legworkcat (legworkCatId, licensePlateNumber, 
       brand, model, mileage, 
-      default1, default2)
+      artisanclassId, default1, default2
+      )
     values (#{legworkcatid,jdbcType=INTEGER}, #{licenseplatenumber,jdbcType=VARCHAR}, 
       #{brand,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, #{mileage,jdbcType=VARCHAR}, 
-      #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR})
+      #{artisanclassid,jdbcType=INTEGER}, #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.PersonnelLegworkcat" >
     insert into personnel_legworkcat
@@ -126,6 +158,9 @@
       </if>
       <if test="mileage != null" >
         mileage,
+      </if>
+      <if test="artisanclassid != null" >
+        artisanclassId,
       </if>
       <if test="default1 != null" >
         default1,
@@ -149,6 +184,9 @@
       </if>
       <if test="mileage != null" >
         #{mileage,jdbcType=VARCHAR},
+      </if>
+      <if test="artisanclassid != null" >
+        #{artisanclassid,jdbcType=INTEGER},
       </if>
       <if test="default1 != null" >
         #{default1,jdbcType=VARCHAR},
@@ -182,6 +220,9 @@
       <if test="record.mileage != null" >
         mileage = #{record.mileage,jdbcType=VARCHAR},
       </if>
+      <if test="record.artisanclassid != null" >
+        artisanclassId = #{record.artisanclassid,jdbcType=INTEGER},
+      </if>
       <if test="record.default1 != null" >
         default1 = #{record.default1,jdbcType=VARCHAR},
       </if>
@@ -200,6 +241,7 @@
       brand = #{record.brand,jdbcType=VARCHAR},
       model = #{record.model,jdbcType=VARCHAR},
       mileage = #{record.mileage,jdbcType=VARCHAR},
+      artisanclassId = #{record.artisanclassid,jdbcType=INTEGER},
       default1 = #{record.default1,jdbcType=VARCHAR},
       default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -221,6 +263,9 @@
       <if test="mileage != null" >
         mileage = #{mileage,jdbcType=VARCHAR},
       </if>
+      <if test="artisanclassid != null" >
+        artisanclassId = #{artisanclassid,jdbcType=INTEGER},
+      </if>
       <if test="default1 != null" >
         default1 = #{default1,jdbcType=VARCHAR},
       </if>
@@ -236,6 +281,7 @@
       brand = #{brand,jdbcType=VARCHAR},
       model = #{model,jdbcType=VARCHAR},
       mileage = #{mileage,jdbcType=VARCHAR},
+      artisanclassId = #{artisanclassid,jdbcType=INTEGER},
       default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
     where legworkCatId = #{legworkcatid,jdbcType=INTEGER}

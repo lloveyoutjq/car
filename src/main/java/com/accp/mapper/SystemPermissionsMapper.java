@@ -20,7 +20,13 @@ public interface SystemPermissionsMapper {
 
     SystemPermissions selectByPrimaryKey(Integer id);
 
-    List<SystemPermissions> selectUserMenuAll(Integer type,Integer uid);
+
+    List<SystemPermissions> selectUserMenuAll(Integer type, Integer uid);
+
+    List<SystemPermissions> selectUserMenuById(@Param("rid") Integer rid);
+
+
+
 
     List<SystemPermissions> selectUserMenuById(@Param("rid")Integer rid);
 

@@ -11,9 +11,22 @@ public class PersonnelLegworkcat {
 
     private String mileage;
 
+    private Integer artisanclassid;
+
     private String default1;
 
     private String default2;
+
+    private PersonnelArtisanclass personnelArtisanclass;
+
+    public PersonnelArtisanclass getPersonnelArtisanclass() {
+        return personnelArtisanclass;
+    }
+
+    public void setPersonnelArtisanclass(PersonnelArtisanclass personnelArtisanclass) {
+        this.personnelArtisanclass = personnelArtisanclass;
+    }
+
 
     public Integer getLegworkcatid() {
         return legworkcatid;
@@ -53,6 +66,14 @@ public class PersonnelLegworkcat {
 
     public void setMileage(String mileage) {
         this.mileage = mileage;
+    }
+
+    public Integer getArtisanclassid() {
+        return artisanclassid;
+    }
+
+    public void setArtisanclassid(Integer artisanclassid) {
+        this.artisanclassid = artisanclassid;
     }
 
     public String getDefault1() {

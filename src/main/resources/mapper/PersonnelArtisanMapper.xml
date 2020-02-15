@@ -23,6 +23,44 @@
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+  <!--技工星级-->
+  <resultMap id="BaseResultMapFour" type="com.accp.domain.PersonnelArtisan" extends="BaseResultMap">
+    <association property="personnelArtisanlevel" column="artisanlevelid" javaType="com.accp.domain.PersonnelArtisanlevel">
+      <id column="artisanLevelId" property="artisanlevelid" jdbcType="INTEGER" />
+      <result column="artisanLevelName" property="artisanlevelname" jdbcType="VARCHAR" />
+      <result column="artisanLevelWeight" property="artisanlevelweight" jdbcType="VARCHAR" />
+      <result column="default1" property="default1" jdbcType="VARCHAR" />
+      <result column="default2" property="default2" jdbcType="VARCHAR" />
+    </association>
+    <association property="personnelArtisanclass" column="artisanclassid" javaType="com.accp.domain.PersonnelArtisanclass">
+      <id column="artisanClassId" property="artisanclassid" jdbcType="INTEGER" />
+      <result column="artisanClassName" property="artisanclassname" jdbcType="VARCHAR" />
+      <result column="artisanClassWeight" property="artisanclassweight" jdbcType="VARCHAR" />
+      <result column="parentId" property="parentid" jdbcType="INTEGER" />
+      <result column="instationWhite" property="instationwhite" jdbcType="VARCHAR" />
+      <result column="instationBlack" property="instationblack" jdbcType="VARCHAR" />
+      <result column="outsideWhite" property="outsidewhite" jdbcType="VARCHAR" />
+      <result column="outsideBlack" property="outsideblack" jdbcType="VARCHAR" />
+      <result column="wayWhite" property="waywhite" jdbcType="VARCHAR" />
+      <result column="wayBlack" property="wayblack" jdbcType="VARCHAR" />
+      <result column="oilCost" property="oilcost" jdbcType="VARCHAR" />
+      <result column="default1" property="default1" jdbcType="VARCHAR" />
+      <result column="default2" property="default2" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+
+  <!--班组技工-->
+  <select id="teamSelect" resultMap="BaseResultMapFour">
+SELECT `personnel_artisan`.*,`personnel_artisanclass`.*,`personnel_artisanlevel`.*
+FROM `personnel_artisan`
+INNER JOIN `personnel_artisanclass` ON `personnel_artisan`.`artisanClassId`=`personnel_artisanclass`.`artisanClassId`
+INNER JOIN `personnel_artisanlevel` ON `personnel_artisan`.`artisanLevelId`=`personnel_artisanlevel`.`artisanLevelId`
+  </select>
+
+
+
+
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

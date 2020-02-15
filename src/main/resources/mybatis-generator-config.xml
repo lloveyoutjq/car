@@ -14,7 +14,7 @@
     	c.andNameLike("%"+name+"%");
     	c.andParentidEqualTo(parentId); -->
 	<classPathEntry
-		location="C:\Users\Admin\.m2\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar" />
+		location="C:\Users\123\Documents\Tencent Files\2751023623\FileRecv\mysql-connector-java-5.1.6.jar" />
 	<context id="context1">
 		<!-- 注释 -->
 		<commentGenerator>
@@ -22,7 +22,7 @@
 			<property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳 -->
 		</commentGenerator>
 		<jdbcConnection connectionURL="jdbc:mysql://localhost:3306/car?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMutilQueries=true"
-			driverClass="com.mysql.jdbc.Driver" password="520Tanjiaqing" userId="root" />
+			driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" />
 		<!-- 实体生成位置 -->
 		<javaModelGenerator targetPackage="com.accp.domain"
 			targetProject="src/main/java" />

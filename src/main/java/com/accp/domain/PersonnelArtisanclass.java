@@ -1,5 +1,8 @@
 package com.accp.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PersonnelArtisanclass {
     private Integer artisanclassid;
 
@@ -26,6 +29,36 @@ public class PersonnelArtisanclass {
     private String default1;
 
     private String default2;
+
+    private List<PersonnelArtisanclass> children = new ArrayList<>();
+
+    private String title;
+
+    private Integer id;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<PersonnelArtisanclass> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<PersonnelArtisanclass> children) {
+        this.children = children;
+    }
 
     public Integer getArtisanclassid() {
         return artisanclassid;
