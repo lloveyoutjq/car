@@ -1,5 +1,8 @@
 package com.accp.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DataCommoditytype {
     private Integer id;
 
@@ -10,6 +13,26 @@ public class DataCommoditytype {
     private String default1;
 
     private String default2;
+
+    private List<DataCommoditytype> children = new ArrayList<>();
+
+    private String title;
+
+    public List<DataCommoditytype> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<DataCommoditytype> children) {
+        this.children = children;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public Integer getId() {
         return id;

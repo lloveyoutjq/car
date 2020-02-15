@@ -1,5 +1,7 @@
 package com.accp.domain;
 
+import java.util.List;
+
 public class DataCarbrand {
     private Integer id;
 
@@ -10,6 +12,8 @@ public class DataCarbrand {
     private String default1;
 
     private String defailt2;
+
+    private List<DataCar> list;
 
     public Integer getId() {
         return id;
