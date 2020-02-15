@@ -7,12 +7,14 @@ import com.accp.domain.MaintainRescue;
 import com.accp.mapper.DataMaintenanceItemsMapper;
 import com.accp.mapper.FrontCashierMapper;
 import com.accp.mapper.MaintainEwitemMapper;
-import org.apache.ibatis.annotations.Param;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+
 
 @Transactional
 @Service
@@ -29,8 +31,10 @@ public class settlementService {
 
 
     //销售单据查询
-    public List<FrontCashier> bill(String cashierId,String status,String carNumber,String name,String counselorName,String tname,String settlementStatus,String remark){
-        return frontCashierMapper.bill("%"+cashierId+"%","%"+status+"%","%"+carNumber+"%","%"+name+"%","%"+counselorName+"%","%"+tname+"%",settlementStatus,"%"+remark+"%");
+    public PageInfo bill(String cashierId, String status, String carNumber, String name, String counselorName, String tname, String settlementStatus, String remark,Integer pages,Integer limit){
+        Page page = PageHelper.startPage(pages,limit);
+        frontCashierMapper.bill("%"+cashierId+"%","%"+status+"%","%"+carNumber+"%","%"+name+"%","%"+counselorName+"%","%"+tname+"%",settlementStatus,"%"+remark+"%");
+        return page.toPageInfo();
     }
 
     /**
@@ -53,5 +57,13 @@ public class settlementService {
         example.createCriteria().andOuteridEqualTo(number);
         repairs.setMaintainEwitemList(maintainEwitemMapper.selectByExample(example));    //附加项目
         return repairs;
+    }
+
+    //回滚
+    public int updateByPrimaryKeySelective(String saleid){
+        FrontCashier record = new FrontCashier();
+        record.setCashierid(Integer.getInteger(saleid));
+        record.setSettlementstatus("未结算");
+        return frontCashierMapper.updateByPrimaryKeySelective(record);
     }
 }

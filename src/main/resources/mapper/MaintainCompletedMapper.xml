@@ -70,7 +70,7 @@
     STRAIGHT_JOIN `personnel_staff` AS ps
     ON mc.`dutyId` = ps.`id`
     WHERE mrs.`number` LIKE #{number} AND cc.`carNumber` LIKE #{carNumber} AND cc.`frameNumber` LIKE #{frameNumber}
-    AND mc.`eligibility` = #{eligibility}
+    AND mc.`eligibility` LIKE #{eligibility}
   </select>
   <sql id="Example_Where_Clause" >
     <where >

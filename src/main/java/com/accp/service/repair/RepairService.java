@@ -5,6 +5,9 @@ import com.accp.mapper.ClientCarinfoMapper;
 import com.accp.mapper.DataMaintenanceItemsMapper;
 import com.accp.mapper.MaintainEwitemMapper;
 import com.accp.mapper.MaintainRepairMapper;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,13 +31,17 @@ public class RepairService {
     MaintainEwitemMapper maintainEwitemMapper;
 
     //作业中车辆tab显示
-    public List<MaintainRepair> vehiclesInOperation(){
-        return maintainRepairMapper.vehiclesInOperation();
+    public PageInfo vehiclesInOperation(Integer pages,Integer limit){
+        Page page = PageHelper.startPage(pages,limit);
+        maintainRepairMapper.vehiclesInOperation();
+        return page.toPageInfo();
     }
 
     //维修历史
-    public List<MaintainRepair> maintenanceHistory(String carnumber){
-        return maintainRepairMapper.maintenanceHistory(carnumber);
+    public PageInfo maintenanceHistory(String carnumber,Integer pages,Integer limit){
+        Page page = PageHelper.startPage(pages,limit);
+        maintainRepairMapper.maintenanceHistory(carnumber);
+        return page.toPageInfo();
     }
 
     //主页面,车主信息,车辆信息
@@ -59,8 +66,10 @@ public class RepairService {
      * 维修项目
      * */
     //维修页面主页面项目(需要根据用户类别来标记价格)
-    public List<DataMaintenanceItems> items(String carNumber){
-        return dataMaintenanceItemsMapper.items(carNumber);
+    public PageInfo items(String carNumber,Integer pages,Integer limit){
+        Page page = PageHelper.startPage(pages,limit);
+        dataMaintenanceItemsMapper.items(carNumber);
+        return page.toPageInfo();
     }
 
     //维修项目，单个维修单的多个维修项目（维修单内）
