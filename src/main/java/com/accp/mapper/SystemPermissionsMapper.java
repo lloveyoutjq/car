@@ -25,11 +25,6 @@ public interface SystemPermissionsMapper {
 
     List<SystemPermissions> selectUserMenuById(@Param("rid") Integer rid);
 
-
-
-
-    List<SystemPermissions> selectUserMenuById(@Param("rid")Integer rid);
-
     int updateByExampleSelective(@Param("record") SystemPermissions record, @Param("example") SystemPermissionsExample example);
 
     int updateByExample(@Param("record") SystemPermissions record, @Param("example") SystemPermissionsExample example);

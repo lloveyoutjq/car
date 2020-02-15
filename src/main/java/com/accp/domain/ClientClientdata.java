@@ -51,8 +51,6 @@ public class ClientClientdata {
 
     private String password;
 
-    private String password;
-
     private String default1;
 
     private String default2;

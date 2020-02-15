@@ -1,7 +1,7 @@
 package com.accp.service.data;
 
-import com.accp.domain.DataMaintain;
-import com.accp.mapper.DataMaintainMapper;
+import com.accp.domain.DataItemtype;
+import com.accp.mapper.DataItemtypeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,11 +15,11 @@ import java.util.Map;
 public class itemtypeService {
 
     @Autowired(required = false)
-    DataMaintainMapper dataMaintainMapper;
+    DataItemtypeMapper dataItemtypeMapper;
 
-    public List<DataMaintain> selectDataaMaintain(){
-        List<DataMaintain> list = dataMaintainMapper.selectByExample(null);
-        DataMaintain parentPerms = new DataMaintain();
+    public List<DataItemtype> selectDataaMaintain(){
+        List<DataItemtype> list = dataItemtypeMapper.selectByExample(null);
+        DataItemtype parentPerms = new DataItemtype();
         parentPerms.setId(0);
         recursionPerm(parentPerms, list);
         System.out.println(parentPerms);
@@ -27,18 +27,18 @@ public class itemtypeService {
 
     }
 
-    public int  insertDataaMaintain(DataMaintain dataMaintain){
-        int count=dataMaintainMapper.insert(dataMaintain);
+    public int  insertDataaMaintain(DataItemtype dataItemtype){
+        int count=dataItemtypeMapper.insertSelective(dataItemtype);
         return  count;
     }
 
     public int deleteDataaMaintain(Integer id){
-        int count=dataMaintainMapper.deleteByPrimaryKey(id);
+        int count=dataItemtypeMapper.deleteByPrimaryKey(id);
         return  count;
     }
 
-    public int updateaMaintain(DataMaintain dataMaintain){
-        return dataMaintainMapper.updateByPrimaryKey(dataMaintain);
+    public int updateaMaintain(DataItemtype dataItemtype){
+        return dataItemtypeMapper.updateByPrimaryKey(dataItemtype);
     }
 
     /**
@@ -46,15 +46,15 @@ public class itemtypeService {
      * @param parentPerms
      * @param list
      */
-    private void recursionPerm(DataMaintain parentPerms,List<DataMaintain> list){
-        for(DataMaintain perm : list){
+    private void recursionPerm(DataItemtype parentPerms,List<DataItemtype> list){
+        for(DataItemtype perm : list){
             if(perm.getId() == parentPerms.getId()){
 
                 Map map = new HashMap();
 
-                perm.setMaintainname(perm.getMaintainname());
+                perm.setTitle(perm.getName());
 
-                DataMaintain newPerms = perm;
+                DataItemtype newPerms = perm;
                 parentPerms.getChildren().add(newPerms);
                 recursionPerm(newPerms,list);
             }
