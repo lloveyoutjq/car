@@ -37,7 +37,7 @@
   </resultMap>
   <select id="vehiclesInOperation" resultMap="BaseResultMapPlus">
     SELECT mr.`status`,mr.`type`,ccd.`name` as ccdname,ccd.`phone` as ccdphone,ccd.`number` as ccdnumber,cca.`carNumber` as ccaCarNumber,mr.`number`,mr.`tname`,
-mr.`pickDate`,mr.`overWorkDate`,mr.`completeDate`,mr.`settleDate`,mr.`price`,mr.`getMan`,cca.`id` as ccaid ,ccd.`number` as ccdNumber
+mr.`pickDate`,mr.`overWorkDate`,mr.`completeDate`,mr.`settleDate`,mr.`price`,mr.`getMan`,cca.`id` as ccaid
 FROM (
 SELECT mrp.`number`,mrp.`carInfoId`,mrp.`type`,mrp.`getMan`,mrp.`pickDate`,mrp.`price`,mrp.`completeDate`,mrp.`settleDate`,mrp.`status`,mrp.`overWorkDate`,'维修单' AS tname FROM `maintain_repair` AS mrp
 UNION ALL
