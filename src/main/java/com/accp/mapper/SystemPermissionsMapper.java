@@ -21,13 +21,13 @@ public interface SystemPermissionsMapper {
 
     SystemPermissions selectByPrimaryKey(Integer id);
 
-<<<<<<< HEAD
+
     List<SystemPermissions> selectUserMenuAll(Integer type, Integer uid);
 
     List<SystemPermissions> selectUserMenuById(@Param("rid") Integer rid);
-=======
-    List<SystemPermissions> selectUserMenuAll(Integer type,Integer uid);
->>>>>>> 0ac21a830052d282c8130d91bc1cc16f3f086a85
+
+
+
 
     int updateByExampleSelective(@Param("record") SystemPermissions record, @Param("example") SystemPermissionsExample example);
 
