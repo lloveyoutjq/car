@@ -43,6 +43,7 @@ public class PersonnelArtisan {
 
     private String default2;
 
+
     private PersonnelArtisanlevel personnelArtisanlevel;
     private PersonnelArtisanclass personnelArtisanclass;
 
@@ -61,6 +62,7 @@ public class PersonnelArtisan {
     public void setPersonnelArtisanlevel(PersonnelArtisanlevel personnelArtisanlevel) {
         this.personnelArtisanlevel = personnelArtisanlevel;
     }
+
 
     public Integer getArtisanid() {
         return artisanid;

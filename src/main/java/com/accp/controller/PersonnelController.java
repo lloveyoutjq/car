@@ -25,43 +25,43 @@ public class PersonnelController {
      * 岗位定义
      * @return
      */
-    @Autowired
+    @Autowired(required = false)
     JobsService jobsService;
     /**
      * 外勤车辆
      * @return
      */
-    @Autowired
+    @Autowired(required = false)
     FieldService fieldService;
     /**
      * 通讯名单
      * @return
      */
-    @Autowired
+    @Autowired(required = false)
     CommunicationService communicationService;
     /**
      * 离职登记
      * @return
      */
-    @Autowired
+    @Autowired(required = false)
     DepartureService departureService;
     /**
      * 组织机构
      * @return
      */
-    @Autowired
+    @Autowired(required = false)
     InstitutionsService institutionsService;
     /**
      * 技工星级
      * @return
      */
-    @Autowired
+    @Autowired(required = false)
     StarService starService;
     /**
      * 班组技工
      * @return
      */
-    @Autowired
+    @Autowired(required = false)
     TeamService teamService;
 
     /**

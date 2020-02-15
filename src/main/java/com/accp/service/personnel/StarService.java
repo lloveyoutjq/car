@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 public class StarService {
     //技工星级
-    @Autowired
+    @Autowired(required = false)
     PersonnelArtisanlevelMapper personnelArtisanlevelMapper;
     /**
      * 查询所有

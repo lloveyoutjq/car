@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class CommunicationService {
     //员工表
-    @Autowired
+    @Autowired(required = false)
     PersonnelStaffMapper personnelStaffMapper;
 
     /**

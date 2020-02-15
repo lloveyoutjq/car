@@ -2,8 +2,9 @@ package com.accp.mapper;
 
 import com.accp.domain.PersonnelArtisan;
 import com.accp.domain.PersonnelArtisanExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PersonnelArtisanMapper {
     List<PersonnelArtisan> teamSelect();

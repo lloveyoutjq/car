@@ -2,8 +2,9 @@ package com.accp.mapper;
 
 import com.accp.domain.DataCarbrand;
 import com.accp.domain.DataCarbrandExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface DataCarbrandMapper {
     int countByExample(DataCarbrandExample example);

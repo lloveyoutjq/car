@@ -2,8 +2,9 @@ package com.accp.mapper;
 
 import com.accp.domain.PersonnelLegworkcat;
 import com.accp.domain.PersonnelLegworkcatExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PersonnelLegworkcatMapper {
     List<PersonnelLegworkcat> fieldSelect();
