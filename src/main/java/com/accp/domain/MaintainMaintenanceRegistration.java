@@ -5,6 +5,8 @@ import java.util.Date;
 public class MaintainMaintenanceRegistration {
     private Integer id;
 
+    private Integer carinfoid;
+
     private String maintainname;
 
     private Float mileage;
@@ -27,6 +29,14 @@ public class MaintainMaintenanceRegistration {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getCarinfoid() {
+        return carinfoid;
+    }
+
+    public void setCarinfoid(Integer carinfoid) {
+        this.carinfoid = carinfoid;
     }
 
     public String getMaintainname() {

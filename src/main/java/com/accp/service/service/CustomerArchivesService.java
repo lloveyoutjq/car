@@ -24,11 +24,17 @@ public class CustomerArchivesService {
     ClientClienttypeMapper clientClienttypeMapper;
 
     public int addClient(ClientClientdata clientClientdata){
+        if(clientClientdata.getBorndate() == ""){
+            clientClientdata.setBorndate(null);
+        }
         int result = clientClientdataMapper.insertSelective(clientClientdata);
         return result;
     }
 
     public int updateClient(ClientClientdata clientClientdata){
+        if(clientClientdata.getBorndate() == ""){
+            clientClientdata.setBorndate(null);
+        }
         int result = clientClientdataMapper.updateByPrimaryKeySelective(clientClientdata);
         return result;
     }
@@ -40,18 +46,46 @@ public class CustomerArchivesService {
         //System.out.println("abgVBBG".matches());
         if(clientClientdata.getSearchData() != null && clientClientdata.getSearchData() != "") {
             if (clientClientdata.getSearchData().matches("[a-zA-Z]+")) {
-
+                clientClientdata.setSearchData(clientClientdata.getSearchData().toUpperCase());
             } else if (clientClientdata.getSearchData().matches("1[3,4,5,8]\\d[\\s,-]?\\d{4}[\\s,-]?\\d{4}+")) {
-
+                clientClientdata.setPhone(clientClientdata.getSearchData());
+                clientClientdata.setSearchData(null);
             } else if (clientClientdata.getSearchData().matches("^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z|a-z]{1}[(A-Z|a-z)0-9]{4}[(A-Z|a-z)0-9挂学警港澳]{1}$")) {
-
+                clientClientdata.getClientCarinfo().setCarnumber(clientClientdata.getSearchData());
+                clientClientdata.setSearchData(null);
             }else{
-
+                clientClientdata.setName(clientClientdata.getSearchData());
+                clientClientdata.setSearchData(null);
             }
         }
         List<ClientClientdata> lists = clientClientdataMapper.selectClient(clientClientdata);
         return page.toPageInfo();
     }
+
+    /**
+     * 查询所有
+     * @param clientClientdata
+     * @return
+     */
+    public List<ClientClientdata> selectClientAll(ClientClientdata clientClientdata){
+        if(clientClientdata.getSearchData() != null && clientClientdata.getSearchData() != "") {
+            if (clientClientdata.getSearchData().matches("[a-zA-Z]+")) {
+                clientClientdata.setSearchData(clientClientdata.getSearchData().toUpperCase());
+            } else if (clientClientdata.getSearchData().matches("1[3,4,5,8]\\d[\\s,-]?\\d{4}[\\s,-]?\\d{4}+")) {
+                clientClientdata.setPhone(clientClientdata.getSearchData());
+                clientClientdata.setSearchData(null);
+            } else if (clientClientdata.getSearchData().matches("^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z|a-z]{1}[(A-Z|a-z)0-9]{4}[(A-Z|a-z)0-9挂学警港澳]{1}$")) {
+                clientClientdata.getClientCarinfo().setCarnumber(clientClientdata.getSearchData());
+                clientClientdata.setSearchData(null);
+            }else{
+                clientClientdata.setName(clientClientdata.getSearchData());
+                clientClientdata.setSearchData(null);
+            }
+        }
+        List<ClientClientdata> lists = clientClientdataMapper.selectClient(clientClientdata);
+        return lists;
+    }
+
 
     public int deleteClient(Integer id){
         ClientClientdata clientClientdata = clientClientdataMapper.selectByPrimaryKey(id);

@@ -66,6 +66,9 @@ public class PermissionsService {
                 map.put("checked",perm.getState());
                 perm.setTitle(perm.getName());
                 perm.setCheckArr(map);
+                if(perm.getCatalog() != null && perm.getCatalog() > 0){
+                    perm.setHide(true);
+                }
 
                 SystemPermissions newPerms = perm;
                 parentPerms.getChildren().add(newPerms);

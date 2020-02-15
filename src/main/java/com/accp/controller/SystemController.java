@@ -1,11 +1,14 @@
 package com.accp.controller;
 
+import com.accp.domain.MaintainMaintenanceRegistration;
 import com.accp.domain.SystemPermissions;
 import com.accp.domain.SystemRoles;
 import com.accp.domain.SystemRolesPerms;
 import com.accp.entity.User;
 import com.accp.service.system.ModuleManagementService;
 import com.accp.service.system.PermissionsControlService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -147,6 +150,26 @@ public class SystemController {
     }
 
     /**
+     * 根据条件查询权限
+     */
+    @RequestMapping("/selectPermissionsWhere")
+    public Map selectPermissionsWhere(String data,Integer rid){
+        ObjectMapper objectMapper = new ObjectMapper();
+        SystemPermissions systemPermissions = null;
+        try {
+            systemPermissions = objectMapper.readValue(data,SystemPermissions.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+        Map<String,Object> map = new HashMap<>();
+        List<SystemPermissions> lists = moduleManagementService.selectPermissionsWhere(systemPermissions,rid);
+        map.put("code",0);
+        map.put("data",lists);
+        return map;
+    }
+
+
+    /**
      *查询所有权限
      * @return
      */
@@ -162,6 +185,9 @@ public class SystemController {
         map.put("data",lists);
         return map;
     }
+
+
+
 
     /**
      * 修改权限

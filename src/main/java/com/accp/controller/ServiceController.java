@@ -3,6 +3,7 @@ package com.accp.controller;
 import com.accp.domain.ClientCarinfo;
 import com.accp.domain.ClientClientdata;
 import com.accp.domain.ClientClienttype;
+import com.accp.domain.MaintainMaintenanceRegistration;
 import com.accp.service.service.CarArchivesService;
 import com.accp.service.service.CustomerArchivesService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -37,6 +39,7 @@ public class ServiceController {
         if(customerArchivesService.addClient(clientClientdata)>0){
             map.put("code","0");
             map.put("msg","成功");
+            map.put("id",clientClientdata.getNumber());
         }else{
             map.put("code","-1");
             map.put("msg","失败");
@@ -79,20 +82,28 @@ public class ServiceController {
         }catch (JsonProcessingException e){
             System.out.println("发送异常");
         }
-
-
-        System.out.println(session.getId()+"查询客户");
-        if(page == null){
-            page = 1;
-        }
-        if(limit == null){
-            limit = 10;
-        }
         Map<String,Object> map = new HashMap<>();
-        PageInfo<ClientClientdata> pageInfo =  customerArchivesService.selectClient(page,limit,clientClientdata);
-        map.put("code",0);
-        map.put("data",pageInfo.getList());
-        map.put("count",pageInfo.getSize());
+        PageInfo<ClientClientdata> pageInfo = null;
+        if(page == null && limit==null){
+            System.out.println("全部查询");
+            List<ClientClientdata> lists = customerArchivesService.selectClientAll(clientClientdata);
+            map.put("code",0);
+            map.put("data",lists);
+        }else{
+            System.out.println(session.getId()+"查询客户");
+            if(page == null){
+                page = 1;
+            }
+            if(limit == null){
+                limit = 10;
+            }
+            pageInfo = customerArchivesService.selectClient(page,limit,clientClientdata);
+            map.put("code",0);
+            map.put("data",pageInfo.getList());
+            map.put("count",pageInfo.getTotal());
+        }
+
+
         return map;
     }
 
@@ -124,7 +135,7 @@ public class ServiceController {
         PageInfo<ClientClienttype> pageInfo = customerArchivesService.selectClientTypeAll(page,limit);
         map.put("code",0);
         map.put("data",pageInfo.getList());
-        map.put("count",pageInfo.getSize());
+        map.put("count",pageInfo.getTotal());
         return map;
     }
 
@@ -306,9 +317,101 @@ public class ServiceController {
         PageInfo pageInfo = carArchivesService.selectCar(clientId,page, limit);
         map.put("code",0);
         map.put("data",pageInfo.getList());
-        map.put("count",pageInfo.getSize());
+        map.put("count",pageInfo.getTotal());
         return map;
     }
+    /*****************************保养***********************************************/
+
+    /**
+     * 添加保养
+     * @return
+     */
+    @RequestMapping("addUpkeep")
+    public Map addUpkeep(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        MaintainMaintenanceRegistration maintainMaintenanceRegistration = null;
+        try {
+            maintainMaintenanceRegistration = objectMapper.readValue(data,MaintainMaintenanceRegistration.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+
+        Map<String,Object> map = new HashMap<>();
+        int count = carArchivesService.addUpkeep(maintainMaintenanceRegistration);
+        if(count > 0){
+            map.put("code",0);
+            map.put("msg","成功");
+        }else{
+            map.put("code",-1);
+            map.put("msg","失败");
+        }
+        return map;
+    }
+
+    /**
+     * 修改保养
+     * @param data
+     * @return
+     */
+    @RequestMapping("updateUpkeep")
+    public Map<String, Object> updateUpkeep(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        MaintainMaintenanceRegistration maintainMaintenanceRegistration = null;
+        try {
+            maintainMaintenanceRegistration = objectMapper.readValue(data,MaintainMaintenanceRegistration.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+        Map<String,Object> map = new HashMap<>();
+        int count = carArchivesService.updateUpkeep(maintainMaintenanceRegistration);
+        if(count > 0){
+            map.put("code",0);
+            map.put("msg","成功");
+        }else{
+            map.put("code",-1);
+            map.put("msg","失败");
+        }
+        return map;
+
+    }
+
+    /**
+     * 删除保养
+     * @param id
+     * @return
+     */
+    @RequestMapping("deleteUpkeep")
+    public Map<String, Object> deleteUpkeep(Integer id){
+        Map<String,Object> map = new HashMap<>();
+        int count = carArchivesService.deleteUpkeep(id);
+        if(count > 0){
+            map.put("code",0);
+            map.put("msg","成功");
+        }else{
+            map.put("code",-1);
+            map.put("msg","失败");
+        }
+        return map;
+    }
+
+    /**
+     * 查询保养
+     * @param carInfoId
+     * @param page
+     * @param limit
+     * @return
+     */
+    @RequestMapping("selectUpkeep")
+    public Map<String, Object> selectUpkeep(Integer carInfoId, Integer page, Integer limit){
+        Map<String,Object> map = new HashMap<>();
+        PageInfo pageInfo = carArchivesService.selectUpkeep(carInfoId,page,limit);
+        map.put("code",0);
+        map.put("data",pageInfo.getList());
+        map.put("count",pageInfo.getTotal());
+        return map;
+    }
+
+
 
 
 
