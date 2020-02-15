@@ -165,6 +165,66 @@ public class MaintainMaintenanceRegistrationExample {
             return (Criteria) this;
         }
 
+        public Criteria andCarinfoidIsNull() {
+            addCriterion("carinfoId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarinfoidIsNotNull() {
+            addCriterion("carinfoId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarinfoidEqualTo(Integer value) {
+            addCriterion("carinfoId =", value, "carinfoid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarinfoidNotEqualTo(Integer value) {
+            addCriterion("carinfoId <>", value, "carinfoid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarinfoidGreaterThan(Integer value) {
+            addCriterion("carinfoId >", value, "carinfoid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarinfoidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("carinfoId >=", value, "carinfoid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarinfoidLessThan(Integer value) {
+            addCriterion("carinfoId <", value, "carinfoid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarinfoidLessThanOrEqualTo(Integer value) {
+            addCriterion("carinfoId <=", value, "carinfoid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarinfoidIn(List<Integer> values) {
+            addCriterion("carinfoId in", values, "carinfoid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarinfoidNotIn(List<Integer> values) {
+            addCriterion("carinfoId not in", values, "carinfoid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarinfoidBetween(Integer value1, Integer value2) {
+            addCriterion("carinfoId between", value1, value2, "carinfoid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCarinfoidNotBetween(Integer value1, Integer value2) {
+            addCriterion("carinfoId not between", value1, value2, "carinfoid");
+            return (Criteria) this;
+        }
+
         public Criteria andMaintainnameIsNull() {
             addCriterion("maintainName is null");
             return (Criteria) this;

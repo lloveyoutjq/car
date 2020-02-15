@@ -1,6 +1,7 @@
 package com.accp.service.system;
 
 import com.accp.domain.SystemPermissions;
+import com.accp.domain.SystemPermissionsExample;
 import com.accp.domain.SystemRoles;
 import com.accp.domain.SystemRolesPerms;
 import com.accp.mapper.SystemPermissionsMapper;
@@ -41,6 +42,7 @@ public class ModuleManagementService {
     public SystemPermissions getPermission(Integer id){
         return systemPermissionsMapper.selectByPrimaryKey(id);
     }
+
     public List<SystemPermissions> selectPermissions(){
         List<SystemPermissions> lists =  systemPermissionsMapper.selectByExample(null);
         SystemPermissions parentPerms = new SystemPermissions();
@@ -55,5 +57,25 @@ public class ModuleManagementService {
     }
     public int deletePermissions(Integer id){
         return systemPermissionsMapper.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * 数据条件来查询 权限
+     * @param systemPermissions
+     * @return
+     */
+    public List<SystemPermissions> selectPermissionsWhere(SystemPermissions systemPermissions,Integer rid){
+        SystemPermissionsExample example = new SystemPermissionsExample();
+        if(systemPermissions.getParentid() != null){
+            example.createCriteria().andParentidEqualTo(systemPermissions.getParentid()).andCatalogEqualTo(1);
+        }
+        List<SystemPermissions> lists = systemPermissionsMapper.selectByExample(example);
+        if(rid != null && rid !=0){
+            for(SystemPermissions item : lists){
+                SystemRolesPerms systemRolesPerms = permissionsControlService.selectSystemRolesPermsWhere(rid,item.getId()).get(0);
+                item.setState(systemRolesPerms.getState());
+            }
+        }
+        return lists;
     }
 }

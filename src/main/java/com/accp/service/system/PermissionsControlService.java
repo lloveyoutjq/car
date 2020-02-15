@@ -33,7 +33,20 @@ public class PermissionsControlService {
     }
 
     /**
-     * 查询所有角色
+     * 根据rid和pid查询角色权限表
+     * @param rid
+     * @param pid
+     * @return
+     */
+    public List<SystemRolesPerms> selectSystemRolesPermsWhere(Integer rid,Integer pid) {
+        SystemRolesPermsExample example = new SystemRolesPermsExample();
+        example.createCriteria().andPidEqualTo(pid).andRidEqualTo(rid);
+
+        return systemRolesPermsMapper.selectByExample(example);
+    }
+
+    /**
+     * 查询所有角色权限
      * @return
      */
     public List<SystemRoles> selectSystemRolesAll(){
@@ -41,7 +54,7 @@ public class PermissionsControlService {
     }
 
     /**
-     * 修改角色
+     * 修改角色权限
      * @param pid
      * @param rid
      * @param state

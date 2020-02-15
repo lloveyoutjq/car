@@ -3,6 +3,7 @@ package com.accp.controller;
 import com.accp.domain.ClientCarinfo;
 import com.accp.domain.ClientClientdata;
 import com.accp.domain.ClientClienttype;
+import com.accp.domain.MaintainMaintenanceRegistration;
 import com.accp.service.service.CarArchivesService;
 import com.accp.service.service.CustomerArchivesService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -319,6 +320,98 @@ public class ServiceController {
         map.put("count",pageInfo.getTotal());
         return map;
     }
+    /*****************************保养***********************************************/
+
+    /**
+     * 添加保养
+     * @return
+     */
+    @RequestMapping("addUpkeep")
+    public Map addUpkeep(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        MaintainMaintenanceRegistration maintainMaintenanceRegistration = null;
+        try {
+            maintainMaintenanceRegistration = objectMapper.readValue(data,MaintainMaintenanceRegistration.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+
+        Map<String,Object> map = new HashMap<>();
+        int count = carArchivesService.addUpkeep(maintainMaintenanceRegistration);
+        if(count > 0){
+            map.put("code",0);
+            map.put("msg","成功");
+        }else{
+            map.put("code",-1);
+            map.put("msg","失败");
+        }
+        return map;
+    }
+
+    /**
+     * 修改保养
+     * @param data
+     * @return
+     */
+    @RequestMapping("updateUpkeep")
+    public Map<String, Object> updateUpkeep(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        MaintainMaintenanceRegistration maintainMaintenanceRegistration = null;
+        try {
+            maintainMaintenanceRegistration = objectMapper.readValue(data,MaintainMaintenanceRegistration.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+        Map<String,Object> map = new HashMap<>();
+        int count = carArchivesService.updateUpkeep(maintainMaintenanceRegistration);
+        if(count > 0){
+            map.put("code",0);
+            map.put("msg","成功");
+        }else{
+            map.put("code",-1);
+            map.put("msg","失败");
+        }
+        return map;
+
+    }
+
+    /**
+     * 删除保养
+     * @param id
+     * @return
+     */
+    @RequestMapping("deleteUpkeep")
+    public Map<String, Object> deleteUpkeep(Integer id){
+        Map<String,Object> map = new HashMap<>();
+        int count = carArchivesService.deleteUpkeep(id);
+        if(count > 0){
+            map.put("code",0);
+            map.put("msg","成功");
+        }else{
+            map.put("code",-1);
+            map.put("msg","失败");
+        }
+        return map;
+    }
+
+    /**
+     * 查询保养
+     * @param carInfoId
+     * @param page
+     * @param limit
+     * @return
+     */
+    @RequestMapping("selectUpkeep")
+    public Map<String, Object> selectUpkeep(Integer carInfoId, Integer page, Integer limit){
+        Map<String,Object> map = new HashMap<>();
+        PageInfo pageInfo = carArchivesService.selectUpkeep(carInfoId,page,limit);
+        map.put("code",0);
+        map.put("data",pageInfo.getList());
+        map.put("count",pageInfo.getTotal());
+        return map;
+    }
+
+
 
 
 

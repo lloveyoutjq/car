@@ -1,5 +1,8 @@
 package com.accp.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PersonnelDepartment {
     private Integer id;
 
@@ -12,6 +15,36 @@ public class PersonnelDepartment {
     private String default1;
 
     private String default2;
+
+    private List<PersonnelDepartment> children = new ArrayList<>();
+
+    private String title;
+
+    private Integer ids;
+
+    public List<PersonnelDepartment> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<PersonnelDepartment> children) {
+        this.children = children;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Integer getIds() {
+        return ids;
+    }
+
+    public void setIds(Integer ids) {
+        this.ids = ids;
+    }
 
     public Integer getId() {
         return id;

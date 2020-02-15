@@ -2,8 +2,9 @@ package com.accp.mapper;
 
 import com.accp.domain.MaintainMaintenanceRegistration;
 import com.accp.domain.MaintainMaintenanceRegistrationExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface MaintainMaintenanceRegistrationMapper {
     int countByExample(MaintainMaintenanceRegistrationExample example);
