@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class PersonnelStaff {
-    private String id;
+    private Integer id;
 
     private String staffname;
 
@@ -110,6 +110,26 @@ public class PersonnelStaff {
 
     private PersonnelDimission personnelDimission;
 
+    private  PersonnelDepartment personnelDepartment;
+
+    private List<Integer> ids;
+
+    public List<Integer> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
+    }
+
+    public PersonnelDepartment getPersonnelDepartment() {
+        return personnelDepartment;
+    }
+
+    public void setPersonnelDepartment(PersonnelDepartment personnelDepartment) {
+        this.personnelDepartment = personnelDepartment;
+    }
+
     public PersonnelAddressbook getPersonnelAddressbook() {
         return personnelAddressbook;
     }
@@ -126,11 +146,12 @@ public class PersonnelStaff {
         this.personnelDimission = personnelDimission;
     }
 
-    public String getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

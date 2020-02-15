@@ -6,11 +6,16 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface PersonnelArtisanMapper {
+    List<PersonnelArtisan> teamSelect();
+    PersonnelArtisan teamSelectId(String artisanid);
+
+
+
     int countByExample(PersonnelArtisanExample example);
 
     int deleteByExample(PersonnelArtisanExample example);
 
-    int deleteByPrimaryKey(String artisanid);
+    int deleteByPrimaryKey(Integer artisanid);
 
     int insert(PersonnelArtisan record);
 
@@ -18,7 +23,7 @@ public interface PersonnelArtisanMapper {
 
     List<PersonnelArtisan> selectByExample(PersonnelArtisanExample example);
 
-    PersonnelArtisan selectByPrimaryKey(String artisanid);
+    PersonnelArtisan selectByPrimaryKey(Integer artisanid);
 
     int updateByExampleSelective(@Param("record") PersonnelArtisan record, @Param("example") PersonnelArtisanExample example);
 

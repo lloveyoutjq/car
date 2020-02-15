@@ -595,6 +595,196 @@ public class MaintainCompletedExample {
             return (Criteria) this;
         }
 
+        public Criteria andMaintenanceidIsNull() {
+            addCriterion("maintenanceId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaintenanceidIsNotNull() {
+            addCriterion("maintenanceId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaintenanceidEqualTo(Integer value) {
+            addCriterion("maintenanceId =", value, "maintenanceid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaintenanceidNotEqualTo(Integer value) {
+            addCriterion("maintenanceId <>", value, "maintenanceid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaintenanceidGreaterThan(Integer value) {
+            addCriterion("maintenanceId >", value, "maintenanceid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaintenanceidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("maintenanceId >=", value, "maintenanceid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaintenanceidLessThan(Integer value) {
+            addCriterion("maintenanceId <", value, "maintenanceid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaintenanceidLessThanOrEqualTo(Integer value) {
+            addCriterion("maintenanceId <=", value, "maintenanceid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaintenanceidIn(List<Integer> values) {
+            addCriterion("maintenanceId in", values, "maintenanceid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaintenanceidNotIn(List<Integer> values) {
+            addCriterion("maintenanceId not in", values, "maintenanceid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaintenanceidBetween(Integer value1, Integer value2) {
+            addCriterion("maintenanceId between", value1, value2, "maintenanceid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMaintenanceidNotBetween(Integer value1, Integer value2) {
+            addCriterion("maintenanceId not between", value1, value2, "maintenanceid");
+            return (Criteria) this;
+        }
+
+        public Criteria andReworkcountIsNull() {
+            addCriterion("reworkCount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReworkcountIsNotNull() {
+            addCriterion("reworkCount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReworkcountEqualTo(Integer value) {
+            addCriterion("reworkCount =", value, "reworkcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andReworkcountNotEqualTo(Integer value) {
+            addCriterion("reworkCount <>", value, "reworkcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andReworkcountGreaterThan(Integer value) {
+            addCriterion("reworkCount >", value, "reworkcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andReworkcountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("reworkCount >=", value, "reworkcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andReworkcountLessThan(Integer value) {
+            addCriterion("reworkCount <", value, "reworkcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andReworkcountLessThanOrEqualTo(Integer value) {
+            addCriterion("reworkCount <=", value, "reworkcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andReworkcountIn(List<Integer> values) {
+            addCriterion("reworkCount in", values, "reworkcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andReworkcountNotIn(List<Integer> values) {
+            addCriterion("reworkCount not in", values, "reworkcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andReworkcountBetween(Integer value1, Integer value2) {
+            addCriterion("reworkCount between", value1, value2, "reworkcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andReworkcountNotBetween(Integer value1, Integer value2) {
+            addCriterion("reworkCount not between", value1, value2, "reworkcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonforreworkIsNull() {
+            addCriterion("reasonforRework is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonforreworkIsNotNull() {
+            addCriterion("reasonforRework is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonforreworkEqualTo(String value) {
+            addCriterion("reasonforRework =", value, "reasonforrework");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonforreworkNotEqualTo(String value) {
+            addCriterion("reasonforRework <>", value, "reasonforrework");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonforreworkGreaterThan(String value) {
+            addCriterion("reasonforRework >", value, "reasonforrework");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonforreworkGreaterThanOrEqualTo(String value) {
+            addCriterion("reasonforRework >=", value, "reasonforrework");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonforreworkLessThan(String value) {
+            addCriterion("reasonforRework <", value, "reasonforrework");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonforreworkLessThanOrEqualTo(String value) {
+            addCriterion("reasonforRework <=", value, "reasonforrework");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonforreworkLike(String value) {
+            addCriterion("reasonforRework like", value, "reasonforrework");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonforreworkNotLike(String value) {
+            addCriterion("reasonforRework not like", value, "reasonforrework");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonforreworkIn(List<String> values) {
+            addCriterion("reasonforRework in", values, "reasonforrework");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonforreworkNotIn(List<String> values) {
+            addCriterion("reasonforRework not in", values, "reasonforrework");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonforreworkBetween(String value1, String value2) {
+            addCriterion("reasonforRework between", value1, value2, "reasonforrework");
+            return (Criteria) this;
+        }
+
+        public Criteria andReasonforreworkNotBetween(String value1, String value2) {
+            addCriterion("reasonforRework not between", value1, value2, "reasonforrework");
+            return (Criteria) this;
+        }
+
         public Criteria andDefault1IsNull() {
             addCriterion("default1 is null");
             return (Criteria) this;

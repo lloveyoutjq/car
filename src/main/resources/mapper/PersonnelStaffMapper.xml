@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.accp.mapper.PersonnelStaffMapper" >
   <resultMap id="BaseResultMap" type="com.accp.domain.PersonnelStaff" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
     <result column="staffName" property="staffname" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="VARCHAR" />
     <result column="did" property="did" jdbcType="INTEGER" />
@@ -54,7 +54,6 @@
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
-
   <!--通讯表-->
   <resultMap id="BaseResultMapTwo" type="com.accp.domain.PersonnelStaff" extends="BaseResultMap">
     <association property="personnelAddressbook" column="id" javaType="com.accp.domain.PersonnelAddressbook">
@@ -81,7 +80,46 @@
       <result column="default2" property="default2" jdbcType="VARCHAR" />
     </association>
   </resultMap>
+  <!--部门表-->
+  <resultMap id="BaseResultMapSix" type="com.accp.domain.PersonnelStaff" extends="BaseResultMap">
+    <association property="personnelDepartment" javaType="com.accp.domain.PersonnelDepartment">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="departmentName" property="departmentname" jdbcType="VARCHAR" />
+      <result column="dtid" property="dtid" jdbcType="INTEGER" />
+      <result column="parentId" property="parentid" jdbcType="INTEGER" />
+      <result column="default1" property="default1" jdbcType="VARCHAR" />
+      <result column="default2" property="default2" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
 
+  <!--组织机构-->
+  <select id="institutionsSelect" resultMap="BaseResultMapSix">
+  SELECT `personnel_staff`.*,`personnel_department`.* FROM `personnel_staff`
+  INNER JOIN `personnel_department` ON `personnel_staff`.`did`=`personnel_department`.`id`
+  where 1=1
+  <if test="personnelStaff.ids !=null and personnelStaff.ids.size()>0">
+    and (
+    <foreach collection="personnelStaff.ids" item="item" separator="or">
+        <if test="item != null and item != ''">
+          `personnel_department`.id = #{item}
+        </if>
+
+    </foreach>
+    )
+  </if>
+
+  </select>
+  <select id="institutionsSelectTwo" resultMap="BaseResultMapSix">
+SELECT `personnel_staff`.*,`personnel_department`.* FROM `personnel_staff`
+INNER JOIN `personnel_department` ON `personnel_staff`.`did`=`personnel_department`.`id`
+    where 1=1
+    <if test="personnelStaff.id != null and personnelStaff.id !=''">/*工号*/
+      and `personnel_staff`.id = #{personnelStaff.id}
+    </if>
+    <if test="personnelStaff.staffname != null personnelStaff.staffname != ''">/*姓名*/
+      AND `personnel_staff`.staffname like CONCAT("%",#{personnelStaff.staffname},"%")
+    </if>
+  </select>
   <!--通讯-->
   <select id="communicationSelect" resultMap="BaseResultMapTwo">
 SELECT `personnel_addressbook`.*,`personnel_staff`.* FROM `personnel_addressbook`
@@ -89,9 +127,15 @@ INNER JOIN `personnel_staff` ON `personnel_staff`.id = `personnel_addressbook`.s
   </select>
 
   <select id="communicationSelectId" resultMap="BaseResultMapTwo">
-SELECT `personnel_addressbook`.*,`personnel_staff`.* FROM `personnel_addressbook`
-INNER JOIN `personnel_staff` ON `personnel_staff`.id = `personnel_addressbook`.staffId
-WHERE `personnel_staff`.`id`=#{id} OR `personnel_staff`.`staffName`=#{staffname}
+    SELECT `personnel_addressbook`.*,`personnel_staff`.* FROM `personnel_addressbook`
+    INNER JOIN `personnel_staff` ON `personnel_staff`.id = `personnel_addressbook`.staffId
+    where 1=1
+      <if test="personnelStaff.id != null and personnelStaff.id !=''">/*工号*/
+          and `personnel_staff`.id = #{personnelStaff.id}
+      </if>
+      <if test="personnelStaff.staffname != null and personnelStaff.staffname != ''">/*姓名*/
+          AND `personnel_staff`.staffname like CONCAT("%",#{personnelStaff.staffname},"%")
+      </if>
   </select>
   <!--离职-->
   <select id="departureSelect" resultMap="BaseResultMapThree">
@@ -103,6 +147,7 @@ SELECT `personnel_dimission`.*,`personnel_staff`.* FROM `personnel_staff`
 INNER JOIN `personnel_dimission` ON `personnel_staff`.`id`=`personnel_dimission`.`staffId`
 WHERE `personnel_staff`.`id`=#{id} OR `personnel_staff`.`staffName`=#{staffname}
   </select>
+
 
 
 
@@ -189,15 +234,15 @@ WHERE `personnel_staff`.`id`=#{id} OR `personnel_staff`.`staffName`=#{staffname}
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from personnel_staff
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from personnel_staff
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.accp.domain.PersonnelStaffExample" >
     delete from personnel_staff
@@ -224,7 +269,7 @@ WHERE `personnel_staff`.`id`=#{id} OR `personnel_staff`.`staffName`=#{staffname}
       employmentAdvice, picture, roleId, 
       jurisdictionId, default1, default2
       )
-    values (#{id,jdbcType=VARCHAR}, #{staffname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{staffname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{did,jdbcType=INTEGER}, #{staffaccount,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{post,jdbcType=VARCHAR}, #{physicalcondition,jdbcType=VARCHAR}, #{height,jdbcType=VARCHAR}, 
       #{nativeplace,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{maritalstatus,jdbcType=VARCHAR}, 
@@ -402,7 +447,7 @@ WHERE `personnel_staff`.`id`=#{id} OR `personnel_staff`.`staffName`=#{staffname}
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="staffname != null" >
         #{staffname,jdbcType=VARCHAR},
@@ -566,7 +611,7 @@ WHERE `personnel_staff`.`id`=#{id} OR `personnel_staff`.`staffName`=#{staffname}
     update personnel_staff
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=VARCHAR},
+        id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.staffname != null" >
         staffName = #{record.staffname,jdbcType=VARCHAR},
@@ -725,7 +770,7 @@ WHERE `personnel_staff`.`id`=#{id} OR `personnel_staff`.`staffName`=#{staffname}
   </update>
   <update id="updateByExample" parameterType="map" >
     update personnel_staff
-    set id = #{record.id,jdbcType=VARCHAR},
+    set id = #{record.id,jdbcType=INTEGER},
       staffName = #{record.staffname,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=VARCHAR},
       did = #{record.did,jdbcType=INTEGER},
@@ -934,7 +979,7 @@ WHERE `personnel_staff`.`id`=#{id} OR `personnel_staff`.`staffName`=#{staffname}
         default2 = #{default2,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.PersonnelStaff" >
     update personnel_staff
@@ -988,6 +1033,6 @@ WHERE `personnel_staff`.`id`=#{id} OR `personnel_staff`.`staffName`=#{staffname}
       jurisdictionId = #{jurisdictionid,jdbcType=INTEGER},
       default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

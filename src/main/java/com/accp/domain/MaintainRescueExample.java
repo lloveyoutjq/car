@@ -1485,146 +1485,6 @@ public class MaintainRescueExample {
             return (Criteria) this;
         }
 
-        public Criteria andFaultIsNull() {
-            addCriterion("fault is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultIsNotNull() {
-            addCriterion("fault is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultEqualTo(String value) {
-            addCriterion("fault =", value, "fault");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultNotEqualTo(String value) {
-            addCriterion("fault <>", value, "fault");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultGreaterThan(String value) {
-            addCriterion("fault >", value, "fault");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultGreaterThanOrEqualTo(String value) {
-            addCriterion("fault >=", value, "fault");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultLessThan(String value) {
-            addCriterion("fault <", value, "fault");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultLessThanOrEqualTo(String value) {
-            addCriterion("fault <=", value, "fault");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultLike(String value) {
-            addCriterion("fault like", value, "fault");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultNotLike(String value) {
-            addCriterion("fault not like", value, "fault");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultIn(List<String> values) {
-            addCriterion("fault in", values, "fault");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultNotIn(List<String> values) {
-            addCriterion("fault not in", values, "fault");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultBetween(String value1, String value2) {
-            addCriterion("fault between", value1, value2, "fault");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultNotBetween(String value1, String value2) {
-            addCriterion("fault not between", value1, value2, "fault");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultresultIsNull() {
-            addCriterion("faultResult is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultresultIsNotNull() {
-            addCriterion("faultResult is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultresultEqualTo(String value) {
-            addCriterion("faultResult =", value, "faultresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultresultNotEqualTo(String value) {
-            addCriterion("faultResult <>", value, "faultresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultresultGreaterThan(String value) {
-            addCriterion("faultResult >", value, "faultresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultresultGreaterThanOrEqualTo(String value) {
-            addCriterion("faultResult >=", value, "faultresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultresultLessThan(String value) {
-            addCriterion("faultResult <", value, "faultresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultresultLessThanOrEqualTo(String value) {
-            addCriterion("faultResult <=", value, "faultresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultresultLike(String value) {
-            addCriterion("faultResult like", value, "faultresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultresultNotLike(String value) {
-            addCriterion("faultResult not like", value, "faultresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultresultIn(List<String> values) {
-            addCriterion("faultResult in", values, "faultresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultresultNotIn(List<String> values) {
-            addCriterion("faultResult not in", values, "faultresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultresultBetween(String value1, String value2) {
-            addCriterion("faultResult between", value1, value2, "faultresult");
-            return (Criteria) this;
-        }
-
-        public Criteria andFaultresultNotBetween(String value1, String value2) {
-            addCriterion("faultResult not between", value1, value2, "faultresult");
-            return (Criteria) this;
-        }
-
         public Criteria andTeamidIsNull() {
             addCriterion("teamId is null");
             return (Criteria) this;
@@ -1752,6 +1612,186 @@ public class MaintainRescueExample {
 
         public Criteria andStatusNotBetween(String value1, String value2) {
             addCriterion("status not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletedateIsNull() {
+            addCriterion("completeDate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletedateIsNotNull() {
+            addCriterion("completeDate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletedateEqualTo(Date value) {
+            addCriterion("completeDate =", value, "completedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletedateNotEqualTo(Date value) {
+            addCriterion("completeDate <>", value, "completedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletedateGreaterThan(Date value) {
+            addCriterion("completeDate >", value, "completedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletedateGreaterThanOrEqualTo(Date value) {
+            addCriterion("completeDate >=", value, "completedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletedateLessThan(Date value) {
+            addCriterion("completeDate <", value, "completedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletedateLessThanOrEqualTo(Date value) {
+            addCriterion("completeDate <=", value, "completedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletedateIn(List<Date> values) {
+            addCriterion("completeDate in", values, "completedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletedateNotIn(List<Date> values) {
+            addCriterion("completeDate not in", values, "completedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletedateBetween(Date value1, Date value2) {
+            addCriterion("completeDate between", value1, value2, "completedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletedateNotBetween(Date value1, Date value2) {
+            addCriterion("completeDate not between", value1, value2, "completedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettledateIsNull() {
+            addCriterion("settleDate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettledateIsNotNull() {
+            addCriterion("settleDate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettledateEqualTo(Date value) {
+            addCriterion("settleDate =", value, "settledate");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettledateNotEqualTo(Date value) {
+            addCriterion("settleDate <>", value, "settledate");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettledateGreaterThan(Date value) {
+            addCriterion("settleDate >", value, "settledate");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettledateGreaterThanOrEqualTo(Date value) {
+            addCriterion("settleDate >=", value, "settledate");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettledateLessThan(Date value) {
+            addCriterion("settleDate <", value, "settledate");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettledateLessThanOrEqualTo(Date value) {
+            addCriterion("settleDate <=", value, "settledate");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettledateIn(List<Date> values) {
+            addCriterion("settleDate in", values, "settledate");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettledateNotIn(List<Date> values) {
+            addCriterion("settleDate not in", values, "settledate");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettledateBetween(Date value1, Date value2) {
+            addCriterion("settleDate between", value1, value2, "settledate");
+            return (Criteria) this;
+        }
+
+        public Criteria andSettledateNotBetween(Date value1, Date value2) {
+            addCriterion("settleDate not between", value1, value2, "settledate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickdateIsNull() {
+            addCriterion("pickDate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickdateIsNotNull() {
+            addCriterion("pickDate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickdateEqualTo(Date value) {
+            addCriterion("pickDate =", value, "pickdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickdateNotEqualTo(Date value) {
+            addCriterion("pickDate <>", value, "pickdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickdateGreaterThan(Date value) {
+            addCriterion("pickDate >", value, "pickdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickdateGreaterThanOrEqualTo(Date value) {
+            addCriterion("pickDate >=", value, "pickdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickdateLessThan(Date value) {
+            addCriterion("pickDate <", value, "pickdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickdateLessThanOrEqualTo(Date value) {
+            addCriterion("pickDate <=", value, "pickdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickdateIn(List<Date> values) {
+            addCriterion("pickDate in", values, "pickdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickdateNotIn(List<Date> values) {
+            addCriterion("pickDate not in", values, "pickdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickdateBetween(Date value1, Date value2) {
+            addCriterion("pickDate between", value1, value2, "pickdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPickdateNotBetween(Date value1, Date value2) {
+            addCriterion("pickDate not between", value1, value2, "pickdate");
             return (Criteria) this;
         }
 

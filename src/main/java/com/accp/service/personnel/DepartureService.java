@@ -27,6 +27,12 @@ public class DepartureService {
         return personnelStaffMapper.departureSelect();
     }
     /**
+     * 查询所有离职人员
+     */
+    public List<PersonnelStaff> departureSelectTwo(){
+        return personnelStaffMapper.departureSelectTwo();
+    }
+    /**
      * 根据条件查询
      */
     public PersonnelStaff departureSelectId(Integer id,String staffname){
@@ -47,7 +53,7 @@ public class DepartureService {
     /**
      * 删除
      */
-    public int departureRemove(String id){
+    public int departureRemove(Integer id){
         return personnelStaffMapper.deleteByPrimaryKey(id);
     }
 }

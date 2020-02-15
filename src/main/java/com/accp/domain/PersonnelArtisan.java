@@ -3,7 +3,7 @@ package com.accp.domain;
 import java.util.Date;
 
 public class PersonnelArtisan {
-    private String artisanid;
+    private Integer artisanid;
 
     private String artisanname;
 
@@ -43,11 +43,30 @@ public class PersonnelArtisan {
 
     private String default2;
 
-    public String getArtisanid() {
+    private PersonnelArtisanlevel personnelArtisanlevel;
+    private PersonnelArtisanclass personnelArtisanclass;
+
+    public PersonnelArtisanclass getPersonnelArtisanclass() {
+        return personnelArtisanclass;
+    }
+
+    public void setPersonnelArtisanclass(PersonnelArtisanclass personnelArtisanclass) {
+        this.personnelArtisanclass = personnelArtisanclass;
+    }
+
+    public PersonnelArtisanlevel getPersonnelArtisanlevel() {
+        return personnelArtisanlevel;
+    }
+
+    public void setPersonnelArtisanlevel(PersonnelArtisanlevel personnelArtisanlevel) {
+        this.personnelArtisanlevel = personnelArtisanlevel;
+    }
+
+    public Integer getArtisanid() {
         return artisanid;
     }
 
-    public void setArtisanid(String artisanid) {
+    public void setArtisanid(Integer artisanid) {
         this.artisanid = artisanid;
     }
 

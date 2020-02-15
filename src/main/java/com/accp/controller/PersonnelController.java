@@ -2,13 +2,20 @@ package com.accp.controller;
 
 import com.accp.domain.*;
 import com.accp.service.personnel.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/personnel")
@@ -106,13 +113,6 @@ public class PersonnelController {
         return fieldService.fieldSelect();
     }
     /**
-     * 根据条件查询外勤车辆
-     */
-    @RequestMapping("/fieldSelectId")
-    public PersonnelLegworkcat fieldSelectId(Integer legworkcatid){
-        return null;
-    }
-    /**
      * 新增外勤车辆
      */
     @RequestMapping("/fieldAdd")
@@ -124,6 +124,7 @@ public class PersonnelController {
      * 修改外勤车辆
      */
     @RequestMapping("/fieldUpdate")
+    @ResponseBody
     public int fieldUpdate(PersonnelLegworkcat personnelLegworkcat){
         return fieldService.fieldUpdate(personnelLegworkcat);
     }
@@ -181,14 +182,13 @@ public class PersonnelController {
     public List<PersonnelStaff> communicationSelect(){
         return communicationService.communicationSelect();
     }
-
     /**
      * 根据条件查询通讯名单
      */
     @RequestMapping("/communicationSelectId")
     @ResponseBody
-    public PersonnelStaff communicationSelectId(Integer id,String staffname){
-        return communicationService.communicationSelectId(id,staffname);
+    public List<PersonnelStaff> communicationSelectId(PersonnelStaff personnelStaff){
+        return communicationService.communicationSelectId(personnelStaff);
     }
     /**
      * 新增通讯名单
@@ -209,7 +209,7 @@ public class PersonnelController {
      * 删除通讯名单
      */
     @RequestMapping("/communicationRemove")
-    public int communicationRemove(String id){
+    public int communicationRemove(Integer id){
         return communicationService.communicationRemove(id);
     }
 
@@ -221,7 +221,13 @@ public class PersonnelController {
     public List<PersonnelStaff> departureSelect(){
         return departureService.departureSelect();
     }
-
+    /**
+     * 查询所有离职人员
+     */
+    @RequestMapping("/departureSelectTwo")
+    public List<PersonnelStaff> departureSelectTwo(){
+        return departureService.departureSelect();
+    }
     /**
      * 根据条件查询离职登记
      */
@@ -249,7 +255,129 @@ public class PersonnelController {
      * 删除离职登记
      */
     @RequestMapping("/departureRemove")
-    public int departureRemove(String id){
+    public int departureRemove(Integer id){
         return departureService.departureRemove(id);
+    }
+
+
+    /**
+     * 查询所有班组技工
+     */
+    @RequestMapping("/teamSelect")
+    public List<PersonnelArtisan> teamSelect(){
+        return teamService.teamSelect();
+    }
+    /**
+     * 查询树状结构树班组技工
+     */
+    @RequestMapping("/teamSelectTwo")
+    public Map teamSelectTwo(){
+        Map<String,Object> map = new HashMap<>();
+        Map<String,Object> code = new HashMap<>();
+        List<PersonnelArtisanclass> lists = teamService.teamSelectTwo();
+        code.put("code","200");
+        code.put("message","操作成功");
+        map.put("status",code);
+        map.put("data",lists);
+        return map;
+    }
+    /**
+     * 根据条件查询班组技工
+     */
+    @RequestMapping("/teamSelectId")
+    public PersonnelArtisan teamSelectId(Integer artisanid){
+        return null;
+    }
+    /**
+     * 新增班组技工
+     */
+    @RequestMapping("/teamAdd")
+    @ResponseBody
+    public int teamAdd(PersonnelArtisan personnelArtisan){
+        return teamService.teamAdd(personnelArtisan);
+    }
+    /**
+     * 修改班组技工
+     */
+    @RequestMapping("/teamUpdate")
+    public int teamUpdate(PersonnelArtisan personnelArtisan){
+        return teamService.teamUpdate(personnelArtisan);
+    }
+    /**
+     * 删除班组技工
+     */
+    @RequestMapping("/teamRemove")
+    public int teamRemove(Integer artisanid){
+        return teamService.teamRemove(artisanid);
+    }
+
+
+    /**
+     * 查询所有组织机构
+     */
+    @RequestMapping("/institutionsSelect")
+    public Map institutionsSelect(Integer page,Integer limit,String ids){
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Integer> idsList = null;
+        if(ids != null && !"".equals(ids)){
+            try {
+                idsList = objectMapper.readValue(ids,List.class);
+            }catch (JsonProcessingException e){
+                System.out.println("发送异常");
+            }
+        }
+
+
+
+        PageInfo<PersonnelStaff> pageInfo =  institutionsService.institutionsSelect(page,limit,idsList);
+        Map<String,Object> code = new HashMap<>();
+        code.put("code",0);
+        code.put("data",pageInfo.getList());
+        code.put("count",pageInfo.getTotal());
+        return code;
+    }
+    /**
+     * 查询树状结构树组织机构
+     */
+    @RequestMapping("/institutionsSelectTwo")
+    public Map institutionsSelectTwo(){
+        Map<String,Object> map = new HashMap<>();
+        Map<String,Object> code = new HashMap<>();
+        List<PersonnelDepartment> lists = institutionsService.institutionsSelectTwo();
+        code.put("code","200");
+        code.put("message","操作成功");
+        map.put("status",code);
+        map.put("data",lists);
+        return map;
+    }
+    /**
+     * 根据条件查询组织机构
+     */
+    @RequestMapping("/institutionsSelectId")
+    public PersonnelStaff institutionsSelectId(Integer id){
+        return null;
+    }
+    /**
+     * 新增组织机构
+     */
+    @RequestMapping("/institutionsAdd")
+    @ResponseBody
+    public int institutionsAdd(PersonnelStaff personnelPost){
+        return institutionsService.institutionsAdd(personnelPost);
+    }
+    /**
+     * 修改组织机构
+     */
+    @RequestMapping("/institutionsUpdate")
+    @ResponseBody
+    public int institutionsUpdate(PersonnelStaff personnelPost){
+        return institutionsService.institutionsUpdate(personnelPost);
+    }
+    /**
+     * 删除组织机构
+     */
+    @RequestMapping("/institutionsRemove")
+    public int institutionsRemove(Integer id){
+        return institutionsService.institutionsRemove(id);
     }
 }

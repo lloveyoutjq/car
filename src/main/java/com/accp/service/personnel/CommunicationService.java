@@ -29,8 +29,8 @@ public class CommunicationService {
     /**
      * 根据条件查询
      */
-    public PersonnelStaff communicationSelectId(Integer id,String staffname){
-        return personnelStaffMapper.communicationSelectId(id,staffname);
+    public List<PersonnelStaff> communicationSelectId(PersonnelStaff personnelStaff){
+        return personnelStaffMapper.communicationSelectId(personnelStaff);
     }
     /**
      * 新增
@@ -47,7 +47,7 @@ public class CommunicationService {
     /**
      * 删除
      */
-    public int communicationRemove(String id){
+    public int communicationRemove(Integer id){
         return personnelStaffMapper.deleteByPrimaryKey(id);
     }
 }

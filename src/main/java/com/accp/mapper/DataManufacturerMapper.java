@@ -10,7 +10,7 @@ public interface DataManufacturerMapper {
 
     int deleteByExample(DataManufacturerExample example);
 
-    int deleteByPrimaryKey(String number);
+    int deleteByPrimaryKey(Integer number);
 
     int insert(DataManufacturer record);
 
@@ -18,7 +18,7 @@ public interface DataManufacturerMapper {
 
     List<DataManufacturer> selectByExample(DataManufacturerExample example);
 
-    DataManufacturer selectByPrimaryKey(String number);
+    DataManufacturer selectByPrimaryKey(Integer number);
 
     int updateByExampleSelective(@Param("record") DataManufacturer record, @Param("example") DataManufacturerExample example);
 

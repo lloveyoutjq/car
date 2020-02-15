@@ -17,10 +17,11 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="VARCHAR" />
     <result column="itemId" property="itemid" jdbcType="INTEGER" />
-    <result column="fault" property="fault" jdbcType="VARCHAR" />
-    <result column="faultResult" property="faultresult" jdbcType="VARCHAR" />
     <result column="teamId" property="teamid" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="completeDate" property="completedate" jdbcType="TIMESTAMP" />
+    <result column="settleDate" property="settledate" jdbcType="TIMESTAMP" />
+    <result column="pickDate" property="pickdate" jdbcType="TIMESTAMP" />
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
@@ -84,8 +85,8 @@
   </sql>
   <sql id="Base_Column_List" >
     number, carInfoId, counselorId, oil, type, workTime, getMan, overWorkDate, setter, 
-    company, before, price, remark, state, itemId, fault, faultResult, teamId, status, 
-    default1, default2
+    company, before, price, remark, state, itemId, teamId, status, completeDate, settleDate, 
+    pickDate, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.MaintainRepairExample" >
     select
@@ -123,17 +124,17 @@
       getMan, overWorkDate, setter, 
       company, before, price, 
       remark, state, itemId, 
-      fault, faultResult, teamId, 
-      status, default1, default2
-      )
+      teamId, status, completeDate, 
+      settleDate, pickDate, default1, 
+      default2)
     values (#{number,jdbcType=VARCHAR}, #{carinfoid,jdbcType=INTEGER}, #{counselorid,jdbcType=INTEGER}, 
       #{oil,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{worktime,jdbcType=VARCHAR}, 
       #{getman,jdbcType=VARCHAR}, #{overworkdate,jdbcType=TIMESTAMP}, #{setter,jdbcType=VARCHAR}, 
       #{company,jdbcType=VARCHAR}, #{before,jdbcType=TIMESTAMP}, #{price,jdbcType=REAL}, 
       #{remark,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{itemid,jdbcType=INTEGER}, 
-      #{fault,jdbcType=VARCHAR}, #{faultresult,jdbcType=VARCHAR}, #{teamid,jdbcType=INTEGER}, 
-      #{status,jdbcType=VARCHAR}, #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}
-      )
+      #{teamid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{completedate,jdbcType=TIMESTAMP}, 
+      #{settledate,jdbcType=TIMESTAMP}, #{pickdate,jdbcType=TIMESTAMP}, #{default1,jdbcType=VARCHAR}, 
+      #{default2,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.MaintainRepair" >
     insert into maintain_repair
@@ -183,17 +184,20 @@
       <if test="itemid != null" >
         itemId,
       </if>
-      <if test="fault != null" >
-        fault,
-      </if>
-      <if test="faultresult != null" >
-        faultResult,
-      </if>
       <if test="teamid != null" >
         teamId,
       </if>
       <if test="status != null" >
         status,
+      </if>
+      <if test="completedate != null" >
+        completeDate,
+      </if>
+      <if test="settledate != null" >
+        settleDate,
+      </if>
+      <if test="pickdate != null" >
+        pickDate,
       </if>
       <if test="default1 != null" >
         default1,
@@ -248,17 +252,20 @@
       <if test="itemid != null" >
         #{itemid,jdbcType=INTEGER},
       </if>
-      <if test="fault != null" >
-        #{fault,jdbcType=VARCHAR},
-      </if>
-      <if test="faultresult != null" >
-        #{faultresult,jdbcType=VARCHAR},
-      </if>
       <if test="teamid != null" >
         #{teamid,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="completedate != null" >
+        #{completedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settledate != null" >
+        #{settledate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pickdate != null" >
+        #{pickdate,jdbcType=TIMESTAMP},
       </if>
       <if test="default1 != null" >
         #{default1,jdbcType=VARCHAR},
@@ -322,17 +329,20 @@
       <if test="record.itemid != null" >
         itemId = #{record.itemid,jdbcType=INTEGER},
       </if>
-      <if test="record.fault != null" >
-        fault = #{record.fault,jdbcType=VARCHAR},
-      </if>
-      <if test="record.faultresult != null" >
-        faultResult = #{record.faultresult,jdbcType=VARCHAR},
-      </if>
       <if test="record.teamid != null" >
         teamId = #{record.teamid,jdbcType=INTEGER},
       </if>
       <if test="record.status != null" >
         status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.completedate != null" >
+        completeDate = #{record.completedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.settledate != null" >
+        settleDate = #{record.settledate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pickdate != null" >
+        pickDate = #{record.pickdate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.default1 != null" >
         default1 = #{record.default1,jdbcType=VARCHAR},
@@ -362,10 +372,11 @@
       remark = #{record.remark,jdbcType=VARCHAR},
       state = #{record.state,jdbcType=VARCHAR},
       itemId = #{record.itemid,jdbcType=INTEGER},
-      fault = #{record.fault,jdbcType=VARCHAR},
-      faultResult = #{record.faultresult,jdbcType=VARCHAR},
       teamId = #{record.teamid,jdbcType=INTEGER},
       status = #{record.status,jdbcType=VARCHAR},
+      completeDate = #{record.completedate,jdbcType=TIMESTAMP},
+      settleDate = #{record.settledate,jdbcType=TIMESTAMP},
+      pickDate = #{record.pickdate,jdbcType=TIMESTAMP},
       default1 = #{record.default1,jdbcType=VARCHAR},
       default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -417,17 +428,20 @@
       <if test="itemid != null" >
         itemId = #{itemid,jdbcType=INTEGER},
       </if>
-      <if test="fault != null" >
-        fault = #{fault,jdbcType=VARCHAR},
-      </if>
-      <if test="faultresult != null" >
-        faultResult = #{faultresult,jdbcType=VARCHAR},
-      </if>
       <if test="teamid != null" >
         teamId = #{teamid,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="completedate != null" >
+        completeDate = #{completedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settledate != null" >
+        settleDate = #{settledate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pickdate != null" >
+        pickDate = #{pickdate,jdbcType=TIMESTAMP},
       </if>
       <if test="default1 != null" >
         default1 = #{default1,jdbcType=VARCHAR},
@@ -454,10 +468,11 @@
       remark = #{remark,jdbcType=VARCHAR},
       state = #{state,jdbcType=VARCHAR},
       itemId = #{itemid,jdbcType=INTEGER},
-      fault = #{fault,jdbcType=VARCHAR},
-      faultResult = #{faultresult,jdbcType=VARCHAR},
       teamId = #{teamid,jdbcType=INTEGER},
       status = #{status,jdbcType=VARCHAR},
+      completeDate = #{completedate,jdbcType=TIMESTAMP},
+      settleDate = #{settledate,jdbcType=TIMESTAMP},
+      pickDate = #{pickdate,jdbcType=TIMESTAMP},
       default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
     where number = #{number,jdbcType=VARCHAR}

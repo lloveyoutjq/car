@@ -444,6 +444,66 @@ public class PersonnelLegworkcatExample {
             return (Criteria) this;
         }
 
+        public Criteria andArtisanclassidIsNull() {
+            addCriterion("artisanclassId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArtisanclassidIsNotNull() {
+            addCriterion("artisanclassId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArtisanclassidEqualTo(Integer value) {
+            addCriterion("artisanclassId =", value, "artisanclassid");
+            return (Criteria) this;
+        }
+
+        public Criteria andArtisanclassidNotEqualTo(Integer value) {
+            addCriterion("artisanclassId <>", value, "artisanclassid");
+            return (Criteria) this;
+        }
+
+        public Criteria andArtisanclassidGreaterThan(Integer value) {
+            addCriterion("artisanclassId >", value, "artisanclassid");
+            return (Criteria) this;
+        }
+
+        public Criteria andArtisanclassidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("artisanclassId >=", value, "artisanclassid");
+            return (Criteria) this;
+        }
+
+        public Criteria andArtisanclassidLessThan(Integer value) {
+            addCriterion("artisanclassId <", value, "artisanclassid");
+            return (Criteria) this;
+        }
+
+        public Criteria andArtisanclassidLessThanOrEqualTo(Integer value) {
+            addCriterion("artisanclassId <=", value, "artisanclassid");
+            return (Criteria) this;
+        }
+
+        public Criteria andArtisanclassidIn(List<Integer> values) {
+            addCriterion("artisanclassId in", values, "artisanclassid");
+            return (Criteria) this;
+        }
+
+        public Criteria andArtisanclassidNotIn(List<Integer> values) {
+            addCriterion("artisanclassId not in", values, "artisanclassid");
+            return (Criteria) this;
+        }
+
+        public Criteria andArtisanclassidBetween(Integer value1, Integer value2) {
+            addCriterion("artisanclassId between", value1, value2, "artisanclassid");
+            return (Criteria) this;
+        }
+
+        public Criteria andArtisanclassidNotBetween(Integer value1, Integer value2) {
+            addCriterion("artisanclassId not between", value1, value2, "artisanclassid");
+            return (Criteria) this;
+        }
+
         public Criteria andDefault1IsNull() {
             addCriterion("default1 is null");
             return (Criteria) this;

@@ -6,6 +6,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface PersonnelLegworkcatMapper {
+    List<PersonnelLegworkcat> fieldSelect();
+
+
+
     int countByExample(PersonnelLegworkcatExample example);
 
     int deleteByExample(PersonnelLegworkcatExample example);

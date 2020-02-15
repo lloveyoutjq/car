@@ -33,7 +33,7 @@ public class ClientCarinfo {
 
     private Integer engineid;
 
-    private String load;
+    private String carrying;
 
     private Date buydate;
 
@@ -181,12 +181,12 @@ public class ClientCarinfo {
         this.engineid = engineid;
     }
 
-    public String getLoad() {
-        return load;
+    public String getCarrying() {
+        return carrying;
     }
 
-    public void setLoad(String load) {
-        this.load = load;
+    public void setCarrying(String carrying) {
+        this.carrying = carrying;
     }
 
     public Date getBuydate() {

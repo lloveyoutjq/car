@@ -19,6 +19,12 @@ public class MaintainCompleted {
 
     private Float price;
 
+    private Integer maintenanceid;
+
+    private Integer reworkcount;
+
+    private String reasonforrework;
+
     private String default1;
 
     private String default2;
@@ -85,6 +91,30 @@ public class MaintainCompleted {
 
     public void setPrice(Float price) {
         this.price = price;
+    }
+
+    public Integer getMaintenanceid() {
+        return maintenanceid;
+    }
+
+    public void setMaintenanceid(Integer maintenanceid) {
+        this.maintenanceid = maintenanceid;
+    }
+
+    public Integer getReworkcount() {
+        return reworkcount;
+    }
+
+    public void setReworkcount(Integer reworkcount) {
+        this.reworkcount = reworkcount;
+    }
+
+    public String getReasonforrework() {
+        return reasonforrework;
+    }
+
+    public void setReasonforrework(String reasonforrework) {
+        this.reasonforrework = reasonforrework;
     }
 
     public String getDefault1() {

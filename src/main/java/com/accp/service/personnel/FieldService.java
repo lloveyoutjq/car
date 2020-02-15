@@ -22,7 +22,7 @@ public class FieldService {
      * 查询所有
      */
     public List<PersonnelLegworkcat> fieldSelect(){
-        return personnelLegworkcatMapper.selectByExample(null);
+        return personnelLegworkcatMapper.fieldSelect();
     }
     /**
      * 根据条件查询

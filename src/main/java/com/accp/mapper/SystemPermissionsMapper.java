@@ -20,7 +20,9 @@ public interface SystemPermissionsMapper {
 
     SystemPermissions selectByPrimaryKey(Integer id);
 
-    List<SystemPermissions> selectUserMenuAll(@Param("type")Integer type,@Param("uid")Integer uid);
+    List<SystemPermissions> selectUserMenuAll(Integer type, Integer uid);
+
+    List<SystemPermissions> selectUserMenuById(@Param("rid") Integer rid);
 
     int updateByExampleSelective(@Param("record") SystemPermissions record, @Param("example") SystemPermissionsExample example);
 

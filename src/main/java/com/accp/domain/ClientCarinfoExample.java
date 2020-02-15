@@ -1065,73 +1065,73 @@ public class ClientCarinfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andLoadIsNull() {
-            addCriterion("load is null");
+        public Criteria andCarryingIsNull() {
+            addCriterion("carrying is null");
             return (Criteria) this;
         }
 
-        public Criteria andLoadIsNotNull() {
-            addCriterion("load is not null");
+        public Criteria andCarryingIsNotNull() {
+            addCriterion("carrying is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLoadEqualTo(String value) {
-            addCriterion("load =", value, "load");
+        public Criteria andCarryingEqualTo(String value) {
+            addCriterion("carrying =", value, "carrying");
             return (Criteria) this;
         }
 
-        public Criteria andLoadNotEqualTo(String value) {
-            addCriterion("load <>", value, "load");
+        public Criteria andCarryingNotEqualTo(String value) {
+            addCriterion("carrying <>", value, "carrying");
             return (Criteria) this;
         }
 
-        public Criteria andLoadGreaterThan(String value) {
-            addCriterion("load >", value, "load");
+        public Criteria andCarryingGreaterThan(String value) {
+            addCriterion("carrying >", value, "carrying");
             return (Criteria) this;
         }
 
-        public Criteria andLoadGreaterThanOrEqualTo(String value) {
-            addCriterion("load >=", value, "load");
+        public Criteria andCarryingGreaterThanOrEqualTo(String value) {
+            addCriterion("carrying >=", value, "carrying");
             return (Criteria) this;
         }
 
-        public Criteria andLoadLessThan(String value) {
-            addCriterion("load <", value, "load");
+        public Criteria andCarryingLessThan(String value) {
+            addCriterion("carrying <", value, "carrying");
             return (Criteria) this;
         }
 
-        public Criteria andLoadLessThanOrEqualTo(String value) {
-            addCriterion("load <=", value, "load");
+        public Criteria andCarryingLessThanOrEqualTo(String value) {
+            addCriterion("carrying <=", value, "carrying");
             return (Criteria) this;
         }
 
-        public Criteria andLoadLike(String value) {
-            addCriterion("load like", value, "load");
+        public Criteria andCarryingLike(String value) {
+            addCriterion("carrying like", value, "carrying");
             return (Criteria) this;
         }
 
-        public Criteria andLoadNotLike(String value) {
-            addCriterion("load not like", value, "load");
+        public Criteria andCarryingNotLike(String value) {
+            addCriterion("carrying not like", value, "carrying");
             return (Criteria) this;
         }
 
-        public Criteria andLoadIn(List<String> values) {
-            addCriterion("load in", values, "load");
+        public Criteria andCarryingIn(List<String> values) {
+            addCriterion("carrying in", values, "carrying");
             return (Criteria) this;
         }
 
-        public Criteria andLoadNotIn(List<String> values) {
-            addCriterion("load not in", values, "load");
+        public Criteria andCarryingNotIn(List<String> values) {
+            addCriterion("carrying not in", values, "carrying");
             return (Criteria) this;
         }
 
-        public Criteria andLoadBetween(String value1, String value2) {
-            addCriterion("load between", value1, value2, "load");
+        public Criteria andCarryingBetween(String value1, String value2) {
+            addCriterion("carrying between", value1, value2, "carrying");
             return (Criteria) this;
         }
 
-        public Criteria andLoadNotBetween(String value1, String value2) {
-            addCriterion("load not between", value1, value2, "load");
+        public Criteria andCarryingNotBetween(String value1, String value2) {
+            addCriterion("carrying not between", value1, value2, "carrying");
             return (Criteria) this;
         }
 
