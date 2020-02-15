@@ -25,4 +25,9 @@ public class CompletedService {
         return  page.toPageInfo();
     }
 
+    //竣工检验
+    public MaintainCompleted selectByPrimaryKey(Integer id){
+        return maintainCompletedMapper.selectByPrimaryKey(id);
+    }
+
 }

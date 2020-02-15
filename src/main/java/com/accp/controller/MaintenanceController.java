@@ -34,6 +34,14 @@ public class MaintenanceController {
         return map;
     }
 
+    @RequestMapping("/selectByPrimaryKey")
+    public Map<String,Object> selectByPrimaryKey(String id){
+        Map<String,Object> map = new HashMap<>();
+        map.put("code",0);
+        map.put("data",completedService.selectByPrimaryKey(Integer.getInteger(id)));
+        return map;
+    }
+
     @RequestMapping("/rescue")
     public Map<String,Object> rescue(String number){
         Map<String,Object> map = new HashMap<>();

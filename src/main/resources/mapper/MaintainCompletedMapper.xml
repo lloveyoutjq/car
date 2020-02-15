@@ -49,7 +49,7 @@
     </association>
   </resultMap>
   <select id="completionInspection" resultMap="BaseResultMapPlus">
-    SELECT mrs.`number` as mrsnumber ,di.`name` as diname , mrs.`workTeam` as mrsworkteam,ccd.`name` as ccdname ,
+    SELECT mc.`id` ,mrs.`number` as mrsnumber ,di.`name` as diname , mrs.`workTeam` as mrsworkteam,ccd.`name` as ccdname ,
     cc.`carNumber` as cccarnumber, da.`carTypeName` as dacartypename ,cc.`frameNumber` as ccframenumber ,mrs.`pickDate` as mrspickdate,
     mc.`predictTime`,mc.`nowTime`,mc.`reason`,mc.`reworkCount`,mc.`reasonforRework`,ps.`staffName` as psstaffname ,mc.`price`,
     dmi.`id` as dmiid , mrs.`itemId` as mrsitemid , di.`id` as diid , cc.`id` as ccid , ccd.`number` as ccdnumber ,
