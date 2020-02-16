@@ -4,7 +4,9 @@ import com.accp.domain.DataMaintenanceItems;
 import com.accp.domain.DataMaintenanceItemsExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface DataMaintenanceItemsMapper {
     List<DataMaintenanceItems> itemsSels(String number);
 

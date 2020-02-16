@@ -1,4 +1,4 @@
-package com.accp.service.completed;
+package com.accp.service.maintenance;
 
 import com.accp.domain.MaintainCompleted;
 import com.accp.mapper.MaintainCompletedMapper;
@@ -8,8 +8,6 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Transactional
 @Service

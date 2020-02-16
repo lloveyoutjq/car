@@ -19,10 +19,10 @@
   <resultMap id="BaseResultMapPlus" type="com.accp.domain.MaintainCompleted" extends="BaseResultMap">
     <association property="dataMaintenanceItems" javaType="com.accp.domain.DataMaintenanceItems">
       <id column="dmiid" property="id"/>
+      <result column="dmirescuerepairid" property="rescuerepairid"/>
     </association>
     <association property="maintainRescue" javaType="com.accp.domain.MaintainRescue">
-      <id column="mrsitemid" property="itemid"/>
-      <result column="mrsnumber" property="number"/>
+      <id column="mrsnumber" property="number"/>
       <result column="mrsworkteam" property="workteam"/>
       <result column="mrspickdate" property="pickdate"/>
     </association>
@@ -52,13 +52,13 @@
     SELECT mc.`id` ,mrs.`number` as mrsnumber ,di.`name` as diname , mrs.`workTeam` as mrsworkteam,ccd.`name` as ccdname ,
     cc.`carNumber` as cccarnumber, da.`carTypeName` as dacartypename ,cc.`frameNumber` as ccframenumber ,mrs.`pickDate` as mrspickdate,
     mc.`predictTime`,mc.`nowTime`,mc.`reason`,mc.`reworkCount`,mc.`reasonforRework`,ps.`staffName` as psstaffname ,mc.`price`,
-    dmi.`id` as dmiid , mrs.`itemId` as mrsitemid , di.`id` as diid , cc.`id` as ccid , ccd.`number` as ccdnumber ,
+    dmi.`id` as dmiid , di.`id` as diid , cc.`id` as ccid , ccd.`number` as ccdnumber ,dmi.`rescueRepairId` as dmirescuerepairid
     da.`id` as daid , ps.`id` as psid ,mc.`eligibility`
     FROM `maintain_completed` AS mc
     STRAIGHT_JOIN `data_maintenance_items` AS dmi
     ON mc.`maintenanceId` = dmi.`id`
     STRAIGHT_JOIN `maintain_rescue` AS mrs
-    ON dmi.`id` = mrs.`itemId`
+    ON dmi.`rescueRepairId` = mr.`number`
     STRAIGHT_JOIN `data_itemtype` AS di
     ON dmi.`typeId` = di.`id`
     STRAIGHT_JOIN `client_carinfo` AS cc

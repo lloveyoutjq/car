@@ -1,4 +1,4 @@
-package com.accp.service.repair;
+package com.accp.service.maintenance;
 
 import com.accp.domain.*;
 import com.accp.mapper.ClientCarinfoMapper;
@@ -73,13 +73,20 @@ public class RepairService {
     }
 
     //维修项目，单个维修单的多个维修项目（维修单内）
-    public List<DataMaintenanceItems> itemsSels(String number){
-        return dataMaintenanceItemsMapper.itemsSels(number);
+    public PageInfo itemsSels(String number,Integer page,Integer limit){
+        Page pages  = PageHelper.startPage(page,limit);
+        dataMaintenanceItemsMapper.itemsSels(number);
+        return pages.toPageInfo();
     }
 
     //维修项目单个新增
     public int insert(DataMaintenanceItems record){
         return  dataMaintenanceItemsMapper.insert(record);
+    }
+
+    //修改所用
+    public DataMaintenanceItems selectByPrimaryKey(Integer id){
+        return dataMaintenanceItemsMapper.selectByPrimaryKey(id);
     }
 
     //删除维修项目
@@ -127,8 +134,10 @@ public class RepairService {
      * 附单
      * */
     //查询
-    public  List<DataMaintenanceItems> attached(String number){
-        return dataMaintenanceItemsMapper.attached(number);
+    public PageInfo attached(String number,Integer pages,Integer limit){
+        Page page = PageHelper.startPage(pages,limit);
+        dataMaintenanceItemsMapper.attached(number);
+        return page.toPageInfo();
     }
 
 }
