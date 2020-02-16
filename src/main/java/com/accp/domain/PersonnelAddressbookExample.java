@@ -164,73 +164,63 @@ public class PersonnelAddressbookExample {
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentIsNull() {
-            addCriterion("department is null");
+        public Criteria andDepartmentidIsNull() {
+            addCriterion("departmentId is null");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentIsNotNull() {
-            addCriterion("department is not null");
+        public Criteria andDepartmentidIsNotNull() {
+            addCriterion("departmentId is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentEqualTo(String value) {
-            addCriterion("department =", value, "department");
+        public Criteria andDepartmentidEqualTo(Integer value) {
+            addCriterion("departmentId =", value, "departmentid");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentNotEqualTo(String value) {
-            addCriterion("department <>", value, "department");
+        public Criteria andDepartmentidNotEqualTo(Integer value) {
+            addCriterion("departmentId <>", value, "departmentid");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentGreaterThan(String value) {
-            addCriterion("department >", value, "department");
+        public Criteria andDepartmentidGreaterThan(Integer value) {
+            addCriterion("departmentId >", value, "departmentid");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentGreaterThanOrEqualTo(String value) {
-            addCriterion("department >=", value, "department");
+        public Criteria andDepartmentidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("departmentId >=", value, "departmentid");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentLessThan(String value) {
-            addCriterion("department <", value, "department");
+        public Criteria andDepartmentidLessThan(Integer value) {
+            addCriterion("departmentId <", value, "departmentid");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentLessThanOrEqualTo(String value) {
-            addCriterion("department <=", value, "department");
+        public Criteria andDepartmentidLessThanOrEqualTo(Integer value) {
+            addCriterion("departmentId <=", value, "departmentid");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentLike(String value) {
-            addCriterion("department like", value, "department");
+        public Criteria andDepartmentidIn(List<Integer> values) {
+            addCriterion("departmentId in", values, "departmentid");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentNotLike(String value) {
-            addCriterion("department not like", value, "department");
+        public Criteria andDepartmentidNotIn(List<Integer> values) {
+            addCriterion("departmentId not in", values, "departmentid");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentIn(List<String> values) {
-            addCriterion("department in", values, "department");
+        public Criteria andDepartmentidBetween(Integer value1, Integer value2) {
+            addCriterion("departmentId between", value1, value2, "departmentid");
             return (Criteria) this;
         }
 
-        public Criteria andDepartmentNotIn(List<String> values) {
-            addCriterion("department not in", values, "department");
-            return (Criteria) this;
-        }
-
-        public Criteria andDepartmentBetween(String value1, String value2) {
-            addCriterion("department between", value1, value2, "department");
-            return (Criteria) this;
-        }
-
-        public Criteria andDepartmentNotBetween(String value1, String value2) {
-            addCriterion("department not between", value1, value2, "department");
+        public Criteria andDepartmentidNotBetween(Integer value1, Integer value2) {
+            addCriterion("departmentId not between", value1, value2, "departmentid");
             return (Criteria) this;
         }
 

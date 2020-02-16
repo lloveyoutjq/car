@@ -96,10 +96,16 @@ public class RepairService {
      * 附加项目
      * */
     //查询
-    public List<MaintainEwitem> selectByExample(String number){
+    public PageInfo selectByExample(String number,Integer pages,Integer limit){
         MaintainEwitemExample example = new MaintainEwitemExample();
         example.createCriteria().andOuteridEqualTo(number);
-        return maintainEwitemMapper.selectByExample(example);
+        Page page = PageHelper.startPage(pages,limit);
+        maintainEwitemMapper.selectByExample(example);
+        return page.toPageInfo();
+    }
+    //单个查询
+    public MaintainEwitem selectByEwitemId(Integer id){
+        return maintainEwitemMapper.selectByPrimaryKey(id);
     }
 
     //新增

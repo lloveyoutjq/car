@@ -8,7 +8,7 @@
     <result column="did" property="did" jdbcType="INTEGER" />
     <result column="staffAccount" property="staffaccount" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="post" property="post" jdbcType="VARCHAR" />
+    <result column="departmentId" property="departmentid" jdbcType="VARCHAR" />
     <result column="physicalCondition" property="physicalcondition" jdbcType="VARCHAR" />
     <result column="height" property="height" jdbcType="VARCHAR" />
     <result column="nativePlace" property="nativeplace" jdbcType="VARCHAR" />
@@ -27,6 +27,8 @@
     <result column="contactNumber" property="contactnumber" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="authCode" property="authcode" jdbcType="VARCHAR" />
+    <result column="pastCodeDate" property="pastcodedate" jdbcType="TIMESTAMP" />
     <result column="depositBank" property="depositbank" jdbcType="VARCHAR" />
     <result column="banAccount" property="banaccount" jdbcType="VARCHAR" />
     <result column="emergencyContact" property="emergencycontact" jdbcType="VARCHAR" />
@@ -50,7 +52,6 @@
     <result column="employmentAdvice" property="employmentadvice" jdbcType="VARCHAR" />
     <result column="picture" property="picture" jdbcType="VARCHAR" />
     <result column="roleId" property="roleid" jdbcType="INTEGER" />
-    <result column="jurisdictionId" property="jurisdictionid" jdbcType="INTEGER" />
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
@@ -113,14 +114,14 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, staffName, sex, did, staffAccount, password, post, physicalCondition, height, 
-    nativePlace, nation, maritalStatus, educationBackground, school, major, professionalQualification, 
+    id, staffName, sex, did, staffAccount, password, departmentId, physicalCondition, 
+    height, nativePlace, nation, maritalStatus, educationBackground, school, major, professionalQualification, 
     property, degree, authorizedStrength, idCardNo, residence, presentAddress, contactNumber, 
-    phone, email, depositBank, banAccount, emergencyContact, emergencyPhone, dateOnBoard, 
-    theTrialDue, BirthdayDate, contractStart, agreementEnds, cardNumber, internalCardNo, 
-    referrer, wholeOrderDiscountRight, timeDiscountRight, rightToDiscount, rightOfRelief, 
-    jobResume, educationExperience, memberOfFamily, disciplinaryRecords, employmentAdvice, 
-    picture, roleId, jurisdictionId, default1, default2
+    phone, email, authCode, pastCodeDate, depositBank, banAccount, emergencyContact, 
+    emergencyPhone, dateOnBoard, theTrialDue, BirthdayDate, contractStart, agreementEnds, 
+    cardNumber, internalCardNo, referrer, wholeOrderDiscountRight, timeDiscountRight, 
+    rightToDiscount, rightOfRelief, jobResume, educationExperience, memberOfFamily, disciplinaryRecords, 
+    employmentAdvice, picture, roleId, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.PersonnelStaffExample" >
     select
@@ -155,40 +156,40 @@
   <insert id="insert" parameterType="com.accp.domain.PersonnelStaff" >
     insert into personnel_staff (id, staffName, sex, 
       did, staffAccount, password, 
-      post, physicalCondition, height, 
+      departmentId, physicalCondition, height, 
       nativePlace, nation, maritalStatus, 
       educationBackground, school, major, 
       professionalQualification, property, degree, 
       authorizedStrength, idCardNo, residence, 
       presentAddress, contactNumber, phone, 
-      email, depositBank, banAccount, 
-      emergencyContact, emergencyPhone, dateOnBoard, 
-      theTrialDue, BirthdayDate, contractStart, 
-      agreementEnds, cardNumber, internalCardNo, 
-      referrer, wholeOrderDiscountRight, timeDiscountRight, 
+      email, authCode, pastCodeDate, 
+      depositBank, banAccount, emergencyContact, 
+      emergencyPhone, dateOnBoard, theTrialDue, 
+      BirthdayDate, contractStart, agreementEnds, 
+      cardNumber, internalCardNo, referrer, 
+      wholeOrderDiscountRight, timeDiscountRight, 
       rightToDiscount, rightOfRelief, jobResume, 
       educationExperience, memberOfFamily, disciplinaryRecords, 
       employmentAdvice, picture, roleId, 
-      jurisdictionId, default1, default2
-      )
+      default1, default2)
     values (#{id,jdbcType=INTEGER}, #{staffname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{did,jdbcType=INTEGER}, #{staffaccount,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{post,jdbcType=VARCHAR}, #{physicalcondition,jdbcType=VARCHAR}, #{height,jdbcType=VARCHAR}, 
+      #{departmentid,jdbcType=VARCHAR}, #{physicalcondition,jdbcType=VARCHAR}, #{height,jdbcType=VARCHAR}, 
       #{nativeplace,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{maritalstatus,jdbcType=VARCHAR}, 
       #{educationbackground,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, 
       #{professionalqualification,jdbcType=VARCHAR}, #{property,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR}, 
       #{authorizedstrength,jdbcType=VARCHAR}, #{idcardno,jdbcType=VARCHAR}, #{residence,jdbcType=VARCHAR}, 
       #{presentaddress,jdbcType=VARCHAR}, #{contactnumber,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{depositbank,jdbcType=VARCHAR}, #{banaccount,jdbcType=VARCHAR}, 
-      #{emergencycontact,jdbcType=VARCHAR}, #{emergencyphone,jdbcType=VARCHAR}, #{dateonboard,jdbcType=TIMESTAMP}, 
-      #{thetrialdue,jdbcType=TIMESTAMP}, #{birthdaydate,jdbcType=TIMESTAMP}, #{contractstart,jdbcType=TIMESTAMP}, 
-      #{agreementends,jdbcType=TIMESTAMP}, #{cardnumber,jdbcType=VARCHAR}, #{internalcardno,jdbcType=VARCHAR}, 
-      #{referrer,jdbcType=VARCHAR}, #{wholeorderdiscountright,jdbcType=VARCHAR}, #{timediscountright,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{authcode,jdbcType=VARCHAR}, #{pastcodedate,jdbcType=TIMESTAMP}, 
+      #{depositbank,jdbcType=VARCHAR}, #{banaccount,jdbcType=VARCHAR}, #{emergencycontact,jdbcType=VARCHAR}, 
+      #{emergencyphone,jdbcType=VARCHAR}, #{dateonboard,jdbcType=TIMESTAMP}, #{thetrialdue,jdbcType=TIMESTAMP}, 
+      #{birthdaydate,jdbcType=TIMESTAMP}, #{contractstart,jdbcType=TIMESTAMP}, #{agreementends,jdbcType=TIMESTAMP}, 
+      #{cardnumber,jdbcType=VARCHAR}, #{internalcardno,jdbcType=VARCHAR}, #{referrer,jdbcType=VARCHAR}, 
+      #{wholeorderdiscountright,jdbcType=VARCHAR}, #{timediscountright,jdbcType=VARCHAR}, 
       #{righttodiscount,jdbcType=VARCHAR}, #{rightofrelief,jdbcType=VARCHAR}, #{jobresume,jdbcType=VARCHAR}, 
       #{educationexperience,jdbcType=VARCHAR}, #{memberoffamily,jdbcType=VARCHAR}, #{disciplinaryrecords,jdbcType=VARCHAR}, 
       #{employmentadvice,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{roleid,jdbcType=INTEGER}, 
-      #{jurisdictionid,jdbcType=INTEGER}, #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}
-      )
+      #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.PersonnelStaff" >
     insert into personnel_staff
@@ -211,8 +212,8 @@
       <if test="password != null" >
         password,
       </if>
-      <if test="post != null" >
-        post,
+      <if test="departmentid != null" >
+        departmentId,
       </if>
       <if test="physicalcondition != null" >
         physicalCondition,
@@ -267,6 +268,12 @@
       </if>
       <if test="email != null" >
         email,
+      </if>
+      <if test="authcode != null" >
+        authCode,
+      </if>
+      <if test="pastcodedate != null" >
+        pastCodeDate,
       </if>
       <if test="depositbank != null" >
         depositBank,
@@ -337,9 +344,6 @@
       <if test="roleid != null" >
         roleId,
       </if>
-      <if test="jurisdictionid != null" >
-        jurisdictionId,
-      </if>
       <if test="default1 != null" >
         default1,
       </if>
@@ -366,8 +370,8 @@
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="post != null" >
-        #{post,jdbcType=VARCHAR},
+      <if test="departmentid != null" >
+        #{departmentid,jdbcType=VARCHAR},
       </if>
       <if test="physicalcondition != null" >
         #{physicalcondition,jdbcType=VARCHAR},
@@ -422,6 +426,12 @@
       </if>
       <if test="email != null" >
         #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="authcode != null" >
+        #{authcode,jdbcType=VARCHAR},
+      </if>
+      <if test="pastcodedate != null" >
+        #{pastcodedate,jdbcType=TIMESTAMP},
       </if>
       <if test="depositbank != null" >
         #{depositbank,jdbcType=VARCHAR},
@@ -492,9 +502,6 @@
       <if test="roleid != null" >
         #{roleid,jdbcType=INTEGER},
       </if>
-      <if test="jurisdictionid != null" >
-        #{jurisdictionid,jdbcType=INTEGER},
-      </if>
       <if test="default1 != null" >
         #{default1,jdbcType=VARCHAR},
       </if>
@@ -530,8 +537,8 @@
       <if test="record.password != null" >
         password = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.post != null" >
-        post = #{record.post,jdbcType=VARCHAR},
+      <if test="record.departmentid != null" >
+        departmentId = #{record.departmentid,jdbcType=VARCHAR},
       </if>
       <if test="record.physicalcondition != null" >
         physicalCondition = #{record.physicalcondition,jdbcType=VARCHAR},
@@ -586,6 +593,12 @@
       </if>
       <if test="record.email != null" >
         email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authcode != null" >
+        authCode = #{record.authcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pastcodedate != null" >
+        pastCodeDate = #{record.pastcodedate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.depositbank != null" >
         depositBank = #{record.depositbank,jdbcType=VARCHAR},
@@ -656,9 +669,6 @@
       <if test="record.roleid != null" >
         roleId = #{record.roleid,jdbcType=INTEGER},
       </if>
-      <if test="record.jurisdictionid != null" >
-        jurisdictionId = #{record.jurisdictionid,jdbcType=INTEGER},
-      </if>
       <if test="record.default1 != null" >
         default1 = #{record.default1,jdbcType=VARCHAR},
       </if>
@@ -678,7 +688,7 @@
       did = #{record.did,jdbcType=INTEGER},
       staffAccount = #{record.staffaccount,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
-      post = #{record.post,jdbcType=VARCHAR},
+      departmentId = #{record.departmentid,jdbcType=VARCHAR},
       physicalCondition = #{record.physicalcondition,jdbcType=VARCHAR},
       height = #{record.height,jdbcType=VARCHAR},
       nativePlace = #{record.nativeplace,jdbcType=VARCHAR},
@@ -697,6 +707,8 @@
       contactNumber = #{record.contactnumber,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
+      authCode = #{record.authcode,jdbcType=VARCHAR},
+      pastCodeDate = #{record.pastcodedate,jdbcType=TIMESTAMP},
       depositBank = #{record.depositbank,jdbcType=VARCHAR},
       banAccount = #{record.banaccount,jdbcType=VARCHAR},
       emergencyContact = #{record.emergencycontact,jdbcType=VARCHAR},
@@ -720,7 +732,6 @@
       employmentAdvice = #{record.employmentadvice,jdbcType=VARCHAR},
       picture = #{record.picture,jdbcType=VARCHAR},
       roleId = #{record.roleid,jdbcType=INTEGER},
-      jurisdictionId = #{record.jurisdictionid,jdbcType=INTEGER},
       default1 = #{record.default1,jdbcType=VARCHAR},
       default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -745,8 +756,8 @@
       <if test="password != null" >
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="post != null" >
-        post = #{post,jdbcType=VARCHAR},
+      <if test="departmentid != null" >
+        departmentId = #{departmentid,jdbcType=VARCHAR},
       </if>
       <if test="physicalcondition != null" >
         physicalCondition = #{physicalcondition,jdbcType=VARCHAR},
@@ -801,6 +812,12 @@
       </if>
       <if test="email != null" >
         email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="authcode != null" >
+        authCode = #{authcode,jdbcType=VARCHAR},
+      </if>
+      <if test="pastcodedate != null" >
+        pastCodeDate = #{pastcodedate,jdbcType=TIMESTAMP},
       </if>
       <if test="depositbank != null" >
         depositBank = #{depositbank,jdbcType=VARCHAR},
@@ -871,9 +888,6 @@
       <if test="roleid != null" >
         roleId = #{roleid,jdbcType=INTEGER},
       </if>
-      <if test="jurisdictionid != null" >
-        jurisdictionId = #{jurisdictionid,jdbcType=INTEGER},
-      </if>
       <if test="default1 != null" >
         default1 = #{default1,jdbcType=VARCHAR},
       </if>
@@ -890,7 +904,7 @@
       did = #{did,jdbcType=INTEGER},
       staffAccount = #{staffaccount,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      post = #{post,jdbcType=VARCHAR},
+      departmentId = #{departmentid,jdbcType=VARCHAR},
       physicalCondition = #{physicalcondition,jdbcType=VARCHAR},
       height = #{height,jdbcType=VARCHAR},
       nativePlace = #{nativeplace,jdbcType=VARCHAR},
@@ -909,6 +923,8 @@
       contactNumber = #{contactnumber,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
+      authCode = #{authcode,jdbcType=VARCHAR},
+      pastCodeDate = #{pastcodedate,jdbcType=TIMESTAMP},
       depositBank = #{depositbank,jdbcType=VARCHAR},
       banAccount = #{banaccount,jdbcType=VARCHAR},
       emergencyContact = #{emergencycontact,jdbcType=VARCHAR},
@@ -932,7 +948,6 @@
       employmentAdvice = #{employmentadvice,jdbcType=VARCHAR},
       picture = #{picture,jdbcType=VARCHAR},
       roleId = #{roleid,jdbcType=INTEGER},
-      jurisdictionId = #{jurisdictionid,jdbcType=INTEGER},
       default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

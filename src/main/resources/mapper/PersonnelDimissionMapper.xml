@@ -3,7 +3,7 @@
 <mapper namespace="com.accp.mapper.PersonnelDimissionMapper" >
   <resultMap id="BaseResultMap" type="com.accp.domain.PersonnelDimission" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="departmentId" property="departmentid" jdbcType="INTEGER" />
     <result column="dimissionDate" property="dimissiondate" jdbcType="TIMESTAMP" />
     <result column="dimissionCause" property="dimissioncause" jdbcType="VARCHAR" />
     <result column="staffId" property="staffid" jdbcType="INTEGER" />
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, department, dimissionDate, dimissionCause, staffId, default1, default2
+    id, departmentId, dimissionDate, dimissionCause, staffId, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.PersonnelDimissionExample" >
     select
@@ -102,10 +102,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.accp.domain.PersonnelDimission" >
-    insert into personnel_dimission (id, department, dimissionDate, 
+    insert into personnel_dimission (id, departmentId, dimissionDate, 
       dimissionCause, staffId, default1, 
       default2)
-    values (#{id,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, #{dimissiondate,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=INTEGER}, #{departmentid,jdbcType=INTEGER}, #{dimissiondate,jdbcType=TIMESTAMP}, 
       #{dimissioncause,jdbcType=VARCHAR}, #{staffid,jdbcType=INTEGER}, #{default1,jdbcType=VARCHAR}, 
       #{default2,jdbcType=VARCHAR})
   </insert>
@@ -115,8 +115,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="department != null" >
-        department,
+      <if test="departmentid != null" >
+        departmentId,
       </if>
       <if test="dimissiondate != null" >
         dimissionDate,
@@ -138,8 +138,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="department != null" >
-        #{department,jdbcType=VARCHAR},
+      <if test="departmentid != null" >
+        #{departmentid,jdbcType=INTEGER},
       </if>
       <if test="dimissiondate != null" >
         #{dimissiondate,jdbcType=TIMESTAMP},
@@ -170,8 +170,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.department != null" >
-        department = #{record.department,jdbcType=VARCHAR},
+      <if test="record.departmentid != null" >
+        departmentId = #{record.departmentid,jdbcType=INTEGER},
       </if>
       <if test="record.dimissiondate != null" >
         dimissionDate = #{record.dimissiondate,jdbcType=TIMESTAMP},
@@ -196,7 +196,7 @@
   <update id="updateByExample" parameterType="map" >
     update personnel_dimission
     set id = #{record.id,jdbcType=INTEGER},
-      department = #{record.department,jdbcType=VARCHAR},
+      departmentId = #{record.departmentid,jdbcType=INTEGER},
       dimissionDate = #{record.dimissiondate,jdbcType=TIMESTAMP},
       dimissionCause = #{record.dimissioncause,jdbcType=VARCHAR},
       staffId = #{record.staffid,jdbcType=INTEGER},
@@ -209,8 +209,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.PersonnelDimission" >
     update personnel_dimission
     <set >
-      <if test="department != null" >
-        department = #{department,jdbcType=VARCHAR},
+      <if test="departmentid != null" >
+        departmentId = #{departmentid,jdbcType=INTEGER},
       </if>
       <if test="dimissiondate != null" >
         dimissionDate = #{dimissiondate,jdbcType=TIMESTAMP},
@@ -232,7 +232,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.PersonnelDimission" >
     update personnel_dimission
-    set department = #{department,jdbcType=VARCHAR},
+    set departmentId = #{departmentid,jdbcType=INTEGER},
       dimissionDate = #{dimissiondate,jdbcType=TIMESTAMP},
       dimissionCause = #{dimissioncause,jdbcType=VARCHAR},
       staffId = #{staffid,jdbcType=INTEGER},
