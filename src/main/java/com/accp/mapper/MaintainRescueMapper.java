@@ -4,7 +4,9 @@ import com.accp.domain.MaintainRescue;
 import com.accp.domain.MaintainRescueExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface MaintainRescueMapper {
     int countByExample(MaintainRescueExample example);
 

@@ -1,6 +1,7 @@
 package com.accp.controller;
 
 import com.accp.domain.DataMaintenanceItems;
+import com.accp.domain.MaintainCompleted;
 import com.accp.domain.MaintainEwitem;
 import com.accp.service.maintenance.CompletedService;
 import com.accp.service.front.settlementService;
@@ -223,5 +224,40 @@ public class MaintenanceController {
         repairService.deleteByPrimaryKey(Integer.getInteger(id));
         return "1";
     }
+
+    /**
+     * 新增时打开单据的单号
+     * */
+    //维修
+    @RequestMapping("/newRepairId")
+    public String newRepairId(){
+        return repairService.newRepairId();
+    }
+    //救援
+    @RequestMapping("/newRescueId")
+    public String newRescueId(){
+        return repairService.newRescueId();
+    }
+
+    /**
+     * 竣工检查
+     * */
+    @RequestMapping("/updateComplete")
+    public String updateComplete(String data) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        MaintainCompleted maintainCompleted = null;
+        try {
+            maintainCompleted = objectMapper.readValue(data, MaintainCompleted.class);
+        } catch (JsonProcessingException e) {
+            System.out.println("发送异常");
+        }
+        completedService.updateComplete(maintainCompleted);
+        return "1";
+    }
+
+
+    /**
+     * 接单
+     * */
 
 }

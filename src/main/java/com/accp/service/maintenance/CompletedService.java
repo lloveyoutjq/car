@@ -28,4 +28,8 @@ public class CompletedService {
         return maintainCompletedMapper.selectByPrimaryKey(id);
     }
 
+    //修改竣工
+    public int updateComplete(MaintainCompleted completed){
+        return maintainCompletedMapper.updateByPrimaryKeySelective(completed);
+    }
 }

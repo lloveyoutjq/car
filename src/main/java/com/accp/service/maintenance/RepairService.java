@@ -1,10 +1,7 @@
 package com.accp.service.maintenance;
 
 import com.accp.domain.*;
-import com.accp.mapper.ClientCarinfoMapper;
-import com.accp.mapper.DataMaintenanceItemsMapper;
-import com.accp.mapper.MaintainEwitemMapper;
-import com.accp.mapper.MaintainRepairMapper;
+import com.accp.mapper.*;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -30,6 +27,12 @@ public class RepairService {
     @Autowired
     MaintainEwitemMapper maintainEwitemMapper;
 
+    @Autowired
+    MaintainRescueMapper maintainRescueMapper;
+
+    @Autowired
+    FrontCashierMapper frontCashierMapper;
+
     //作业中车辆tab显示
     public PageInfo vehiclesInOperation(Integer pages,Integer limit){
         Page page = PageHelper.startPage(pages,limit);
@@ -52,7 +55,7 @@ public class RepairService {
     /**
      *维修救援and维修接车
      * */
-    //维修救援
+    //打开维修救援
     public ClientCarinfo rescueS(String carnumber){
         return clientCarinfoMapper.rescueS(carnumber);
     }
@@ -60,6 +63,19 @@ public class RepairService {
     //维修接车
     public ClientCarinfo repairS(String carnumber){
         return clientCarinfoMapper.repairS(carnumber);
+    }
+
+    //创建
+    public int repair(FrontCashier record){
+        maintainRepairMapper.insert(record.getMaintainRepair());
+        record.setNumber(record.getMaintainRepair().getNumber());
+        return frontCashierMapper.insert(record);
+    }
+
+    public int rescue(FrontCashier record){
+        maintainRescueMapper.insert(record.getMaintainRescue());
+        record.setNumber(record.getMaintainRescue().getNumber());
+        return frontCashierMapper.insert(record);
     }
 
     /**
@@ -138,6 +154,36 @@ public class RepairService {
         Page page = PageHelper.startPage(pages,limit);
         dataMaintenanceItemsMapper.attached(number);
         return page.toPageInfo();
+    }
+
+    /**
+     * 获取最新单号
+     * */
+    public String newRepairId(){
+        List<MaintainRepair> maintainRepairList = maintainRepairMapper.selectByExample(null);
+        if (maintainRepairList.size()-1==-1){
+            return "W10001";
+        }
+        int index = maintainRepairList.get(maintainRepairList.size()-1).getNumber().length();
+        String lastNum = maintainRepairList.get(maintainRepairList.size()-1).getNumber().substring(index);
+        int last = Integer.getInteger(lastNum);
+        String beforeNum = maintainRepairList.get(maintainRepairList.size()-1).getNumber().substring(0,index);
+        String num = beforeNum + last;
+        return num;
+
+    }
+
+    public String newRescueId(){
+        List<MaintainRescue> maintainRescuesList = maintainRescueMapper.selectByExample(null);
+        if (maintainRescuesList.size()-1==-1){
+            return "J10001";
+        }
+        int index = maintainRescuesList.get(maintainRescuesList.size()-1).getNumber().length();
+        String lastNum = maintainRescuesList.get(maintainRescuesList.size()-1).getNumber().substring(index);
+        int last = Integer.getInteger(lastNum);
+        String beforeNum = maintainRescuesList.get(maintainRescuesList.size()-1).getNumber().substring(0,index);
+        String num = beforeNum + last;
+        return num;
     }
 
 }

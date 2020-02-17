@@ -12,7 +12,7 @@
     <result column="overWorkDate" property="overworkdate" jdbcType="TIMESTAMP" />
     <result column="setter" property="setter" jdbcType="VARCHAR" />
     <result column="company" property="company" jdbcType="VARCHAR" />
-    <result column="before" property="before" jdbcType="TIMESTAMP" />
+    <result column="beforedate" property="beforedate" jdbcType="TIMESTAMP" />
     <result column="price" property="price" jdbcType="REAL" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="VARCHAR" />
@@ -122,7 +122,7 @@
   </sql>
   <sql id="Base_Column_List" >
     number, carInfoId, counselorId, oil, type, workTime, getMan, overWorkDate, setter, 
-    company, before, price, remark, state, teamId, status, completeDate, settleDate, 
+    company, beforedate, price, remark, state, teamId, status, completeDate, settleDate,
     pickDate, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.MaintainRepairExample" >
@@ -159,7 +159,7 @@
     insert into maintain_repair (number, carInfoId, counselorId, 
       oil, type, workTime, 
       getMan, overWorkDate, setter, 
-      company, before, price, 
+      company, beforedate, price,
       remark, state, teamId, 
       status, completeDate, settleDate, 
       pickDate, default1, default2
@@ -167,7 +167,7 @@
     values (#{number,jdbcType=VARCHAR}, #{carinfoid,jdbcType=INTEGER}, #{counselorid,jdbcType=INTEGER}, 
       #{oil,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{worktime,jdbcType=VARCHAR}, 
       #{getman,jdbcType=VARCHAR}, #{overworkdate,jdbcType=TIMESTAMP}, #{setter,jdbcType=VARCHAR}, 
-      #{company,jdbcType=VARCHAR}, #{before,jdbcType=TIMESTAMP}, #{price,jdbcType=REAL}, 
+      #{company,jdbcType=VARCHAR}, #{beforedate,jdbcType=TIMESTAMP}, #{price,jdbcType=REAL},
       #{remark,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{teamid,jdbcType=INTEGER}, 
       #{status,jdbcType=VARCHAR}, #{completedate,jdbcType=TIMESTAMP}, #{settledate,jdbcType=TIMESTAMP}, 
       #{pickdate,jdbcType=TIMESTAMP}, #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}
@@ -206,8 +206,8 @@
       <if test="company != null" >
         company,
       </if>
-      <if test="before != null" >
-        before,
+      <if test="beforedate != null" >
+        beforedate,
       </if>
       <if test="price != null" >
         price,
@@ -271,8 +271,8 @@
       <if test="company != null" >
         #{company,jdbcType=VARCHAR},
       </if>
-      <if test="before != null" >
-        #{before,jdbcType=TIMESTAMP},
+      <if test="beforedate != null" >
+        #{beforedate,jdbcType=TIMESTAMP},
       </if>
       <if test="price != null" >
         #{price,jdbcType=REAL},
@@ -345,8 +345,8 @@
       <if test="record.company != null" >
         company = #{record.company,jdbcType=VARCHAR},
       </if>
-      <if test="record.before != null" >
-        before = #{record.before,jdbcType=TIMESTAMP},
+      <if test="record.beforedate != null" >
+        beforedate = #{record.beforedate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.price != null" >
         price = #{record.price,jdbcType=REAL},
@@ -395,7 +395,7 @@
       overWorkDate = #{record.overworkdate,jdbcType=TIMESTAMP},
       setter = #{record.setter,jdbcType=VARCHAR},
       company = #{record.company,jdbcType=VARCHAR},
-      before = #{record.before,jdbcType=TIMESTAMP},
+      beforedate = #{record.beforedate,jdbcType=TIMESTAMP},
       price = #{record.price,jdbcType=REAL},
       remark = #{record.remark,jdbcType=VARCHAR},
       state = #{record.state,jdbcType=VARCHAR},
@@ -440,8 +440,8 @@
       <if test="company != null" >
         company = #{company,jdbcType=VARCHAR},
       </if>
-      <if test="before != null" >
-        before = #{before,jdbcType=TIMESTAMP},
+      <if test="beforedate != null" >
+        beforedate = #{beforedate,jdbcType=TIMESTAMP},
       </if>
       <if test="price != null" >
         price = #{price,jdbcType=REAL},
@@ -487,7 +487,7 @@
       overWorkDate = #{overworkdate,jdbcType=TIMESTAMP},
       setter = #{setter,jdbcType=VARCHAR},
       company = #{company,jdbcType=VARCHAR},
-      before = #{before,jdbcType=TIMESTAMP},
+      beforedate = #{beforedate,jdbcType=TIMESTAMP},
       price = #{price,jdbcType=REAL},
       remark = #{remark,jdbcType=VARCHAR},
       state = #{state,jdbcType=VARCHAR},

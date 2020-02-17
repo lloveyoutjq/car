@@ -1,9 +1,7 @@
 package com.accp.service.front;
 
-import com.accp.domain.FrontCashier;
-import com.accp.domain.MaintainEwitemExample;
-import com.accp.domain.MaintainRepair;
-import com.accp.domain.MaintainRescue;
+import com.accp.domain.*;
+import com.accp.mapper.ClientClientdataMapper;
 import com.accp.mapper.DataMaintenanceItemsMapper;
 import com.accp.mapper.FrontCashierMapper;
 import com.accp.mapper.MaintainEwitemMapper;
@@ -14,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 
 
 @Transactional
@@ -28,6 +27,9 @@ public class settlementService {
 
     @Autowired
     MaintainEwitemMapper maintainEwitemMapper;
+
+    @Autowired
+    ClientClientdataMapper clientClientdataMapper;
 
 
     //销售单据查询
@@ -65,5 +67,14 @@ public class settlementService {
         record.setCashierid(Integer.getInteger(saleid));
         record.setSettlementstatus("未结算");
         return frontCashierMapper.updateByPrimaryKeySelective(record);
+    }
+
+    /**
+     * 会员
+     * */
+    public PageInfo vip(String id,Integer page,Integer limit){
+        Page pages = PageHelper.startPage(page,limit);
+        clientClientdataMapper.vip("%"+id+"%");
+        return pages.toPageInfo();
     }
 }

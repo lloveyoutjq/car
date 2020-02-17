@@ -24,7 +24,7 @@ public class MaintainRepair {
 
     private String company;
 
-    private Date before;
+    private Date beforedate;
 
     private Float price;
 
@@ -136,12 +136,12 @@ public class MaintainRepair {
         this.company = company;
     }
 
-    public Date getBefore() {
-        return before;
+    public Date getBeforedate() {
+        return beforedate;
     }
 
-    public void setBefore(Date before) {
-        this.before = before;
+    public void setBeforedate(Date before) {
+        this.beforedate = before;
     }
 
     public Float getPrice() {

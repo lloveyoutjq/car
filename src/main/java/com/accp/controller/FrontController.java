@@ -32,4 +32,17 @@ public class FrontController {
         return "1";
     }
 
+    /**
+     * 会员
+     * */
+    @RequestMapping("/vip")
+    public Map<String,Object> vip(String id,Integer page,Integer limit){
+        Map<String,Object> map = new HashMap<>();
+        PageInfo pageInfo = SettlementService.vip(id, page, limit);
+        map.put("code",0);
+        map.put("data",pageInfo.getList());
+        map.put("count",pageInfo.getTotal());
+        return map;
+    }
+
 }

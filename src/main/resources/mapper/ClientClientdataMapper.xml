@@ -32,6 +32,26 @@
     <result column="default4" property="default4" jdbcType="VARCHAR" />
     <result column="default5" property="default5" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="BaseResultMapPlus" type="com.accp.domain.ClientClientdata" extends="BaseResultMap">
+    <association property="clientClienttype" javaType="com.accp.domain.ClientClienttype">
+      <id column="cctid" property="id"/>
+      <result column="cctclienttype" property="clienttype"/>
+      <result column="cctvalidty" property="validty"/>
+      <result column="cctintegral" property="integral"/>
+      <result column="cctstarttime" property="starttime"/>
+      <result column="cctendtime" property="endtime"/>
+    </association>
+  </resultMap>
+  <select id="vip" resultMap="BaseResultMapPlus">
+    SELECT ccd.`number`,cct.`id` as cctid ,ccd.`name`,ccd.`phone`,
+    cct.`clientType` as cctclienttype ,cct.`validty` as cctvalidty ,cct.`integral` as cctintegral ,
+    cct.`startTime` as cctstarttime ,cct.`endTime` cctendtime
+    FROM `client_clientdata` AS ccd
+    STRAIGHT_JOIN `client_clienttype` AS cct
+    ON ccd.`typeId` = cct.`id`
+    WHERE ccd.`number` LIKE #{id}
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
