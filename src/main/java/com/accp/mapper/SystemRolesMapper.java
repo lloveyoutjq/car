@@ -1,7 +1,5 @@
 package com.accp.mapper;
 
-import com.accp.domain.SystemRoles;
-import com.accp.domain.SystemRolesExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

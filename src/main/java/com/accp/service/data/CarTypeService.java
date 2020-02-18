@@ -1,7 +1,5 @@
 package com.accp.service.data;
 
-import com.accp.domain.DataCarbrand;
-import com.accp.mapper.DataCarbrandMapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

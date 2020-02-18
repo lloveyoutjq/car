@@ -1,8 +1,9 @@
 package com.accp.mapper;
 
+import java.util.List;
+
 import com.accp.domain.SystemUsersRoles;
 import com.accp.domain.SystemUsersRolesExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface SystemUsersRolesMapper {

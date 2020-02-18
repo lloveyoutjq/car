@@ -1,7 +1,5 @@
 package com.accp.service.repair;
 
-import com.accp.domain.DataMaintenanceItems;
-import com.accp.mapper.DataMaintenanceItemsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

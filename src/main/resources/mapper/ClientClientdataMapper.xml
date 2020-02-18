@@ -9,7 +9,9 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="bornDate" property="borndate" jdbcType="TIMESTAMP" />
     <result column="paymentDays" property="paymentdays" jdbcType="INTEGER" />
-    <result column="paymentSize" property="paymentsize" jdbcType="INTEGER" />
+    <result column="paymentSize" property="paymentsize" jdbcType="DECIMAL" />
+    <result column="integral" property="integral" jdbcType="INTEGER" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
     <result column="counselorId" property="counselorid" jdbcType="INTEGER" />
     <result column="counselorName" property="counselorname" jdbcType="VARCHAR" />
     <result column="advisorytelephone" property="advisorytelephone" jdbcType="VARCHAR" />
@@ -32,9 +34,122 @@
     <result column="default4" property="default4" jdbcType="VARCHAR" />
     <result column="default5" property="default5" jdbcType="VARCHAR" />
   </resultMap>
+  
+    <resultMap id="userSelectMap" type="com.accp.domain.ClientClientdata" extends="BaseResultMap">
+    <association property="clientClienttype" javaType="com.accp.domain.ClientClienttype" >
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="clientType" property="clienttype" jdbcType="VARCHAR" />
+      <result column="validty" property="validty" jdbcType="INTEGER" />
+      <result column="cost" property="cost" jdbcType="REAL" />
+      <result column="address" property="address" jdbcType="VARCHAR" />
+      <result column="type" property="type" jdbcType="VARCHAR" />
+      <result column="discount" property="discount" jdbcType="REAL" />
+      <result column="integral" property="integral" jdbcType="INTEGER" />
+      <result column="startTime" property="starttime" jdbcType="TIMESTAMP" />
+      <result column="endTime" property="endtime" jdbcType="TIMESTAMP" />
+      <result column="default1" property="default1" jdbcType="VARCHAR" />
+      <result column="default2" property="default2" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+    <select id="selectClient" resultMap="userSelectMap" >
+    SELECT `client_clientdata`.*,`client_clienttype`.* FROM `client_clientdata`
+    LEFT JOIN `client_clienttype` ON `client_clienttype`.`id` = `client_clientdata`.typeId
+    LEFT JOIN `client_carinfo` ON `client_carinfo`.`clientId` = `client_clientdata`.`number`
+    where 1=1
+    <if test="clientClientdata.searchData != null and clientClientdata.searchData !=''">/*拼音*/
+      AND(`to_pinyin`(`client_clientdata`.`name`) LIKE CONCAT("%",#{clientClientdata.searchData},"%") OR `getPY`(`client_clientdata`.`name`) LIKE CONCAT("%",#{clientClientdata.searchData},"%"))
+    </if>
+    <if test="clientClientdata.number != null and clientClientdata.number !=''">/*id*/
+      and `client_clientdata`.number = #{clientClientdata.number}
+    </if>
+    <if test="clientClientdata.name != null and clientClientdata.name != ''">/*客户名称*/
+      AND `client_clientdata`.name like CONCAT("%",#{clientClientdata.name},"%")
 
+    </if>
+    <if test="clientClientdata.typeid != null and clientClientdata.typeid != ''">/*客户类型*/
+      AND clientClientdata.`typeid` = #{clientClientdata.`typeid`}
+    </if>
+    <if test="clientClientdata.linkman != null and clientClientdata.linkman != ''">/*联系人*/
+      AND `client_clientdata`.linkman like  CONCAT("%", #{clientClientdata.linkman},"%")
 
+    </if>
+    <if test="clientClientdata.phone != null and clientClientdata.phone != ''">/*手机号*/
+      AND `client_clientdata`.phone like CONCAT("%",#{clientClientdata.phone},"%")
 
+    </if>
+    <if test="clientClientdata.address != null and clientClientdata.address != ''">/*地址*/
+      AND `client_clientdata`.address like CONCAT("%",#{clientClientdata.address},"%")
+
+    </if>
+    <if test="clientClientdata.remark != null and clientClientdata.remark != ''">/*备注*/
+      AND `client_clientdata`.remark like CONCAT("%",#{clientClientdata.remark},"%")
+
+    </if>
+    <if test="clientClientdata.borndate != null and clientClientdata.borndate != ''"> /*客户生日*/
+      AND `client_clientdata`.`bornDate`
+      BETWEEN SUBSTRING_INDEX(#{clientClientdata.borndate},' - ', 1) AND SUBSTRING_INDEX(#{clientClientdata.borndate},' - ', -1)
+    </if>
+    <if test="clientClientdata.banknumber != null and clientClientdata.banknumber !=''">/*银行卡号*/
+      AND `client_clientdata`.banknumber like CONCAT("%",#{clientClientdata.banknumber},"%")
+
+    </if>
+    <if test="clientClientdata.counselorname != null and clientClientdata.counselorname != ''" >/*顾问姓名*/
+      AND `client_clientdata`.counselorname like CONCAT("%",#{clientClientdata.counselorname},"%")
+
+    </if>
+    <if test="clientClientdata.province != null and clientClientdata.province != ''">/*省*/
+      AND `client_clientdata`.province like CONCAT("%",#{clientClientdata.province},"%")
+
+    </if>
+    <if test="clientClientdata.city != null and clientClientdata.city !=''">/*市*/
+      AND `client_clientdata`.city like CONCAT("%",#{clientClientdata.city},"%")
+
+    </if>
+    <if test="clientClientdata.county != null and clientClientdata.county !=''"> /*县*/
+      AND `client_clientdata`.county like CONCAT("%",#{clientClientdata.county},"%")
+
+    </if>
+    <if test="clientClientdata.advisorytelephone != null and clientClientdata.advisorytelephone != ''"> /*顾问电话*/
+      AND `client_clientdata`.advisorytelephone like CONCAT("%",#{clientClientdata.advisorytelephone},"%")
+
+    </if>
+    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.carNumber !=null and clientClientdata.clientClienttype.carNumber!=''">/*车牌号码*/
+      AND `client_carinfo`.carNumber LIKE CONCAT("%",#{clientClientdata.clientClienttype.carnumber},"%")
+    </if>
+    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.carbrandid !=null and clientClientdata.clientClienttype.carbrandid !=''">/*车辆品牌*/
+      AND `client_carinfo`.carbrandid LIKE CONCAT("%",#{clientClientdata.clientClienttype.carbrandid},"%")
+    </if>
+    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.carid !=null and clientClientdata.clientClienttype.carid !=''">/*车辆型号*/
+      AND `client_carinfo`.carid LIKE CONCAT("%",#{clientClientdata.clientClienttype.carid},"%")
+    </if>
+    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.carer !=null and clientClientdata.clientClienttype.carer != ''">/*驾驶员*/
+      AND `client_carinfo`.carer LIKE CONCAT("%",#{clientClientdata.clientClienttype.carer},"%")
+    </if>
+    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.carerphone !=null and clientClientdata.clientClienttype.carerphone !=''">/*驾驶员电话*/
+      AND `client_carinfo`.carerphone LIKE CONCAT("%",#{clientClientdata.clientClienttype.carerphone},"%")
+    </if>
+    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.borndate !=null and clientClientdata.clientClienttype.borndate !=''">/*驾驶员出生日期*/
+      AND `client_carinfo`.`borndate`
+      BETWEEN SUBSTRING_INDEX(#{clientClientdata.clientClienttype.`borndate`},' - ', 1) AND SUBSTRING_INDEX(#{clientClientdata.clientClienttype.`borndate`},' - ', -1)
+    </if>
+    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.affiliation !=null and clientClientdata.clientClienttype.affiliation !=''">/*车辆归属*/
+      AND `client_carinfo`.affiliation LIKE CONCAT("%",#{clientClientdata.clientClienttype.affiliation},"%")
+    </if>
+    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.drivingLicence !=null and clientClientdata.clientClienttype.drivingLicence !=''">/*驾驶证到期时间*/
+      AND `client_carinfo`.`drivingLicence`
+      BETWEEN SUBSTRING_INDEX(#{clientClientdata.clientClienttype.`drivingLicence`},' - ', 1) AND SUBSTRING_INDEX(#{clientClientdata.clientClienttype.`drivingLicence`},' - ', -1)
+    </if>
+    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.framenumber !=null and clientClientdata.clientClienttype.framenumber !=''">/*车架号*/
+      AND `client_carinfo`.framenumber LIKE CONCAT("%",#{clientClientdata.clientClienttype.framenumber},"%")
+    </if>
+    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.enginenumber !=null and clientClientdata.clientClienttype.enginenumber !=''">/*发动机号*/
+      AND `client_carinfo`.enginenumber LIKE CONCAT("%",#{clientClientdata.clientClienttype.enginenumber},"%")
+    </if>
+    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.yearprice !=null and clientClientdata.clientClienttype.yearprice !=''">
+      AND `client_carinfo`.yearprice LIKE CONCAT("%",#{clientClientdata.clientClienttype.yearprice},"%")
+    </if>
+  </select>
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -94,10 +209,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    number, name, linkMan, phone, address, bornDate, paymentDays, paymentSize, counselorId, 
-    counselorName, advisorytelephone, province, city, county, remark, taxpayerNumber, 
-    regosterPhone, bank, bankNumber, registerAddress, rest, typeId, date, password, default1, 
-    default2, default3, default4, default5
+    number, name, linkMan, phone, address, bornDate, paymentDays, paymentSize, integral, 
+    balance, counselorId, counselorName, advisorytelephone, province, city, county, remark, 
+    taxpayerNumber, regosterPhone, bank, bankNumber, registerAddress, rest, typeId, date, 
+    password, default1, default2, default3, default4, default5
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ClientClientdataExample" >
     select
@@ -132,26 +247,28 @@
   <insert id="insert" parameterType="com.accp.domain.ClientClientdata" >
     insert into client_clientdata (number, name, linkMan, 
       phone, address, bornDate, 
-      paymentDays, paymentSize, counselorId, 
-      counselorName, advisorytelephone, province, 
-      city, county, remark, 
-      taxpayerNumber, regosterPhone, bank, 
-      bankNumber, registerAddress, rest, 
-      typeId, date, password, 
-      default1, default2, default3, 
-      default4, default5)
+      paymentDays, paymentSize, integral, 
+      balance, counselorId, counselorName, 
+      advisorytelephone, province, city, 
+      county, remark, taxpayerNumber, 
+      regosterPhone, bank, bankNumber, 
+      registerAddress, rest, typeId, 
+      date, password, default1, 
+      default2, default3, default4, 
+      default5)
     values (#{number,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{borndate,jdbcType=TIMESTAMP}, 
-      #{paymentdays,jdbcType=INTEGER}, #{paymentsize,jdbcType=INTEGER}, #{counselorid,jdbcType=INTEGER}, 
-      #{counselorname,jdbcType=VARCHAR}, #{advisorytelephone,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
-      #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{taxpayernumber,jdbcType=VARCHAR}, #{regosterphone,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, 
-      #{banknumber,jdbcType=VARCHAR}, #{registeraddress,jdbcType=VARCHAR}, #{rest,jdbcType=VARCHAR}, 
-      #{typeid,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, #{password,jdbcType=VARCHAR}, 
-      #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}, #{default3,jdbcType=VARCHAR}, 
-      #{default4,jdbcType=VARCHAR}, #{default5,jdbcType=VARCHAR})
+      #{paymentdays,jdbcType=INTEGER}, #{paymentsize,jdbcType=DECIMAL}, #{integral,jdbcType=INTEGER}, 
+      #{balance,jdbcType=DECIMAL}, #{counselorid,jdbcType=INTEGER}, #{counselorname,jdbcType=VARCHAR}, 
+      #{advisorytelephone,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{county,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{taxpayernumber,jdbcType=VARCHAR}, 
+      #{regosterphone,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, #{banknumber,jdbcType=VARCHAR}, 
+      #{registeraddress,jdbcType=VARCHAR}, #{rest,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}, 
+      #{date,jdbcType=TIMESTAMP}, #{password,jdbcType=VARCHAR}, #{default1,jdbcType=VARCHAR}, 
+      #{default2,jdbcType=VARCHAR}, #{default3,jdbcType=VARCHAR}, #{default4,jdbcType=VARCHAR}, 
+      #{default5,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.accp.domain.ClientClientdata" >
+  <insert id="insertSelective" parameterType="com.accp.domain.ClientClientdata" useGeneratedKeys="true" keyProperty="number" >
     insert into client_clientdata
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="number != null" >
@@ -177,6 +294,12 @@
       </if>
       <if test="paymentsize != null" >
         paymentSize,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="balance != null" >
+        balance,
       </if>
       <if test="counselorid != null" >
         counselorId,
@@ -265,7 +388,13 @@
         #{paymentdays,jdbcType=INTEGER},
       </if>
       <if test="paymentsize != null" >
-        #{paymentsize,jdbcType=INTEGER},
+        #{paymentsize,jdbcType=DECIMAL},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
       </if>
       <if test="counselorid != null" >
         #{counselorid,jdbcType=INTEGER},
@@ -363,7 +492,13 @@
         paymentDays = #{record.paymentdays,jdbcType=INTEGER},
       </if>
       <if test="record.paymentsize != null" >
-        paymentSize = #{record.paymentsize,jdbcType=INTEGER},
+        paymentSize = #{record.paymentsize,jdbcType=DECIMAL},
+      </if>
+      <if test="record.integral != null" >
+        integral = #{record.integral,jdbcType=INTEGER},
+      </if>
+      <if test="record.balance != null" >
+        balance = #{record.balance,jdbcType=DECIMAL},
       </if>
       <if test="record.counselorid != null" >
         counselorId = #{record.counselorid,jdbcType=INTEGER},
@@ -442,7 +577,9 @@
       address = #{record.address,jdbcType=VARCHAR},
       bornDate = #{record.borndate,jdbcType=TIMESTAMP},
       paymentDays = #{record.paymentdays,jdbcType=INTEGER},
-      paymentSize = #{record.paymentsize,jdbcType=INTEGER},
+      paymentSize = #{record.paymentsize,jdbcType=DECIMAL},
+      integral = #{record.integral,jdbcType=INTEGER},
+      balance = #{record.balance,jdbcType=DECIMAL},
       counselorId = #{record.counselorid,jdbcType=INTEGER},
       counselorName = #{record.counselorname,jdbcType=VARCHAR},
       advisorytelephone = #{record.advisorytelephone,jdbcType=VARCHAR},
@@ -490,7 +627,13 @@
         paymentDays = #{paymentdays,jdbcType=INTEGER},
       </if>
       <if test="paymentsize != null" >
-        paymentSize = #{paymentsize,jdbcType=INTEGER},
+        paymentSize = #{paymentsize,jdbcType=DECIMAL},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
       </if>
       <if test="counselorid != null" >
         counselorId = #{counselorid,jdbcType=INTEGER},
@@ -566,7 +709,9 @@
       address = #{address,jdbcType=VARCHAR},
       bornDate = #{borndate,jdbcType=TIMESTAMP},
       paymentDays = #{paymentdays,jdbcType=INTEGER},
-      paymentSize = #{paymentsize,jdbcType=INTEGER},
+      paymentSize = #{paymentsize,jdbcType=DECIMAL},
+      integral = #{integral,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=DECIMAL},
       counselorId = #{counselorid,jdbcType=INTEGER},
       counselorName = #{counselorname,jdbcType=VARCHAR},
       advisorytelephone = #{advisorytelephone,jdbcType=VARCHAR},

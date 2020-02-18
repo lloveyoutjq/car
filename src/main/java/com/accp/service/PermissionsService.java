@@ -1,7 +1,5 @@
 package com.accp.service;
 
-import com.accp.domain.SystemPermissions;
-import com.accp.mapper.SystemPermissionsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,16 +1,11 @@
 package com.accp.service.service;
 
-import com.accp.domain.ClientClientdata;
-import com.accp.domain.ClientClienttype;
-import com.accp.mapper.ClientClientdataMapper;
-import com.accp.mapper.ClientClienttypeMapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 

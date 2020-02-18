@@ -1,10 +1,5 @@
 package com.accp.service.personnel;
 
-import com.accp.domain.PersonnelArtisanlevel;
-import com.accp.domain.PersonnelLegworkcat;
-import com.accp.mapper.PersonnelArtisanlevelMapper;
-import com.accp.mapper.PersonnelLegworkcatMapper;
-import com.accp.mapper.PersonnelStaffMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

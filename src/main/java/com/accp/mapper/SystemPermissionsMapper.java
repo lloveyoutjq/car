@@ -1,7 +1,5 @@
 package com.accp.mapper;
 
-import com.accp.domain.SystemPermissions;
-import com.accp.domain.SystemPermissionsExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,7 +17,6 @@ public interface SystemPermissionsMapper {
     List<SystemPermissions> selectByExample(SystemPermissionsExample example);
 
     SystemPermissions selectByPrimaryKey(Integer id);
-
 
     List<SystemPermissions> selectUserMenuAll(Integer type, Integer uid);
 

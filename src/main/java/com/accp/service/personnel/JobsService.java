@@ -1,7 +1,5 @@
 package com.accp.service.personnel;
 
-import com.accp.domain.PersonnelPost;
-import com.accp.mapper.PersonnelPostMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

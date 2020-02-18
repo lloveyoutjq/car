@@ -1,6 +1,5 @@
 package com.accp.controller;
 
-import com.accp.domain.MaintainRescue;
 import com.accp.service.completed.CompletedService;
 import com.accp.service.front.settlementService;
 import com.accp.service.repair.RepairService;

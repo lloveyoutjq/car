@@ -100,7 +100,7 @@
     insert into system_roles (id, name)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.accp.domain.SystemRoles" >
+  <insert id="insertSelective" parameterType="com.accp.domain.SystemRoles" keyProperty="id" useGeneratedKeys="true">
     insert into system_roles
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

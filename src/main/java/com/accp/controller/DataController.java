@@ -1,14 +1,11 @@
 package com.accp.controller;
 
 import com.accp.domain.*;
-import com.accp.mapper.DataItemtypeMapper;
 import com.accp.service.data.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
-import org.apache.catalina.Engine;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;

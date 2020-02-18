@@ -1,17 +1,11 @@
 package com.accp.controller;
 
-import com.accp.domain.MaintainMaintenanceRegistration;
-import com.accp.domain.SystemPermissions;
-import com.accp.domain.SystemRoles;
-import com.accp.domain.SystemRolesPerms;
 import com.accp.entity.User;
 import com.accp.service.system.ModuleManagementService;
 import com.accp.service.system.PermissionsControlService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
