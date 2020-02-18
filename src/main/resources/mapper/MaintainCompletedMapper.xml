@@ -19,7 +19,6 @@
   <resultMap id="BaseResultMapPlus" type="com.accp.domain.MaintainCompleted" extends="BaseResultMap">
     <association property="dataMaintenanceItems" javaType="com.accp.domain.DataMaintenanceItems">
       <id column="dmiid" property="id"/>
-      <result column="dmirescuerepairid" property="rescuerepairid"/>
     </association>
     <association property="maintainRescue" javaType="com.accp.domain.MaintainRescue">
       <id column="mrsnumber" property="number"/>
@@ -47,18 +46,25 @@
       <id column="psid" property="id"/>
       <result column="psstaffname" property="staffname"/>
     </association>
+    <association property="dataRepairItems" javaType="com.accp.domain.DataRepairItems">
+      <id column="driid" property="id"/>
+      <result column="dmiid" property="itemId"/>
+      <result column="drirescuerepairid" property="rescuerepairid"/>
+    </association>
   </resultMap>
   <select id="completionInspection" resultMap="BaseResultMapPlus">
     SELECT mc.`id` ,mrs.`number` as mrsnumber ,di.`name` as diname , mrs.`workTeam` as mrsworkteam,ccd.`name` as ccdname ,
     cc.`carNumber` as cccarnumber, da.`carTypeName` as dacartypename ,cc.`frameNumber` as ccframenumber ,mrs.`pickDate` as mrspickdate,
     mc.`predictTime`,mc.`nowTime`,mc.`reason`,mc.`reworkCount`,mc.`reasonforRework`,ps.`staffName` as psstaffname ,mc.`price`,
-    dmi.`id` as dmiid , di.`id` as diid , cc.`id` as ccid , ccd.`number` as ccdnumber ,dmi.`rescueRepairId` as dmirescuerepairid
+    dmi.`id` as dmiid , di.`id` as diid , cc.`id` as ccid , ccd.`number` as ccdnumber ,dri.`rescueRepairId` as drirescuerepairid ,dri.`id` as driid
     da.`id` as daid , ps.`id` as psid ,mc.`eligibility`
     FROM `maintain_completed` AS mc
     STRAIGHT_JOIN `data_maintenance_items` AS dmi
     ON mc.`maintenanceId` = dmi.`id`
+    STRAIGHT_JOIN `data_repair_items` AS dri
+    ON dmi.`id` = dri.`itemId`
     STRAIGHT_JOIN `maintain_rescue` AS mrs
-    ON dmi.`rescueRepairId` = mr.`number`
+    ON dri.`rescueRepairId` = mr.`number`
     STRAIGHT_JOIN `data_itemtype` AS di
     ON dmi.`typeId` = di.`id`
     STRAIGHT_JOIN `client_carinfo` AS cc

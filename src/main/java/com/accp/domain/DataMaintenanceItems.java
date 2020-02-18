@@ -33,6 +33,8 @@ public class DataMaintenanceItems {
 
     private  PersonnelStaff personnelStaff;
 
+    private DataRepairItems dataRepairItems;
+
     public Integer getId() {
         return id;
     }
@@ -159,5 +161,13 @@ public class DataMaintenanceItems {
 
     public void setPersonnelStaff(PersonnelStaff personnelStaff) {
         this.personnelStaff = personnelStaff;
+    }
+
+    public DataRepairItems getDataRepairItems() {
+        return dataRepairItems;
+    }
+
+    public void setDataRepairItems(DataRepairItems dataRepairItems) {
+        this.dataRepairItems = dataRepairItems;
     }
 }
