@@ -15,6 +15,122 @@
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+
+  <resultMap id="BaseResultMapPlus" type="com.accp.domain.DataMaintenanceItems" extends="BaseResultMap">
+    <association property="maintainRepair" javaType="com.accp.domain.MaintainRepair">
+      <id column="mrnumber" property="number"/>
+      <result column="mrpickdate" property="pickdate"/>
+      <result column="mrtype" property="type"/>
+      <result column="mrtname" property="tname"/>
+      <result column="mrcompletedate" property="completedate"/>
+      <result column="mrsettledate" property="settledate"/>
+    </association>
+    <association property="clientCarinfo" javaType="com.accp.domain.ClientCarinfo">
+      <id column="ccaid" property="id"/>
+      <result column="ccacarnumber" property="carnumber"/>
+    </association>
+    <association property="dataRepairItems" javaType="com.accp.domain.DataRepairItems">
+      <id column="driid" property="id"/>
+      <result column="driitemid" property="itemid"/>
+      <result column="mrnumber" property="rescuerepairid"/>
+      <result column="drifault" property="fault"/>
+      <result column="drifaultresult" property="faultresult"/>
+      <result column="driworkordernumber" property="workordernumber"/>
+    </association>
+  </resultMap>
+  <resultMap id="BaseResultMapPlus2" type="com.accp.domain.DataMaintenanceItems" extends="BaseResultMap">
+    <association property="maintainRepair" javaType="com.accp.domain.MaintainRepair">
+      <id column="mrnumber" property="number"/>
+    </association>
+    <association property="dataRepairItems" javaType="com.accp.domain.DataRepairItems">
+      <id column="driid" property="id"/>
+      <result column="driitemid" property="itemid"/>
+      <result column="drirescuerepairid" property="rescuerepairid"/>
+      <result column="drinum" property="num"/>
+      <result column="dribeforeThePreferential" property="beforeThePreferential"/>
+      <result column="driafterThePreferential" property="afterThePreferential"/>
+    </association>
+  </resultMap>
+  <resultMap id="BaseResultMapPlus3" type="com.accp.domain.DataMaintenanceItems" extends="BaseResultMap">
+    <association property="maintainRepair" javaType="com.accp.domain.MaintainRepair">
+      <id column="mrnumber" property="number"/>
+    </association>
+    <association property="personnelArtisanclass" javaType="com.accp.domain.PersonnelArtisanclass">
+      <id column="paartisanClassId" property="artisanclassid"/>
+      <result column="paartisanClassName" property="artisanclassname"/>
+    </association>
+    <association property="personnelStaff" javaType="com.accp.domain.PersonnelStaff">
+      <id column="psid" property="id"/>
+      <result column="psstaffname" property="staffname"/>
+    </association>
+    <association property="dataRepairItems" javaType="com.accp.domain.DataRepairItems">
+      <id column="driid" property="id"/>
+      <result column="driitemid" property="itemid"/>
+      <result column="drirescuerepairid" property="rescuerepairid"/>
+      <result column="dristaffid" property="staffid"/>
+      <result column="dripriceclass" property="priceclass"/>
+      <result column="drinum" property="num"/>
+      <result column="dribeforeThePreferential" property="beforeThePreferential"/>
+      <result column="driafterThePreferential" property="afterThePreferential"/>
+      <result column="drifault" property="fault"/>
+      <result column="drifaultresult" property="faultresult"/>
+    </association>
+  </resultMap>
+  <select id="items" resultMap="BaseResultMapPlus">
+    SELECT mr.`number` as mrnumber ,mr.`pickDate` as mrpickdate ,mr.`type` as mrtype ,
+    mr.`tname` as mrtname ,mr.`completeDate` as mrcompletedate ,mr.`settleDate` as mrsettledate ,dri.`id` as driid ,
+    dmi.`id`  ,dmi.`itemsName` ,dmi.`normalPrice`,dmi.`memberPrice`,dmi.`vipPrice`, dri.`itemid` as driitemid ,
+    dri.`fault` as drifault ,dmi.`faultResult` as drifaultresult ,dri.`workOrderNumber` as driworkordernumber ,cca.`id` as ccaid ,cca.`carNumber` as ccacarnumber
+    FROM `data_maintenance_items` AS dmi
+    STRAIGHT_JOIN `data_repair_items` AS dri
+    ON dmi.`id` = dri.`itemId`
+    STRAIGHT_JOIN (
+    SELECT mrp.`number`,mrp.`carInfoId`,mrp.`type`,mrp.`pickDate`,mrp.`completeDate`,mrp.`settleDate`,'维修单' AS tname FROM `maintain_repair` AS mrp
+    UNION ALL
+    SELECT mrs.`number`,mrs.`carInfoId`,mrs.`type`,mrs.`pickDate`,mrs.`completeDate`,mrs.`settleDate`,'救援单' AS tname FROM `maintain_rescue` AS mrs
+    ) AS mr
+    ON dri.`rescueRepairId` = mr.`number`
+    STRAIGHT_JOIN `client_carinfo` AS cca
+    ON mr.`carInfoId` = cca.`id`
+    WHERE cca.`carNumber` = #{carNumber}
+  </select>
+  <select id="attached" resultMap="BaseResultMapPlus2">
+    SELECT dmi.`id`,dmi.`itemsName`,dri.`num` as drinum , dri.`itemId` as driteamid , dri.`rescueRepairId` as drirescuerepairid ,
+    dri.`before_the_preferential` as dribeforeThePreferential  ,dri.`after_the_preferential` as driafterThePreferential  ,mr.`number` as mrnumber , dri.`id` as driid
+    FROM `data_maintenance_items` AS dmi
+    STRAIGHT_JOIN `data_repair_items` AS dri
+    ON dmi.`id` = dri.`itemId`
+    STRAIGHT_JOIN (
+    SELECT mrp.`number` FROM `maintain_repair` AS mrp
+    UNION ALL
+    SELECT mrs.`number` FROM `maintain_rescue` AS mrs
+    ) AS mr
+    ON dri.`rescueRepairId` = mr.`number`
+    WHERE mr.`number` = #{number}
+  </select>
+  <select id="itemsSels" resultMap="BaseResultMapPlus3">
+    SELECT dmi.`id`,dmi.`itemsName`,dri.`priceClass` as dripriceclass ,dri.`num` as drinum ,
+    dri.`before_the_preferential` as dribeforeThePreferential ,dri.`after_the_preferential` as driafterThePreferential ,
+    dri.`fault` as drifault ,dri.`faultResult` as drifaultresult ,pa.`artisanClassName` as paartisanClassName ,
+    ps.`staffName` as psstaffname ,dri.`workOrderNumber`,dri.`preeOfChargeFor` ,mr.`number` as mrnumber ,
+    pa.`artisanClassId` as paartisanClassId , ps.`id` as psid ,dri.`id` as driid ,dri.`itemId` as driitemid ,dri.`rescueRepairId` as drirescuerepairid ,
+    dri.`teamId` as driteamid , dri.`staffId` as dristaffid
+    FROM `data_maintenance_items` AS dmi
+    STRAIGHT_JOIN `data_repair_items` AS dri
+    ON dmi.`id` = dri.`itemId`
+    STRAIGHT_JOIN (
+    SELECT mrp.`number` FROM `maintain_repair` AS mrp
+    UNION ALL
+    SELECT mrs.`number` FROM `maintain_rescue` AS mrs
+    ) AS mr
+    ON dri.`rescueRepairId` = mr.`number`
+    STRAIGHT_JOIN `personnel_artisanclass` AS pa
+    ON dri.`teamId` = pa.`artisanClassId`
+    STRAIGHT_JOIN `personnel_staff` AS ps
+    ON dri.`staffId` = ps.`id`
+    WHERE mr.`number` = #{number}
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

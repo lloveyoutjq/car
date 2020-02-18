@@ -1,6 +1,5 @@
 package com.accp.domain;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class ClientClientdata {
@@ -18,11 +17,7 @@ public class ClientClientdata {
 
     private Integer paymentdays;
 
-    private BigDecimal paymentsize;
-
-    private Integer integral;
-
-    private BigDecimal balance;
+    private Integer paymentsize;
 
     private Integer counselorid;
 
@@ -66,36 +61,15 @@ public class ClientClientdata {
 
     private String default5;
 
+    private ClientClienttype clientClienttype;
+
     public ClientClienttype getClientClienttype() {
         return clientClienttype;
-    }
-
-    public ClientCarinfo getClientCarinfo() {
-        return clientCarinfo;
-    }
-
-    public void setClientCarinfo(ClientCarinfo clientCarinfo) {
-        this.clientCarinfo = clientCarinfo;
-    }
-
-    public String getSearchData() {
-        return searchData;
-    }
-
-    public void setSearchData(String searchData) {
-        this.searchData = searchData;
     }
 
     public void setClientClienttype(ClientClienttype clientClienttype) {
         this.clientClienttype = clientClienttype;
     }
-
-    private ClientClienttype clientClienttype;
-
-    private ClientCarinfo clientCarinfo;
-
-    private String searchData;
-	
 
     public Integer getNumber() {
         return number;
@@ -153,28 +127,12 @@ public class ClientClientdata {
         this.paymentdays = paymentdays;
     }
 
-    public BigDecimal getPaymentsize() {
+    public Integer getPaymentsize() {
         return paymentsize;
     }
 
-    public void setPaymentsize(BigDecimal paymentsize) {
+    public void setPaymentsize(Integer paymentsize) {
         this.paymentsize = paymentsize;
-    }
-
-    public Integer getIntegral() {
-        return integral;
-    }
-
-    public void setIntegral(Integer integral) {
-        this.integral = integral;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
     }
 
     public Integer getCounselorid() {

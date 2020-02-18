@@ -1,4 +1,4 @@
-package com.accp.service.repair;
+package com.accp.service.maintenance;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

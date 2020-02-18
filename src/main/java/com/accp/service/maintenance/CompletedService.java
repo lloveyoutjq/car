@@ -1,4 +1,4 @@
-package com.accp.service.completed;
+package com.accp.service.maintenance;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -21,4 +21,13 @@ public class CompletedService {
         return  page.toPageInfo();
     }
 
+    //竣工检验
+    public MaintainCompleted selectByPrimaryKey(Integer id){
+        return maintainCompletedMapper.selectByPrimaryKey(id);
+    }
+
+    //修改竣工
+    public int updateComplete(MaintainCompleted completed){
+        return maintainCompletedMapper.updateByPrimaryKeySelective(completed);
+    }
 }

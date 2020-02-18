@@ -63,6 +63,12 @@ public class ClientCarinfo {
 
     private String default2;
 
+    private ClientClientdata clientClientdata;
+
+    private DataCarbrand dataCarbrand;
+
+    private DataEngineBrand dataEngineBrand;
+
     public Integer getId() {
         return id;
     }
@@ -293,5 +299,29 @@ public class ClientCarinfo {
 
     public void setDefault2(String default2) {
         this.default2 = default2;
+    }
+
+    public ClientClientdata getClientClientdata() {
+        return clientClientdata;
+    }
+
+    public void setClientClientdata(ClientClientdata clientClientdata) {
+        this.clientClientdata = clientClientdata;
+    }
+
+    public DataCarbrand getDataCarbrand() {
+        return dataCarbrand;
+    }
+
+    public void setDataCarbrand(DataCarbrand dataCarbrand) {
+        this.dataCarbrand = dataCarbrand;
+    }
+
+    public DataEngineBrand getDataEngineBrand() {
+        return dataEngineBrand;
+    }
+
+    public void setDataEngineBrand(DataEngineBrand dataEngineBrand) {
+        this.dataEngineBrand = dataEngineBrand;
     }
 }

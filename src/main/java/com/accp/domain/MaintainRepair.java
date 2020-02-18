@@ -1,6 +1,7 @@
 package com.accp.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class MaintainRepair {
     private String number;
@@ -23,7 +24,7 @@ public class MaintainRepair {
 
     private String company;
 
-    private Date before;
+    private Date beforedate;
 
     private Float price;
 
@@ -44,6 +45,16 @@ public class MaintainRepair {
     private String default1;
 
     private String default2;
+
+    private ClientCarinfo clientCarinfo;
+
+    private ClientClientdata clientClientdata;
+
+    private String tname;
+
+    private List<DataMaintenanceItems> dataMaintenanceItemsList;
+
+    private List<MaintainEwitem> maintainEwitemList;
 
     public String getNumber() {
         return number;
@@ -125,12 +136,12 @@ public class MaintainRepair {
         this.company = company;
     }
 
-    public Date getBefore() {
-        return before;
+    public Date getBeforedate() {
+        return beforedate;
     }
 
-    public void setBefore(Date before) {
-        this.before = before;
+    public void setBeforedate(Date before) {
+        this.beforedate = before;
     }
 
     public Float getPrice() {
@@ -211,5 +222,45 @@ public class MaintainRepair {
 
     public void setDefault2(String default2) {
         this.default2 = default2;
+    }
+
+    public ClientCarinfo getClientCarinfo() {
+        return clientCarinfo;
+    }
+
+    public void setClientCarinfo(ClientCarinfo clientCarinfo) {
+        this.clientCarinfo = clientCarinfo;
+    }
+
+    public ClientClientdata getClientClientdata() {
+        return clientClientdata;
+    }
+
+    public void setClientClientdata(ClientClientdata clientClientdata) {
+        this.clientClientdata = clientClientdata;
+    }
+
+    public String getTname() {
+        return tname;
+    }
+
+    public void setTname(String tname) {
+        this.tname = tname;
+    }
+
+    public List<DataMaintenanceItems> getDataMaintenanceItemsList() {
+        return dataMaintenanceItemsList;
+    }
+
+    public void setDataMaintenanceItemsList(List<DataMaintenanceItems> dataMaintenanceItemsList) {
+        this.dataMaintenanceItemsList = dataMaintenanceItemsList;
+    }
+
+    public List<MaintainEwitem> getMaintainEwitemList() {
+        return maintainEwitemList;
+    }
+
+    public void setMaintainEwitemList(List<MaintainEwitem> maintainEwitemList) {
+        this.maintainEwitemList = maintainEwitemList;
     }
 }

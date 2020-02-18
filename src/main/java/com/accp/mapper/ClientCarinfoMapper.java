@@ -7,6 +7,12 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface ClientCarinfoMapper {
+    ClientCarinfo rescueS(String carnumber);   //维修救援
+
+    ClientCarinfo repairS(String carnumber);   //维修接车
+
+    ClientCarinfo ownerInformation(String carNumber);
+
     int countByExample(ClientCarinfoExample example);
 
     int deleteByExample(ClientCarinfoExample example);
