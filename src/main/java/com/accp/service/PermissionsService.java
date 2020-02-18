@@ -1,5 +1,7 @@
 package com.accp.service;
 
+import com.accp.domain.SystemPermissions;
+import com.accp.mapper.SystemPermissionsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,7 +57,7 @@ public class PermissionsService {
      * @param parentPerms
      * @param list
      */
-    public void recursionPerm(SystemPermissions parentPerms,List<SystemPermissions> list){
+    public void recursionPerm(SystemPermissions parentPerms, List<SystemPermissions> list){
         for(SystemPermissions perm : list){
             if(perm.getParentid() == parentPerms.getId()){
 

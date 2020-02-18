@@ -1,5 +1,6 @@
 package com.accp.controller;
 
+import com.accp.domain.SystemPermissions;
 import com.accp.service.PermissionsService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

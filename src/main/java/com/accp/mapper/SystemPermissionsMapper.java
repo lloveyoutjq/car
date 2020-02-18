@@ -1,6 +1,9 @@
 package com.accp.mapper;
 
 import java.util.List;
+
+import com.accp.domain.SystemPermissions;
+import com.accp.domain.SystemPermissionsExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface SystemPermissionsMapper {

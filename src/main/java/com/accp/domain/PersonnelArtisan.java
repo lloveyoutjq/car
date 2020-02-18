@@ -51,6 +51,25 @@ public class PersonnelArtisan {
 
     private String default2;
 
+    private PersonnelArtisanlevel personnelArtisanlevel;
+    private PersonnelArtisanclass personnelArtisanclass;
+
+    public PersonnelArtisanlevel getPersonnelArtisanlevel() {
+        return personnelArtisanlevel;
+    }
+
+    public void setPersonnelArtisanlevel(PersonnelArtisanlevel personnelArtisanlevel) {
+        this.personnelArtisanlevel = personnelArtisanlevel;
+    }
+
+    public PersonnelArtisanclass getPersonnelArtisanclass() {
+        return personnelArtisanclass;
+    }
+
+    public void setPersonnelArtisanclass(PersonnelArtisanclass personnelArtisanclass) {
+        this.personnelArtisanclass = personnelArtisanclass;
+    }
+
     public Integer getArtisanid() {
         return artisanid;
     }

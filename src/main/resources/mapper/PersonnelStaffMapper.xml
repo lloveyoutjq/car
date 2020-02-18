@@ -57,7 +57,6 @@
   </resultMap>
 
 
-
   <!--通讯表-->
   <resultMap id="BaseResultMapTwo" type="com.accp.domain.PersonnelStaff" extends="BaseResultMap">
     <association property="personnelAddressbook" javaType="com.accp.domain.PersonnelAddressbook">
@@ -142,16 +141,172 @@
     </if>
 
   </select>
-  <select id="institutionsSelectTwo" resultMap="BaseResultMapSix">
+  <select id="institutionsSelectId" resultMap="BaseResultMapSix">
     SELECT `personnel_staff`.*,`personnel_department`.* FROM `personnel_staff`
     INNER JOIN `personnel_department` ON `personnel_staff`.`did`=`personnel_department`.`id`
     INNER JOIN `personnel_post` ON `personnel_staff`.`departmentId`=`personnel_post`.`postId`
     where 1=1
-    <if test="personnelStaff.id != null and personnelStaff.id !=''">/*工号*/
+    <if test="personnelStaff.id != null and personnelStaff.id !=''">/*员工编号*/
       and `personnel_staff`.id = #{personnelStaff.id}
     </if>
-    <if test="personnelStaff.staffname != null personnelStaff.staffname != ''">/*姓名*/
+    <if test="personnelStaff.staffname != null and personnelStaff.staffname != ''">/*员工姓名*/
       AND `personnel_staff`.staffname like CONCAT("%",#{personnelStaff.staffname},"%")
+    </if>
+  </select>
+  <select id="institutionsSelectOpen" resultMap="BaseResultMapSix">
+    SELECT `personnel_staff`.*,`personnel_department`.* FROM `personnel_staff`
+    INNER JOIN `personnel_department` ON `personnel_staff`.`did`=`personnel_department`.`id`
+    INNER JOIN `personnel_post` ON `personnel_staff`.`departmentId`=`personnel_post`.`postId`
+    where 1=1
+    <if test="personnelStaff.id != null and personnelStaff.id !=''">/*员工编号*/
+      and `personnel_staff`.id = #{personnelStaff.id}
+    </if>
+    <if test="personnelStaff.staffname != null and personnelStaff.staffname != ''">/*员工姓名*/
+      AND `personnel_staff`.staffname like CONCAT("%",#{personnelStaff.staffname},"%")
+    </if>
+    <if test="personnelStaff.sex != null and personnelStaff.sex !=''">/*性别*/
+      and `personnel_staff`.sex like CONCAT("%",#{personnelStaff.sex},"%")
+    </if>
+    <if test="personnelStaff.did != null and personnelStaff.did != ''">/*部门id*/
+      AND `personnel_staff`.did = #{personnelStaff.did}
+    </if>
+    <if test="personnelStaff.staffaccount != null and personnelStaff.staffaccount !=''">/*员工账户*/
+      and `personnel_staff`.staffaccount like CONCAT("%",#{personnelStaff.staffaccount},"%")
+    </if>
+
+
+
+
+    <if test="personnelStaff.password != null and personnelStaff.password != ''">/*员工密码*/
+      AND `personnel_staff`.password like CONCAT("%",#{personnelStaff.password},"%")
+    </if>
+    <if test="personnelStaff.departmentid != null and personnelStaff.departmentid !=''">/*员工岗位id*/
+      and `personnel_staff`.departmentid like CONCAT("%",#{personnelStaff.departmentid},"%")
+    </if>
+    <if test="personnelStaff.physicalcondition != null and personnelStaff.physicalcondition != ''">/*身体状况*/
+      AND `personnel_staff`.physicalcondition like CONCAT("%",#{personnelStaff.physicalcondition},"%")
+    </if>
+    <if test="personnelStaff.height != null and personnelStaff.height !=''">/*身高*/
+      and `personnel_staff`.height like CONCAT("%",#{personnelStaff.height},"%")
+    </if>
+    <if test="personnelStaff.nativeplace != null and personnelStaff.nativeplace != ''">/*籍贯*/
+      AND `personnel_staff`.nativeplace like CONCAT("%",#{personnelStaff.nativeplace},"%")
+    </if>
+    <if test="personnelStaff.nation != null and personnelStaff.nation !=''">/*民族*/
+      and `personnel_staff`.nation like CONCAT("%",#{personnelStaff.nation},"%")
+    </if>
+    <if test="personnelStaff.maritalstatus != null and personnelStaff.maritalstatus != ''">/*婚姻状态*/
+      AND `personnel_staff`.maritalstatus like CONCAT("%",#{personnelStaff.maritalstatus},"%")
+    </if>
+    <if test="personnelStaff.educationbackground != null and personnelStaff.educationbackground !=''">/*学历*/
+      and `personnel_staff`.educationbackground like CONCAT("%",#{personnelStaff.educationbackground},"%")
+    </if>
+    <if test="personnelStaff.school != null and personnelStaff.school != ''">/*毕业学校*/
+      AND `personnel_staff`.school like CONCAT("%",#{personnelStaff.school},"%")
+    </if>
+    <if test="personnelStaff.major != null and personnelStaff.major !=''">/*专业*/
+      and `personnel_staff`.major like CONCAT("%",#{personnelStaff.major},"%")
+    </if>
+    <if test="personnelStaff.professionalqualification != null and personnelStaff.professionalqualification != ''">/*专业资格*/
+      AND `personnel_staff`.professionalqualification like CONCAT("%",#{personnelStaff.professionalqualification},"%")
+    </if>
+    <if test="personnelStaff.property != null and personnelStaff.property !=''">/*属性*/
+      and `personnel_staff`.property like CONCAT("%",#{personnelStaff.property},"%")
+    </if>
+    <if test="personnelStaff.degree != null and personnelStaff.degree != ''">/*学位*/
+      AND `personnel_staff`.degree like CONCAT("%",#{personnelStaff.degree},"%")
+    </if>
+    <if test="personnelStaff.authorizedstrength != null and personnelStaff.authorizedstrength !=''">/*编制*/
+      and `personnel_staff`.authorizedstrength like CONCAT("%",#{personnelStaff.authorizedstrength},"%")
+    </if>
+    <if test="personnelStaff.idcardno != null and personnelStaff.idcardno != ''">/*身份证号*/
+      AND `personnel_staff`.idcardno like CONCAT("%",#{personnelStaff.idcardno},"%")
+    </if>
+    <if test="personnelStaff.residence != null and personnelStaff.residence !=''">/*户口地址*/
+      and `personnel_staff`.residence like CONCAT("%",#{personnelStaff.residence},"%")
+    </if>
+    <if test="personnelStaff.presentaddress != null and personnelStaff.presentaddress != ''">/*现居地址*/
+      AND `personnel_staff`.presentaddress like CONCAT("%",#{personnelStaff.presentaddress},"%")
+    </if>
+    <if test="personnelStaff.contactnumber != null and personnelStaff.contactnumber != ''">/*联系电话*/
+      AND `personnel_staff`.contactnumber like CONCAT("%",#{personnelStaff.contactnumber},"%")
+    </if>
+    <if test="personnelStaff.phone != null and personnelStaff.phone !=''">/*手机*/
+      and `personnel_staff`.phone = like CONCAT("%",#{personnelStaff.phone},"%")
+    </if>
+    <if test="personnelStaff.email != null and personnelStaff.email != ''">/*邮箱*/
+      AND `personnel_staff`.email like CONCAT("%",#{personnelStaff.email},"%")
+    </if>
+    <if test="personnelStaff.authcode != null and personnelStaff.authcode !=''">/*验证码*/
+      and `personnel_staff`.authcode like CONCAT("%",#{personnelStaff.authcode},"%")
+    </if>
+    <if test="personnelStaff.pastcodedate != null and personnelStaff.pastcodedate != ''">/*验证码过期时间*/
+      AND `personnel_staff`.pastcodedate like CONCAT("%",#{personnelStaff.pastcodedate},"%")
+    </if>
+    <if test="personnelStaff.depositbank != null and personnelStaff.depositbank != ''">/*开户银行*/
+    AND `personnel_staff`.depositbank like CONCAT("%",#{personnelStaff.depositbank},"%")
+  </if>
+    <if test="personnelStaff.banaccount != null and personnelStaff.banaccount != ''">/*银行账户*/
+      AND `personnel_staff`.banaccount like CONCAT("%",#{personnelStaff.banaccount},"%")
+    </if>
+    <if test="personnelStaff.emergencycontact != null and personnelStaff.emergencycontact !=''">/*紧急联系人*/
+      and `personnel_staff`.emergencycontact like CONCAT("%",#{personnelStaff.emergencycontact},"%")
+    </if>
+    <if test="personnelStaff.emergencyphone != null and personnelStaff.emergencyphone != ''">/*紧急联系人电话*/
+      AND `personnel_staff`.emergencyphone like CONCAT("%",#{personnelStaff.emergencyphone},"%")
+    </if>
+    <if test="personnelStaff.dateonboard != null and personnelStaff.dateonboard !=''">/*入职日期*/
+      and `personnel_staff`.dateonboard = like CONCAT("%",#{personnelStaff.dateonboard},"%")
+    </if>
+    <if test="personnelStaff.thetrialdue != null and personnelStaff.thetrialdue != ''">/*试用到期时间*/
+      AND `personnel_staff`.thetrialdue like CONCAT("%",#{personnelStaff.thetrialdue},"%")
+    </if>
+    <if test="personnelStaff.birthdaydate != null and personnelStaff.birthdaydate != ''">/*出生日期*/
+    AND `personnel_staff`.birthdaydate like CONCAT("%",#{personnelStaff.birthdaydate},"%")
+  </if>
+    <if test="personnelStaff.contractstart != null and personnelStaff.contractstart !=''">/*合同开始时间*/
+      and `personnel_staff`.contractstart like CONCAT("%",#{personnelStaff.contractstart},"%")
+    </if>
+    <if test="personnelStaff.agreementends != null and personnelStaff.agreementends != ''">/*合同到期时间*/
+      AND `personnel_staff`.agreementends like CONCAT("%",#{personnelStaff.agreementends},"%")
+    </if>
+    <if test="personnelStaff.cardnumber != null and personnelStaff.cardnumber !=''">/*卡自编号*/
+      and `personnel_staff`.cardnumber like CONCAT("%",#{personnelStaff.cardnumber},"%")
+    </if>
+    <if test="personnelStaff.internalcardno != null and personnelStaff.internalcardno != ''">/*卡内部号*/
+      AND `personnel_staff`.internalcardno like CONCAT("%",#{personnelStaff.internalcardno},"%")
+    </if>
+    <if test="personnelStaff.referrer != null and personnelStaff.referrer != ''">/*推荐人*/
+    AND `personnel_staff`.referrer like CONCAT("%",#{personnelStaff.referrer},"%")
+  </if>
+    <if test="personnelStaff.wholeorderdiscountright != null and personnelStaff.wholeorderdiscountright !=''">/*整单折扣权*/
+      and `personnel_staff`.wholeorderdiscountright like CONCAT("%",#{personnelStaff.wholeorderdiscountright},"%")
+    </if>
+    <if test="personnelStaff.timediscountright != null and personnelStaff.timediscountright != ''">/*工时折扣权*/
+      AND `personnel_staff`.timediscountright like CONCAT("%",#{personnelStaff.timediscountright},"%")
+    </if>
+    <if test="personnelStaff.righttodiscount != null and personnelStaff.righttodiscount !=''">/*商品折扣权*/
+      and `personnel_staff`.righttodiscount like CONCAT("%",#{personnelStaff.righttodiscount},"%")
+    </if>
+    <if test="personnelStaff.rightofrelief != null and personnelStaff.rightofrelief != ''">/*减免*/
+      AND `personnel_staff`.rightofrelief like CONCAT("%",#{personnelStaff.rightofrelief},"%")
+    </if><if test="personnelStaff.jobresume != null and personnelStaff.jobresume != ''">/*工作简历*/
+    AND `personnel_staff`.jobresume like CONCAT("%",#{personnelStaff.jobresume},"%")
+  </if>
+    <if test="personnelStaff.educationexperience != null and personnelStaff.educationexperience !=''">/*教育经历*/
+      and `personnel_staff`.educationexperience like CONCAT("%",#{personnelStaff.educationexperience},"%")
+    </if>
+    <if test="personnelStaff.memberoffamily != null and personnelStaff.memberoffamily != ''">/*家庭成员*/
+      AND `personnel_staff`.memberoffamily like CONCAT("%",#{personnelStaff.memberoffamily},"%")
+    </if>
+    <if test="personnelStaff.disciplinaryrecords != null and personnelStaff.disciplinaryrecords !=''">/*奖惩记录*/
+      and `personnel_staff`.disciplinaryrecords like CONCAT("%",#{personnelStaff.disciplinaryrecords},"%")
+    </if>
+    <if test="personnelStaff.employmentadvice != null and personnelStaff.employmentadvice != ''">/*聘用意见*/
+      AND `personnel_staff`.employmentadvice like CONCAT("%",#{personnelStaff.employmentadvice},"%")
+    </if>
+    <if test="personnelStaff.picture != null and personnelStaff.picture != ''">/*员工相片*/
+      AND `personnel_staff`.picture like CONCAT("%",#{personnelStaff.picture},"%")
     </if>
   </select>
   <!--通讯-->
@@ -178,12 +333,16 @@ SELECT `personnel_dimission`.*,`personnel_staff`.*,`personnel_department`.*,`per
 INNER JOIN `personnel_dimission` ON `personnel_staff`.`id`=`personnel_dimission`.`staffId`
 INNER JOIN `personnel_department` ON `personnel_dimission`.`departmentId`=`personnel_department`.`id`
 INNER JOIN `personnel_post` ON `personnel_staff`.`departmentId`=`personnel_post`.`postId`
+WHERE `personnel_staff`.`default2`=2
   </select>
   <select id="departureSelectId" resultMap="BaseResultMapThree">
 SELECT `personnel_dimission`.*,`personnel_staff`.* FROM `personnel_staff`
 INNER JOIN `personnel_dimission` ON `personnel_staff`.`id`=`personnel_dimission`.`staffId`
 WHERE `personnel_staff`.`id`=#{id} OR `personnel_staff`.`staffName`=#{staffname}
   </select>
+
+
+
 
   <sql id="Example_Where_Clause" >
     <where >

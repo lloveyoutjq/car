@@ -1,5 +1,7 @@
 package com.accp.mapper;
 
+import com.accp.domain.ClientCarinfo;
+import com.accp.domain.ClientCarinfoExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

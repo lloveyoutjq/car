@@ -2,11 +2,17 @@ package com.accp.mapper;
 
 import com.accp.domain.PersonnelArtisan;
 import com.accp.domain.PersonnelArtisanExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
 public interface PersonnelArtisanMapper {
+    /*班组技工*/
+    List<PersonnelArtisan> teamSelect();
+    List<PersonnelArtisan> teamSelectId(@Param("personnelArtisan") PersonnelArtisan personnelArtisan);
+
+
+
+
     int countByExample(PersonnelArtisanExample example);
 
     int deleteByExample(PersonnelArtisanExample example);

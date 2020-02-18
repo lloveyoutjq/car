@@ -1,5 +1,8 @@
 package com.accp.entity;
 
+import com.accp.domain.ClientCarinfo;
+import com.accp.domain.ClientClientdata;
+
 public class AddClientCar {
     private ClientClientdata  clientClientdata;
     private ClientCarinfo clientCarinfo;

@@ -108,7 +108,9 @@ public class PersonnelStaff {
 
     private String default2;
 
-    private List<Integer> ids;
+    private PersonnelAddressbook personnelAddressbook;
+
+    private PersonnelDimission personnelDimission;
 
     private PersonnelDepartment personnelDepartment;
 
@@ -120,6 +122,22 @@ public class PersonnelStaff {
 
     public void setPersonnelPost(PersonnelPost personnelPost) {
         this.personnelPost = personnelPost;
+    }
+
+    public PersonnelAddressbook getPersonnelAddressbook() {
+        return personnelAddressbook;
+    }
+
+    public void setPersonnelAddressbook(PersonnelAddressbook personnelAddressbook) {
+        this.personnelAddressbook = personnelAddressbook;
+    }
+
+    public PersonnelDimission getPersonnelDimission() {
+        return personnelDimission;
+    }
+
+    public void setPersonnelDimission(PersonnelDimission personnelDimission) {
+        this.personnelDimission = personnelDimission;
     }
 
     public PersonnelDepartment getPersonnelDepartment() {
@@ -137,6 +155,8 @@ public class PersonnelStaff {
     public void setIds(List<Integer> ids) {
         this.ids = ids;
     }
+
+    private List<Integer> ids;
 
     public Integer getId() {
         return id;

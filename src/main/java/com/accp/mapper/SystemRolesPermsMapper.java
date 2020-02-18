@@ -1,6 +1,9 @@
 package com.accp.mapper;
 
 import java.util.List;
+
+import com.accp.domain.SystemRolesPerms;
+import com.accp.domain.SystemRolesPermsExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface SystemRolesPermsMapper {

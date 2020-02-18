@@ -18,19 +18,9 @@ public class PersonnelDepartment {
 
     private List<PersonnelDepartment> children = new ArrayList<>();
 
-    private String name;
-
     private String title;
 
     private Integer ids;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public List<PersonnelDepartment> getChildren() {
         return children;

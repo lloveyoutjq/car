@@ -1,5 +1,11 @@
 package com.accp.service.system;
 
+import com.accp.domain.SystemPermissions;
+import com.accp.domain.SystemPermissionsExample;
+import com.accp.domain.SystemRoles;
+import com.accp.domain.SystemRolesPerms;
+import com.accp.mapper.SystemPermissionsMapper;
+import com.accp.mapper.SystemRolesPermsMapper;
 import com.accp.service.PermissionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
