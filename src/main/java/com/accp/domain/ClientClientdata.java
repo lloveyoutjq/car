@@ -14,7 +14,7 @@ public class ClientClientdata {
 
     private String address;
 
-    private String borndate;
+    private Date borndate;
 
     private Integer paymentdays;
 
@@ -52,7 +52,7 @@ public class ClientClientdata {
 
     private Integer typeid;
 
-    private String date;
+    private Date date;
 
     private String password;
 
@@ -65,19 +65,9 @@ public class ClientClientdata {
     private String default4;
 
     private String default5;
-	
-	private ClientClienttype clientClienttype;
-
-    private ClientCarinfo clientCarinfo;
-
-    private String searchData;
 
     public ClientClienttype getClientClienttype() {
         return clientClienttype;
-    }
-
-    public void setClientClienttype(ClientClienttype clientClienttype) {
-        this.clientClienttype = clientClienttype;
     }
 
     public ClientCarinfo getClientCarinfo() {
@@ -95,6 +85,17 @@ public class ClientClientdata {
     public void setSearchData(String searchData) {
         this.searchData = searchData;
     }
+
+    public void setClientClienttype(ClientClienttype clientClienttype) {
+        this.clientClienttype = clientClienttype;
+    }
+
+    private ClientClienttype clientClienttype;
+
+    private ClientCarinfo clientCarinfo;
+
+    private String searchData;
+	
 
     public Integer getNumber() {
         return number;
@@ -136,11 +137,11 @@ public class ClientClientdata {
         this.address = address;
     }
 
-    public String getBorndate() {
+    public Date getBorndate() {
         return borndate;
     }
 
-    public void setBorndate(String borndate) {
+    public void setBorndate(Date borndate) {
         this.borndate = borndate;
     }
 
@@ -288,11 +289,11 @@ public class ClientClientdata {
         this.typeid = typeid;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

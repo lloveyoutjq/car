@@ -73,8 +73,20 @@ public class InstitutionsService {
     /**
      * 根据条件查询
      */
-    public PersonnelStaff institutionsSelectId(Integer id){
-        return null;
+    public List<PersonnelStaff> institutionsSelectId(PersonnelStaff personnelStaff){
+        return personnelStaffMapper.institutionsSelectId(personnelStaff);
+    }
+    /**
+     * 根据条件查询所有
+     */
+    public List<PersonnelStaff> institutionsSelectOpen(PersonnelStaff personnelStaff){
+        return personnelStaffMapper.institutionsSelectOpen(personnelStaff);
+    }
+    /**
+     * 查询所有部门
+     */
+    public List<PersonnelDepartment> exDepartment(){
+        return personnelDepartmentMapper.selectByExample(null);
     }
     /**
      * 新增员工

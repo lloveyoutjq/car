@@ -2,9 +2,8 @@ package com.accp.mapper;
 
 import com.accp.domain.DataRepairItems;
 import com.accp.domain.DataRepairItemsExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface DataRepairItemsMapper {
     int countByExample(DataRepairItemsExample example);
