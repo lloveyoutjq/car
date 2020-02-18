@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.DataRepairItemsMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.DataRepairItems" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="rescueRepairId" property="rescuerepairid" jdbcType="VARCHAR" />
+    <result column="itemId" property="itemid" jdbcType="INTEGER" />
+    <result column="priceClass" property="priceclass" jdbcType="VARCHAR" />
+    <result column="preeOfChargeFor" property="preeofchargefor" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="before_the_preferential" property="beforeThePreferential" jdbcType="DECIMAL" />
+    <result column="after_the_preferential" property="afterThePreferential" jdbcType="DECIMAL" />
+    <result column="workOrderNumber" property="workordernumber" jdbcType="VARCHAR" />
+    <result column="fault" property="fault" jdbcType="VARCHAR" />
+    <result column="faultResult" property="faultresult" jdbcType="VARCHAR" />
+    <result column="staffId" property="staffid" jdbcType="INTEGER" />
+    <result column="teamId" property="teamid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, rescueRepairId, itemId, priceClass, preeOfChargeFor, num, before_the_preferential, 
+    after_the_preferential, workOrderNumber, fault, faultResult, staffId, teamId
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.DataRepairItemsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from data_repair_items
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from data_repair_items
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from data_repair_items
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.DataRepairItemsExample" >
+    delete from data_repair_items
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.DataRepairItems" >
+    insert into data_repair_items (id, rescueRepairId, itemId, 
+      priceClass, preeOfChargeFor, num, 
+      before_the_preferential, after_the_preferential, 
+      workOrderNumber, fault, faultResult, 
+      staffId, teamId)
+    values (#{id,jdbcType=INTEGER}, #{rescuerepairid,jdbcType=VARCHAR}, #{itemid,jdbcType=INTEGER}, 
+      #{priceclass,jdbcType=VARCHAR}, #{preeofchargefor,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, 
+      #{beforeThePreferential,jdbcType=DECIMAL}, #{afterThePreferential,jdbcType=DECIMAL}, 
+      #{workordernumber,jdbcType=VARCHAR}, #{fault,jdbcType=VARCHAR}, #{faultresult,jdbcType=VARCHAR}, 
+      #{staffid,jdbcType=INTEGER}, #{teamid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.DataRepairItems" >
+    insert into data_repair_items
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="rescuerepairid != null" >
+        rescueRepairId,
+      </if>
+      <if test="itemid != null" >
+        itemId,
+      </if>
+      <if test="priceclass != null" >
+        priceClass,
+      </if>
+      <if test="preeofchargefor != null" >
+        preeOfChargeFor,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="beforeThePreferential != null" >
+        before_the_preferential,
+      </if>
+      <if test="afterThePreferential != null" >
+        after_the_preferential,
+      </if>
+      <if test="workordernumber != null" >
+        workOrderNumber,
+      </if>
+      <if test="fault != null" >
+        fault,
+      </if>
+      <if test="faultresult != null" >
+        faultResult,
+      </if>
+      <if test="staffid != null" >
+        staffId,
+      </if>
+      <if test="teamid != null" >
+        teamId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="rescuerepairid != null" >
+        #{rescuerepairid,jdbcType=VARCHAR},
+      </if>
+      <if test="itemid != null" >
+        #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="priceclass != null" >
+        #{priceclass,jdbcType=VARCHAR},
+      </if>
+      <if test="preeofchargefor != null" >
+        #{preeofchargefor,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="beforeThePreferential != null" >
+        #{beforeThePreferential,jdbcType=DECIMAL},
+      </if>
+      <if test="afterThePreferential != null" >
+        #{afterThePreferential,jdbcType=DECIMAL},
+      </if>
+      <if test="workordernumber != null" >
+        #{workordernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fault != null" >
+        #{fault,jdbcType=VARCHAR},
+      </if>
+      <if test="faultresult != null" >
+        #{faultresult,jdbcType=VARCHAR},
+      </if>
+      <if test="staffid != null" >
+        #{staffid,jdbcType=INTEGER},
+      </if>
+      <if test="teamid != null" >
+        #{teamid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.DataRepairItemsExample" resultType="java.lang.Integer" >
+    select count(*) from data_repair_items
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update data_repair_items
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.rescuerepairid != null" >
+        rescueRepairId = #{record.rescuerepairid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemid != null" >
+        itemId = #{record.itemid,jdbcType=INTEGER},
+      </if>
+      <if test="record.priceclass != null" >
+        priceClass = #{record.priceclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.preeofchargefor != null" >
+        preeOfChargeFor = #{record.preeofchargefor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num != null" >
+        num = #{record.num,jdbcType=INTEGER},
+      </if>
+      <if test="record.beforeThePreferential != null" >
+        before_the_preferential = #{record.beforeThePreferential,jdbcType=DECIMAL},
+      </if>
+      <if test="record.afterThePreferential != null" >
+        after_the_preferential = #{record.afterThePreferential,jdbcType=DECIMAL},
+      </if>
+      <if test="record.workordernumber != null" >
+        workOrderNumber = #{record.workordernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fault != null" >
+        fault = #{record.fault,jdbcType=VARCHAR},
+      </if>
+      <if test="record.faultresult != null" >
+        faultResult = #{record.faultresult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffid != null" >
+        staffId = #{record.staffid,jdbcType=INTEGER},
+      </if>
+      <if test="record.teamid != null" >
+        teamId = #{record.teamid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update data_repair_items
+    set id = #{record.id,jdbcType=INTEGER},
+      rescueRepairId = #{record.rescuerepairid,jdbcType=VARCHAR},
+      itemId = #{record.itemid,jdbcType=INTEGER},
+      priceClass = #{record.priceclass,jdbcType=VARCHAR},
+      preeOfChargeFor = #{record.preeofchargefor,jdbcType=VARCHAR},
+      num = #{record.num,jdbcType=INTEGER},
+      before_the_preferential = #{record.beforeThePreferential,jdbcType=DECIMAL},
+      after_the_preferential = #{record.afterThePreferential,jdbcType=DECIMAL},
+      workOrderNumber = #{record.workordernumber,jdbcType=VARCHAR},
+      fault = #{record.fault,jdbcType=VARCHAR},
+      faultResult = #{record.faultresult,jdbcType=VARCHAR},
+      staffId = #{record.staffid,jdbcType=INTEGER},
+      teamId = #{record.teamid,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.DataRepairItems" >
+    update data_repair_items
+    <set >
+      <if test="rescuerepairid != null" >
+        rescueRepairId = #{rescuerepairid,jdbcType=VARCHAR},
+      </if>
+      <if test="itemid != null" >
+        itemId = #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="priceclass != null" >
+        priceClass = #{priceclass,jdbcType=VARCHAR},
+      </if>
+      <if test="preeofchargefor != null" >
+        preeOfChargeFor = #{preeofchargefor,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="beforeThePreferential != null" >
+        before_the_preferential = #{beforeThePreferential,jdbcType=DECIMAL},
+      </if>
+      <if test="afterThePreferential != null" >
+        after_the_preferential = #{afterThePreferential,jdbcType=DECIMAL},
+      </if>
+      <if test="workordernumber != null" >
+        workOrderNumber = #{workordernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fault != null" >
+        fault = #{fault,jdbcType=VARCHAR},
+      </if>
+      <if test="faultresult != null" >
+        faultResult = #{faultresult,jdbcType=VARCHAR},
+      </if>
+      <if test="staffid != null" >
+        staffId = #{staffid,jdbcType=INTEGER},
+      </if>
+      <if test="teamid != null" >
+        teamId = #{teamid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.DataRepairItems" >
+    update data_repair_items
+    set rescueRepairId = #{rescuerepairid,jdbcType=VARCHAR},
+      itemId = #{itemid,jdbcType=INTEGER},
+      priceClass = #{priceclass,jdbcType=VARCHAR},
+      preeOfChargeFor = #{preeofchargefor,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      before_the_preferential = #{beforeThePreferential,jdbcType=DECIMAL},
+      after_the_preferential = #{afterThePreferential,jdbcType=DECIMAL},
+      workOrderNumber = #{workordernumber,jdbcType=VARCHAR},
+      fault = #{fault,jdbcType=VARCHAR},
+      faultResult = #{faultresult,jdbcType=VARCHAR},
+      staffId = #{staffid,jdbcType=INTEGER},
+      teamId = #{teamid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

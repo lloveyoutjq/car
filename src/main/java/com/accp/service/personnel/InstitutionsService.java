@@ -60,6 +60,8 @@ public class InstitutionsService {
                 map.put("checked",perm.getState());
                 perm.setTitle(perm.getName());
                 perm.setCheckArr(map);*/
+                perm.setName(perm.getDepartmentname());
+
                 perm.setTitle(perm.getDepartmentname());
                 perm.setId(perm.getId());
                 PersonnelDepartment newPerms = perm;

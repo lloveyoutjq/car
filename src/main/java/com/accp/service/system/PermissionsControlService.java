@@ -42,12 +42,52 @@ public class PermissionsControlService {
     }
 
     /**
-     * 查询所有角色权限
+     * 查询所有角色
      * @return
      */
     public List<SystemRoles> selectSystemRolesAll(){
         return systemRolesMapper.selectByExample(null);
     }
+
+    /**
+     * 添加角色
+     * @return
+     */
+    public int addSystemRoles(SystemRoles systemRoles){
+        int count = systemRolesMapper.insertSelective(systemRoles);
+        List<SystemPermissions> lists =  systemPermissionsMapper.selectByExample(null);
+        for(SystemPermissions item : lists){
+            SystemRolesPerms systemRolesPerms = new SystemRolesPerms();
+            systemRolesPerms.setPid(item.getId());
+            systemRolesPerms.setRid(systemRoles.getId());
+            systemRolesPerms.setState(0);
+
+            systemRolesPermsMapper.insertSelective(systemRolesPerms);
+        }
+        return count;
+    }
+    /**
+     * 修改角色
+     * @return
+     */
+    public int updateSystemRoles(SystemRoles systemRoles){
+        return systemRolesMapper.updateByPrimaryKeySelective(systemRoles);
+    }
+    /**
+     * 删除角色
+     * @return
+     */
+    public int deleteSystemRoles(int id){
+        List<SystemPermissions> lists =  systemPermissionsMapper.selectByExample(null);
+        for(SystemPermissions item : lists){
+            SystemRolesPermsExample example = new SystemRolesPermsExample();
+            example.createCriteria().andRidEqualTo(id).andPidEqualTo(item.getId());
+            systemRolesPermsMapper.deleteByExample(example);
+        }
+
+        return systemRolesMapper.deleteByPrimaryKey(id);
+    }
+
 
     /**
      * 修改角色权限

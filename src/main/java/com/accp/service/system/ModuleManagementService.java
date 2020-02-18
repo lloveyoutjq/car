@@ -25,7 +25,7 @@ public class ModuleManagementService {
         List<SystemRoles> lists = permissionsControlService.selectSystemRolesAll();
         for(SystemRoles item : lists){
             SystemRolesPerms systemRolesPerms = new SystemRolesPerms();
-            systemRolesPerms.setState(1);
+            systemRolesPerms.setState(0);
             systemRolesPerms.setRid(item.getId());
             systemRolesPerms.setPid(systemPermissions.getId());
             systemRolesPermsMapper.insertSelective(systemRolesPerms);
