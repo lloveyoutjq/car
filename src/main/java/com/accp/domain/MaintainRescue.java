@@ -43,8 +43,6 @@ public class MaintainRescue {
 
     private String state;
 
-    private Integer itemid;
-
     private Integer teamid;
 
     private String status;
@@ -217,14 +215,6 @@ public class MaintainRescue {
 
     public void setState(String state) {
         this.state = state;
-    }
-
-    public Integer getItemid() {
-        return itemid;
-    }
-
-    public void setItemid(Integer itemid) {
-        this.itemid = itemid;
     }
 
     public Integer getTeamid() {

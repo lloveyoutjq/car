@@ -1,6 +1,7 @@
 package com.accp.service.service;
 
 import com.accp.domain.ClientClientdata;
+import com.accp.domain.ClientClienttype;
 import com.accp.domain.ClientClienttypeExample;
 import com.accp.mapper.ClientClientdataMapper;
 import com.accp.mapper.ClientClienttypeMapper;

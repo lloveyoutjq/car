@@ -2,9 +2,8 @@ package com.accp.mapper;
 
 import com.accp.domain.ClientClientdata;
 import com.accp.domain.ClientClientdataExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface ClientClientdataMapper {
     int countByExample(ClientClientdataExample example);
@@ -20,6 +19,8 @@ public interface ClientClientdataMapper {
     List<ClientClientdata> selectByExample(ClientClientdataExample example);
 
     ClientClientdata selectByPrimaryKey(Integer number);
+
+    List<ClientClientdata> selectClient(@Param("clientClientdata") ClientClientdata clientClientdata);
 
     int updateByExampleSelective(@Param("record") ClientClientdata record, @Param("example") ClientClientdataExample example);
 

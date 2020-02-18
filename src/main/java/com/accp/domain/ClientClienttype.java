@@ -17,8 +17,6 @@ public class ClientClienttype {
 
     private Float discount;
 
-    private Integer integral;
-
     private Date starttime;
 
     private Date endtime;
@@ -81,14 +79,6 @@ public class ClientClienttype {
 
     public void setDiscount(Float discount) {
         this.discount = discount;
-    }
-
-    public Integer getIntegral() {
-        return integral;
-    }
-
-    public void setIntegral(Integer integral) {
-        this.integral = integral;
     }
 
     public Date getStarttime() {

@@ -35,6 +35,12 @@ public class TeamService {
         return personnelArtisanMapper.teamSelect();
     }
     /**
+     * 查询所有技工表
+     */
+    public List<PersonnelArtisanclass> exArtisanclass(){
+        return personnelArtisanclassMapper.selectByExample(null);
+    }
+    /**
      * 查询树状结构树
      */
     public List<PersonnelArtisanclass> teamSelectTwo(){
@@ -70,8 +76,8 @@ public class TeamService {
     /**
      * 根据条件查询
      */
-    public PersonnelArtisan teamSelectId(Integer artisanid){
-        return null;
+    public List<PersonnelArtisan> teamSelectId(PersonnelArtisan personnelArtisan){
+        return personnelArtisanMapper.teamSelectId(personnelArtisan);
     }
     /**
      * 新增

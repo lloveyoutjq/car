@@ -19,6 +19,9 @@ public class DepartureService {
     //员工表
     @Autowired(required = false)
     PersonnelStaffMapper personnelStaffMapper;
+    //离职表
+    @Autowired(required = false)
+    PersonnelDimissionMapper personnelDimissionMapper;
 
     /**
      * 查询所有
@@ -35,25 +38,25 @@ public class DepartureService {
     /**
      * 根据条件查询
      */
-    public PersonnelStaff departureSelectId(Integer id,String staffname){
-        return personnelStaffMapper.departureSelectId(id,staffname);
+    public List<PersonnelStaff> departureSelectId(PersonnelStaff personnelStaff){
+        return personnelStaffMapper.departureSelectId(personnelStaff);
     }
     /**
      * 新增
      */
-    public int departureAdd(PersonnelStaff personnelStaff){
-        return personnelStaffMapper.insert(personnelStaff);
+    public int departureAdd(PersonnelDimission personnelDimission){
+        return personnelDimissionMapper.insert(personnelDimission);
     }
     /**
      * 修改
      */
-    public int departureUpdate(PersonnelStaff personnelStaff){
-        return personnelStaffMapper.updateByPrimaryKey(personnelStaff);
+    public int departureUpdate(PersonnelDimission personnelDimission){
+        return personnelDimissionMapper.updateByPrimaryKey(personnelDimission);
     }
     /**
      * 删除
      */
     public int departureRemove(Integer id){
-        return personnelStaffMapper.deleteByPrimaryKey(id);
+        return personnelDimissionMapper.deleteByPrimaryKey(id);
     }
 }

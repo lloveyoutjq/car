@@ -21,8 +21,21 @@ public class PermissionsService {
      * @return
      */
     public List<SystemPermissions> selectUserMenuAll(Integer type,Integer uid){
-        System.out.println("1111");
+        //System.out.println("1111");
         return permissionsMapper.selectUserMenuAll(type,uid);
+    }
+
+    /**
+     * 根据rid查找权限
+     * @param rid
+     * @return
+     */
+    public List<SystemPermissions> selectUserMenuById(Integer rid){
+        List<SystemPermissions> list = permissionsMapper.selectUserMenuById(rid);
+        SystemPermissions parentPerms = new SystemPermissions();
+        parentPerms.setId(0);
+        recursionPerm(parentPerms, list);
+        return parentPerms.getChildren();
     }
 
     /**
@@ -35,7 +48,7 @@ public class PermissionsService {
         SystemPermissions parentPerms = new SystemPermissions();
         parentPerms.setId(0);
         recursionPerm(parentPerms, list);
-        System.out.println(parentPerms);
+        //System.out.println(parentPerms);
         return parentPerms.getChildren();
     }
 
@@ -44,7 +57,7 @@ public class PermissionsService {
      * @param parentPerms
      * @param list
      */
-    private void recursionPerm(SystemPermissions parentPerms,List<SystemPermissions> list){
+    public void recursionPerm(SystemPermissions parentPerms,List<SystemPermissions> list){
         for(SystemPermissions perm : list){
             if(perm.getParentid() == parentPerms.getId()){
 
@@ -53,6 +66,9 @@ public class PermissionsService {
                 map.put("checked",perm.getState());
                 perm.setTitle(perm.getName());
                 perm.setCheckArr(map);
+                if(perm.getCatalog() != null && perm.getCatalog() > 0){
+                    perm.setHide(true);
+                }
 
                 SystemPermissions newPerms = perm;
                 parentPerms.getChildren().add(newPerms);

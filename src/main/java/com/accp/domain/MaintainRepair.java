@@ -31,8 +31,6 @@ public class MaintainRepair {
 
     private String state;
 
-    private Integer itemid;
-
     private Integer teamid;
 
     private String status;
@@ -157,14 +155,6 @@ public class MaintainRepair {
 
     public void setState(String state) {
         this.state = state;
-    }
-
-    public Integer getItemid() {
-        return itemid;
-    }
-
-    public void setItemid(Integer itemid) {
-        this.itemid = itemid;
     }
 
     public Integer getTeamid() {

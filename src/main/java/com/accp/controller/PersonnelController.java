@@ -85,7 +85,14 @@ public class PersonnelController {
      */
     @RequestMapping("/jobsAdd")
     @ResponseBody
-    public int jobsAdd(PersonnelPost personnelPost){
+    public int jobsAdd(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        PersonnelPost personnelPost = null;
+        try {
+            personnelPost = objectMapper.readValue(data,PersonnelPost.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
         return jobsService.jobsAdd(personnelPost);
     }
     /**
@@ -93,7 +100,14 @@ public class PersonnelController {
      */
     @RequestMapping("/jobsUpdate")
     @ResponseBody
-    public int jobsUpdate(PersonnelPost personnelPost){
+    public int jobsUpdate(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        PersonnelPost personnelPost = null;
+        try {
+            personnelPost = objectMapper.readValue(data,PersonnelPost.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
         return jobsService.jobsUpdate(personnelPost);
     }
     /**
@@ -117,7 +131,14 @@ public class PersonnelController {
      */
     @RequestMapping("/fieldAdd")
     @ResponseBody
-    public int fieldAdd(PersonnelLegworkcat personnelLegworkcat){
+    public int fieldAdd(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        PersonnelLegworkcat personnelLegworkcat = null;
+        try {
+            personnelLegworkcat = objectMapper.readValue(data,PersonnelLegworkcat.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
         return fieldService.fieldAdd(personnelLegworkcat);
     }
     /**
@@ -125,7 +146,14 @@ public class PersonnelController {
      */
     @RequestMapping("/fieldUpdate")
     @ResponseBody
-    public int fieldUpdate(PersonnelLegworkcat personnelLegworkcat){
+    public int fieldUpdate(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        PersonnelLegworkcat personnelLegworkcat = null;
+        try {
+            personnelLegworkcat = objectMapper.readValue(data,PersonnelLegworkcat.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
         return fieldService.fieldUpdate(personnelLegworkcat);
     }
     /**
@@ -156,14 +184,28 @@ public class PersonnelController {
      */
     @RequestMapping("/starAdd")
     @ResponseBody
-    public int starAdd(PersonnelArtisanlevel personnelArtisanlevel){
+    public int starAdd(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        PersonnelArtisanlevel personnelArtisanlevel = null;
+        try {
+            personnelArtisanlevel = objectMapper.readValue(data,PersonnelArtisanlevel.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
         return starService.starAdd(personnelArtisanlevel);
     }
     /**
      * 修改技工星级
      */
     @RequestMapping("/starUpdate")
-    public int starUpdate(PersonnelArtisanlevel personnelArtisanlevel){
+    public int starUpdate(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        PersonnelArtisanlevel personnelArtisanlevel = null;
+        try {
+            personnelArtisanlevel = objectMapper.readValue(data,PersonnelArtisanlevel.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
         return starService.starUpdate(personnelArtisanlevel);
     }
     /**
@@ -195,14 +237,28 @@ public class PersonnelController {
      */
     @RequestMapping("/communicationAdd")
     @ResponseBody
-    public int communicationAdd(PersonnelStaff personnelStaff){
+    public int communicationAdd(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        PersonnelStaff personnelStaff = null;
+        try {
+            personnelStaff = objectMapper.readValue(data,PersonnelStaff.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
         return communicationService.communicationAdd(personnelStaff);
     }
     /**
      * 修改通讯名单
      */
     @RequestMapping("/communicationUpdate")
-    public int communicationUpdate(PersonnelStaff personnelStaff){
+    public int communicationUpdate(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        PersonnelStaff personnelStaff = null;
+        try {
+            personnelStaff = objectMapper.readValue(data,PersonnelStaff.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
         return communicationService.communicationUpdate(personnelStaff);
     }
     /**
@@ -233,23 +289,38 @@ public class PersonnelController {
      */
     @RequestMapping("/departureSelectId")
     @ResponseBody
-    public PersonnelStaff departureSelectId(Integer id,String staffname){
-        return departureService.departureSelectId(id,staffname);
+    public List<PersonnelStaff> departureSelectId(PersonnelStaff personnelStaff){
+        return departureService.departureSelectId(personnelStaff);
     }
     /**
      * 新增离职登记
      */
     @RequestMapping("/departureAdd")
     @ResponseBody
-    public int departureAdd(PersonnelStaff personnelStaff){
-        return departureService.departureAdd(personnelStaff);
+    public int departureAdd(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        PersonnelDimission personnelDimission = null;
+        try {
+            personnelDimission = objectMapper.readValue(data,PersonnelDimission.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+        return departureService.departureAdd(personnelDimission);
     }
     /**
      * 修改离职登记
      */
     @RequestMapping("/departureUpdate")
-    public int departureUpdate(PersonnelStaff personnelStaff){
-        return departureService.departureUpdate(personnelStaff);
+    @ResponseBody
+    public int departureUpdate(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        PersonnelDimission personnelDimission = null;
+        try {
+            personnelDimission = objectMapper.readValue(data,PersonnelDimission.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+        return departureService.departureUpdate(personnelDimission);
     }
     /**
      * 删除离职登记
@@ -266,6 +337,13 @@ public class PersonnelController {
     @RequestMapping("/teamSelect")
     public List<PersonnelArtisan> teamSelect(){
         return teamService.teamSelect();
+    }
+    /**
+     * 查询所有技工表
+     */
+    @RequestMapping("/exArtisanclass")
+    public List<PersonnelArtisanclass> exArtisanclass(){
+        return teamService.exArtisanclass();
     }
     /**
      * 查询树状结构树班组技工
@@ -285,22 +363,38 @@ public class PersonnelController {
      * 根据条件查询班组技工
      */
     @RequestMapping("/teamSelectId")
-    public PersonnelArtisan teamSelectId(Integer artisanid){
-        return null;
+    @ResponseBody
+    public List<PersonnelArtisan> teamSelectId(PersonnelArtisan personnelArtisan){
+        return teamService.teamSelectId(personnelArtisan);
     }
     /**
      * 新增班组技工
      */
     @RequestMapping("/teamAdd")
     @ResponseBody
-    public int teamAdd(PersonnelArtisan personnelArtisan){
+    public int teamAdd(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        PersonnelArtisan personnelArtisan = null;
+        try {
+            personnelArtisan = objectMapper.readValue(data,PersonnelArtisan.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
         return teamService.teamAdd(personnelArtisan);
     }
     /**
      * 修改班组技工
      */
     @RequestMapping("/teamUpdate")
-    public int teamUpdate(PersonnelArtisan personnelArtisan){
+    @ResponseBody
+    public int teamUpdate(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        PersonnelArtisan personnelArtisan = null;
+        try {
+            personnelArtisan = objectMapper.readValue(data,PersonnelArtisan.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
         return teamService.teamUpdate(personnelArtisan);
     }
     /**
@@ -326,9 +420,6 @@ public class PersonnelController {
                 System.out.println("发送异常");
             }
         }
-
-
-
         PageInfo<PersonnelStaff> pageInfo =  institutionsService.institutionsSelect(page,limit,idsList);
         Map<String,Object> code = new HashMap<>();
         code.put("code",0);
@@ -354,24 +445,55 @@ public class PersonnelController {
      * 根据条件查询组织机构
      */
     @RequestMapping("/institutionsSelectId")
-    public PersonnelStaff institutionsSelectId(Integer id){
-        return null;
+    @ResponseBody
+    public List<PersonnelStaff> institutionsSelectId(PersonnelStaff personnelStaff){
+        return institutionsService.institutionsSelectId(personnelStaff);
+    }
+    /**
+     * 查询组织机构
+     */
+    @RequestMapping("/institutionsSelectOpen")
+    @ResponseBody
+    public List<PersonnelStaff> institutionsSelectOpen(PersonnelStaff personnelStaff){
+        return institutionsService.institutionsSelectOpen(personnelStaff);
+    }
+    /**
+     * 查询所有部门
+     * @return
+     */
+    @RequestMapping("/exDepartment")
+    public List<PersonnelDepartment> exDepartment(){
+        return institutionsService.exDepartment();
     }
     /**
      * 新增组织机构
      */
     @RequestMapping("/institutionsAdd")
     @ResponseBody
-    public int institutionsAdd(PersonnelStaff personnelPost){
-        return institutionsService.institutionsAdd(personnelPost);
+    public int institutionsAdd(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        PersonnelStaff personnelStaff = null;
+        try {
+            personnelStaff = objectMapper.readValue(data,PersonnelStaff.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+        return institutionsService.institutionsAdd(personnelStaff);
     }
     /**
      * 修改组织机构
      */
     @RequestMapping("/institutionsUpdate")
     @ResponseBody
-    public int institutionsUpdate(PersonnelStaff personnelPost){
-        return institutionsService.institutionsUpdate(personnelPost);
+    public int institutionsUpdate(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        PersonnelStaff personnelStaff = null;
+        try {
+            personnelStaff = objectMapper.readValue(data,PersonnelStaff.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+        return institutionsService.institutionsUpdate(personnelStaff);
     }
     /**
      * 删除组织机构

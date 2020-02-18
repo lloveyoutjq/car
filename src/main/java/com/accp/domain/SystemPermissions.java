@@ -21,13 +21,23 @@ public class SystemPermissions {
 
     private String default2;
 
-    private List<SystemPermissions> children = new ArrayList<SystemPermissions>();
+    private List<SystemPermissions> children = new ArrayList<SystemPermissions>(); //子项
 
-    private String title;
+    private String title; //标题
 
-    private Map checkArr;
+    private Map checkArr; //复选框
 
-    private Integer state;
+    private Integer state; //状态
+
+    private boolean hide; //控制节点隐藏还是显示
+
+    public boolean isHide() {
+        return hide;
+    }
+
+    public void setHide(boolean hide) {
+        this.hide = hide;
+    }
 
     public Integer getState() {
         return state;

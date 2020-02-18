@@ -555,66 +555,6 @@ public class ClientClienttypeExample {
             return (Criteria) this;
         }
 
-        public Criteria andIntegralIsNull() {
-            addCriterion("integral is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralIsNotNull() {
-            addCriterion("integral is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralEqualTo(Integer value) {
-            addCriterion("integral =", value, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralNotEqualTo(Integer value) {
-            addCriterion("integral <>", value, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralGreaterThan(Integer value) {
-            addCriterion("integral >", value, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralGreaterThanOrEqualTo(Integer value) {
-            addCriterion("integral >=", value, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralLessThan(Integer value) {
-            addCriterion("integral <", value, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralLessThanOrEqualTo(Integer value) {
-            addCriterion("integral <=", value, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralIn(List<Integer> values) {
-            addCriterion("integral in", values, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralNotIn(List<Integer> values) {
-            addCriterion("integral not in", values, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralBetween(Integer value1, Integer value2) {
-            addCriterion("integral between", value1, value2, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralNotBetween(Integer value1, Integer value2) {
-            addCriterion("integral not between", value1, value2, "integral");
-            return (Criteria) this;
-        }
-
         public Criteria andStarttimeIsNull() {
             addCriterion("startTime is null");
             return (Criteria) this;

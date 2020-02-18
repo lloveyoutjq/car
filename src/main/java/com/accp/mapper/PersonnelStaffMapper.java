@@ -2,20 +2,22 @@ package com.accp.mapper;
 
 import com.accp.domain.PersonnelStaff;
 import com.accp.domain.PersonnelStaffExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface PersonnelStaffMapper {
     /*组织机构*/
     List<PersonnelStaff> institutionsSelect(@Param("personnelStaff") PersonnelStaff personnelStaff);
+    List<PersonnelStaff> institutionsSelectId(@Param("personnelStaff") PersonnelStaff personnelStaff);
+    List<PersonnelStaff> institutionsSelectOpen(@Param("personnelStaff") PersonnelStaff personnelStaff);
     /*通讯名单*/
     List<PersonnelStaff> communicationSelect();
     List<PersonnelStaff> communicationSelectId(@Param("personnelStaff") PersonnelStaff personnelStaff);
     /*离职登记*/
     List<PersonnelStaff> departureSelect();
     List<PersonnelStaff> departureSelectTwo();
-    PersonnelStaff departureSelectId(Integer id,String staffname);
+    List<PersonnelStaff> departureSelectId(@Param("personnelStaff") PersonnelStaff personnelStaff);
+
 
 
 
