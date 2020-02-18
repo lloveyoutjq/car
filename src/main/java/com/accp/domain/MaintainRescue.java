@@ -43,11 +43,15 @@ public class MaintainRescue {
 
     private String state;
 
-    private Integer itemid;
-
     private Integer teamid;
 
     private String status;
+
+    private Date completedate;
+
+    private Date settledate;
+
+    private Date pickdate;
 
     private String default1;
 
@@ -213,14 +217,6 @@ public class MaintainRescue {
         this.state = state;
     }
 
-    public Integer getItemid() {
-        return itemid;
-    }
-
-    public void setItemid(Integer itemid) {
-        this.itemid = itemid;
-    }
-
     public Integer getTeamid() {
         return teamid;
     }
@@ -235,6 +231,30 @@ public class MaintainRescue {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getCompletedate() {
+        return completedate;
+    }
+
+    public void setCompletedate(Date completedate) {
+        this.completedate = completedate;
+    }
+
+    public Date getSettledate() {
+        return settledate;
+    }
+
+    public void setSettledate(Date settledate) {
+        this.settledate = settledate;
+    }
+
+    public Date getPickdate() {
+        return pickdate;
+    }
+
+    public void setPickdate(Date pickdate) {
+        this.pickdate = pickdate;
     }
 
     public String getDefault1() {

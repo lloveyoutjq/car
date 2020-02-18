@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="itemsName" property="itemsname" jdbcType="VARCHAR" />
     <result column="typeId" property="typeid" jdbcType="INTEGER" />
+    <result column="rescueRepairId" property="rescuerepairid" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="normalPrice" property="normalprice" jdbcType="REAL" />
     <result column="memberPrice" property="memberprice" jdbcType="REAL" />
@@ -84,8 +85,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, itemsName, typeId, remark, normalPrice, memberPrice, vipPrice, negotiatedPrice, 
-    claimPrice, insurancePrice, priceClass, preeOfChargeFor, num, before_the_preferential, 
+    id, itemsName, typeId, rescueRepairId, remark, normalPrice, memberPrice, vipPrice, 
+    negotiatedPrice, claimPrice, insurancePrice, priceClass, preeOfChargeFor, num, before_the_preferential, 
     after_the_preferential, workOrderNumber, fault, faultResult, staffId, teamId, default1, 
     default2
   </sql>
@@ -121,21 +122,23 @@
   </delete>
   <insert id="insert" parameterType="com.accp.domain.DataMaintenanceItems" >
     insert into data_maintenance_items (id, itemsName, typeId, 
-      remark, normalPrice, memberPrice, 
-      vipPrice, negotiatedPrice, claimPrice, 
-      insurancePrice, priceClass, preeOfChargeFor, 
-      num, before_the_preferential, after_the_preferential, 
-      workOrderNumber, fault, faultResult, 
-      staffId, teamId, default1, 
-      default2)
+      rescueRepairId, remark, normalPrice, 
+      memberPrice, vipPrice, negotiatedPrice, 
+      claimPrice, insurancePrice, priceClass, 
+      preeOfChargeFor, num, before_the_preferential, 
+      after_the_preferential, workOrderNumber, 
+      fault, faultResult, staffId, 
+      teamId, default1, default2
+      )
     values (#{id,jdbcType=INTEGER}, #{itemsname,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}, 
-      #{remark,jdbcType=VARCHAR}, #{normalprice,jdbcType=REAL}, #{memberprice,jdbcType=REAL}, 
-      #{vipprice,jdbcType=REAL}, #{negotiatedprice,jdbcType=REAL}, #{claimprice,jdbcType=REAL}, 
-      #{insuranceprice,jdbcType=REAL}, #{priceclass,jdbcType=VARCHAR}, #{preeofchargefor,jdbcType=VARCHAR}, 
-      #{num,jdbcType=INTEGER}, #{beforeThePreferential,jdbcType=DECIMAL}, #{afterThePreferential,jdbcType=DECIMAL}, 
-      #{workordernumber,jdbcType=VARCHAR}, #{fault,jdbcType=VARCHAR}, #{faultresult,jdbcType=VARCHAR}, 
-      #{staffid,jdbcType=INTEGER}, #{teamid,jdbcType=INTEGER}, #{default1,jdbcType=VARCHAR}, 
-      #{default2,jdbcType=VARCHAR})
+      #{rescuerepairid,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{normalprice,jdbcType=REAL}, 
+      #{memberprice,jdbcType=REAL}, #{vipprice,jdbcType=REAL}, #{negotiatedprice,jdbcType=REAL}, 
+      #{claimprice,jdbcType=REAL}, #{insuranceprice,jdbcType=REAL}, #{priceclass,jdbcType=VARCHAR}, 
+      #{preeofchargefor,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, #{beforeThePreferential,jdbcType=DECIMAL}, 
+      #{afterThePreferential,jdbcType=DECIMAL}, #{workordernumber,jdbcType=VARCHAR}, 
+      #{fault,jdbcType=VARCHAR}, #{faultresult,jdbcType=VARCHAR}, #{staffid,jdbcType=INTEGER}, 
+      #{teamid,jdbcType=INTEGER}, #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.DataMaintenanceItems" >
     insert into data_maintenance_items
@@ -148,6 +151,9 @@
       </if>
       <if test="typeid != null" >
         typeId,
+      </if>
+      <if test="rescuerepairid != null" >
+        rescueRepairId,
       </if>
       <if test="remark != null" >
         remark,
@@ -216,6 +222,9 @@
       </if>
       <if test="typeid != null" >
         #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="rescuerepairid != null" >
+        #{rescuerepairid,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
@@ -294,6 +303,9 @@
       <if test="record.typeid != null" >
         typeId = #{record.typeid,jdbcType=INTEGER},
       </if>
+      <if test="record.rescuerepairid != null" >
+        rescueRepairId = #{record.rescuerepairid,jdbcType=VARCHAR},
+      </if>
       <if test="record.remark != null" >
         remark = #{record.remark,jdbcType=VARCHAR},
       </if>
@@ -361,6 +373,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       itemsName = #{record.itemsname,jdbcType=VARCHAR},
       typeId = #{record.typeid,jdbcType=INTEGER},
+      rescueRepairId = #{record.rescuerepairid,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR},
       normalPrice = #{record.normalprice,jdbcType=REAL},
       memberPrice = #{record.memberprice,jdbcType=REAL},
@@ -392,6 +405,9 @@
       </if>
       <if test="typeid != null" >
         typeId = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="rescuerepairid != null" >
+        rescueRepairId = #{rescuerepairid,jdbcType=VARCHAR},
       </if>
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
@@ -457,6 +473,7 @@
     update data_maintenance_items
     set itemsName = #{itemsname,jdbcType=VARCHAR},
       typeId = #{typeid,jdbcType=INTEGER},
+      rescueRepairId = #{rescuerepairid,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       normalPrice = #{normalprice,jdbcType=REAL},
       memberPrice = #{memberprice,jdbcType=REAL},

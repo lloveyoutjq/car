@@ -5,7 +5,7 @@ import java.util.Date;
 public class PersonnelDimission {
     private Integer id;
 
-    private String department;
+    private Integer departmentid;
 
     private Date dimissiondate;
 
@@ -25,12 +25,12 @@ public class PersonnelDimission {
         this.id = id;
     }
 
-    public String getDepartment() {
-        return department;
+    public Integer getDepartmentid() {
+        return departmentid;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setDepartmentid(Integer departmentid) {
+        this.departmentid = departmentid;
     }
 
     public Date getDimissiondate() {

@@ -16,7 +16,7 @@ public class PersonnelStaff {
 
     private String password;
 
-    private String post;
+    private String departmentid;
 
     private String physicalcondition;
 
@@ -53,6 +53,10 @@ public class PersonnelStaff {
     private String phone;
 
     private String email;
+
+    private String authcode;
+
+    private Date pastcodedate;
 
     private String depositbank;
 
@@ -100,26 +104,22 @@ public class PersonnelStaff {
 
     private Integer roleid;
 
-    private Integer jurisdictionid;
-
     private String default1;
 
     private String default2;
 
-    private PersonnelAddressbook personnelAddressbook;
-
-    private PersonnelDimission personnelDimission;
-
-    private  PersonnelDepartment personnelDepartment;
-
     private List<Integer> ids;
 
-    public List<Integer> getIds() {
-        return ids;
+    private PersonnelDepartment personnelDepartment;
+
+    private PersonnelPost personnelPost;
+
+    public PersonnelPost getPersonnelPost() {
+        return personnelPost;
     }
 
-    public void setIds(List<Integer> ids) {
-        this.ids = ids;
+    public void setPersonnelPost(PersonnelPost personnelPost) {
+        this.personnelPost = personnelPost;
     }
 
     public PersonnelDepartment getPersonnelDepartment() {
@@ -130,22 +130,13 @@ public class PersonnelStaff {
         this.personnelDepartment = personnelDepartment;
     }
 
-    public PersonnelAddressbook getPersonnelAddressbook() {
-        return personnelAddressbook;
+    public List<Integer> getIds() {
+        return ids;
     }
 
-    public void setPersonnelAddressbook(PersonnelAddressbook personnelAddressbook) {
-        this.personnelAddressbook = personnelAddressbook;
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
     }
-
-    public PersonnelDimission getPersonnelDimission() {
-        return personnelDimission;
-    }
-
-    public void setPersonnelDimission(PersonnelDimission personnelDimission) {
-        this.personnelDimission = personnelDimission;
-    }
-
 
     public Integer getId() {
         return id;
@@ -195,12 +186,12 @@ public class PersonnelStaff {
         this.password = password;
     }
 
-    public String getPost() {
-        return post;
+    public String getDepartmentid() {
+        return departmentid;
     }
 
-    public void setPost(String post) {
-        this.post = post;
+    public void setDepartmentid(String departmentid) {
+        this.departmentid = departmentid;
     }
 
     public String getPhysicalcondition() {
@@ -345,6 +336,22 @@ public class PersonnelStaff {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAuthcode() {
+        return authcode;
+    }
+
+    public void setAuthcode(String authcode) {
+        this.authcode = authcode;
+    }
+
+    public Date getPastcodedate() {
+        return pastcodedate;
+    }
+
+    public void setPastcodedate(Date pastcodedate) {
+        this.pastcodedate = pastcodedate;
     }
 
     public String getDepositbank() {
@@ -529,14 +536,6 @@ public class PersonnelStaff {
 
     public void setRoleid(Integer roleid) {
         this.roleid = roleid;
-    }
-
-    public Integer getJurisdictionid() {
-        return jurisdictionid;
-    }
-
-    public void setJurisdictionid(Integer jurisdictionid) {
-        this.jurisdictionid = jurisdictionid;
     }
 
     public String getDefault1() {

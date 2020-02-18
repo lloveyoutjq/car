@@ -31,6 +31,12 @@ public class MyInterceptor implements HandlerInterceptor {
                 if(request.getRequestURI().indexOf("/system/login") != -1){
                     return true;
                 }
+                if(request.getRequestURI().indexOf("sendEmail") != -1){
+                    return true;
+                }
+                if(request.getRequestURI().indexOf("findPassword") != -1){
+                    return true;
+                }
             }
         }
 
@@ -38,11 +44,12 @@ public class MyInterceptor implements HandlerInterceptor {
             return true;
         }
 
+
         HttpSession session = request.getSession();
         User user = (User)session.getAttribute("user");
 
         System.out.println(session.getId()+"拦截器");
-        if(user != null) {
+        if(user != null && user.getUser() != null && !"".equals(user.getUser())) {
             System.out.println("进入已登录。。。");
             return true;
         }

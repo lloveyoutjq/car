@@ -1,9 +1,29 @@
 package com.accp.entity;
 
+import java.util.Date;
+
 public class User {
     private int type;
     private String user;
     private String password;
+    private String code;
+    private long pastCodeDate;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public long getPastCodeDate() {
+        return pastCodeDate;
+    }
+
+    public void setPastCodeDate(long pastCodeDate) {
+        this.pastCodeDate = pastCodeDate;
+    }
 
     public int getType() {
         return type;

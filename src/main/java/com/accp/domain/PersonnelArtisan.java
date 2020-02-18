@@ -11,6 +11,14 @@ public class PersonnelArtisan {
 
     private Integer artisanclassid;
 
+    private String password;
+
+    private String email;
+
+    private String authcode;
+
+    private Date pastcodedate;
+
     private String phone;
 
     private String account;
@@ -37,7 +45,7 @@ public class PersonnelArtisan {
 
     private String maintainbrand;
 
-    private Integer jurisdictionid;
+    private Integer roleid;
 
     private String default1;
 
@@ -73,6 +81,38 @@ public class PersonnelArtisan {
 
     public void setArtisanclassid(Integer artisanclassid) {
         this.artisanclassid = artisanclassid;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAuthcode() {
+        return authcode;
+    }
+
+    public void setAuthcode(String authcode) {
+        this.authcode = authcode;
+    }
+
+    public Date getPastcodedate() {
+        return pastcodedate;
+    }
+
+    public void setPastcodedate(Date pastcodedate) {
+        this.pastcodedate = pastcodedate;
     }
 
     public String getPhone() {
@@ -179,12 +219,12 @@ public class PersonnelArtisan {
         this.maintainbrand = maintainbrand;
     }
 
-    public Integer getJurisdictionid() {
-        return jurisdictionid;
+    public Integer getRoleid() {
+        return roleid;
     }
 
-    public void setJurisdictionid(Integer jurisdictionid) {
-        this.jurisdictionid = jurisdictionid;
+    public void setRoleid(Integer roleid) {
+        this.roleid = roleid;
     }
 
     public String getDefault1() {

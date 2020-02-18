@@ -2,8 +2,9 @@ package com.accp.mapper;
 
 import com.accp.domain.PersonnelStaff;
 import com.accp.domain.PersonnelStaffExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PersonnelStaffMapper {
     /*组织机构*/
@@ -13,10 +14,8 @@ public interface PersonnelStaffMapper {
     List<PersonnelStaff> communicationSelectId(@Param("personnelStaff") PersonnelStaff personnelStaff);
     /*离职登记*/
     List<PersonnelStaff> departureSelect();
-    List<PersonnelStaff> departureSelectTwo();
-    PersonnelStaff departureSelectId(Integer id,String staffname);
 
-
+    List<PersonnelStaff> departureSelectId(@Param("personnelStaff") PersonnelStaff personnelStaff);
 
     int countByExample(PersonnelStaffExample example);
 

@@ -295,6 +295,76 @@ public class DataMaintenanceItemsExample {
             return (Criteria) this;
         }
 
+        public Criteria andRescuerepairidIsNull() {
+            addCriterion("rescueRepairId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRescuerepairidIsNotNull() {
+            addCriterion("rescueRepairId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRescuerepairidEqualTo(String value) {
+            addCriterion("rescueRepairId =", value, "rescuerepairid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRescuerepairidNotEqualTo(String value) {
+            addCriterion("rescueRepairId <>", value, "rescuerepairid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRescuerepairidGreaterThan(String value) {
+            addCriterion("rescueRepairId >", value, "rescuerepairid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRescuerepairidGreaterThanOrEqualTo(String value) {
+            addCriterion("rescueRepairId >=", value, "rescuerepairid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRescuerepairidLessThan(String value) {
+            addCriterion("rescueRepairId <", value, "rescuerepairid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRescuerepairidLessThanOrEqualTo(String value) {
+            addCriterion("rescueRepairId <=", value, "rescuerepairid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRescuerepairidLike(String value) {
+            addCriterion("rescueRepairId like", value, "rescuerepairid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRescuerepairidNotLike(String value) {
+            addCriterion("rescueRepairId not like", value, "rescuerepairid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRescuerepairidIn(List<String> values) {
+            addCriterion("rescueRepairId in", values, "rescuerepairid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRescuerepairidNotIn(List<String> values) {
+            addCriterion("rescueRepairId not in", values, "rescuerepairid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRescuerepairidBetween(String value1, String value2) {
+            addCriterion("rescueRepairId between", value1, value2, "rescuerepairid");
+            return (Criteria) this;
+        }
+
+        public Criteria andRescuerepairidNotBetween(String value1, String value2) {
+            addCriterion("rescueRepairId not between", value1, value2, "rescuerepairid");
+            return (Criteria) this;
+        }
+
         public Criteria andRemarkIsNull() {
             addCriterion("remark is null");
             return (Criteria) this;

@@ -3,7 +3,7 @@ package com.accp.domain;
 public class PersonnelAddressbook {
     private Integer id;
 
-    private String department;
+    private Integer departmentid;
 
     private Integer staffid;
 
@@ -27,12 +27,12 @@ public class PersonnelAddressbook {
         this.id = id;
     }
 
-    public String getDepartment() {
-        return department;
+    public Integer getDepartmentid() {
+        return departmentid;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setDepartmentid(Integer departmentid) {
+        this.departmentid = departmentid;
     }
 
     public Integer getStaffid() {

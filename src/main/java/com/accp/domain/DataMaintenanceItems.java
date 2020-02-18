@@ -9,6 +9,8 @@ public class DataMaintenanceItems {
 
     private Integer typeid;
 
+    private String rescuerepairid;
+
     private String remark;
 
     private Float normalprice;
@@ -69,6 +71,14 @@ public class DataMaintenanceItems {
 
     public void setTypeid(Integer typeid) {
         this.typeid = typeid;
+    }
+
+    public String getRescuerepairid() {
+        return rescuerepairid;
+    }
+
+    public void setRescuerepairid(String rescuerepairid) {
+        this.rescuerepairid = rescuerepairid;
     }
 
     public String getRemark() {
