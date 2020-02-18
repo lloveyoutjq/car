@@ -27,6 +27,14 @@ public class ClientClienttype {
 
     private String default2;
 
+    public Integer getIntegral() {
+        return integral;
+    }
+
+    public void setIntegral(Integer integral) {
+        this.integral = integral;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -81,14 +89,6 @@ public class ClientClienttype {
 
     public void setDiscount(Float discount) {
         this.discount = discount;
-    }
-
-    public Integer getIntegral() {
-        return integral;
-    }
-
-    public void setIntegral(Integer integral) {
-        this.integral = integral;
     }
 
     public Date getStarttime() {
