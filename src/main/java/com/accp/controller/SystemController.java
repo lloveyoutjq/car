@@ -165,7 +165,7 @@ public class SystemController {
      * 找回密码
      */
     @RequestMapping("findPassword")
-    public void findPassword(HttpSession session,Integer type,String code){
+    public Map findPassword(HttpSession session,Integer type,String code){
         User u = (User)session.getAttribute("user");
         Map<String,Object> map = new HashMap<>();
         if(u != null && u.getPastCodeDate() != 0 && !"".equals(u.getCode())){
@@ -182,8 +182,24 @@ public class SystemController {
                     map.put("code","-1");
                     map.put("msg","验证码错误");
                 }
+            }else if(type ==1){//找回密码
+                if(!"".equals(code) && code.equals(u.getCode())){
+                    if(u.getPastCodeDate() - System.currentTimeMillis() < 0){
+                        map.put("code","0");
+                        map.put("msg","验证成功");
+
+
+                    }else{
+                        map.put("code","1");
+                        map.put("msg","验证码过期");
+                    }
+                }else{
+                    map.put("code","-1");
+                    map.put("msg","验证码错误");
+                }
             }
         }
+        return map;
     }
     /**
      *验证码发送
