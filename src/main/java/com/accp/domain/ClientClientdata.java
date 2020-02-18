@@ -1,5 +1,6 @@
 package com.accp.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class ClientClientdata {
@@ -17,7 +18,11 @@ public class ClientClientdata {
 
     private Integer paymentdays;
 
-    private Integer paymentsize;
+    private BigDecimal paymentsize;
+
+    private Integer integral;
+
+    private BigDecimal balance;
 
     private Integer counselorid;
 
@@ -63,13 +68,6 @@ public class ClientClientdata {
 
     private ClientClienttype clientClienttype;
 
-    public ClientClienttype getClientClienttype() {
-        return clientClienttype;
-    }
-
-    public void setClientClienttype(ClientClienttype clientClienttype) {
-        this.clientClienttype = clientClienttype;
-    }
 
     public Integer getNumber() {
         return number;
@@ -127,12 +125,28 @@ public class ClientClientdata {
         this.paymentdays = paymentdays;
     }
 
-    public Integer getPaymentsize() {
+    public BigDecimal getPaymentsize() {
         return paymentsize;
     }
 
-    public void setPaymentsize(Integer paymentsize) {
+    public void setPaymentsize(BigDecimal paymentsize) {
         this.paymentsize = paymentsize;
+    }
+
+    public Integer getIntegral() {
+        return integral;
+    }
+
+    public void setIntegral(Integer integral) {
+        this.integral = integral;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
     public Integer getCounselorid() {
@@ -301,5 +315,13 @@ public class ClientClientdata {
 
     public void setDefault5(String default5) {
         this.default5 = default5;
+    }
+
+    public ClientClienttype getClientClienttype() {
+        return clientClienttype;
+    }
+
+    public void setClientClienttype(ClientClienttype clientClienttype) {
+        this.clientClienttype = clientClienttype;
     }
 }

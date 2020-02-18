@@ -9,7 +9,9 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="bornDate" property="borndate" jdbcType="TIMESTAMP" />
     <result column="paymentDays" property="paymentdays" jdbcType="INTEGER" />
-    <result column="paymentSize" property="paymentsize" jdbcType="INTEGER" />
+    <result column="paymentSize" property="paymentsize" jdbcType="DECIMAL" />
+    <result column="integral" property="integral" jdbcType="INTEGER" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
     <result column="counselorId" property="counselorid" jdbcType="INTEGER" />
     <result column="counselorName" property="counselorname" jdbcType="VARCHAR" />
     <result column="advisorytelephone" property="advisorytelephone" jdbcType="VARCHAR" />
@@ -51,7 +53,6 @@
     ON ccd.`typeId` = cct.`id`
     WHERE ccd.`number` LIKE #{id}
   </select>
-
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -111,10 +112,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    number, name, linkMan, phone, address, bornDate, paymentDays, paymentSize, counselorId, 
-    counselorName, advisorytelephone, province, city, county, remark, taxpayerNumber, 
-    regosterPhone, bank, bankNumber, registerAddress, rest, typeId, date, password, default1, 
-    default2, default3, default4, default5
+    number, name, linkMan, phone, address, bornDate, paymentDays, paymentSize, integral, 
+    balance, counselorId, counselorName, advisorytelephone, province, city, county, remark, 
+    taxpayerNumber, regosterPhone, bank, bankNumber, registerAddress, rest, typeId, date, 
+    password, default1, default2, default3, default4, default5
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ClientClientdataExample" >
     select
@@ -149,24 +150,26 @@
   <insert id="insert" parameterType="com.accp.domain.ClientClientdata" >
     insert into client_clientdata (number, name, linkMan, 
       phone, address, bornDate, 
-      paymentDays, paymentSize, counselorId, 
-      counselorName, advisorytelephone, province, 
-      city, county, remark, 
-      taxpayerNumber, regosterPhone, bank, 
-      bankNumber, registerAddress, rest, 
-      typeId, date, password, 
-      default1, default2, default3, 
-      default4, default5)
+      paymentDays, paymentSize, integral, 
+      balance, counselorId, counselorName, 
+      advisorytelephone, province, city, 
+      county, remark, taxpayerNumber, 
+      regosterPhone, bank, bankNumber, 
+      registerAddress, rest, typeId, 
+      date, password, default1, 
+      default2, default3, default4, 
+      default5)
     values (#{number,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{borndate,jdbcType=TIMESTAMP}, 
-      #{paymentdays,jdbcType=INTEGER}, #{paymentsize,jdbcType=INTEGER}, #{counselorid,jdbcType=INTEGER}, 
-      #{counselorname,jdbcType=VARCHAR}, #{advisorytelephone,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
-      #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{taxpayernumber,jdbcType=VARCHAR}, #{regosterphone,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, 
-      #{banknumber,jdbcType=VARCHAR}, #{registeraddress,jdbcType=VARCHAR}, #{rest,jdbcType=VARCHAR}, 
-      #{typeid,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, #{password,jdbcType=VARCHAR}, 
-      #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}, #{default3,jdbcType=VARCHAR}, 
-      #{default4,jdbcType=VARCHAR}, #{default5,jdbcType=VARCHAR})
+      #{paymentdays,jdbcType=INTEGER}, #{paymentsize,jdbcType=DECIMAL}, #{integral,jdbcType=INTEGER}, 
+      #{balance,jdbcType=DECIMAL}, #{counselorid,jdbcType=INTEGER}, #{counselorname,jdbcType=VARCHAR}, 
+      #{advisorytelephone,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{county,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{taxpayernumber,jdbcType=VARCHAR}, 
+      #{regosterphone,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, #{banknumber,jdbcType=VARCHAR}, 
+      #{registeraddress,jdbcType=VARCHAR}, #{rest,jdbcType=VARCHAR}, #{typeid,jdbcType=INTEGER}, 
+      #{date,jdbcType=TIMESTAMP}, #{password,jdbcType=VARCHAR}, #{default1,jdbcType=VARCHAR}, 
+      #{default2,jdbcType=VARCHAR}, #{default3,jdbcType=VARCHAR}, #{default4,jdbcType=VARCHAR}, 
+      #{default5,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.ClientClientdata" >
     insert into client_clientdata
@@ -194,6 +197,12 @@
       </if>
       <if test="paymentsize != null" >
         paymentSize,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="balance != null" >
+        balance,
       </if>
       <if test="counselorid != null" >
         counselorId,
@@ -282,7 +291,13 @@
         #{paymentdays,jdbcType=INTEGER},
       </if>
       <if test="paymentsize != null" >
-        #{paymentsize,jdbcType=INTEGER},
+        #{paymentsize,jdbcType=DECIMAL},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
       </if>
       <if test="counselorid != null" >
         #{counselorid,jdbcType=INTEGER},
@@ -380,7 +395,13 @@
         paymentDays = #{record.paymentdays,jdbcType=INTEGER},
       </if>
       <if test="record.paymentsize != null" >
-        paymentSize = #{record.paymentsize,jdbcType=INTEGER},
+        paymentSize = #{record.paymentsize,jdbcType=DECIMAL},
+      </if>
+      <if test="record.integral != null" >
+        integral = #{record.integral,jdbcType=INTEGER},
+      </if>
+      <if test="record.balance != null" >
+        balance = #{record.balance,jdbcType=DECIMAL},
       </if>
       <if test="record.counselorid != null" >
         counselorId = #{record.counselorid,jdbcType=INTEGER},
@@ -459,7 +480,9 @@
       address = #{record.address,jdbcType=VARCHAR},
       bornDate = #{record.borndate,jdbcType=TIMESTAMP},
       paymentDays = #{record.paymentdays,jdbcType=INTEGER},
-      paymentSize = #{record.paymentsize,jdbcType=INTEGER},
+      paymentSize = #{record.paymentsize,jdbcType=DECIMAL},
+      integral = #{record.integral,jdbcType=INTEGER},
+      balance = #{record.balance,jdbcType=DECIMAL},
       counselorId = #{record.counselorid,jdbcType=INTEGER},
       counselorName = #{record.counselorname,jdbcType=VARCHAR},
       advisorytelephone = #{record.advisorytelephone,jdbcType=VARCHAR},
@@ -507,7 +530,13 @@
         paymentDays = #{paymentdays,jdbcType=INTEGER},
       </if>
       <if test="paymentsize != null" >
-        paymentSize = #{paymentsize,jdbcType=INTEGER},
+        paymentSize = #{paymentsize,jdbcType=DECIMAL},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
       </if>
       <if test="counselorid != null" >
         counselorId = #{counselorid,jdbcType=INTEGER},
@@ -583,7 +612,9 @@
       address = #{address,jdbcType=VARCHAR},
       bornDate = #{borndate,jdbcType=TIMESTAMP},
       paymentDays = #{paymentdays,jdbcType=INTEGER},
-      paymentSize = #{paymentsize,jdbcType=INTEGER},
+      paymentSize = #{paymentsize,jdbcType=DECIMAL},
+      integral = #{integral,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=DECIMAL},
       counselorId = #{counselorid,jdbcType=INTEGER},
       counselorName = #{counselorname,jdbcType=VARCHAR},
       advisorytelephone = #{advisorytelephone,jdbcType=VARCHAR},

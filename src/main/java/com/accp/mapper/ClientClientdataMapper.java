@@ -4,9 +4,7 @@ import com.accp.domain.ClientClientdata;
 import com.accp.domain.ClientClientdataExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface ClientClientdataMapper {
     List<ClientClientdata> vip(String id);
 
