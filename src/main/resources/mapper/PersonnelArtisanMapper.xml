@@ -30,14 +30,14 @@
 
   <!--技工星级-->
   <resultMap id="BaseResultMapFour" type="com.accp.domain.PersonnelArtisan" extends="BaseResultMap">
-    <association property="personnelArtisanlevel" column="artisanlevelid" javaType="com.accp.domain.PersonnelArtisanlevel">
+    <association property="personnelArtisanlevel" javaType="com.accp.domain.PersonnelArtisanlevel">
       <id column="artisanLevelId" property="artisanlevelid" jdbcType="INTEGER" />
       <result column="artisanLevelName" property="artisanlevelname" jdbcType="VARCHAR" />
       <result column="artisanLevelWeight" property="artisanlevelweight" jdbcType="VARCHAR" />
       <result column="default1" property="default1" jdbcType="VARCHAR" />
       <result column="default2" property="default2" jdbcType="VARCHAR" />
     </association>
-    <association property="personnelArtisanclass" column="artisanclassid" javaType="com.accp.domain.PersonnelArtisanclass">
+    <association property="personnelArtisanclass" javaType="com.accp.domain.PersonnelArtisanclass">
       <id column="artisanClassId" property="artisanclassid" jdbcType="INTEGER" />
       <result column="artisanClassName" property="artisanclassname" jdbcType="VARCHAR" />
       <result column="artisanClassWeight" property="artisanclassweight" jdbcType="VARCHAR" />
@@ -60,18 +60,99 @@ SELECT `personnel_artisan`.*,`personnel_artisanclass`.*,`personnel_artisanlevel`
 FROM `personnel_artisan`
 INNER JOIN `personnel_artisanclass` ON `personnel_artisan`.`artisanClassId`=`personnel_artisanclass`.`artisanClassId`
 INNER JOIN `personnel_artisanlevel` ON `personnel_artisan`.`artisanLevelId`=`personnel_artisanlevel`.`artisanLevelId`
-  </select>
-  <select id="teamSelectId" resultMap="BaseResultMapFour">
-SELECT `personnel_artisan`.*,`personnel_artisanclass`.*,`personnel_artisanlevel`.*
-FROM `personnel_artisan`
-INNER JOIN `personnel_artisanclass` ON `personnel_artisan`.`artisanClassId`=`personnel_artisanclass`.`artisanClassId`
-INNER JOIN `personnel_artisanlevel` ON `personnel_artisan`.`artisanLevelId`=`personnel_artisanlevel`.`artisanLevelId`
     where 1=1
-    <if test="personnelArtisan.artisanid != null and personnelArtisan.artisanid !=''">/*工号*/
+    <if test="personnelArtisan.ids !=null and personnelArtisan.ids.size()>0">
+      and (
+      <foreach collection="personnelArtisan.ids" item="item" separator="or">
+        <if test="item != null and item != ''">
+          `personnel_artisanclass`.artisanclassid = #{item}
+        </if>
+
+      </foreach>
+      )
+    </if>
+  </select>
+  <select id="teamSelectOpen" resultMap="BaseResultMapFour">
+    SELECT `personnel_artisan`.*,`personnel_artisanclass`.*,`personnel_artisanlevel`.*
+    FROM `personnel_artisan`
+    INNER JOIN `personnel_artisanclass` ON `personnel_artisan`.`artisanClassId`=`personnel_artisanclass`.`artisanClassId`
+    INNER JOIN `personnel_artisanlevel` ON `personnel_artisan`.`artisanLevelId`=`personnel_artisanlevel`.`artisanLevelId`
+    where 1=1
+    <if test="personnelArtisan.ids !=null and personnelArtisan.ids.size()>0">
+      and (
+      <foreach collection="personnelArtisan.ids" item="item" separator="or">
+        <if test="item != null and item != ''">
+          `personnel_artisanclass`.artisanclassid = #{item}
+        </if>
+
+      </foreach>
+      )
+    </if>
+    <if test="personnelArtisan.artisanid != null and personnelArtisan.artisanid !=''">/*技工编号*/
       and `personnel_artisan`.artisanid = #{personnelArtisan.artisanid}
     </if>
-    <if test="personnelArtisan.artisanname != null and personnelArtisan.artisanname != ''">/*姓名*/
+    <if test="personnelArtisan.artisanname != null and personnelArtisan.artisanname != ''">/*技工名称*/
       AND `personnel_artisan`.artisanname like CONCAT("%",#{personnelArtisan.artisanname},"%")
+    </if>
+    <if test="personnelArtisan.artisansex != null and personnelArtisan.artisansex != ''">/*技工性别*/
+      AND `personnel_artisan`.artisansex like CONCAT("%",#{personnelArtisan.artisansex},"%")
+    </if>
+    <if test="personnelArtisan.artisanclassid != null and personnelArtisan.artisanclassid != ''">/*所在班组*/
+      AND `personnel_artisan`.artisanclassid = #{personnelArtisan.artisanclassid}
+    </if>
+    <if test="personnelArtisan.password != null and personnelArtisan.password != ''">/*密码*/
+      AND `personnel_artisan`.password like CONCAT("%",#{personnelArtisan.password},"%")
+    </if>
+    <if test="personnelArtisan.email != null and personnelArtisan.email != ''">/*邮箱*/
+      AND `personnel_artisan`.email like CONCAT("%",#{personnelArtisan.email},"%")
+    </if>
+    <if test="personnelArtisan.authcode != null and personnelArtisan.authcode != ''">/*验证码*/
+      AND `personnel_artisan`.authcode like CONCAT("%",#{personnelArtisan.authcode},"%")
+    </if>
+    <if test="personnelArtisan.pastcodedate != null and personnelArtisan.pastcodedate != ''">/*验证码过期时间*/
+      AND `personnel_artisan`.pastcodedate like CONCAT("%",#{personnelArtisan.pastcodedate},"%")
+    </if>
+    <if test="personnelArtisan.phone != null and personnelArtisan.phone != ''">/*手机号*/
+      AND `personnel_artisan`.phone like CONCAT("%",#{personnelArtisan.phone},"%")
+    </if>
+    <if test="personnelArtisan.account != null and personnelArtisan.account != ''">/*技工账号*/
+      AND `personnel_artisan`.account like CONCAT("%",#{personnelArtisan.account},"%")
+    </if>
+    <if test="personnelArtisan.address != null and personnelArtisan.address != ''">/*地址*/
+      AND `personnel_artisan`.address like CONCAT("%",#{personnelArtisan.address},"%")
+    </if>
+    <if test="personnelArtisan.birthday != null and personnelArtisan.birthday != ''">/*出生日期*/
+      AND `personnel_artisan`.birthday like CONCAT("%",#{personnelArtisan.birthday},"%")
+    </if>
+    <if test="personnelArtisan.wechat != null and personnelArtisan.wechat != ''">/*微信号*/
+      AND `personnel_artisan`.wechat like CONCAT("%",#{personnelArtisan.wechat},"%")
+    </if>
+    <if test="personnelArtisan.identitycard != null and personnelArtisan.identitycard != ''">/*身份证*/
+      AND `personnel_artisan`.identitycard like CONCAT("%",#{personnelArtisan.identitycard},"%")
+    </if>
+    <if test="personnelArtisan.residence != null and personnelArtisan.residence != ''">/*户口地址*/
+      AND `personnel_artisan`.residence like CONCAT("%",#{personnelArtisan.residence},"%")
+    </if>
+    <if test="personnelArtisan.bank != null and personnelArtisan.bank != ''">/*开户银行*/
+      AND `personnel_artisan`.bank like CONCAT("%",#{personnelArtisan.bank},"%")
+    </if>
+    <if test="personnelArtisan.bankaccount != null and personnelArtisan.bankaccount != ''">/*银行账户*/
+      AND `personnel_artisan`.bankaccount like CONCAT("%",#{personnelArtisan.bankaccount},"%")
+    </if>
+    <if test="personnelArtisan.artisanlevelid != null and personnelArtisan.artisanlevelid != ''">/*技工星级*/
+      AND `personnel_artisan`.artisanlevelid = #{personnelArtisan.artisanlevelid}
+    </if>
+    <if test="personnelArtisan.groupleader != null and personnelArtisan.groupleader != ''">/*是否组长*/
+      AND `personnel_artisan`.groupleader like CONCAT("%",#{personnelArtisan.groupleader},"%")
+    </if>
+    <if test="personnelArtisan.maintaintype != null and personnelArtisan.maintaintype != ''">/*维修工种*/
+      AND `personnel_artisan`.maintaintype like CONCAT("%",#{personnelArtisan.maintaintype},"%")
+    </if>
+    <if test="personnelArtisan.maintainbrand != null and personnelArtisan.maintainbrand != ''">/*维修品牌*/
+      AND `personnel_artisan`.maintainbrand like CONCAT("%",#{personnelArtisan.maintainbrand},"%")
+    </if>
+    <if test="personnelArtisan.roleid != null and personnelArtisan.roleid != ''">/*角色表*/
+      AND `personnel_artisan`.roleid = #{personnelArtisan.roleid}
     </if>
   </select>
 

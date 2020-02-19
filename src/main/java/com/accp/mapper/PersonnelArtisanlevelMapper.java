@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface PersonnelArtisanlevelMapper {
+    List<PersonnelArtisanlevel> starSelect(@Param("personnelArtisanlevel") PersonnelArtisanlevel personnelArtisanlevel);
+
     int countByExample(PersonnelArtisanlevelExample example);
 
     int deleteByExample(PersonnelArtisanlevelExample example);

@@ -9,6 +9,9 @@ import com.accp.mapper.PersonnelArtisanclassMapper;
 import com.accp.mapper.PersonnelArtisanlevelMapper;
 import com.accp.mapper.PersonnelLegworkcatMapper;
 import com.accp.service.PermissionsService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,8 +34,14 @@ public class TeamService {
     /**
      * 查询所有
      */
-    public List<PersonnelArtisan> teamSelect(){
-        return personnelArtisanMapper.teamSelect();
+    public PageInfo<PersonnelArtisan> teamSelect(Integer index, Integer limit,List<Integer> ids) {
+        Page<PersonnelArtisan> page = PageHelper.startPage(index, limit);
+        PersonnelArtisan personnelArtisan = new PersonnelArtisan();
+        /*ids.add(1);
+        ids.add(2);*/
+        personnelArtisan.setIds(ids);
+        personnelArtisanMapper.teamSelect(personnelArtisan);
+        return page.toPageInfo();
     }
     /**
      * 查询所有技工表
@@ -74,10 +83,13 @@ public class TeamService {
         }
     }
     /**
-     * 根据条件查询
+     * 根据条件查询所有
+     * @return
      */
-    public List<PersonnelArtisan> teamSelectId(PersonnelArtisan personnelArtisan){
-        return personnelArtisanMapper.teamSelectId(personnelArtisan);
+    public PageInfo<PersonnelArtisan> teamSelectOpen(Integer index, Integer size, PersonnelArtisan personnelArtisan){
+        Page<PersonnelArtisan> page = PageHelper.startPage(index,size);
+        personnelArtisanMapper.teamSelectOpen(personnelArtisan);
+        return page.toPageInfo();
     }
     /**
      * 新增
@@ -89,7 +101,7 @@ public class TeamService {
      * 修改
      */
     public int teamUpdate(PersonnelArtisan personnelArtisan){
-        return personnelArtisanMapper.updateByPrimaryKey(personnelArtisan);
+        return personnelArtisanMapper.updateByPrimaryKeySelective(personnelArtisan);
     }
     /**
      * 删除

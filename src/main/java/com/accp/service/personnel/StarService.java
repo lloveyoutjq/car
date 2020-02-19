@@ -5,6 +5,9 @@ import com.accp.domain.PersonnelLegworkcat;
 import com.accp.mapper.PersonnelArtisanlevelMapper;
 import com.accp.mapper.PersonnelLegworkcatMapper;
 import com.accp.mapper.PersonnelStaffMapper;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,8 +26,14 @@ public class StarService {
     /**
      * 查询所有
      */
-    public List<PersonnelArtisanlevel> starSelect(){
-        return personnelArtisanlevelMapper.selectByExample(null);
+    public PageInfo<PersonnelArtisanlevel> starSelect(Integer index, Integer limit, List<Integer> ids) {
+        Page<PersonnelArtisanlevel> page = PageHelper.startPage(index, limit);
+        PersonnelArtisanlevel personnelArtisanlevel = new PersonnelArtisanlevel();
+        /*ids.add(1);
+        ids.add(2);*/
+        personnelArtisanlevel.setIds(ids);
+        personnelArtisanlevelMapper.starSelect(personnelArtisanlevel);
+        return page.toPageInfo();
     }
     /**
      * 根据条件查询
@@ -42,7 +51,7 @@ public class StarService {
      * 修改
      */
     public int starUpdate(PersonnelArtisanlevel personnelArtisanlevel){
-        return personnelArtisanlevelMapper.updateByPrimaryKey(personnelArtisanlevel);
+        return personnelArtisanlevelMapper.updateByPrimaryKeySelective(personnelArtisanlevel);
     }
     /**
      * 删除

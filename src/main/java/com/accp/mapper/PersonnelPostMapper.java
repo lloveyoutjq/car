@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface PersonnelPostMapper {
+    List<PersonnelPost> jobsSelect(@Param("personnelPost") PersonnelPost personnelPost);
+
+
     int countByExample(PersonnelPostExample example);
 
     int deleteByExample(PersonnelPostExample example);

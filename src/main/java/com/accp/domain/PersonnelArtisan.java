@@ -1,6 +1,7 @@
 package com.accp.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class PersonnelArtisan {
     private Integer artisanid;
@@ -50,6 +51,16 @@ public class PersonnelArtisan {
     private String default1;
 
     private String default2;
+
+    public List<Integer> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
+    }
+
+    private List<Integer> ids;
 
     private PersonnelArtisanlevel personnelArtisanlevel;
     private PersonnelArtisanclass personnelArtisanclass;

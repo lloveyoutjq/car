@@ -4,6 +4,9 @@ import com.accp.domain.PersonnelAddressbook;
 import com.accp.domain.PersonnelStaff;
 import com.accp.mapper.PersonnelAddressbookMapper;
 import com.accp.mapper.PersonnelStaffMapper;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,8 +26,14 @@ public class CommunicationService {
     /**
      * 查询所有
      */
-    public List<PersonnelStaff> communicationSelect(){
-        return personnelStaffMapper.communicationSelect();
+    public PageInfo<PersonnelStaff> communicationSelect(Integer index, Integer limit, List<Integer> ids){
+        Page<PersonnelStaff> page = PageHelper.startPage(index,limit);
+        PersonnelStaff personnelStaff = new PersonnelStaff();
+        /*ids.add(1);
+        ids.add(2);*/
+        personnelStaff.setIds(ids);
+        personnelStaffMapper.communicationSelect(personnelStaff);
+        return page.toPageInfo();
     }
     /**
      * 根据条件查询
@@ -42,7 +51,7 @@ public class CommunicationService {
      * 修改
      */
     public int communicationUpdate(PersonnelStaff personnelStaff){
-        return personnelStaffMapper.updateByPrimaryKey(personnelStaff);
+        return personnelStaffMapper.updateByPrimaryKeySelective(personnelStaff);
     }
     /**
      * 删除

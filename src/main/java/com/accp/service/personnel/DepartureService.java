@@ -4,6 +4,9 @@ import com.accp.domain.PersonnelDimission;
 import com.accp.domain.PersonnelStaff;
 import com.accp.mapper.PersonnelDimissionMapper;
 import com.accp.mapper.PersonnelStaffMapper;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,8 +29,14 @@ public class DepartureService {
     /**
      * 查询所有
      */
-    public List<PersonnelStaff> departureSelect(){
-        return personnelStaffMapper.departureSelect();
+    public PageInfo<PersonnelStaff> departureSelect(Integer index, Integer limit, List<Integer> ids){
+        Page<PersonnelStaff> page = PageHelper.startPage(index,limit);
+        PersonnelStaff personnelStaff = new PersonnelStaff();
+        /*ids.add(1);
+        ids.add(2);*/
+        personnelStaff.setIds(ids);
+        personnelStaffMapper.departureSelect(personnelStaff);
+        return page.toPageInfo();
     }
     /**
      * 查询所有离职人员
@@ -51,7 +60,7 @@ public class DepartureService {
      * 修改
      */
     public int departureUpdate(PersonnelDimission personnelDimission){
-        return personnelDimissionMapper.updateByPrimaryKey(personnelDimission);
+        return personnelDimissionMapper.updateByPrimaryKeySelective(personnelDimission);
     }
     /**
      * 删除

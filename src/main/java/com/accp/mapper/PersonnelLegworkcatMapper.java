@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface PersonnelLegworkcatMapper {
-    List<PersonnelLegworkcat> fieldSelect();
+    List<PersonnelLegworkcat> fieldSelect(@Param("personnelLegworkcat") PersonnelLegworkcat personnelLegworkcat);
 
 
 

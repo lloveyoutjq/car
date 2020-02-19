@@ -1,5 +1,7 @@
 package com.accp.domain;
 
+import java.util.List;
+
 public class PersonnelLegworkcat {
     private Integer legworkcatid;
 
@@ -16,6 +18,16 @@ public class PersonnelLegworkcat {
     private String default1;
 
     private String default2;
+
+    public List<Integer> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
+    }
+
+    private List<Integer> ids;
 
     private PersonnelArtisanclass personnelArtisanclass;
 

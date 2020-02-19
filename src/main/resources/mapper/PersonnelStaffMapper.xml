@@ -128,7 +128,7 @@
     SELECT `personnel_staff`.*,`personnel_department`.*,`personnel_post`.* FROM `personnel_staff`
     INNER JOIN `personnel_department` ON `personnel_staff`.`did`=`personnel_department`.`id`
     INNER JOIN `personnel_post` ON `personnel_staff`.`departmentId`=`personnel_post`.`postId`
-    where 1=1
+    where 1=1 AND `personnel_staff`.`default2`!=2
     <if test="personnelStaff.ids !=null and personnelStaff.ids.size()>0">
       and (
       <foreach collection="personnelStaff.ids" item="item" separator="or">
@@ -139,25 +139,22 @@
       </foreach>
       )
     </if>
-
-  </select>
-  <select id="institutionsSelectId" resultMap="BaseResultMapSix">
-    SELECT `personnel_staff`.*,`personnel_department`.* FROM `personnel_staff`
-    INNER JOIN `personnel_department` ON `personnel_staff`.`did`=`personnel_department`.`id`
-    INNER JOIN `personnel_post` ON `personnel_staff`.`departmentId`=`personnel_post`.`postId`
-    where 1=1
-    <if test="personnelStaff.id != null and personnelStaff.id !=''">/*员工编号*/
-      and `personnel_staff`.id = #{personnelStaff.id}
-    </if>
-    <if test="personnelStaff.staffname != null and personnelStaff.staffname != ''">/*员工姓名*/
-      AND `personnel_staff`.staffname like CONCAT("%",#{personnelStaff.staffname},"%")
-    </if>
   </select>
   <select id="institutionsSelectOpen" resultMap="BaseResultMapSix">
-    SELECT `personnel_staff`.*,`personnel_department`.* FROM `personnel_staff`
+    SELECT `personnel_staff`.*,`personnel_department`.*,`personnel_post`.* FROM `personnel_staff`
     INNER JOIN `personnel_department` ON `personnel_staff`.`did`=`personnel_department`.`id`
     INNER JOIN `personnel_post` ON `personnel_staff`.`departmentId`=`personnel_post`.`postId`
-    where 1=1
+    where 1=1 AND `personnel_staff`.`default2`!=2
+      <if test="personnelStaff.ids !=null and personnelStaff.ids.size()>0">
+          and (
+          <foreach collection="personnelStaff.ids" item="item" separator="or">
+              <if test="item != null and item != ''">
+                  `personnel_department`.id = #{item}
+              </if>
+
+          </foreach>
+          )
+      </if>
     <if test="personnelStaff.id != null and personnelStaff.id !=''">/*员工编号*/
       and `personnel_staff`.id = #{personnelStaff.id}
     </if>
@@ -173,10 +170,6 @@
     <if test="personnelStaff.staffaccount != null and personnelStaff.staffaccount !=''">/*员工账户*/
       and `personnel_staff`.staffaccount like CONCAT("%",#{personnelStaff.staffaccount},"%")
     </if>
-
-
-
-
     <if test="personnelStaff.password != null and personnelStaff.password != ''">/*员工密码*/
       AND `personnel_staff`.password like CONCAT("%",#{personnelStaff.password},"%")
     </if>

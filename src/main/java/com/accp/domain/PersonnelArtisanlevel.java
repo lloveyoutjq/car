@@ -1,5 +1,7 @@
 package com.accp.domain;
 
+import java.util.List;
+
 public class PersonnelArtisanlevel {
     private Integer artisanlevelid;
 
@@ -10,6 +12,16 @@ public class PersonnelArtisanlevel {
     private String default1;
 
     private String default2;
+
+    public List<Integer> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
+    }
+
+    private List<Integer> ids;
 
     public Integer getArtisanlevelid() {
         return artisanlevelid;

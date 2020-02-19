@@ -69,8 +69,22 @@ public class PersonnelController {
      * @return
      */
     @RequestMapping("/jobsSelect")
-    public List<PersonnelPost> jobsSelect(){
-        return jobsService.jobsSelect();
+    public Map jobsSelect(Integer page,Integer limit,String ids){
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Integer> idsList = null;
+        if(ids != null && !"".equals(ids)){
+            try {
+                idsList = objectMapper.readValue(ids,List.class);
+            }catch (JsonProcessingException e){
+                System.out.println("发送异常");
+            }
+        }
+        PageInfo<PersonnelPost> pageInfo =  jobsService.jobsSelect(page,limit,idsList);
+        Map<String,Object> code = new HashMap<>();
+        code.put("code",0);
+        code.put("data",pageInfo.getList());
+        code.put("count",pageInfo.getTotal());
+        return code;
     }
     /**
      * 根据条件查询岗位定义
@@ -123,8 +137,22 @@ public class PersonnelController {
      * 查询所有外勤车辆
      */
     @RequestMapping("/fieldSelect")
-    public List<PersonnelLegworkcat> fieldSelect(){
-        return fieldService.fieldSelect();
+    public Map fieldSelect(Integer page,Integer limit,String ids){
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Integer> idsList = null;
+        if(ids != null && !"".equals(ids)){
+            try {
+                idsList = objectMapper.readValue(ids,List.class);
+            }catch (JsonProcessingException e){
+                System.out.println("发送异常");
+            }
+        }
+        PageInfo<PersonnelLegworkcat> pageInfo =  fieldService.fieldSelect(page,limit,idsList);
+        Map<String,Object> code = new HashMap<>();
+        code.put("code",0);
+        code.put("data",pageInfo.getList());
+        code.put("count",pageInfo.getTotal());
+        return code;
     }
     /**
      * 新增外勤车辆
@@ -169,8 +197,22 @@ public class PersonnelController {
      * 查询所有技工星级
      */
     @RequestMapping("/starSelect")
-    public List<PersonnelArtisanlevel> starSelect(){
-        return starService.starSelect();
+    public Map starSelect(Integer page,Integer limit,String ids){
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Integer> idsList = null;
+        if(ids != null && !"".equals(ids)){
+            try {
+                idsList = objectMapper.readValue(ids,List.class);
+            }catch (JsonProcessingException e){
+                System.out.println("发送异常");
+            }
+        }
+        PageInfo<PersonnelArtisanlevel> pageInfo =  starService.starSelect(page,limit,idsList);
+        Map<String,Object> code = new HashMap<>();
+        code.put("code",0);
+        code.put("data",pageInfo.getList());
+        code.put("count",pageInfo.getTotal());
+        return code;
     }
     /**
      * 根据条件查询技工星级
@@ -221,8 +263,22 @@ public class PersonnelController {
      * 查询所有通讯名单
      */
     @RequestMapping("/communicationSelect")
-    public List<PersonnelStaff> communicationSelect(){
-        return communicationService.communicationSelect();
+    public Map communicationSelect(Integer page,Integer limit,String ids){
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Integer> idsList = null;
+        if(ids != null && !"".equals(ids)){
+            try {
+                idsList = objectMapper.readValue(ids,List.class);
+            }catch (JsonProcessingException e){
+                System.out.println("发送异常");
+            }
+        }
+        PageInfo<PersonnelStaff> pageInfo =  communicationService.communicationSelect(page,limit,idsList);
+        Map<String,Object> code = new HashMap<>();
+        code.put("code",0);
+        code.put("data",pageInfo.getList());
+        code.put("count",pageInfo.getTotal());
+        return code;
     }
     /**
      * 根据条件查询通讯名单
@@ -274,15 +330,29 @@ public class PersonnelController {
      * 查询所有离职登记
      */
     @RequestMapping("/departureSelect")
-    public List<PersonnelStaff> departureSelect(){
-        return departureService.departureSelect();
+    public Map departureSelect(Integer page,Integer limit,String ids){
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Integer> idsList = null;
+        if(ids != null && !"".equals(ids)){
+            try {
+                idsList = objectMapper.readValue(ids,List.class);
+            }catch (JsonProcessingException e){
+                System.out.println("发送异常");
+            }
+        }
+        PageInfo<PersonnelStaff> pageInfo =  departureService.departureSelect(page,limit,idsList);
+        Map<String,Object> code = new HashMap<>();
+        code.put("code",0);
+        code.put("data",pageInfo.getList());
+        code.put("count",pageInfo.getTotal());
+        return code;
     }
     /**
      * 查询所有离职人员
      */
     @RequestMapping("/departureSelectTwo")
     public List<PersonnelStaff> departureSelectTwo(){
-        return departureService.departureSelect();
+        return departureService.departureSelectTwo();
     }
     /**
      * 根据条件查询离职登记
@@ -335,8 +405,22 @@ public class PersonnelController {
      * 查询所有班组技工
      */
     @RequestMapping("/teamSelect")
-    public List<PersonnelArtisan> teamSelect(){
-        return teamService.teamSelect();
+    public Map teamSelect(Integer page,Integer limit,String ids){
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Integer> idsList = null;
+        if(ids != null && !"".equals(ids)){
+            try {
+                idsList = objectMapper.readValue(ids,List.class);
+            }catch (JsonProcessingException e){
+                System.out.println("发送异常");
+            }
+        }
+        PageInfo<PersonnelArtisan> pageInfo =  teamService.teamSelect(page,limit,idsList);
+        Map<String,Object> code = new HashMap<>();
+        code.put("code",0);
+        code.put("data",pageInfo.getList());
+        code.put("count",pageInfo.getTotal());
+        return code;
     }
     /**
      * 查询所有技工表
@@ -362,10 +446,22 @@ public class PersonnelController {
     /**
      * 根据条件查询班组技工
      */
-    @RequestMapping("/teamSelectId")
+    @RequestMapping("/teamSelectOpen")
     @ResponseBody
-    public List<PersonnelArtisan> teamSelectId(PersonnelArtisan personnelArtisan){
-        return teamService.teamSelectId(personnelArtisan);
+    public Map teamSelectOpen(Integer page,Integer limit,String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        PersonnelArtisan personnelArtisan = null;
+        try {
+            personnelArtisan = objectMapper.readValue(data,PersonnelArtisan.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+        PageInfo<PersonnelArtisan> pageInfo =  teamService.teamSelectOpen(page,limit,personnelArtisan);
+        Map<String,Object> map = new HashMap<>();
+        map.put("code","0");
+        map.put("data",pageInfo.getList());
+        map.put("count",pageInfo.getTotal());
+        return map;
     }
     /**
      * 新增班组技工
@@ -444,18 +540,22 @@ public class PersonnelController {
     /**
      * 根据条件查询组织机构
      */
-    @RequestMapping("/institutionsSelectId")
-    @ResponseBody
-    public List<PersonnelStaff> institutionsSelectId(PersonnelStaff personnelStaff){
-        return institutionsService.institutionsSelectId(personnelStaff);
-    }
-    /**
-     * 查询组织机构
-     */
     @RequestMapping("/institutionsSelectOpen")
     @ResponseBody
-    public List<PersonnelStaff> institutionsSelectOpen(PersonnelStaff personnelStaff){
-        return institutionsService.institutionsSelectOpen(personnelStaff);
+    public Map institutionsSelectOpen(Integer page,Integer limit,String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        PersonnelStaff personnelStaff = null;
+        try {
+            personnelStaff = objectMapper.readValue(data,PersonnelStaff.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+        PageInfo<PersonnelStaff> pageInfo =  institutionsService.institutionsSelectOpen(page,limit,personnelStaff);
+        Map<String,Object> map = new HashMap<>();
+        map.put("code","0");
+        map.put("data",pageInfo.getList());
+        map.put("count",pageInfo.getTotal());
+        return map;
     }
     /**
      * 查询所有部门

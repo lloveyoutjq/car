@@ -8,6 +8,10 @@
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="starSelect" resultMap="BaseResultMap">
+    SELECT * FROM `personnel_artisanlevel`
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
