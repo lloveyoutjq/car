@@ -32,5 +32,10 @@ public class CarService {
         return  count;
     }
 
+    public int updateDataCar(DataCar dataCar){
+        return  dataCarMapper.updateByPrimaryKey(dataCar);
+
+    }
+
 
 }

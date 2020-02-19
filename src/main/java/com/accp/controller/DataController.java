@@ -5,9 +5,7 @@ import com.accp.service.data.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
-import org.apache.catalina.Engine;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +34,10 @@ public class DataController {
     CommodityTypeService commodityTypeService;
 
     @Autowired(required = false)
-    itemtypeService itemtypeService;
+    ItemtypeService itemtypeService;
+
+    @Autowired(required = false)
+    MaintenanceitemsService maintenanceitemsService;
 
     //品牌
     @RequestMapping("/addDataCarbrand")
@@ -91,6 +92,39 @@ public class DataController {
         code.put("count",pageInfo.getSize());
         return code;
     }
+
+    @RequestMapping("/addDataCar")
+    @ResponseBody
+    public int addDataCar(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        DataCar dataCar = null;
+        try {
+            dataCar = objectMapper.readValue(data,DataCar.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+
+        return carService.insertDataCar(dataCar);
+    }
+
+    @RequestMapping("/deleteDataCar")
+    public int deleteDataCar(Integer id){
+        return carService.deleteDataCar(id);
+    }
+
+    @RequestMapping("/updateDataCar")
+    public int updateDataCar(String data){
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        DataCar dataCar = null;
+        try {
+            dataCar = objectMapper.readValue(data,DataCar.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+        return carService.updateDataCar(dataCar);
+    }
+
 
 
 
@@ -197,19 +231,92 @@ public class DataController {
 
 
     }
-    //维修
-    @RequestMapping("/selectDataMaintain")
-    public Map selectDataMaintain() {
+    //维修类型
+    @RequestMapping("/selectItemtype")
+    public Map selectDataItemtype() {
 
         Map<String, Object> map = new HashMap<>();
         Map<String, Object> code = new HashMap<>();
-        List<DataMaintain> lists = itemtypeService.selectDataaMaintain();
+        List<DataItemtype> lists = itemtypeService.selectDataItemtype();
         code.put("code", "200");
         code.put("message", "操作成功");
         map.put("status", code);
         map.put("data", lists);
         return map;
 
+    }
+
+    @RequestMapping("/addDataItemtype")
+    public int addDataItemtype(String data){
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        DataItemtype dataItemtype = null;
+        try {
+            dataItemtype = objectMapper.readValue(data,DataItemtype.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+        return itemtypeService.insertDataaItemtype(dataItemtype);
+    }
+
+    @RequestMapping("/deleteDataItemtype")
+    public int deleteDataItemtype(Integer id){
+        return itemtypeService.deleteDataItemtype(id);
+    }
+
+    @RequestMapping("/updateDataItemtype")
+    public int updateDataItemtype(String data){
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        DataItemtype dataItemtype = null;
+        try {
+            dataItemtype = objectMapper.readValue(data,DataItemtype.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+        return itemtypeService.updateItemtype(dataItemtype);
+    }
+
+    //维修的项目
+    @RequestMapping("/selectDataMaintenanceItems")
+    public Map selectDataMaintenanceItems(Integer page,Integer limit){
+        Map<String,Object> code = new HashMap<>();
+        PageInfo<DataMaintenanceItems> pageInfo = maintenanceitemsService.selectDataMaintenanceItems(page,limit);
+        code.put("data",pageInfo.getList());
+        code.put("code","0");
+        code.put("count",pageInfo.getSize());
+        return code;
+    }
+
+    @RequestMapping("/addDataMaintenanceItems")
+    public int addDataMaintenanceItems(String data){
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        DataMaintenanceItems dataMaintenanceItems = null;
+        try {
+            dataMaintenanceItems = objectMapper.readValue(data,DataMaintenanceItems.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+        return maintenanceitemsService.insertDataMaintenanceItems(dataMaintenanceItems);
+    }
+
+    @RequestMapping("/deleteDataMaintenanceItems")
+    public int deleteDataMaintenanceItems(Integer id){
+        return maintenanceitemsService.deleteDataMaintenanceItems(id);
+    }
+
+    @RequestMapping("/updateDataMaintenanceItems")
+    public int updateDataMaintenanceItems(String data){
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        DataMaintenanceItems dataMaintenanceItems = null;
+        try {
+            dataMaintenanceItems = objectMapper.readValue(data,DataMaintenanceItems.class);
+        }catch (JsonProcessingException e){
+            System.out.println("发送异常");
+        }
+        return maintenanceitemsService.updateMaintenanceItems(dataMaintenanceItems);
     }
 
 
