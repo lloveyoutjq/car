@@ -51,6 +51,24 @@
       <result column="default2" property="default2" jdbcType="VARCHAR" />
     </association>
   </resultMap>
+  <resultMap id="BaseResultMapPlus" type="com.accp.domain.ClientClientdata" extends="BaseResultMap">
+    <association property="clientClienttype" javaType="com.accp.domain.ClientClienttype">
+      <id column="cctid" property="id"/>
+      <result column="cctclienttype" property="clienttype"/>
+      <result column="cctvalidty" property="validty"/>
+      <result column="cctstarttime" property="starttime"/>
+      <result column="cctendtime" property="endtime"/>
+    </association>
+  </resultMap>
+  <select id="vip" resultMap="BaseResultMapPlus">
+    SELECT ccd.`number`,cct.`id` as cctid ,ccd.`name`,ccd.`phone`,
+    cct.`clientType` as cctclienttype ,cct.`validty` as cctvalidty ,ccd.`integral` ,ccd.`balance` ,
+    cct.`startTime` as cctstarttime ,cct.`endTime` cctendtime
+    FROM `client_clientdata` AS ccd
+    STRAIGHT_JOIN `client_clienttype` AS cct
+    ON ccd.`typeId` = cct.`id`
+    WHERE ccd.`number` LIKE #{id}
+  </select>
   <select id="selectClient" resultMap="userSelectMap" >
     SELECT `client_clientdata`.*,`client_clienttype`.* FROM `client_clientdata`
     LEFT JOIN `client_clienttype` ON `client_clienttype`.`id` = `client_clientdata`.typeId

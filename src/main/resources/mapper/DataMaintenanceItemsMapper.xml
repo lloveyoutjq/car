@@ -80,7 +80,7 @@
     SELECT mr.`number` as mrnumber ,mr.`pickDate` as mrpickdate ,mr.`type` as mrtype ,
     mr.`tname` as mrtname ,mr.`completeDate` as mrcompletedate ,mr.`settleDate` as mrsettledate ,dri.`id` as driid ,
     dmi.`id`  ,dmi.`itemsName` ,dmi.`normalPrice`,dmi.`memberPrice`,dmi.`vipPrice`, dri.`itemid` as driitemid ,
-    dri.`fault` as drifault ,dmi.`faultResult` as drifaultresult ,dri.`workOrderNumber` as driworkordernumber ,cca.`id` as ccaid ,cca.`carNumber` as ccacarnumber
+    dri.`fault` as drifault ,dri.`faultResult` as drifaultresult ,dri.`workOrderNumber` as driworkordernumber ,cca.`id` as ccaid ,cca.`carNumber` as ccacarnumber
     FROM `data_maintenance_items` AS dmi
     STRAIGHT_JOIN `data_repair_items` AS dri
     ON dmi.`id` = dri.`itemId`

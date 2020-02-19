@@ -41,7 +41,7 @@
     FROM (
     SELECT mrp.`number`,mrp.`carInfoId`,mrp.`type`,mrp.`getMan`,mrp.`pickDate`,mrp.`price`,mrp.`completeDate`,mrp.`settleDate`,mrp.`status`,mrp.`overWorkDate`,'维修单' AS tname FROM `maintain_repair` AS mrp
     UNION ALL
-    SELECT mrs.`number`,mrs.`carInfoId`,mrs.`type`,mrs.`getMan`,mrs.`pickDate`,mrs.`price`,mrs.`completeDate`,mrs.`settleDate`,mrs.`status`,mrs.`overWorkDate`,'救援单' AS tname FROM `maintain_rescue` AS mrs
+    SELECT mrs.`number`,mrs.`carInfoId`,mrs.`type`,mrs.`getMan`,mrs.`pickDate`,mrs.`price`,mrs.`completeDate`,mrs.`settleDate`,mrs.`status`,mrs.`overTime`,'救援单' AS tname FROM `maintain_rescue` AS mrs
     ) AS mr
     STRAIGHT_JOIN `client_carinfo` AS cca
     ON mr.`carInfoId` = cca.`id`

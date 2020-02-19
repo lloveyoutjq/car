@@ -1,10 +1,7 @@
-package com.accp.service.repair;
+package com.accp.service.maintenance;
 
 import com.accp.domain.*;
-import com.accp.mapper.ClientCarinfoMapper;
-import com.accp.mapper.DataMaintenanceItemsMapper;
-import com.accp.mapper.MaintainEwitemMapper;
-import com.accp.mapper.MaintainRepairMapper;
+import com.accp.mapper.*;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -30,6 +27,12 @@ public class RepairService {
     @Autowired
     MaintainEwitemMapper maintainEwitemMapper;
 
+    @Autowired
+    MaintainRescueMapper maintainRescueMapper;
+
+    @Autowired
+    FrontCashierMapper frontCashierMapper;
+
     //作业中车辆tab显示
     public PageInfo vehiclesInOperation(Integer pages,Integer limit){
         Page page = PageHelper.startPage(pages,limit);
@@ -52,7 +55,7 @@ public class RepairService {
     /**
      *维修救援and维修接车
      * */
-    //维修救援
+    //打开维修救援
     public ClientCarinfo rescueS(String carnumber){
         return clientCarinfoMapper.rescueS(carnumber);
     }
@@ -60,6 +63,19 @@ public class RepairService {
     //维修接车
     public ClientCarinfo repairS(String carnumber){
         return clientCarinfoMapper.repairS(carnumber);
+    }
+
+    //创建
+    public int repair(FrontCashier record){
+        maintainRepairMapper.insert(record.getMaintainRepair());
+        record.setNumber(record.getMaintainRepair().getNumber());
+        return frontCashierMapper.insert(record);
+    }
+
+    public int rescue(FrontCashier record){
+        maintainRescueMapper.insert(record.getMaintainRescue());
+        record.setNumber(record.getMaintainRescue().getNumber());
+        return frontCashierMapper.insert(record);
     }
 
     /**
@@ -73,13 +89,20 @@ public class RepairService {
     }
 
     //维修项目，单个维修单的多个维修项目（维修单内）
-    public List<DataMaintenanceItems> itemsSels(String number){
-        return dataMaintenanceItemsMapper.itemsSels(number);
+    public PageInfo itemsSels(String number,Integer page,Integer limit){
+        Page pages  = PageHelper.startPage(page,limit);
+        dataMaintenanceItemsMapper.itemsSels(number);
+        return pages.toPageInfo();
     }
 
     //维修项目单个新增
     public int insert(DataMaintenanceItems record){
         return  dataMaintenanceItemsMapper.insert(record);
+    }
+
+    //修改所用
+    public DataMaintenanceItems selectByPrimaryKey(Integer id){
+        return dataMaintenanceItemsMapper.selectByPrimaryKey(id);
     }
 
     //删除维修项目
@@ -96,10 +119,16 @@ public class RepairService {
      * 附加项目
      * */
     //查询
-    public List<MaintainEwitem> selectByExample(String number){
+    public PageInfo selectByExample(String number,Integer pages,Integer limit){
         MaintainEwitemExample example = new MaintainEwitemExample();
         example.createCriteria().andOuteridEqualTo(number);
-        return maintainEwitemMapper.selectByExample(example);
+        Page page = PageHelper.startPage(pages,limit);
+        maintainEwitemMapper.selectByExample(example);
+        return page.toPageInfo();
+    }
+    //单个查询
+    public MaintainEwitem selectByEwitemId(Integer id){
+        return maintainEwitemMapper.selectByPrimaryKey(id);
     }
 
     //新增
@@ -121,8 +150,39 @@ public class RepairService {
      * 附单
      * */
     //查询
-    public  List<DataMaintenanceItems> attached(String number){
-        return dataMaintenanceItemsMapper.attached(number);
+    public PageInfo attached(String number,Integer pages,Integer limit){
+        Page page = PageHelper.startPage(pages,limit);
+        dataMaintenanceItemsMapper.attached(number);
+        return page.toPageInfo();
     }
 
+    /**
+     * 获取最新单号
+     * */
+    public String newRepairId(){
+        List<MaintainRepair> maintainRepairList = maintainRepairMapper.selectByExample(null);
+        if (maintainRepairList.size()-1==-1){
+            return "W10001";
+        }
+        int index = maintainRepairList.get(maintainRepairList.size()-1).getNumber().length();
+        String lastNum = maintainRepairList.get(maintainRepairList.size()-1).getNumber().substring(index);
+        int last = Integer.getInteger(lastNum);
+        String beforeNum = maintainRepairList.get(maintainRepairList.size()-1).getNumber().substring(0,index);
+        String num = beforeNum + last;
+        return num;
+
+    }
+
+    public String newRescueId(){
+        List<MaintainRescue> maintainRescuesList = maintainRescueMapper.selectByExample(null);
+        if (maintainRescuesList.size()-1==-1){
+            return "J10001";
+        }
+        int index = maintainRescuesList.get(maintainRescuesList.size()-1).getNumber().length();
+        String lastNum = maintainRescuesList.get(maintainRescuesList.size()-1).getNumber().substring(index);
+        int last = Integer.getInteger(lastNum);
+        String beforeNum = maintainRescuesList.get(maintainRescuesList.size()-1).getNumber().substring(0,index);
+        String num = beforeNum + last;
+        return num;
+    }
 }

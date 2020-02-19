@@ -56,7 +56,7 @@
     SELECT mc.`id` ,mrs.`number` as mrsnumber ,di.`name` as diname , mrs.`workTeam` as mrsworkteam,ccd.`name` as ccdname ,
     cc.`carNumber` as cccarnumber, da.`carTypeName` as dacartypename ,cc.`frameNumber` as ccframenumber ,mrs.`pickDate` as mrspickdate,
     mc.`predictTime`,mc.`nowTime`,mc.`reason`,mc.`reworkCount`,mc.`reasonforRework`,ps.`staffName` as psstaffname ,mc.`price`,
-    dmi.`id` as dmiid , di.`id` as diid , cc.`id` as ccid , ccd.`number` as ccdnumber ,dri.`rescueRepairId` as drirescuerepairid ,dri.`id` as driid
+    dmi.`id` as dmiid , di.`id` as diid , cc.`id` as ccid , ccd.`number` as ccdnumber ,dri.`rescueRepairId` as drirescuerepairid ,dri.`id` as driid ,
     da.`id` as daid , ps.`id` as psid ,mc.`eligibility`
     FROM `maintain_completed` AS mc
     STRAIGHT_JOIN `data_maintenance_items` AS dmi
@@ -64,7 +64,7 @@
     STRAIGHT_JOIN `data_repair_items` AS dri
     ON dmi.`id` = dri.`itemId`
     STRAIGHT_JOIN `maintain_rescue` AS mrs
-    ON dri.`rescueRepairId` = mr.`number`
+    ON dri.`rescueRepairId` = mrs.`number`
     STRAIGHT_JOIN `data_itemtype` AS di
     ON dmi.`typeId` = di.`id`
     STRAIGHT_JOIN `client_carinfo` AS cc
