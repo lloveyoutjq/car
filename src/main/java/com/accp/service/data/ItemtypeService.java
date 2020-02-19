@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Service
 @Transactional
-public class itemtypeService {
+public class ItemtypeService {
 
     @Autowired(required = false)
     DataItemtypeMapper dataItemtypeMapper;

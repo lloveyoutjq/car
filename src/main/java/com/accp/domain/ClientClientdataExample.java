@@ -1,6 +1,5 @@
 package com.accp.domain;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -576,173 +575,53 @@ public class ClientClientdataExample {
             return (Criteria) this;
         }
 
-        public Criteria andPaymentsizeEqualTo(BigDecimal value) {
+        public Criteria andPaymentsizeEqualTo(Integer value) {
             addCriterion("paymentSize =", value, "paymentsize");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentsizeNotEqualTo(BigDecimal value) {
+        public Criteria andPaymentsizeNotEqualTo(Integer value) {
             addCriterion("paymentSize <>", value, "paymentsize");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentsizeGreaterThan(BigDecimal value) {
+        public Criteria andPaymentsizeGreaterThan(Integer value) {
             addCriterion("paymentSize >", value, "paymentsize");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentsizeGreaterThanOrEqualTo(BigDecimal value) {
+        public Criteria andPaymentsizeGreaterThanOrEqualTo(Integer value) {
             addCriterion("paymentSize >=", value, "paymentsize");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentsizeLessThan(BigDecimal value) {
+        public Criteria andPaymentsizeLessThan(Integer value) {
             addCriterion("paymentSize <", value, "paymentsize");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentsizeLessThanOrEqualTo(BigDecimal value) {
+        public Criteria andPaymentsizeLessThanOrEqualTo(Integer value) {
             addCriterion("paymentSize <=", value, "paymentsize");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentsizeIn(List<BigDecimal> values) {
+        public Criteria andPaymentsizeIn(List<Integer> values) {
             addCriterion("paymentSize in", values, "paymentsize");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentsizeNotIn(List<BigDecimal> values) {
+        public Criteria andPaymentsizeNotIn(List<Integer> values) {
             addCriterion("paymentSize not in", values, "paymentsize");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentsizeBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andPaymentsizeBetween(Integer value1, Integer value2) {
             addCriterion("paymentSize between", value1, value2, "paymentsize");
             return (Criteria) this;
         }
 
-        public Criteria andPaymentsizeNotBetween(BigDecimal value1, BigDecimal value2) {
+        public Criteria andPaymentsizeNotBetween(Integer value1, Integer value2) {
             addCriterion("paymentSize not between", value1, value2, "paymentsize");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralIsNull() {
-            addCriterion("integral is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralIsNotNull() {
-            addCriterion("integral is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralEqualTo(Integer value) {
-            addCriterion("integral =", value, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralNotEqualTo(Integer value) {
-            addCriterion("integral <>", value, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralGreaterThan(Integer value) {
-            addCriterion("integral >", value, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralGreaterThanOrEqualTo(Integer value) {
-            addCriterion("integral >=", value, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralLessThan(Integer value) {
-            addCriterion("integral <", value, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralLessThanOrEqualTo(Integer value) {
-            addCriterion("integral <=", value, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralIn(List<Integer> values) {
-            addCriterion("integral in", values, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralNotIn(List<Integer> values) {
-            addCriterion("integral not in", values, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralBetween(Integer value1, Integer value2) {
-            addCriterion("integral between", value1, value2, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andIntegralNotBetween(Integer value1, Integer value2) {
-            addCriterion("integral not between", value1, value2, "integral");
-            return (Criteria) this;
-        }
-
-        public Criteria andBalanceIsNull() {
-            addCriterion("balance is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andBalanceIsNotNull() {
-            addCriterion("balance is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andBalanceEqualTo(BigDecimal value) {
-            addCriterion("balance =", value, "balance");
-            return (Criteria) this;
-        }
-
-        public Criteria andBalanceNotEqualTo(BigDecimal value) {
-            addCriterion("balance <>", value, "balance");
-            return (Criteria) this;
-        }
-
-        public Criteria andBalanceGreaterThan(BigDecimal value) {
-            addCriterion("balance >", value, "balance");
-            return (Criteria) this;
-        }
-
-        public Criteria andBalanceGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("balance >=", value, "balance");
-            return (Criteria) this;
-        }
-
-        public Criteria andBalanceLessThan(BigDecimal value) {
-            addCriterion("balance <", value, "balance");
-            return (Criteria) this;
-        }
-
-        public Criteria andBalanceLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("balance <=", value, "balance");
-            return (Criteria) this;
-        }
-
-        public Criteria andBalanceIn(List<BigDecimal> values) {
-            addCriterion("balance in", values, "balance");
-            return (Criteria) this;
-        }
-
-        public Criteria andBalanceNotIn(List<BigDecimal> values) {
-            addCriterion("balance not in", values, "balance");
-            return (Criteria) this;
-        }
-
-        public Criteria andBalanceBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("balance between", value1, value2, "balance");
-            return (Criteria) this;
-        }
-
-        public Criteria andBalanceNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("balance not between", value1, value2, "balance");
             return (Criteria) this;
         }
 
