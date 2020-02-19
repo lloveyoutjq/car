@@ -12,12 +12,12 @@ import java.util.Map;
 
 @Service
 @Transactional
-public class itemtypeService {
+public class ItemtypeService {
 
     @Autowired(required = false)
     DataItemtypeMapper dataItemtypeMapper;
 
-    public List<DataItemtype> selectDataaMaintain(){
+    public List<DataItemtype> selectDataItemtype(){
         List<DataItemtype> list = dataItemtypeMapper.selectByExample(null);
         DataItemtype parentPerms = new DataItemtype();
         parentPerms.setId(0);
@@ -27,18 +27,18 @@ public class itemtypeService {
 
     }
 
-    public int  insertDataaMaintain(DataItemtype dataItemtype){
-        int count=dataItemtypeMapper.insertSelective(dataItemtype);
+    public int  insertDataaItemtype(DataItemtype dataMaintain){
+        int count=dataItemtypeMapper.insert(dataMaintain);
         return  count;
     }
 
-    public int deleteDataaMaintain(Integer id){
+    public int deleteDataItemtype(Integer id){
         int count=dataItemtypeMapper.deleteByPrimaryKey(id);
         return  count;
     }
 
-    public int updateaMaintain(DataItemtype dataItemtype){
-        return dataItemtypeMapper.updateByPrimaryKey(dataItemtype);
+    public int updateItemtype(DataItemtype dataMaintain){
+        return dataItemtypeMapper.updateByPrimaryKey(dataMaintain);
     }
 
     /**
@@ -48,7 +48,7 @@ public class itemtypeService {
      */
     private void recursionPerm(DataItemtype parentPerms,List<DataItemtype> list){
         for(DataItemtype perm : list){
-            if(perm.getId() == parentPerms.getId()){
+            if(perm.getParentid() == parentPerms.getId()){
 
                 Map map = new HashMap();
 

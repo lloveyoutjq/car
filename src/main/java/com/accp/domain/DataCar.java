@@ -17,7 +17,7 @@ public class DataCar {
 
     private String fuellabel;
 
-    private String carrying;
+    private String load;
 
     private Integer carbrandid;
 
@@ -91,12 +91,12 @@ public class DataCar {
         this.fuellabel = fuellabel;
     }
 
-    public String getCarrying() {
-        return carrying;
+    public String getLoad() {
+        return load;
     }
 
-    public void setCarrying(String carrying) {
-        this.carrying = carrying;
+    public void setLoad(String load) {
+        this.load = load;
     }
 
     public Integer getCarbrandid() {

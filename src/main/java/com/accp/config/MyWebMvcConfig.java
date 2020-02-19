@@ -62,7 +62,7 @@ public class MyWebMvcConfig extends WebMvcConfigurationSupport {
     }
 
 
-/************************************************************************/
+    /************************************************************************/
 
     @Bean
     public HttpMessageConverter<String> responseBodyConverter() {

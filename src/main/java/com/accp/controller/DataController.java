@@ -5,7 +5,9 @@ import com.accp.service.data.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
+import org.apache.catalina.Engine;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -201,7 +203,7 @@ public class DataController {
 
         Map<String, Object> map = new HashMap<>();
         Map<String, Object> code = new HashMap<>();
-        List<DataItemtype> lists = itemtypeService.selectDataaMaintain();
+        List<DataMaintain> lists = itemtypeService.selectDataaMaintain();
         code.put("code", "200");
         code.put("message", "操作成功");
         map.put("status", code);

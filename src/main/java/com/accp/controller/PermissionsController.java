@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
@@ -17,9 +18,8 @@ import java.util.Map;
 @RequestMapping("/permissions")
 public class PermissionsController {
 
-    @Autowired(required = false)
+    @Autowired
     PermissionsService permissionsService;
-
     @RequestMapping("/a")
     public String a(){
         return "成功";
@@ -30,19 +30,7 @@ public class PermissionsController {
         return permissionsService.selectUserMenuAll(1,uid);
     }
 
-    @RequestMapping("/selectUserMenuById")
-    public Map selectUserMenuById(Integer rid){
 
-        Map<String,Object> map = new HashMap<>();
-        Map<String,Object> code = new HashMap<>();
-        List<SystemPermissions> lists = permissionsService.selectUserMenuById(rid);
-        code.put("code","200");
-        code.put("message","操作成功");
-        map.put("status",code);
-        map.put("data",lists);
-
-        return map;
-    }
 
     @RequestMapping("/selectUserPerm")
     public String selectUserPerm(HttpSession session,Integer uid,String callback) throws JsonProcessingException {
