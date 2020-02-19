@@ -17,7 +17,7 @@ public class ItemtypeService {
     @Autowired(required = false)
     DataItemtypeMapper dataItemtypeMapper;
 
-    public List<DataItemtype> selectDataaMaintain(){
+    public List<DataItemtype> selectDataItemtype(){
         List<DataItemtype> list = dataItemtypeMapper.selectByExample(null);
         DataItemtype parentPerms = new DataItemtype();
         parentPerms.setId(0);
@@ -27,18 +27,19 @@ public class ItemtypeService {
 
     }
 
-    public int  insertDataaMaintain(DataItemtype dataItemtype){
+    public int  insertDataaItemtype(DataItemtype dataItemtype){
         int count=dataItemtypeMapper.insertSelective(dataItemtype);
         return  count;
     }
 
-    public int deleteDataaMaintain(Integer id){
+    public int deleteDataItemtype(Integer id){
         int count=dataItemtypeMapper.deleteByPrimaryKey(id);
         return  count;
     }
 
-    public int updateaMaintain(DataItemtype dataItemtype){
-        return dataItemtypeMapper.updateByPrimaryKey(dataItemtype);
+
+    public int updateItemtype(DataItemtype dataItemtype){
+        return dataItemtypeMapper.updateByPrimaryKeySelective(dataItemtype);
     }
 
     /**
@@ -48,7 +49,7 @@ public class ItemtypeService {
      */
     private void recursionPerm(DataItemtype parentPerms,List<DataItemtype> list){
         for(DataItemtype perm : list){
-            if(perm.getId() == parentPerms.getId()){
+            if(perm.getParentid() == parentPerms.getId()){
 
                 Map map = new HashMap();
 

@@ -34,7 +34,7 @@ public class CarTypeService {
     }
 
     public int updateDataCar(DataCarbrand dataCarbrand){
-        return dataCarbrandMapper.updateByPrimaryKey(dataCarbrand);
+        return dataCarbrandMapper.updateByPrimaryKeySelective(dataCarbrand);
     }
 
 }
