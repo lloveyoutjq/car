@@ -17,6 +17,8 @@ public class ClientClienttype {
 
     private Float discount;
 
+    private Integer integral;
+
     private Date starttime;
 
     private Date endtime;
