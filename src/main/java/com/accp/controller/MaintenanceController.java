@@ -1,7 +1,7 @@
 package com.accp.controller;
 
 
-import com.accp.service.front.settlementService;
+import com.accp.service.front.SettlementService;
 import com.accp.service.maintenance.CompletedService;
 import com.accp.service.repair.RepairService;
 import com.github.pagehelper.PageInfo;
@@ -19,7 +19,7 @@ public class MaintenanceController {
     CompletedService completedService;
 
     @Autowired
-    settlementService SettlementService;
+    SettlementService SettlementService;
 
     @Autowired
     RepairService repairService;

@@ -1,8 +1,7 @@
 package com.accp.controller;
 
 import com.accp.domain.ClientClientdata;
-import com.accp.domain.MaintainCompleted;
-import com.accp.service.front.settlementService;
+import com.accp.service.front.SettlementService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,12 +17,12 @@ import java.util.Map;
 public class FrontController {
 
     @Autowired
-    settlementService SettlementService;
+    SettlementService settlementService;
 
     @RequestMapping("/bill")
     public Map<String,Object> bill(String cashierId, String status, String carNumber, String name, String counselorName, String tname, String settlementStatus, String remark,Integer page,Integer limit){
         Map<String,Object> map = new HashMap<>();
-        PageInfo pageInfo = SettlementService.bill(cashierId, status, carNumber, name, counselorName, tname, settlementStatus, remark, page, limit);
+        PageInfo pageInfo = settlementService.bill(cashierId, status, carNumber, name, counselorName, tname, settlementStatus, remark, page, limit);
         map.put("code",0);
         map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());
@@ -33,8 +31,8 @@ public class FrontController {
 
     @RequestMapping("/rollback")
     public String rollback(String saleid){
-        SettlementService.updateByPrimaryKeySelective(saleid);
-        return "1";
+        int count = settlementService.updateByPrimaryKeySelective(saleid);
+        return count+"";
     }
 
     /**
@@ -43,7 +41,7 @@ public class FrontController {
     @RequestMapping("/vip")
     public Map<String,Object> vip(String id,Integer page,Integer limit){
         Map<String,Object> map = new HashMap<>();
-        PageInfo pageInfo = SettlementService.vip(id, page, limit);
+        PageInfo pageInfo = settlementService.vip(id, page, limit);
         map.put("code",0);
         map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());
@@ -59,7 +57,7 @@ public class FrontController {
         } catch (JsonProcessingException e) {
             System.out.println("发送异常");
         }
-        int index = SettlementService.recharge(clientClientdata);
+        int index = settlementService.recharge(clientClientdata);
         return index+"";
     }
 
