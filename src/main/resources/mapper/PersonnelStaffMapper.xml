@@ -139,13 +139,22 @@
       </foreach>
       )
     </if>
-
   </select>
   <select id="institutionsSelectId" resultMap="BaseResultMapSix">
-    SELECT `personnel_staff`.*,`personnel_department`.* FROM `personnel_staff`
+    SELECT `personnel_staff`.*,`personnel_department`.*,`personnel_post`.* FROM `personnel_staff`
     INNER JOIN `personnel_department` ON `personnel_staff`.`did`=`personnel_department`.`id`
     INNER JOIN `personnel_post` ON `personnel_staff`.`departmentId`=`personnel_post`.`postId`
     where 1=1
+    <if test="personnelStaff.ids !=null and personnelStaff.ids.size()>0">
+      and (
+      <foreach collection="personnelStaff.ids" item="item" separator="or">
+        <if test="item != null and item != ''">
+          `personnel_department`.id = #{item}
+        </if>
+
+      </foreach>
+      )
+    </if>
     <if test="personnelStaff.id != null and personnelStaff.id !=''">/*员工编号*/
       and `personnel_staff`.id = #{personnelStaff.id}
     </if>
@@ -154,10 +163,20 @@
     </if>
   </select>
   <select id="institutionsSelectOpen" resultMap="BaseResultMapSix">
-    SELECT `personnel_staff`.*,`personnel_department`.* FROM `personnel_staff`
+    SELECT `personnel_staff`.*,`personnel_department`.*,`personnel_post`.* FROM `personnel_staff`
     INNER JOIN `personnel_department` ON `personnel_staff`.`did`=`personnel_department`.`id`
     INNER JOIN `personnel_post` ON `personnel_staff`.`departmentId`=`personnel_post`.`postId`
     where 1=1
+    <if test="personnelStaff.ids !=null and personnelStaff.ids.size()>0">
+      and (
+      <foreach collection="personnelStaff.ids" item="item" separator="or">
+        <if test="item != null and item != ''">
+          `personnel_department`.id = #{item}
+        </if>
+
+      </foreach>
+      )
+    </if>
     <if test="personnelStaff.id != null and personnelStaff.id !=''">/*员工编号*/
       and `personnel_staff`.id = #{personnelStaff.id}
     </if>
@@ -173,10 +192,6 @@
     <if test="personnelStaff.staffaccount != null and personnelStaff.staffaccount !=''">/*员工账户*/
       and `personnel_staff`.staffaccount like CONCAT("%",#{personnelStaff.staffaccount},"%")
     </if>
-
-
-
-
     <if test="personnelStaff.password != null and personnelStaff.password != ''">/*员工密码*/
       AND `personnel_staff`.password like CONCAT("%",#{personnelStaff.password},"%")
     </if>
@@ -329,11 +344,13 @@ INNER JOIN `personnel_department` ON `personnel_addressbook`.`departmentId`=`per
   </select>
   <!--离职-->
   <select id="departureSelect" resultMap="BaseResultMapThree">
-SELECT `personnel_dimission`.*,`personnel_staff`.*,`personnel_department`.*,`personnel_post`.* FROM `personnel_staff`
-INNER JOIN `personnel_dimission` ON `personnel_staff`.`id`=`personnel_dimission`.`staffId`
+SELECT `personnel_dimission`.*,`personnel_staff`.*,`personnel_department`.*,`personnel_post`.* FROM `personnel_dimission`
+INNER JOIN `personnel_staff` ON `personnel_staff`.`id`=`personnel_dimission`.`staffId`
 INNER JOIN `personnel_department` ON `personnel_dimission`.`departmentId`=`personnel_department`.`id`
 INNER JOIN `personnel_post` ON `personnel_staff`.`departmentId`=`personnel_post`.`postId`
 WHERE `personnel_staff`.`default2`=2
+GROUP BY `personnel_dimission`.`staffId`
+ORDER BY `personnel_dimission`.`id`
   </select>
   <select id="departureSelectId" resultMap="BaseResultMapThree">
 SELECT `personnel_dimission`.*,`personnel_staff`.* FROM `personnel_staff`

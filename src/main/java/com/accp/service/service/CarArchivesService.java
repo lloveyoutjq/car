@@ -2,7 +2,10 @@ package com.accp.service.service;
 
 import com.accp.domain.ClientCarinfo;
 import com.accp.domain.ClientCarinfoExample;
+import com.accp.domain.MaintainMaintenanceRegistration;
+import com.accp.domain.MaintainMaintenanceRegistrationExample;
 import com.accp.mapper.ClientCarinfoMapper;
+import com.accp.mapper.MaintainMaintenanceRegistrationMapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

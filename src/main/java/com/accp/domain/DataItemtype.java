@@ -1,5 +1,8 @@
 package com.accp.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DataItemtype {
     private Integer id;
 
@@ -12,6 +15,26 @@ public class DataItemtype {
     private String default2;
 
     private String default3;
+
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    private List<DataItemtype> children = new ArrayList<>();
+
+    public List<DataItemtype> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<DataItemtype> children) {
+        this.children = children;
+    }
 
     public Integer getId() {
         return id;
