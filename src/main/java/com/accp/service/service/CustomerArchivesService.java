@@ -1,5 +1,6 @@
 package com.accp.service.service;
 
+import com.accp.domain.ClientCarinfo;
 import com.accp.domain.ClientClientdata;
 import com.accp.domain.ClientClienttype;
 import com.accp.mapper.ClientClientdataMapper;
@@ -58,6 +59,7 @@ public class CustomerArchivesService {
                 clientClientdata.setSearchData(null);
             }
         }
+        ClientCarinfo clientCarinfo = clientClientdata.getClientCarinfo();
         List<ClientClientdata> lists = clientClientdataMapper.selectClient(clientClientdata);
         return page.toPageInfo();
     }
@@ -82,6 +84,7 @@ public class CustomerArchivesService {
                 clientClientdata.setSearchData(null);
             }
         }
+        ClientCarinfo clientCarinfo = clientClientdata.getClientCarinfo();
         List<ClientClientdata> lists = clientClientdataMapper.selectClient(clientClientdata);
         return lists;
     }
@@ -140,5 +143,8 @@ public class CustomerArchivesService {
         return count;
     }
 
+    public void csct(){
+        //测试冲突
+    }
 
 }

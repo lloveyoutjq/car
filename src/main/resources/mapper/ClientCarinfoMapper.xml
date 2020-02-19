@@ -104,6 +104,108 @@
     ON ca.`carBrandId` = dc.`carBrandName`
     WHERE ca.`carNumber` =  #{carnumber}
   </select>
+
+
+  <select id="selectCar" resultMap="BaseResultMap" >
+    SELECT `client_carinfo`.* FROM `client_carinfo`
+    LEFT JOIN `client_clientdata` ON `client_carinfo`.`clientId` = `client_clientdata`.`number`
+    LEFT JOIN `client_clienttype` ON `client_clienttype`.`id` = `client_clientdata`.typeId
+    where 1=1
+    <if test="clientClientdata.searchData != null and clientClientdata.searchData !=''">/*拼音*/
+      AND(`to_pinyin`(`client_clientdata`.`name`) LIKE CONCAT("%",#{clientClientdata.searchData},"%") OR `getPY`(`client_clientdata`.`name`) LIKE CONCAT("%",#{clientClientdata.searchData},"%"))
+    </if>
+    <if test="clientClientdata.number != null and clientClientdata.number !=''">/*id*/
+      and `client_clientdata`.number = #{clientClientdata.number}
+    </if>
+    <if test="clientClientdata.name != null and clientClientdata.name != ''">/*客户名称*/
+      AND `client_clientdata`.name like CONCAT("%",#{clientClientdata.name},"%")
+
+    </if>
+    <if test="clientClientdata.typeid != null and clientClientdata.typeid != ''">/*客户类型*/
+      AND clientClientdata.`typeid` = #{clientClientdata.`typeid`}
+    </if>
+    <if test="clientClientdata.linkman != null and clientClientdata.linkman != ''">/*联系人*/
+      AND `client_clientdata`.linkman like  CONCAT("%", #{clientClientdata.linkman},"%")
+
+    </if>
+    <if test="clientClientdata.phone != null and clientClientdata.phone != ''">/*手机号*/
+      AND `client_clientdata`.phone like CONCAT("%",#{clientClientdata.phone},"%")
+
+    </if>
+    <if test="clientClientdata.address != null and clientClientdata.address != ''">/*地址*/
+      AND `client_clientdata`.address like CONCAT("%",#{clientClientdata.address},"%")
+
+    </if>
+    <if test="clientClientdata.remark != null and clientClientdata.remark != ''">/*备注*/
+      AND `client_clientdata`.remark like CONCAT("%",#{clientClientdata.remark},"%")
+
+    </if>
+    <if test="clientClientdata.borndate != null and clientClientdata.borndate != ''"> /*客户生日*/
+      AND `client_clientdata`.`bornDate`
+      BETWEEN SUBSTRING_INDEX(#{clientClientdata.borndate},' - ', 1) AND SUBSTRING_INDEX(#{clientClientdata.borndate},' - ', -1)
+    </if>
+    <if test="clientClientdata.banknumber != null and clientClientdata.banknumber !=''">/*银行卡号*/
+      AND `client_clientdata`.banknumber like CONCAT("%",#{clientClientdata.banknumber},"%")
+
+    </if>
+    <if test="clientClientdata.counselorname != null and clientClientdata.counselorname != ''" >/*顾问姓名*/
+      AND `client_clientdata`.counselorname like CONCAT("%",#{clientClientdata.counselorname},"%")
+
+    </if>
+    <if test="clientClientdata.province != null and clientClientdata.province != ''">/*省*/
+      AND `client_clientdata`.province like CONCAT("%",#{clientClientdata.province},"%")
+
+    </if>
+    <if test="clientClientdata.city != null and clientClientdata.city !=''">/*市*/
+      AND `client_clientdata`.city like CONCAT("%",#{clientClientdata.city},"%")
+
+    </if>
+    <if test="clientClientdata.county != null and clientClientdata.county !=''"> /*县*/
+      AND `client_clientdata`.county like CONCAT("%",#{clientClientdata.county},"%")
+
+    </if>
+    <if test="clientClientdata.advisorytelephone != null and clientClientdata.advisorytelephone != ''"> /*顾问电话*/
+      AND `client_clientdata`.advisorytelephone like CONCAT("%",#{clientClientdata.advisorytelephone},"%")
+
+    </if>
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.carnumber !=null and clientClientdata.clientCarinfo.carnumber != ''">/*车牌号码*/
+      AND UPPER(`client_carinfo`.carNumber) LIKE CONCAT("%",UPPER(#{clientClientdata.clientCarinfo.carnumber}),"%")
+    </if>
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.carbrandid !=null and clientClientdata.clientCarinfo.carbrandid !=''">/*车辆品牌*/
+      AND `client_carinfo`.carbrandid LIKE CONCAT("%",#{clientClientdata.clientCarinfo.carbrandid},"%")
+    </if>
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.carid !=null and clientClientdata.clientCarinfo.carid !=''">/*车辆型号*/
+      AND `client_carinfo`.carid LIKE CONCAT("%",#{clientClientdata.clientCarinfo.carid},"%")
+    </if>
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.carer !=null and clientClientdata.clientCarinfo.carer != ''">/*驾驶员*/
+      AND `client_carinfo`.carer LIKE CONCAT("%",#{clientClientdata.clientCarinfo.carer},"%")
+    </if>
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.carerphone !=null and clientClientdata.clientCarinfo.carerphone !=''">/*驾驶员电话*/
+      AND `client_carinfo`.carerphone LIKE CONCAT("%",#{clientClientdata.clientCarinfo.carerphone},"%")
+    </if>
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.borndate !=null and clientClientdata.clientCarinfo.borndate !=''">/*驾驶员出生日期*/
+      AND `client_carinfo`.`borndate`
+      BETWEEN SUBSTRING_INDEX(#{clientClientdata.clientCarinfo.`borndate`},' - ', 1) AND SUBSTRING_INDEX(#{clientClientdata.clientCarinfo.`borndate`},' - ', -1)
+    </if>
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.affiliation !=null and clientClientdata.clientCarinfo.affiliation !=''">/*车辆归属*/
+      AND `client_carinfo`.affiliation LIKE CONCAT("%",#{clientClientdata.clientCarinfo.affiliation},"%")
+    </if>
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.drivingLicence !=null and clientClientdata.clientCarinfo.drivingLicence !=''">/*驾驶证到期时间*/
+      AND `client_carinfo`.`drivingLicence`
+      BETWEEN SUBSTRING_INDEX(#{clientClientdata.clientCarinfo.`drivingLicence`},' - ', 1) AND SUBSTRING_INDEX(#{clientClientdata.clientCarinfo.`drivingLicence`},' - ', -1)
+    </if>
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.framenumber !=null and clientClientdata.clientCarinfo.framenumber !=''">/*车架号*/
+      AND `client_carinfo`.framenumber LIKE CONCAT("%",#{clientClientdata.clientCarinfo.framenumber},"%")
+    </if>
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.enginenumber !=null and clientClientdata.clientCarinfo.enginenumber !=''">/*发动机号*/
+      AND `client_carinfo`.enginenumber LIKE CONCAT("%",#{clientClientdata.clientCarinfo.enginenumber},"%")
+    </if>
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.yearprice !=null and clientClientdata.clientCarinfo.yearprice !=''">
+      AND `client_carinfo`.yearprice LIKE CONCAT("%",#{clientClientdata.clientCarinfo.yearprice},"%")
+    </if>
+  </select>
+
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

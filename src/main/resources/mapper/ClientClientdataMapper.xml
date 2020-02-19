@@ -131,40 +131,40 @@
       AND `client_clientdata`.advisorytelephone like CONCAT("%",#{clientClientdata.advisorytelephone},"%")
 
     </if>
-    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.carNumber !=null and clientClientdata.clientClienttype.carNumber!=''">/*车牌号码*/
-      AND `client_carinfo`.carNumber LIKE CONCAT("%",#{clientClientdata.clientClienttype.carnumber},"%")
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.carnumber !=null and clientClientdata.clientCarinfo.carnumber != ''">/*车牌号码*/
+      AND UPPER(`client_carinfo`.carNumber) LIKE CONCAT("%",UPPER(#{clientClientdata.clientCarinfo.carnumber}),"%")
     </if>
-    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.carbrandid !=null and clientClientdata.clientClienttype.carbrandid !=''">/*车辆品牌*/
-      AND `client_carinfo`.carbrandid LIKE CONCAT("%",#{clientClientdata.clientClienttype.carbrandid},"%")
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.carbrandid !=null and clientClientdata.clientCarinfo.carbrandid !=''">/*车辆品牌*/
+      AND `client_carinfo`.carbrandid LIKE CONCAT("%",#{clientClientdata.clientCarinfo.carbrandid},"%")
     </if>
-    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.carid !=null and clientClientdata.clientClienttype.carid !=''">/*车辆型号*/
-      AND `client_carinfo`.carid LIKE CONCAT("%",#{clientClientdata.clientClienttype.carid},"%")
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.carid !=null and clientClientdata.clientCarinfo.carid !=''">/*车辆型号*/
+      AND `client_carinfo`.carid LIKE CONCAT("%",#{clientClientdata.clientCarinfo.carid},"%")
     </if>
-    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.carer !=null and clientClientdata.clientClienttype.carer != ''">/*驾驶员*/
-      AND `client_carinfo`.carer LIKE CONCAT("%",#{clientClientdata.clientClienttype.carer},"%")
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.carer !=null and clientClientdata.clientCarinfo.carer != ''">/*驾驶员*/
+      AND `client_carinfo`.carer LIKE CONCAT("%",#{clientClientdata.clientCarinfo.carer},"%")
     </if>
-    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.carerphone !=null and clientClientdata.clientClienttype.carerphone !=''">/*驾驶员电话*/
-      AND `client_carinfo`.carerphone LIKE CONCAT("%",#{clientClientdata.clientClienttype.carerphone},"%")
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.carerphone !=null and clientClientdata.clientCarinfo.carerphone !=''">/*驾驶员电话*/
+      AND `client_carinfo`.carerphone LIKE CONCAT("%",#{clientClientdata.clientCarinfo.carerphone},"%")
     </if>
-    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.borndate !=null and clientClientdata.clientClienttype.borndate !=''">/*驾驶员出生日期*/
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.borndate !=null and clientClientdata.clientCarinfo.borndate !=''">/*驾驶员出生日期*/
       AND `client_carinfo`.`borndate`
-      BETWEEN SUBSTRING_INDEX(#{clientClientdata.clientClienttype.`borndate`},' - ', 1) AND SUBSTRING_INDEX(#{clientClientdata.clientClienttype.`borndate`},' - ', -1)
+      BETWEEN SUBSTRING_INDEX(#{clientClientdata.clientCarinfo.`borndate`},' - ', 1) AND SUBSTRING_INDEX(#{clientClientdata.clientCarinfo.`borndate`},' - ', -1)
     </if>
-    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.affiliation !=null and clientClientdata.clientClienttype.affiliation !=''">/*车辆归属*/
-      AND `client_carinfo`.affiliation LIKE CONCAT("%",#{clientClientdata.clientClienttype.affiliation},"%")
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.affiliation !=null and clientClientdata.clientCarinfo.affiliation !=''">/*车辆归属*/
+      AND `client_carinfo`.affiliation LIKE CONCAT("%",#{clientClientdata.clientCarinfo.affiliation},"%")
     </if>
-    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.drivingLicence !=null and clientClientdata.clientClienttype.drivingLicence !=''">/*驾驶证到期时间*/
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.drivingLicence !=null and clientClientdata.clientCarinfo.drivingLicence !=''">/*驾驶证到期时间*/
       AND `client_carinfo`.`drivingLicence`
-      BETWEEN SUBSTRING_INDEX(#{clientClientdata.clientClienttype.`drivingLicence`},' - ', 1) AND SUBSTRING_INDEX(#{clientClientdata.clientClienttype.`drivingLicence`},' - ', -1)
+      BETWEEN SUBSTRING_INDEX(#{clientClientdata.clientCarinfo.`drivingLicence`},' - ', 1) AND SUBSTRING_INDEX(#{clientClientdata.clientCarinfo.`drivingLicence`},' - ', -1)
     </if>
-    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.framenumber !=null and clientClientdata.clientClienttype.framenumber !=''">/*车架号*/
-      AND `client_carinfo`.framenumber LIKE CONCAT("%",#{clientClientdata.clientClienttype.framenumber},"%")
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.framenumber !=null and clientClientdata.clientCarinfo.framenumber !=''">/*车架号*/
+      AND `client_carinfo`.framenumber LIKE CONCAT("%",#{clientClientdata.clientCarinfo.framenumber},"%")
     </if>
-    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.enginenumber !=null and clientClientdata.clientClienttype.enginenumber !=''">/*发动机号*/
-      AND `client_carinfo`.enginenumber LIKE CONCAT("%",#{clientClientdata.clientClienttype.enginenumber},"%")
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.enginenumber !=null and clientClientdata.clientCarinfo.enginenumber !=''">/*发动机号*/
+      AND `client_carinfo`.enginenumber LIKE CONCAT("%",#{clientClientdata.clientCarinfo.enginenumber},"%")
     </if>
-    <if test="clientClientdata.clientClienttype != null and clientClientdata.clientClienttype.yearprice !=null and clientClientdata.clientClienttype.yearprice !=''">
-      AND `client_carinfo`.yearprice LIKE CONCAT("%",#{clientClientdata.clientClienttype.yearprice},"%")
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.yearprice !=null and clientClientdata.clientCarinfo.yearprice !=''">
+      AND `client_carinfo`.yearprice LIKE CONCAT("%",#{clientClientdata.clientCarinfo.yearprice},"%")
     </if>
   </select>
 

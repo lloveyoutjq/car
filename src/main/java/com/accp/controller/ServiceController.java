@@ -312,9 +312,22 @@ public class ServiceController {
      * @return
      */
     @RequestMapping("selectCar")
-    public Map selectCar(Integer clientId ,Integer page, Integer limit){
+    public Map selectCar(String data,Integer page, Integer limit){
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        ClientClientdata clientClientdata = new ClientClientdata();
+
+        if(data != null && !"".equals(data)){
+            try {
+                clientClientdata = objectMapper.readValue(data,ClientClientdata.class);
+            }catch (JsonProcessingException e){
+                System.out.println("发送异常");
+            }
+        }
+
+
         Map<String,Object> map = new HashMap<>();
-        PageInfo pageInfo = carArchivesService.selectCar(clientId,page, limit);
+        PageInfo pageInfo = carArchivesService.selectCar(clientClientdata,page, limit);
         map.put("code",0);
         map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());

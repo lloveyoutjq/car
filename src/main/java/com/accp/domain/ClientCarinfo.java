@@ -69,6 +69,16 @@ public class ClientCarinfo {
 
     private DataEngineBrand dataEngineBrand;
 
+    private String searchData;
+
+    public String getSearchData() {
+        return searchData;
+    }
+
+    public void setSearchData(String searchData) {
+        this.searchData = searchData;
+    }
+
     public Integer getId() {
         return id;
     }

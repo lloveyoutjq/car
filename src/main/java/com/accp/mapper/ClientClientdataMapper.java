@@ -1,5 +1,6 @@
 package com.accp.mapper;
 
+import com.accp.domain.ClientCarinfo;
 import com.accp.domain.ClientClientdata;
 import com.accp.domain.ClientClientdataExample;
 import java.util.List;

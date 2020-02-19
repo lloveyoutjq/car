@@ -1,9 +1,6 @@
 package com.accp.service.service;
 
-import com.accp.domain.ClientCarinfo;
-import com.accp.domain.ClientCarinfoExample;
-import com.accp.domain.MaintainMaintenanceRegistration;
-import com.accp.domain.MaintainMaintenanceRegistrationExample;
+import com.accp.domain.*;
 import com.accp.mapper.ClientCarinfoMapper;
 import com.accp.mapper.MaintainMaintenanceRegistrationMapper;
 import com.github.pagehelper.Page;
@@ -54,13 +51,34 @@ public class CarArchivesService {
      * 查询车
      * @return
      */
-    public PageInfo<ClientCarinfo> selectCar(Integer clientId,Integer index, Integer size){
+    public PageInfo<ClientCarinfo> selectCar(ClientClientdata clientClientdata,Integer index, Integer size){
         Page<ClientCarinfo> page = PageHelper.startPage(index,size);
-        ClientCarinfoExample example = new ClientCarinfoExample();
+        /*ClientCarinfoExample example = new ClientCarinfoExample();
         if(clientId != null && clientId != 0){
             example.createCriteria().andClientidEqualTo(clientId);
         }
-        clientCarinfoMapper.selectByExample(example);
+        if(searchData != null && searchData != ""){
+
+        }
+        clientCarinfoMapper.selectByExample(example);*/
+        if(clientClientdata.getSearchData() != null && clientClientdata.getSearchData() != "") {
+            if(clientClientdata.getClientCarinfo() == null){
+                clientClientdata.setClientCarinfo(new ClientCarinfo());
+            }
+            if (clientClientdata.getSearchData().matches("[a-zA-Z]+")) {
+                clientClientdata.setSearchData(clientClientdata.getSearchData().toUpperCase());
+            } else if (clientClientdata.getSearchData().matches("1[3,4,5,8]\\d[\\s,-]?\\d{4}[\\s,-]?\\d{4}+")) {
+                clientClientdata.setPhone(clientClientdata.getSearchData());
+                clientClientdata.setSearchData(null);
+            } else if (clientClientdata.getSearchData().matches("^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z|a-z]{1}[(A-Z|a-z)0-9]{4}[(A-Z|a-z)0-9挂学警港澳]{1}$")) {
+                clientClientdata.getClientCarinfo().setCarnumber(clientClientdata.getSearchData());
+                clientClientdata.setSearchData(null);
+            }else{
+                clientClientdata.setName(clientClientdata.getSearchData());
+                clientClientdata.setSearchData(null);
+            }
+        }
+        clientCarinfoMapper.selectCar(clientClientdata);
         return page.toPageInfo();
     }
 
