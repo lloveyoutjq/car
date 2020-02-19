@@ -30,7 +30,19 @@ public class PermissionsController {
         return permissionsService.selectUserMenuAll(1,uid);
     }
 
+    @RequestMapping("/selectUserMenuById")
+    public Map selectUserMenuById(Integer rid){
 
+        Map<String,Object> map = new HashMap<>();
+        Map<String,Object> code = new HashMap<>();
+        List<SystemPermissions> lists = permissionsService.selectUserMenuById(rid);
+        code.put("code","200");
+        code.put("message","操作成功");
+        map.put("status",code);
+        map.put("data",lists);
+
+        return map;
+    }
 
     @RequestMapping("/selectUserPerm")
     public String selectUserPerm(HttpSession session,Integer uid,String callback) throws JsonProcessingException {
