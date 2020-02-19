@@ -64,8 +64,6 @@ public class InstitutionsService {
                 map.put("checked",perm.getState());
                 perm.setTitle(perm.getName());
                 perm.setCheckArr(map);*/
-                perm.setName(perm.getDepartmentname());
-
                 perm.setTitle(perm.getDepartmentname());
                 perm.setId(perm.getId());
                 PersonnelDepartment newPerms = perm;
@@ -75,16 +73,13 @@ public class InstitutionsService {
         }
     }
     /**
-     * 根据条件查询
-     */
-    public List<PersonnelStaff> institutionsSelectId(PersonnelStaff personnelStaff){
-        return personnelStaffMapper.institutionsSelectId(personnelStaff);
-    }
-    /**
      * 根据条件查询所有
+     * @return
      */
-    public List<PersonnelStaff> institutionsSelectOpen(PersonnelStaff personnelStaff){
-        return personnelStaffMapper.institutionsSelectOpen(personnelStaff);
+    public PageInfo<PersonnelStaff> institutionsSelectOpen(Integer index, Integer size, PersonnelStaff personnelStaff){
+        Page<PersonnelStaff> page = PageHelper.startPage(index,size);
+        personnelStaffMapper.institutionsSelectOpen(personnelStaff);
+        return page.toPageInfo();
     }
     /**
      * 查询所有部门
@@ -102,7 +97,7 @@ public class InstitutionsService {
      * 修改员工
      */
     public int institutionsUpdate(PersonnelStaff personnelStaff){
-        return personnelStaffMapper.updateByPrimaryKey(personnelStaff);
+        return personnelStaffMapper.updateByPrimaryKeySelective(personnelStaff);
     }
     /**
      * 删除员工

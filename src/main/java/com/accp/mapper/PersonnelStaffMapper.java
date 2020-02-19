@@ -8,13 +8,12 @@ import org.apache.ibatis.annotations.Param;
 public interface PersonnelStaffMapper {
     /*组织机构*/
     List<PersonnelStaff> institutionsSelect(@Param("personnelStaff") PersonnelStaff personnelStaff);
-    List<PersonnelStaff> institutionsSelectId(@Param("personnelStaff") PersonnelStaff personnelStaff);
     List<PersonnelStaff> institutionsSelectOpen(@Param("personnelStaff") PersonnelStaff personnelStaff);
     /*通讯名单*/
-    List<PersonnelStaff> communicationSelect();
+    List<PersonnelStaff> communicationSelect(@Param("personnelStaff") PersonnelStaff personnelStaff);
     List<PersonnelStaff> communicationSelectId(@Param("personnelStaff") PersonnelStaff personnelStaff);
     /*离职登记*/
-    List<PersonnelStaff> departureSelect();
+    List<PersonnelStaff> departureSelect(@Param("personnelStaff") PersonnelStaff personnelStaff);
     List<PersonnelStaff> departureSelectTwo();
     List<PersonnelStaff> departureSelectId(@Param("personnelStaff") PersonnelStaff personnelStaff);
 

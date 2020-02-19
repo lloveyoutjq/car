@@ -93,7 +93,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from personnel_artisanclass
     where artisanClassId = #{artisanclassid,jdbcType=INTEGER}
@@ -261,18 +261,18 @@
   <update id="updateByExample" parameterType="map" >
     update personnel_artisanclass
     set artisanClassId = #{record.artisanclassid,jdbcType=INTEGER},
-      artisanClassName = #{record.artisanclassname,jdbcType=VARCHAR},
-      artisanClassWeight = #{record.artisanclassweight,jdbcType=VARCHAR},
-      parentId = #{record.parentid,jdbcType=INTEGER},
-      instationWhite = #{record.instationwhite,jdbcType=VARCHAR},
-      instationBlack = #{record.instationblack,jdbcType=VARCHAR},
-      outsideWhite = #{record.outsidewhite,jdbcType=VARCHAR},
-      outsideBlack = #{record.outsideblack,jdbcType=VARCHAR},
-      wayWhite = #{record.waywhite,jdbcType=VARCHAR},
-      wayBlack = #{record.wayblack,jdbcType=VARCHAR},
-      oilCost = #{record.oilcost,jdbcType=VARCHAR},
-      default1 = #{record.default1,jdbcType=VARCHAR},
-      default2 = #{record.default2,jdbcType=VARCHAR}
+    artisanClassName = #{record.artisanclassname,jdbcType=VARCHAR},
+    artisanClassWeight = #{record.artisanclassweight,jdbcType=VARCHAR},
+    parentId = #{record.parentid,jdbcType=INTEGER},
+    instationWhite = #{record.instationwhite,jdbcType=VARCHAR},
+    instationBlack = #{record.instationblack,jdbcType=VARCHAR},
+    outsideWhite = #{record.outsidewhite,jdbcType=VARCHAR},
+    outsideBlack = #{record.outsideblack,jdbcType=VARCHAR},
+    wayWhite = #{record.waywhite,jdbcType=VARCHAR},
+    wayBlack = #{record.wayblack,jdbcType=VARCHAR},
+    oilCost = #{record.oilcost,jdbcType=VARCHAR},
+    default1 = #{record.default1,jdbcType=VARCHAR},
+    default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

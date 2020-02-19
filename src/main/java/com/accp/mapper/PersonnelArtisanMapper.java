@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Param;
 
 public interface PersonnelArtisanMapper {
     /*班组技工*/
-    List<PersonnelArtisan> teamSelect();
-    List<PersonnelArtisan> teamSelectId(@Param("personnelArtisan") PersonnelArtisan personnelArtisan);
+    List<PersonnelArtisan> teamSelect(@Param("personnelArtisan") PersonnelArtisan personnelArtisan);
+    List<PersonnelArtisan> teamSelectOpen(@Param("personnelArtisan") PersonnelArtisan personnelArtisan);
 
 
 

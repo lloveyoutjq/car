@@ -8,6 +8,10 @@
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="starSelect" resultMap="BaseResultMap">
+    SELECT * FROM `personnel_artisanlevel`
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -84,7 +88,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from personnel_artisanlevel
     where artisanLevelId = #{artisanlevelid,jdbcType=INTEGER}
@@ -176,10 +180,10 @@
   <update id="updateByExample" parameterType="map" >
     update personnel_artisanlevel
     set artisanLevelId = #{record.artisanlevelid,jdbcType=INTEGER},
-      artisanLevelName = #{record.artisanlevelname,jdbcType=VARCHAR},
-      artisanLevelWeight = #{record.artisanlevelweight,jdbcType=VARCHAR},
-      default1 = #{record.default1,jdbcType=VARCHAR},
-      default2 = #{record.default2,jdbcType=VARCHAR}
+    artisanLevelName = #{record.artisanlevelname,jdbcType=VARCHAR},
+    artisanLevelWeight = #{record.artisanlevelweight,jdbcType=VARCHAR},
+    default1 = #{record.default1,jdbcType=VARCHAR},
+    default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

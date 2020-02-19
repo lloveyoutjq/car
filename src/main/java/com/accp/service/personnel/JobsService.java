@@ -2,6 +2,9 @@ package com.accp.service.personnel;
 
 import com.accp.domain.PersonnelPost;
 import com.accp.mapper.PersonnelPostMapper;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,8 +24,14 @@ public class JobsService {
     /**
      * 查询所有
      */
-    public List<PersonnelPost> jobsSelect(){
-        return personnelPostMapper.selectByExample(null);
+    public PageInfo<PersonnelPost> jobsSelect(Integer index, Integer limit, List<Integer> ids) {
+        Page<PersonnelPost> page = PageHelper.startPage(index, limit);
+        PersonnelPost personnelPost = new PersonnelPost();
+        /*ids.add(1);
+        ids.add(2);*/
+        personnelPost.setIds(ids);
+        personnelPostMapper.jobsSelect(personnelPost);
+        return page.toPageInfo();
     }
     /**
      * 根据条件查询
@@ -40,7 +49,7 @@ public class JobsService {
      * 修改
      */
     public int jobsUpdate(PersonnelPost personnelPost){
-        return personnelPostMapper.updateByPrimaryKey(personnelPost);
+        return personnelPostMapper.updateByPrimaryKeySelective(personnelPost);
     }
     /**
      * 删除

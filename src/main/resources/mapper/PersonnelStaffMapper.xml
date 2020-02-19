@@ -128,7 +128,7 @@
     SELECT `personnel_staff`.*,`personnel_department`.*,`personnel_post`.* FROM `personnel_staff`
     INNER JOIN `personnel_department` ON `personnel_staff`.`did`=`personnel_department`.`id`
     INNER JOIN `personnel_post` ON `personnel_staff`.`departmentId`=`personnel_post`.`postId`
-    where 1=1
+    where 1=1 AND `personnel_staff`.`default2`!=2
     <if test="personnelStaff.ids !=null and personnelStaff.ids.size()>0">
       and (
       <foreach collection="personnelStaff.ids" item="item" separator="or">
@@ -138,35 +138,13 @@
 
       </foreach>
       )
-    </if>
-  </select>
-  <select id="institutionsSelectId" resultMap="BaseResultMapSix">
-    SELECT `personnel_staff`.*,`personnel_department`.*,`personnel_post`.* FROM `personnel_staff`
-    INNER JOIN `personnel_department` ON `personnel_staff`.`did`=`personnel_department`.`id`
-    INNER JOIN `personnel_post` ON `personnel_staff`.`departmentId`=`personnel_post`.`postId`
-    where 1=1
-    <if test="personnelStaff.ids !=null and personnelStaff.ids.size()>0">
-      and (
-      <foreach collection="personnelStaff.ids" item="item" separator="or">
-        <if test="item != null and item != ''">
-          `personnel_department`.id = #{item}
-        </if>
-
-      </foreach>
-      )
-    </if>
-    <if test="personnelStaff.id != null and personnelStaff.id !=''">/*员工编号*/
-      and `personnel_staff`.id = #{personnelStaff.id}
-    </if>
-    <if test="personnelStaff.staffname != null and personnelStaff.staffname != ''">/*员工姓名*/
-      AND `personnel_staff`.staffname like CONCAT("%",#{personnelStaff.staffname},"%")
     </if>
   </select>
   <select id="institutionsSelectOpen" resultMap="BaseResultMapSix">
     SELECT `personnel_staff`.*,`personnel_department`.*,`personnel_post`.* FROM `personnel_staff`
     INNER JOIN `personnel_department` ON `personnel_staff`.`did`=`personnel_department`.`id`
     INNER JOIN `personnel_post` ON `personnel_staff`.`departmentId`=`personnel_post`.`postId`
-    where 1=1
+    where 1=1 AND `personnel_staff`.`default2`!=2
     <if test="personnelStaff.ids !=null and personnelStaff.ids.size()>0">
       and (
       <foreach collection="personnelStaff.ids" item="item" separator="or">
@@ -259,8 +237,8 @@
       AND `personnel_staff`.pastcodedate like CONCAT("%",#{personnelStaff.pastcodedate},"%")
     </if>
     <if test="personnelStaff.depositbank != null and personnelStaff.depositbank != ''">/*开户银行*/
-    AND `personnel_staff`.depositbank like CONCAT("%",#{personnelStaff.depositbank},"%")
-  </if>
+      AND `personnel_staff`.depositbank like CONCAT("%",#{personnelStaff.depositbank},"%")
+    </if>
     <if test="personnelStaff.banaccount != null and personnelStaff.banaccount != ''">/*银行账户*/
       AND `personnel_staff`.banaccount like CONCAT("%",#{personnelStaff.banaccount},"%")
     </if>
@@ -277,8 +255,8 @@
       AND `personnel_staff`.thetrialdue like CONCAT("%",#{personnelStaff.thetrialdue},"%")
     </if>
     <if test="personnelStaff.birthdaydate != null and personnelStaff.birthdaydate != ''">/*出生日期*/
-    AND `personnel_staff`.birthdaydate like CONCAT("%",#{personnelStaff.birthdaydate},"%")
-  </if>
+      AND `personnel_staff`.birthdaydate like CONCAT("%",#{personnelStaff.birthdaydate},"%")
+    </if>
     <if test="personnelStaff.contractstart != null and personnelStaff.contractstart !=''">/*合同开始时间*/
       and `personnel_staff`.contractstart like CONCAT("%",#{personnelStaff.contractstart},"%")
     </if>
@@ -292,8 +270,8 @@
       AND `personnel_staff`.internalcardno like CONCAT("%",#{personnelStaff.internalcardno},"%")
     </if>
     <if test="personnelStaff.referrer != null and personnelStaff.referrer != ''">/*推荐人*/
-    AND `personnel_staff`.referrer like CONCAT("%",#{personnelStaff.referrer},"%")
-  </if>
+      AND `personnel_staff`.referrer like CONCAT("%",#{personnelStaff.referrer},"%")
+    </if>
     <if test="personnelStaff.wholeorderdiscountright != null and personnelStaff.wholeorderdiscountright !=''">/*整单折扣权*/
       and `personnel_staff`.wholeorderdiscountright like CONCAT("%",#{personnelStaff.wholeorderdiscountright},"%")
     </if>
@@ -344,13 +322,11 @@ INNER JOIN `personnel_department` ON `personnel_addressbook`.`departmentId`=`per
   </select>
   <!--离职-->
   <select id="departureSelect" resultMap="BaseResultMapThree">
-SELECT `personnel_dimission`.*,`personnel_staff`.*,`personnel_department`.*,`personnel_post`.* FROM `personnel_dimission`
-INNER JOIN `personnel_staff` ON `personnel_staff`.`id`=`personnel_dimission`.`staffId`
+SELECT `personnel_dimission`.*,`personnel_staff`.*,`personnel_department`.*,`personnel_post`.* FROM `personnel_staff`
+INNER JOIN `personnel_dimission` ON `personnel_staff`.`id`=`personnel_dimission`.`staffId`
 INNER JOIN `personnel_department` ON `personnel_dimission`.`departmentId`=`personnel_department`.`id`
 INNER JOIN `personnel_post` ON `personnel_staff`.`departmentId`=`personnel_post`.`postId`
 WHERE `personnel_staff`.`default2`=2
-GROUP BY `personnel_dimission`.`staffId`
-ORDER BY `personnel_dimission`.`id`
   </select>
   <select id="departureSelectId" resultMap="BaseResultMapThree">
 SELECT `personnel_dimission`.*,`personnel_staff`.* FROM `personnel_staff`
@@ -444,7 +420,7 @@ WHERE `personnel_staff`.`id`=#{id} OR `personnel_staff`.`staffName`=#{staffname}
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from personnel_staff
     where id = #{id,jdbcType=INTEGER}
@@ -989,57 +965,57 @@ WHERE `personnel_staff`.`id`=#{id} OR `personnel_staff`.`staffName`=#{staffname}
   <update id="updateByExample" parameterType="map" >
     update personnel_staff
     set id = #{record.id,jdbcType=INTEGER},
-      staffName = #{record.staffname,jdbcType=VARCHAR},
-      sex = #{record.sex,jdbcType=VARCHAR},
-      did = #{record.did,jdbcType=INTEGER},
-      staffAccount = #{record.staffaccount,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      departmentId = #{record.departmentid,jdbcType=VARCHAR},
-      physicalCondition = #{record.physicalcondition,jdbcType=VARCHAR},
-      height = #{record.height,jdbcType=VARCHAR},
-      nativePlace = #{record.nativeplace,jdbcType=VARCHAR},
-      nation = #{record.nation,jdbcType=VARCHAR},
-      maritalStatus = #{record.maritalstatus,jdbcType=VARCHAR},
-      educationBackground = #{record.educationbackground,jdbcType=VARCHAR},
-      school = #{record.school,jdbcType=VARCHAR},
-      major = #{record.major,jdbcType=VARCHAR},
-      professionalQualification = #{record.professionalqualification,jdbcType=VARCHAR},
-      property = #{record.property,jdbcType=VARCHAR},
-      degree = #{record.degree,jdbcType=VARCHAR},
-      authorizedStrength = #{record.authorizedstrength,jdbcType=VARCHAR},
-      idCardNo = #{record.idcardno,jdbcType=VARCHAR},
-      residence = #{record.residence,jdbcType=VARCHAR},
-      presentAddress = #{record.presentaddress,jdbcType=VARCHAR},
-      contactNumber = #{record.contactnumber,jdbcType=VARCHAR},
-      phone = #{record.phone,jdbcType=VARCHAR},
-      email = #{record.email,jdbcType=VARCHAR},
-      authCode = #{record.authcode,jdbcType=VARCHAR},
-      pastCodeDate = #{record.pastcodedate,jdbcType=TIMESTAMP},
-      depositBank = #{record.depositbank,jdbcType=VARCHAR},
-      banAccount = #{record.banaccount,jdbcType=VARCHAR},
-      emergencyContact = #{record.emergencycontact,jdbcType=VARCHAR},
-      emergencyPhone = #{record.emergencyphone,jdbcType=VARCHAR},
-      dateOnBoard = #{record.dateonboard,jdbcType=TIMESTAMP},
-      theTrialDue = #{record.thetrialdue,jdbcType=TIMESTAMP},
-      BirthdayDate = #{record.birthdaydate,jdbcType=TIMESTAMP},
-      contractStart = #{record.contractstart,jdbcType=TIMESTAMP},
-      agreementEnds = #{record.agreementends,jdbcType=TIMESTAMP},
-      cardNumber = #{record.cardnumber,jdbcType=VARCHAR},
-      internalCardNo = #{record.internalcardno,jdbcType=VARCHAR},
-      referrer = #{record.referrer,jdbcType=VARCHAR},
-      wholeOrderDiscountRight = #{record.wholeorderdiscountright,jdbcType=VARCHAR},
-      timeDiscountRight = #{record.timediscountright,jdbcType=VARCHAR},
-      rightToDiscount = #{record.righttodiscount,jdbcType=VARCHAR},
-      rightOfRelief = #{record.rightofrelief,jdbcType=VARCHAR},
-      jobResume = #{record.jobresume,jdbcType=VARCHAR},
-      educationExperience = #{record.educationexperience,jdbcType=VARCHAR},
-      memberOfFamily = #{record.memberoffamily,jdbcType=VARCHAR},
-      disciplinaryRecords = #{record.disciplinaryrecords,jdbcType=VARCHAR},
-      employmentAdvice = #{record.employmentadvice,jdbcType=VARCHAR},
-      picture = #{record.picture,jdbcType=VARCHAR},
-      roleId = #{record.roleid,jdbcType=INTEGER},
-      default1 = #{record.default1,jdbcType=VARCHAR},
-      default2 = #{record.default2,jdbcType=VARCHAR}
+    staffName = #{record.staffname,jdbcType=VARCHAR},
+    sex = #{record.sex,jdbcType=VARCHAR},
+    did = #{record.did,jdbcType=INTEGER},
+    staffAccount = #{record.staffaccount,jdbcType=VARCHAR},
+    password = #{record.password,jdbcType=VARCHAR},
+    departmentId = #{record.departmentid,jdbcType=VARCHAR},
+    physicalCondition = #{record.physicalcondition,jdbcType=VARCHAR},
+    height = #{record.height,jdbcType=VARCHAR},
+    nativePlace = #{record.nativeplace,jdbcType=VARCHAR},
+    nation = #{record.nation,jdbcType=VARCHAR},
+    maritalStatus = #{record.maritalstatus,jdbcType=VARCHAR},
+    educationBackground = #{record.educationbackground,jdbcType=VARCHAR},
+    school = #{record.school,jdbcType=VARCHAR},
+    major = #{record.major,jdbcType=VARCHAR},
+    professionalQualification = #{record.professionalqualification,jdbcType=VARCHAR},
+    property = #{record.property,jdbcType=VARCHAR},
+    degree = #{record.degree,jdbcType=VARCHAR},
+    authorizedStrength = #{record.authorizedstrength,jdbcType=VARCHAR},
+    idCardNo = #{record.idcardno,jdbcType=VARCHAR},
+    residence = #{record.residence,jdbcType=VARCHAR},
+    presentAddress = #{record.presentaddress,jdbcType=VARCHAR},
+    contactNumber = #{record.contactnumber,jdbcType=VARCHAR},
+    phone = #{record.phone,jdbcType=VARCHAR},
+    email = #{record.email,jdbcType=VARCHAR},
+    authCode = #{record.authcode,jdbcType=VARCHAR},
+    pastCodeDate = #{record.pastcodedate,jdbcType=TIMESTAMP},
+    depositBank = #{record.depositbank,jdbcType=VARCHAR},
+    banAccount = #{record.banaccount,jdbcType=VARCHAR},
+    emergencyContact = #{record.emergencycontact,jdbcType=VARCHAR},
+    emergencyPhone = #{record.emergencyphone,jdbcType=VARCHAR},
+    dateOnBoard = #{record.dateonboard,jdbcType=TIMESTAMP},
+    theTrialDue = #{record.thetrialdue,jdbcType=TIMESTAMP},
+    BirthdayDate = #{record.birthdaydate,jdbcType=TIMESTAMP},
+    contractStart = #{record.contractstart,jdbcType=TIMESTAMP},
+    agreementEnds = #{record.agreementends,jdbcType=TIMESTAMP},
+    cardNumber = #{record.cardnumber,jdbcType=VARCHAR},
+    internalCardNo = #{record.internalcardno,jdbcType=VARCHAR},
+    referrer = #{record.referrer,jdbcType=VARCHAR},
+    wholeOrderDiscountRight = #{record.wholeorderdiscountright,jdbcType=VARCHAR},
+    timeDiscountRight = #{record.timediscountright,jdbcType=VARCHAR},
+    rightToDiscount = #{record.righttodiscount,jdbcType=VARCHAR},
+    rightOfRelief = #{record.rightofrelief,jdbcType=VARCHAR},
+    jobResume = #{record.jobresume,jdbcType=VARCHAR},
+    educationExperience = #{record.educationexperience,jdbcType=VARCHAR},
+    memberOfFamily = #{record.memberoffamily,jdbcType=VARCHAR},
+    disciplinaryRecords = #{record.disciplinaryrecords,jdbcType=VARCHAR},
+    employmentAdvice = #{record.employmentadvice,jdbcType=VARCHAR},
+    picture = #{record.picture,jdbcType=VARCHAR},
+    roleId = #{record.roleid,jdbcType=INTEGER},
+    default1 = #{record.default1,jdbcType=VARCHAR},
+    default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

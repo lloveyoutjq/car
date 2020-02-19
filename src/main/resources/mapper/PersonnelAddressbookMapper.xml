@@ -88,7 +88,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from personnel_addressbook
     where id = #{id,jdbcType=INTEGER}
@@ -218,14 +218,14 @@
   <update id="updateByExample" parameterType="map" >
     update personnel_addressbook
     set id = #{record.id,jdbcType=INTEGER},
-      departmentId = #{record.departmentid,jdbcType=INTEGER},
-      staffId = #{record.staffid,jdbcType=INTEGER},
-      cornet = #{record.cornet,jdbcType=VARCHAR},
-      dialDirectly = #{record.dialdirectly,jdbcType=VARCHAR},
-      phone = #{record.phone,jdbcType=VARCHAR},
-      email = #{record.email,jdbcType=VARCHAR},
-      default1 = #{record.default1,jdbcType=VARCHAR},
-      default2 = #{record.default2,jdbcType=VARCHAR}
+    departmentId = #{record.departmentid,jdbcType=INTEGER},
+    staffId = #{record.staffid,jdbcType=INTEGER},
+    cornet = #{record.cornet,jdbcType=VARCHAR},
+    dialDirectly = #{record.dialdirectly,jdbcType=VARCHAR},
+    phone = #{record.phone,jdbcType=VARCHAR},
+    email = #{record.email,jdbcType=VARCHAR},
+    default1 = #{record.default1,jdbcType=VARCHAR},
+    default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

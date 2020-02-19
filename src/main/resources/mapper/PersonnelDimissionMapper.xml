@@ -86,7 +86,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from personnel_dimission
     where id = #{id,jdbcType=INTEGER}
@@ -196,12 +196,12 @@
   <update id="updateByExample" parameterType="map" >
     update personnel_dimission
     set id = #{record.id,jdbcType=INTEGER},
-      departmentId = #{record.departmentid,jdbcType=INTEGER},
-      dimissionDate = #{record.dimissiondate,jdbcType=TIMESTAMP},
-      dimissionCause = #{record.dimissioncause,jdbcType=VARCHAR},
-      staffId = #{record.staffid,jdbcType=INTEGER},
-      default1 = #{record.default1,jdbcType=VARCHAR},
-      default2 = #{record.default2,jdbcType=VARCHAR}
+    departmentId = #{record.departmentid,jdbcType=INTEGER},
+    dimissionDate = #{record.dimissiondate,jdbcType=TIMESTAMP},
+    dimissionCause = #{record.dimissioncause,jdbcType=VARCHAR},
+    staffId = #{record.staffid,jdbcType=INTEGER},
+    default1 = #{record.default1,jdbcType=VARCHAR},
+    default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

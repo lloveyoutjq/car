@@ -7,6 +7,11 @@
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+
+  <select id="jobsSelect" resultMap="BaseResultMap">
+    SELECT * FROM `personnel_post`
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -83,7 +88,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from personnel_post
     where postId = #{postid,jdbcType=INTEGER}
@@ -99,9 +104,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.accp.domain.PersonnelPost" >
-    insert into personnel_post (postId, postName, default1, 
+    insert into personnel_post (postId, postName, default1,
       default2)
-    values (#{postid,jdbcType=INTEGER}, #{postname,jdbcType=VARCHAR}, #{default1,jdbcType=VARCHAR}, 
+    values (#{postid,jdbcType=INTEGER}, #{postname,jdbcType=VARCHAR}, #{default1,jdbcType=VARCHAR},
       #{default2,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.PersonnelPost" >
@@ -164,9 +169,9 @@
   <update id="updateByExample" parameterType="map" >
     update personnel_post
     set postId = #{record.postid,jdbcType=INTEGER},
-      postName = #{record.postname,jdbcType=VARCHAR},
-      default1 = #{record.default1,jdbcType=VARCHAR},
-      default2 = #{record.default2,jdbcType=VARCHAR}
+    postName = #{record.postname,jdbcType=VARCHAR},
+    default1 = #{record.default1,jdbcType=VARCHAR},
+    default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -22,16 +22,6 @@ public class PersonnelDepartment {
 
     private Integer ids;
 
-    private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<PersonnelDepartment> getChildren() {
         return children;
     }
