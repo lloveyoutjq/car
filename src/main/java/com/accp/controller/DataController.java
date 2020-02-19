@@ -306,6 +306,11 @@ public class DataController {
         return maintenanceitemsService.deleteDataMaintenanceItems(id);
     }
 
+    @RequestMapping("/selectDataMaintenanceItemsid")
+    public DataMaintenanceItems selectDataMaintenanceItemsid(Integer id){
+        return maintenanceitemsService.selectDataMaintenanceItemsid(id);
+    }
+
     @RequestMapping("/updateDataMaintenanceItems")
     public int updateDataMaintenanceItems(String data){
 

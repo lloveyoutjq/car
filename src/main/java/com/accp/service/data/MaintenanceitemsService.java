@@ -25,6 +25,10 @@ public class MaintenanceitemsService {
         return pageInfo.toPageInfo();
     }
 
+    public DataMaintenanceItems selectDataMaintenanceItemsid(Integer id){
+        return dataMaintenanceItemsMapper.selectByPrimaryKey(id);
+    }
+
     public int  insertDataMaintenanceItems(DataMaintenanceItems dataMaintenanceItems){
         int count=dataMaintenanceItemsMapper.insert(dataMaintenanceItems);
         return  count;
