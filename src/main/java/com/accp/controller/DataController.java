@@ -36,7 +36,7 @@ public class DataController {
     CommodityTypeService commodityTypeService;
 
     @Autowired(required = false)
-    itemtypeService itemtypeService;
+    ItemtypeService itemtypeService;
 
     //品牌
     @RequestMapping("/addDataCarbrand")

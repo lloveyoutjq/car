@@ -1,5 +1,6 @@
 package com.accp.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class ClientClientdata {
@@ -13,11 +14,15 @@ public class ClientClientdata {
 
     private String address;
 
-    private Date borndate;
+    private String borndate;
 
     private Integer paymentdays;
 
-    private Integer paymentsize;
+    private BigDecimal paymentsize;
+
+    private Integer integral;
+
+    private BigDecimal balance;
 
     private Integer counselorid;
 
@@ -47,7 +52,7 @@ public class ClientClientdata {
 
     private Integer typeid;
 
-    private Date date;
+    private String date;
 
     private String password;
 
@@ -60,8 +65,12 @@ public class ClientClientdata {
     private String default4;
 
     private String default5;
+	
+	private ClientClienttype clientClienttype;
 
-    private ClientClienttype clientClienttype;
+    private ClientCarinfo clientCarinfo;
+
+    private String searchData;
 
     public ClientClienttype getClientClienttype() {
         return clientClienttype;
@@ -69,6 +78,22 @@ public class ClientClientdata {
 
     public void setClientClienttype(ClientClienttype clientClienttype) {
         this.clientClienttype = clientClienttype;
+    }
+
+    public ClientCarinfo getClientCarinfo() {
+        return clientCarinfo;
+    }
+
+    public void setClientCarinfo(ClientCarinfo clientCarinfo) {
+        this.clientCarinfo = clientCarinfo;
+    }
+
+    public String getSearchData() {
+        return searchData;
+    }
+
+    public void setSearchData(String searchData) {
+        this.searchData = searchData;
     }
 
     public Integer getNumber() {
@@ -111,11 +136,11 @@ public class ClientClientdata {
         this.address = address;
     }
 
-    public Date getBorndate() {
+    public String getBorndate() {
         return borndate;
     }
 
-    public void setBorndate(Date borndate) {
+    public void setBorndate(String borndate) {
         this.borndate = borndate;
     }
 
@@ -127,12 +152,28 @@ public class ClientClientdata {
         this.paymentdays = paymentdays;
     }
 
-    public Integer getPaymentsize() {
+    public BigDecimal getPaymentsize() {
         return paymentsize;
     }
 
-    public void setPaymentsize(Integer paymentsize) {
+    public void setPaymentsize(BigDecimal paymentsize) {
         this.paymentsize = paymentsize;
+    }
+
+    public Integer getIntegral() {
+        return integral;
+    }
+
+    public void setIntegral(Integer integral) {
+        this.integral = integral;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
     public Integer getCounselorid() {
@@ -247,11 +288,11 @@ public class ClientClientdata {
         this.typeid = typeid;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
