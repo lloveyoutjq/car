@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.PersonnelArtisanlevelMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.PersonnelArtisanlevel" >
+    <id column="artisanLevelId" property="artisanlevelid" jdbcType="INTEGER" />
+    <result column="artisanLevelName" property="artisanlevelname" jdbcType="VARCHAR" />
+    <result column="artisanLevelWeight" property="artisanlevelweight" jdbcType="VARCHAR" />
+    <result column="default1" property="default1" jdbcType="VARCHAR" />
+    <result column="default2" property="default2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    artisanLevelId, artisanLevelName, artisanLevelWeight, default1, default2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.PersonnelArtisanlevelExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from personnel_artisanlevel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from personnel_artisanlevel
+    where artisanLevelId = #{artisanlevelid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from personnel_artisanlevel
+    where artisanLevelId = #{artisanlevelid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.PersonnelArtisanlevelExample" >
+    delete from personnel_artisanlevel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.PersonnelArtisanlevel" >
+    insert into personnel_artisanlevel (artisanLevelId, artisanLevelName, 
+      artisanLevelWeight, default1, default2
+      )
+    values (#{artisanlevelid,jdbcType=INTEGER}, #{artisanlevelname,jdbcType=VARCHAR}, 
+      #{artisanlevelweight,jdbcType=VARCHAR}, #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.PersonnelArtisanlevel" >
+    insert into personnel_artisanlevel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="artisanlevelid != null" >
+        artisanLevelId,
+      </if>
+      <if test="artisanlevelname != null" >
+        artisanLevelName,
+      </if>
+      <if test="artisanlevelweight != null" >
+        artisanLevelWeight,
+      </if>
+      <if test="default1 != null" >
+        default1,
+      </if>
+      <if test="default2 != null" >
+        default2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="artisanlevelid != null" >
+        #{artisanlevelid,jdbcType=INTEGER},
+      </if>
+      <if test="artisanlevelname != null" >
+        #{artisanlevelname,jdbcType=VARCHAR},
+      </if>
+      <if test="artisanlevelweight != null" >
+        #{artisanlevelweight,jdbcType=VARCHAR},
+      </if>
+      <if test="default1 != null" >
+        #{default1,jdbcType=VARCHAR},
+      </if>
+      <if test="default2 != null" >
+        #{default2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.PersonnelArtisanlevelExample" resultType="java.lang.Integer" >
+    select count(*) from personnel_artisanlevel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update personnel_artisanlevel
+    <set >
+      <if test="record.artisanlevelid != null" >
+        artisanLevelId = #{record.artisanlevelid,jdbcType=INTEGER},
+      </if>
+      <if test="record.artisanlevelname != null" >
+        artisanLevelName = #{record.artisanlevelname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.artisanlevelweight != null" >
+        artisanLevelWeight = #{record.artisanlevelweight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.default1 != null" >
+        default1 = #{record.default1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.default2 != null" >
+        default2 = #{record.default2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update personnel_artisanlevel
+    set artisanLevelId = #{record.artisanlevelid,jdbcType=INTEGER},
+      artisanLevelName = #{record.artisanlevelname,jdbcType=VARCHAR},
+      artisanLevelWeight = #{record.artisanlevelweight,jdbcType=VARCHAR},
+      default1 = #{record.default1,jdbcType=VARCHAR},
+      default2 = #{record.default2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.PersonnelArtisanlevel" >
+    update personnel_artisanlevel
+    <set >
+      <if test="artisanlevelname != null" >
+        artisanLevelName = #{artisanlevelname,jdbcType=VARCHAR},
+      </if>
+      <if test="artisanlevelweight != null" >
+        artisanLevelWeight = #{artisanlevelweight,jdbcType=VARCHAR},
+      </if>
+      <if test="default1 != null" >
+        default1 = #{default1,jdbcType=VARCHAR},
+      </if>
+      <if test="default2 != null" >
+        default2 = #{default2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where artisanLevelId = #{artisanlevelid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.PersonnelArtisanlevel" >
+    update personnel_artisanlevel
+    set artisanLevelName = #{artisanlevelname,jdbcType=VARCHAR},
+      artisanLevelWeight = #{artisanlevelweight,jdbcType=VARCHAR},
+      default1 = #{default1,jdbcType=VARCHAR},
+      default2 = #{default2,jdbcType=VARCHAR}
+    where artisanLevelId = #{artisanlevelid,jdbcType=INTEGER}
+  </update>
+</mapper>

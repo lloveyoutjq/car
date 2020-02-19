@@ -203,7 +203,7 @@ public class DataController {
 
         Map<String, Object> map = new HashMap<>();
         Map<String, Object> code = new HashMap<>();
-        List<DataMaintain> lists = itemtypeService.selectDataaMaintain();
+        List<DataItemtype> lists = itemtypeService.selectDataaMaintain();
         code.put("code", "200");
         code.put("message", "操作成功");
         map.put("status", code);

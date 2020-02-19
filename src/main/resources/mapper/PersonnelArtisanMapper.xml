@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.PersonnelArtisanMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.PersonnelArtisan" >
+    <id column="artisanId" property="artisanid" jdbcType="INTEGER" />
+    <result column="artisanName" property="artisanname" jdbcType="VARCHAR" />
+    <result column="artisanSex" property="artisansex" jdbcType="VARCHAR" />
+    <result column="artisanClassId" property="artisanclassid" jdbcType="INTEGER" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="authCode" property="authcode" jdbcType="VARCHAR" />
+    <result column="pastCodeDate" property="pastcodedate" jdbcType="TIMESTAMP" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="WeChat" property="wechat" jdbcType="VARCHAR" />
+    <result column="identityCard" property="identitycard" jdbcType="VARCHAR" />
+    <result column="residence" property="residence" jdbcType="VARCHAR" />
+    <result column="bank" property="bank" jdbcType="VARCHAR" />
+    <result column="bankAccount" property="bankaccount" jdbcType="VARCHAR" />
+    <result column="artisanLevelId" property="artisanlevelid" jdbcType="INTEGER" />
+    <result column="groupLeader" property="groupleader" jdbcType="BIT" />
+    <result column="maintainType" property="maintaintype" jdbcType="VARCHAR" />
+    <result column="maintainBrand" property="maintainbrand" jdbcType="VARCHAR" />
+    <result column="roleId" property="roleid" jdbcType="INTEGER" />
+    <result column="default1" property="default1" jdbcType="VARCHAR" />
+    <result column="default2" property="default2" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <!--技工星级-->
+  <resultMap id="BaseResultMapFour" type="com.accp.domain.PersonnelArtisan" extends="BaseResultMap">
+    <association property="personnelArtisanlevel" column="artisanlevelid" javaType="com.accp.domain.PersonnelArtisanlevel">
+      <id column="artisanLevelId" property="artisanlevelid" jdbcType="INTEGER" />
+      <result column="artisanLevelName" property="artisanlevelname" jdbcType="VARCHAR" />
+      <result column="artisanLevelWeight" property="artisanlevelweight" jdbcType="VARCHAR" />
+      <result column="default1" property="default1" jdbcType="VARCHAR" />
+      <result column="default2" property="default2" jdbcType="VARCHAR" />
+    </association>
+    <association property="personnelArtisanclass" column="artisanclassid" javaType="com.accp.domain.PersonnelArtisanclass">
+      <id column="artisanClassId" property="artisanclassid" jdbcType="INTEGER" />
+      <result column="artisanClassName" property="artisanclassname" jdbcType="VARCHAR" />
+      <result column="artisanClassWeight" property="artisanclassweight" jdbcType="VARCHAR" />
+      <result column="parentId" property="parentid" jdbcType="INTEGER" />
+      <result column="instationWhite" property="instationwhite" jdbcType="VARCHAR" />
+      <result column="instationBlack" property="instationblack" jdbcType="VARCHAR" />
+      <result column="outsideWhite" property="outsidewhite" jdbcType="VARCHAR" />
+      <result column="outsideBlack" property="outsideblack" jdbcType="VARCHAR" />
+      <result column="wayWhite" property="waywhite" jdbcType="VARCHAR" />
+      <result column="wayBlack" property="wayblack" jdbcType="VARCHAR" />
+      <result column="oilCost" property="oilcost" jdbcType="VARCHAR" />
+      <result column="default1" property="default1" jdbcType="VARCHAR" />
+      <result column="default2" property="default2" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+
+  <!--班组技工-->
+  <select id="teamSelect" resultMap="BaseResultMapFour">
+SELECT `personnel_artisan`.*,`personnel_artisanclass`.*,`personnel_artisanlevel`.*
+FROM `personnel_artisan`
+INNER JOIN `personnel_artisanclass` ON `personnel_artisan`.`artisanClassId`=`personnel_artisanclass`.`artisanClassId`
+INNER JOIN `personnel_artisanlevel` ON `personnel_artisan`.`artisanLevelId`=`personnel_artisanlevel`.`artisanLevelId`
+  </select>
+  <select id="teamSelectId" resultMap="BaseResultMapFour">
+SELECT `personnel_artisan`.*,`personnel_artisanclass`.*,`personnel_artisanlevel`.*
+FROM `personnel_artisan`
+INNER JOIN `personnel_artisanclass` ON `personnel_artisan`.`artisanClassId`=`personnel_artisanclass`.`artisanClassId`
+INNER JOIN `personnel_artisanlevel` ON `personnel_artisan`.`artisanLevelId`=`personnel_artisanlevel`.`artisanLevelId`
+    where 1=1
+    <if test="personnelArtisan.artisanid != null and personnelArtisan.artisanid !=''">/*工号*/
+      and `personnel_artisan`.artisanid = #{personnelArtisan.artisanid}
+    </if>
+    <if test="personnelArtisan.artisanname != null and personnelArtisan.artisanname != ''">/*姓名*/
+      AND `personnel_artisan`.artisanname like CONCAT("%",#{personnelArtisan.artisanname},"%")
+    </if>
+  </select>
+
+
+
+
+
+
+
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    artisanId, artisanName, artisanSex, artisanClassId, password, email, authCode, pastCodeDate, 
+    phone, account, address, birthday, WeChat, identityCard, residence, bank, bankAccount, 
+    artisanLevelId, groupLeader, maintainType, maintainBrand, roleId, default1, default2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.PersonnelArtisanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from personnel_artisan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from personnel_artisan
+    where artisanId = #{artisanid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from personnel_artisan
+    where artisanId = #{artisanid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.PersonnelArtisanExample" >
+    delete from personnel_artisan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.PersonnelArtisan" >
+    insert into personnel_artisan (artisanId, artisanName, artisanSex, 
+      artisanClassId, password, email, 
+      authCode, pastCodeDate, phone, 
+      account, address, birthday, 
+      WeChat, identityCard, residence, 
+      bank, bankAccount, artisanLevelId, 
+      groupLeader, maintainType, maintainBrand, 
+      roleId, default1, default2
+      )
+    values (#{artisanid,jdbcType=INTEGER}, #{artisanname,jdbcType=VARCHAR}, #{artisansex,jdbcType=VARCHAR}, 
+      #{artisanclassid,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{authcode,jdbcType=VARCHAR}, #{pastcodedate,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR}, 
+      #{account,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{wechat,jdbcType=VARCHAR}, #{identitycard,jdbcType=VARCHAR}, #{residence,jdbcType=VARCHAR}, 
+      #{bank,jdbcType=VARCHAR}, #{bankaccount,jdbcType=VARCHAR}, #{artisanlevelid,jdbcType=INTEGER}, 
+      #{groupleader,jdbcType=BIT}, #{maintaintype,jdbcType=VARCHAR}, #{maintainbrand,jdbcType=VARCHAR}, 
+      #{roleid,jdbcType=INTEGER}, #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.PersonnelArtisan" >
+    insert into personnel_artisan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="artisanid != null" >
+        artisanId,
+      </if>
+      <if test="artisanname != null" >
+        artisanName,
+      </if>
+      <if test="artisansex != null" >
+        artisanSex,
+      </if>
+      <if test="artisanclassid != null" >
+        artisanClassId,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="authcode != null" >
+        authCode,
+      </if>
+      <if test="pastcodedate != null" >
+        pastCodeDate,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="wechat != null" >
+        WeChat,
+      </if>
+      <if test="identitycard != null" >
+        identityCard,
+      </if>
+      <if test="residence != null" >
+        residence,
+      </if>
+      <if test="bank != null" >
+        bank,
+      </if>
+      <if test="bankaccount != null" >
+        bankAccount,
+      </if>
+      <if test="artisanlevelid != null" >
+        artisanLevelId,
+      </if>
+      <if test="groupleader != null" >
+        groupLeader,
+      </if>
+      <if test="maintaintype != null" >
+        maintainType,
+      </if>
+      <if test="maintainbrand != null" >
+        maintainBrand,
+      </if>
+      <if test="roleid != null" >
+        roleId,
+      </if>
+      <if test="default1 != null" >
+        default1,
+      </if>
+      <if test="default2 != null" >
+        default2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="artisanid != null" >
+        #{artisanid,jdbcType=INTEGER},
+      </if>
+      <if test="artisanname != null" >
+        #{artisanname,jdbcType=VARCHAR},
+      </if>
+      <if test="artisansex != null" >
+        #{artisansex,jdbcType=VARCHAR},
+      </if>
+      <if test="artisanclassid != null" >
+        #{artisanclassid,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="authcode != null" >
+        #{authcode,jdbcType=VARCHAR},
+      </if>
+      <if test="pastcodedate != null" >
+        #{pastcodedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wechat != null" >
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="identitycard != null" >
+        #{identitycard,jdbcType=VARCHAR},
+      </if>
+      <if test="residence != null" >
+        #{residence,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null" >
+        #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaccount != null" >
+        #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="artisanlevelid != null" >
+        #{artisanlevelid,jdbcType=INTEGER},
+      </if>
+      <if test="groupleader != null" >
+        #{groupleader,jdbcType=BIT},
+      </if>
+      <if test="maintaintype != null" >
+        #{maintaintype,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainbrand != null" >
+        #{maintainbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="default1 != null" >
+        #{default1,jdbcType=VARCHAR},
+      </if>
+      <if test="default2 != null" >
+        #{default2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.PersonnelArtisanExample" resultType="java.lang.Integer" >
+    select count(*) from personnel_artisan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update personnel_artisan
+    <set >
+      <if test="record.artisanid != null" >
+        artisanId = #{record.artisanid,jdbcType=INTEGER},
+      </if>
+      <if test="record.artisanname != null" >
+        artisanName = #{record.artisanname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.artisansex != null" >
+        artisanSex = #{record.artisansex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.artisanclassid != null" >
+        artisanClassId = #{record.artisanclassid,jdbcType=INTEGER},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authcode != null" >
+        authCode = #{record.authcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pastcodedate != null" >
+        pastCodeDate = #{record.pastcodedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account != null" >
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.wechat != null" >
+        WeChat = #{record.wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.identitycard != null" >
+        identityCard = #{record.identitycard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.residence != null" >
+        residence = #{record.residence,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bank != null" >
+        bank = #{record.bank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankaccount != null" >
+        bankAccount = #{record.bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.artisanlevelid != null" >
+        artisanLevelId = #{record.artisanlevelid,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupleader != null" >
+        groupLeader = #{record.groupleader,jdbcType=BIT},
+      </if>
+      <if test="record.maintaintype != null" >
+        maintainType = #{record.maintaintype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maintainbrand != null" >
+        maintainBrand = #{record.maintainbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleid != null" >
+        roleId = #{record.roleid,jdbcType=INTEGER},
+      </if>
+      <if test="record.default1 != null" >
+        default1 = #{record.default1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.default2 != null" >
+        default2 = #{record.default2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update personnel_artisan
+    set artisanId = #{record.artisanid,jdbcType=INTEGER},
+      artisanName = #{record.artisanname,jdbcType=VARCHAR},
+      artisanSex = #{record.artisansex,jdbcType=VARCHAR},
+      artisanClassId = #{record.artisanclassid,jdbcType=INTEGER},
+      password = #{record.password,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      authCode = #{record.authcode,jdbcType=VARCHAR},
+      pastCodeDate = #{record.pastcodedate,jdbcType=TIMESTAMP},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      account = #{record.account,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      WeChat = #{record.wechat,jdbcType=VARCHAR},
+      identityCard = #{record.identitycard,jdbcType=VARCHAR},
+      residence = #{record.residence,jdbcType=VARCHAR},
+      bank = #{record.bank,jdbcType=VARCHAR},
+      bankAccount = #{record.bankaccount,jdbcType=VARCHAR},
+      artisanLevelId = #{record.artisanlevelid,jdbcType=INTEGER},
+      groupLeader = #{record.groupleader,jdbcType=BIT},
+      maintainType = #{record.maintaintype,jdbcType=VARCHAR},
+      maintainBrand = #{record.maintainbrand,jdbcType=VARCHAR},
+      roleId = #{record.roleid,jdbcType=INTEGER},
+      default1 = #{record.default1,jdbcType=VARCHAR},
+      default2 = #{record.default2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.PersonnelArtisan" >
+    update personnel_artisan
+    <set >
+      <if test="artisanname != null" >
+        artisanName = #{artisanname,jdbcType=VARCHAR},
+      </if>
+      <if test="artisansex != null" >
+        artisanSex = #{artisansex,jdbcType=VARCHAR},
+      </if>
+      <if test="artisanclassid != null" >
+        artisanClassId = #{artisanclassid,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="authcode != null" >
+        authCode = #{authcode,jdbcType=VARCHAR},
+      </if>
+      <if test="pastcodedate != null" >
+        pastCodeDate = #{pastcodedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wechat != null" >
+        WeChat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="identitycard != null" >
+        identityCard = #{identitycard,jdbcType=VARCHAR},
+      </if>
+      <if test="residence != null" >
+        residence = #{residence,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null" >
+        bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankaccount != null" >
+        bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="artisanlevelid != null" >
+        artisanLevelId = #{artisanlevelid,jdbcType=INTEGER},
+      </if>
+      <if test="groupleader != null" >
+        groupLeader = #{groupleader,jdbcType=BIT},
+      </if>
+      <if test="maintaintype != null" >
+        maintainType = #{maintaintype,jdbcType=VARCHAR},
+      </if>
+      <if test="maintainbrand != null" >
+        maintainBrand = #{maintainbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="roleid != null" >
+        roleId = #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="default1 != null" >
+        default1 = #{default1,jdbcType=VARCHAR},
+      </if>
+      <if test="default2 != null" >
+        default2 = #{default2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where artisanId = #{artisanid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.PersonnelArtisan" >
+    update personnel_artisan
+    set artisanName = #{artisanname,jdbcType=VARCHAR},
+      artisanSex = #{artisansex,jdbcType=VARCHAR},
+      artisanClassId = #{artisanclassid,jdbcType=INTEGER},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      authCode = #{authcode,jdbcType=VARCHAR},
+      pastCodeDate = #{pastcodedate,jdbcType=TIMESTAMP},
+      phone = #{phone,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      WeChat = #{wechat,jdbcType=VARCHAR},
+      identityCard = #{identitycard,jdbcType=VARCHAR},
+      residence = #{residence,jdbcType=VARCHAR},
+      bank = #{bank,jdbcType=VARCHAR},
+      bankAccount = #{bankaccount,jdbcType=VARCHAR},
+      artisanLevelId = #{artisanlevelid,jdbcType=INTEGER},
+      groupLeader = #{groupleader,jdbcType=BIT},
+      maintainType = #{maintaintype,jdbcType=VARCHAR},
+      maintainBrand = #{maintainbrand,jdbcType=VARCHAR},
+      roleId = #{roleid,jdbcType=INTEGER},
+      default1 = #{default1,jdbcType=VARCHAR},
+      default2 = #{default2,jdbcType=VARCHAR}
+    where artisanId = #{artisanid,jdbcType=INTEGER}
+  </update>
+</mapper>
