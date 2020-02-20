@@ -1,6 +1,8 @@
 package com.accp.service.data;
 
+import com.accp.domain.DataCarExample;
 import com.accp.domain.DataCarbrand;
+import com.accp.domain.DataCarbrandExample;
 import com.accp.mapper.DataCarbrandMapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -17,9 +19,19 @@ public class CarTypeService {
     @Autowired(required = false)
     DataCarbrandMapper dataCarbrandMapper;
 
-    public PageInfo<DataCarbrand> selectDataCarbrand(Integer page, Integer limit){
+    public PageInfo<DataCarbrand> selectDataCarbrand(String selectData,Integer page, Integer limit){
         Page<DataCarbrand> pageInfo = PageHelper.startPage(page,limit);
-        dataCarbrandMapper.selectByExample(null);
+        DataCarbrandExample example = new DataCarbrandExample();
+        if(selectData !=null && selectData !=""){
+            if(selectData.matches("[0-9]+")){
+                example.createCriteria().andIdEqualTo(Integer.valueOf(selectData));
+            }else if(selectData.matches("[a-zA-Z]+")){
+                example.createCriteria().andFirstletterEqualTo(selectData);
+            }else{
+                example.createCriteria().andCarbrandnameEqualTo(selectData);
+            }
+        }
+        dataCarbrandMapper.selectByExample(example);
         return pageInfo.toPageInfo();
     }
 
