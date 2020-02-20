@@ -1,6 +1,7 @@
 package com.accp.service.data;
 
 import com.accp.domain.DataCar;
+import com.accp.domain.DataCarExample;
 import com.accp.mapper.DataCarMapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -16,9 +17,17 @@ public class CarService {
     @Autowired(required = false)
     DataCarMapper dataCarMapper;
 
-    public PageInfo<DataCar> selectDataCar(Integer page, Integer limit){
+    public PageInfo<DataCar> selectDataCar(String selectData,Integer page, Integer limit){
         Page<DataCar> pageInfo = PageHelper.startPage(page,limit);
-        dataCarMapper.selectByExample(null);
+        DataCarExample example = new DataCarExample();
+        if(selectData !=null && selectData !=""){
+            if(selectData.matches("[0-9]+")){
+                example.createCriteria().andIdEqualTo(Integer.valueOf(selectData));
+            }else{
+                example.createCriteria().andCartypenameEqualTo(selectData);
+            }
+        }
+        dataCarMapper.selectByExample(example);
         return pageInfo.toPageInfo();
     }
 

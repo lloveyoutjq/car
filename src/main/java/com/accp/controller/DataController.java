@@ -84,9 +84,9 @@ public class DataController {
 
     //车型
     @RequestMapping("/selectDataCar")
-    public Map selectDataCar(Integer page,Integer limit){
+    public Map selectDataCar(String selectData,Integer page,Integer limit){
         Map<String,Object> code = new HashMap<>();
-        PageInfo<DataCar> pageInfo = carService.selectDataCar(page,limit);
+        PageInfo<DataCar> pageInfo = carService.selectDataCar(selectData,page,limit);
         code.put("data",pageInfo.getList());
         code.put("code","0");
         code.put("count",pageInfo.getSize());
