@@ -280,13 +280,22 @@ public class DataController {
 
     //维修的项目
     @RequestMapping("/selectDataMaintenanceItems")
-    public Map selectDataMaintenanceItems(Integer page,Integer limit){
-        Map<String,Object> code = new HashMap<>();
-        PageInfo<DataMaintenanceItems> pageInfo = maintenanceitemsService.selectDataMaintenanceItems(page,limit);
-        code.put("data",pageInfo.getList());
-        code.put("code","0");
-        code.put("count",pageInfo.getSize());
-        return code;
+    public Map selectDataMaintenanceItems(Integer page,Integer limit,String ids){
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Integer> idsList = null;
+            if(ids != null && !"".equals(ids)){
+                try {
+                    idsList = objectMapper.readValue(ids,List.class);
+                }catch (JsonProcessingException e){
+                    System.out.println("发送异常");
+                }
+            }
+            PageInfo<DataMaintenanceItems> pageInfo =  maintenanceitemsService.selectDataMaintenanceItems(page,limit,idsList);
+            Map<String,Object> code = new HashMap<>();
+            code.put("code",0);
+            code.put("data",pageInfo.getList());
+            code.put("count",pageInfo.getTotal());
+            return code;
     }
 
     @RequestMapping("/addDataMaintenanceItems")
