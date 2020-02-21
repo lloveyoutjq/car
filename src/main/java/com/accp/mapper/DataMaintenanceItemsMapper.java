@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DataMaintenanceItemsMapper {
+    List<DataMaintenanceItems> selectDataMaintenanceItems(@Param("dataMaintenanceItems") DataMaintenanceItems dataMaintenanceItems);
+
+
     List<DataMaintenanceItems> itemsSels(String number);
 
     List<DataMaintenanceItems> attached(String number);  //附单

@@ -19,10 +19,14 @@ public class MaintenanceitemsService {
     DataMaintenanceItemsMapper dataMaintenanceItemsMapper;
 
 
-    public PageInfo<DataMaintenanceItems> selectDataMaintenanceItems(Integer page, Integer limit){
-        Page<DataMaintenanceItems> pageInfo = PageHelper.startPage(page,limit);
-        dataMaintenanceItemsMapper.selectByExample(null);
-        return pageInfo.toPageInfo();
+    public PageInfo<DataMaintenanceItems> selectDataMaintenanceItems(Integer index, Integer limit,List<Integer> ids){
+            Page<DataMaintenanceItems> page = PageHelper.startPage(index,limit);
+            DataMaintenanceItems personnelStaff = new DataMaintenanceItems();
+        /*ids.add(1);
+        ids.add(2);*/
+            personnelStaff.setIds(ids);
+            dataMaintenanceItemsMapper.selectDataMaintenanceItems(personnelStaff);
+            return page.toPageInfo();
     }
 
 

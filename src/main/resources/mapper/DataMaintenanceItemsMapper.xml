@@ -76,6 +76,34 @@
       <result column="drifaultresult" property="faultresult"/>
     </association>
   </resultMap>
+
+  <resultMap id="BaseResultMapSix" type="com.accp.domain.DataMaintenanceItems" extends="BaseResultMap">
+    <association property="dataItemtype" javaType="com.accp.domain.DataItemtype">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="name" property="name" jdbcType="VARCHAR" />
+      <result column="parentId" property="parentid" jdbcType="INTEGER" />
+      <result column="default1" property="default1" jdbcType="VARCHAR" />
+      <result column="default2" property="default2" jdbcType="VARCHAR" />
+      <result column="default3" property="default3" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+
+  <select id="selectDataMaintenanceItems" resultMap="BaseResultMapSix">
+    SELECT `data_maintenance_items`.*,`data_itemtype`.* FROM `data_maintenance_items`
+    INNER JOIN `data_itemtype` ON `data_maintenance_items`.`typeId`=`data_itemtype`.`id`
+    where 1=1
+    <if test="dataMaintenanceItems.ids !=null and dataMaintenanceItems.ids.size()>0">
+      and (
+      <foreach collection="dataMaintenanceItems.ids" item="item" separator="or">
+        <if test="item != null and item != ''">
+          `data_itemtype`.id = #{item}
+        </if>
+
+      </foreach>
+      )
+    </if>
+  </select>
+
   <select id="items" resultMap="BaseResultMapPlus">
     SELECT mr.`number` as mrnumber ,mr.`pickDate` as mrpickdate ,mr.`type` as mrtype ,
     mr.`tname` as mrtname ,mr.`completeDate` as mrcompletedate ,mr.`settleDate` as mrsettledate ,dri.`id` as driid ,

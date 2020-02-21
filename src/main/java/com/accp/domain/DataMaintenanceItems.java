@@ -1,5 +1,7 @@
 package com.accp.domain;
 
+import java.util.List;
+
 public class DataMaintenanceItems {
     private Integer id;
 
@@ -34,6 +36,26 @@ public class DataMaintenanceItems {
     private  PersonnelStaff personnelStaff;
 
     private DataRepairItems dataRepairItems;
+
+    public List<Integer> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
+    }
+
+    public DataItemtype getDataItemtype() {
+        return dataItemtype;
+    }
+
+    public void setDataItemtype(DataItemtype dataItemtype) {
+        this.dataItemtype = dataItemtype;
+    }
+
+    private List<Integer> ids;
+
+    private  DataItemtype dataItemtype;
 
     public Integer getId() {
         return id;
