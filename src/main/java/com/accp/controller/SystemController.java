@@ -4,6 +4,7 @@ import com.accp.domain.*;
 import com.accp.entity.User;
 import com.accp.service.MailService;
 import com.accp.service.ToolService;
+import com.accp.service.system.LoginService;
 import com.accp.service.system.ModuleManagementService;
 import com.accp.service.system.PermissionsControlService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -32,6 +33,8 @@ public class SystemController {
     ToolService toolService;
     @Autowired(required = false)
     MailService mailService;
+    @Autowired(required = false)
+    LoginService loginService;
 
     /**
      * 查询权限和角色对应表
@@ -149,15 +152,25 @@ public class SystemController {
      * @return
      */
     @RequestMapping("login")
-    public Map login(String user, String pwd, HttpSession session){
-
+    public Map login(String user, String pwd, String type, HttpSession session){
         System.out.println("正在登陆"+session.getId());
         Map map = new HashMap();
-        map.put("code",0);
-        User user1 = new User();
-        user1.setUser("888888888");
-        session.setAttribute("user",user1);
-
+        if(user == null || pwd == null){
+            map.put("code",-1);
+            map.put("msg","账号或密码不能为空");
+            return map;
+        }
+        Integer count = loginService.login(user,pwd,type);
+        if(count >0){
+            map.put("code",0);
+            map.put("msg","登录成功");
+            User user1 = new User();
+            user1.setUser(user);
+            session.setAttribute("user",user1);
+        }else{
+            map.put("code","-2");
+            map.put("msg","登录失败");
+        }
         return map;
     }
 
