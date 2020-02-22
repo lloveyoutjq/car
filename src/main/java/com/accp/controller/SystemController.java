@@ -160,13 +160,11 @@ public class SystemController {
             map.put("msg","账号或密码不能为空");
             return map;
         }
-        Integer count = loginService.login(user,pwd,type);
-        if(count >0){
+        User userMsg = loginService.login(user,pwd,type);
+        if(userMsg.getState() >0){
             map.put("code",0);
             map.put("msg","登录成功");
-            User user1 = new User();
-            user1.setUser(user);
-            session.setAttribute("user",user1);
+            session.setAttribute("user",userMsg);
         }else{
             map.put("code","-2");
             map.put("msg","登录失败");
@@ -175,10 +173,32 @@ public class SystemController {
     }
 
     /**
+     * 登出
+     */
+    @RequestMapping("logOut")
+    public Map logOut(HttpSession session){
+        Map map = new HashMap();
+        session.invalidate();
+        map.put("code",0);
+        map.put("msg","退出登录成功");
+        return map;
+    }
+    /**
+     * 获取登录信息
+     */
+    @RequestMapping("getLoginMsg")
+    public Map getLoginMsg(HttpSession session){
+        Map map = new HashMap();
+        map.put("code",0);
+        map.put("data",session.getAttribute("user"));
+        return map;
+    }
+
+    /**
      * 找回密码
      */
     @RequestMapping("findPassword")
-    public Map findPassword(HttpSession session,Integer type,String code){
+    public Map findPassword(HttpSession session,Integer type,String code,String typeYgJg,String email,String pwd){
         User u = (User)session.getAttribute("user");
         Map<String,Object> map = new HashMap<>();
         if(u != null && u.getPastCodeDate() != 0 && !"".equals(u.getCode())){
@@ -198,10 +218,15 @@ public class SystemController {
             }else if(type ==1){//找回密码
                 if(!"".equals(code) && code.equals(u.getCode())){
                     if(u.getPastCodeDate() - System.currentTimeMillis() < 0){
-                        map.put("code","0");
-                        map.put("msg","验证成功");
 
-
+                        int count = loginService.retrieve(email,pwd,typeYgJg); //修改密码
+                        if(count>0){
+                            map.put("code","0");
+                            map.put("msg","成功找回");
+                        }else{
+                            map.put("code","-1");
+                            map.put("msg","核实失败 请联系管理员找回");
+                        }
                     }else{
                         map.put("code","1");
                         map.put("msg","验证码过期");
@@ -218,17 +243,22 @@ public class SystemController {
      *验证码发送
      */
     @RequestMapping("sendEmail")
-    public Map sendEmail(HttpSession session,String emali){
+    public Map sendEmail(HttpSession session,String emali,String typeYgJg){
         Map<String,Object> map = new HashMap<>();
         if(emali == null || "".equals(emali)){
             map.put("code","-1");
             map.put("msg","请填写邮箱");
             return map;
         }
-
+        int count = loginService.emaliNotNull(emali,typeYgJg);
+        if(count == 0){
+            map.put("code","-1");
+            map.put("msg","对不起 填写的邮箱不是管理员邮箱");
+            return map;
+        }
         StringBuffer code = new StringBuffer();
         for(int i = 0; i < 6; i++){
-            code.append(toolService.nextIntNoRepeat(6));
+            code.append(toolService.nextIntNoRepeat());
         }
         String html = "<head>\n" +
                 "    <base target=\"_blank\" />\n" +

@@ -9,21 +9,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 @Service
-public class ToolService extends Random {
-    private ArrayList<Integer> recodedList = new ArrayList<>();
+public class ToolService{
 
     public int nextIntNoRepeat() {
-        int r;
-        while(recodedList.contains(r = super.nextInt())){}
-        recodedList.add(r);
-        return r;
-    }
-
-    public int nextIntNoRepeat(int bound) {
-        int r;
-        if (bound == recodedList.size()) throw new  IllegalArgumentException("给定范围内已无随机数可用");
-        while(recodedList.contains(r = super.nextInt(bound))){}
-        recodedList.add(r);
+        int r = (int)(Math.random()*9);
         return r;
     }
 

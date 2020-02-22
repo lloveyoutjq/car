@@ -5,9 +5,36 @@ import java.util.Date;
 public class User {
     private int type;
     private String user;
+    private String userName;
     private String password;
+    private String headImgUrl;
     private String code;
     private long pastCodeDate;
+    private int state;
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getHeadImgUrl() {
+        return headImgUrl;
+    }
+
+    public void setHeadImgUrl(String headImgUrl) {
+        this.headImgUrl = headImgUrl;
+    }
 
     public String getCode() {
         return code;
