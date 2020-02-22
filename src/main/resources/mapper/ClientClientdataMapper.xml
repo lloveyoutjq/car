@@ -57,13 +57,12 @@
       <result column="cctclienttype" property="clienttype"/>
       <result column="cctvalidty" property="validty"/>
       <result column="cctstarttime" property="starttime"/>
-      <result column="cctendtime" property="endtime"/>
     </association>
   </resultMap>
   <select id="vip" resultMap="BaseResultMapPlus">
     SELECT ccd.`number`,cct.`id` as cctid ,ccd.`name`,ccd.`phone`,
     cct.`clientType` as cctclienttype ,cct.`validty` as cctvalidty ,ccd.`integral` ,ccd.`balance` ,
-    cct.`startTime` as cctstarttime ,cct.`endTime` cctendtime
+    cct.`startTime` as cctstarttime ,ccd.`endTime`
     FROM `client_clientdata` AS ccd
     STRAIGHT_JOIN `client_clienttype` AS cct
     ON ccd.`typeId` = cct.`id`
