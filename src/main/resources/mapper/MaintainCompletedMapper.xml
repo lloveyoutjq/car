@@ -44,7 +44,7 @@
     </association>
     <association property="dataRepairItems" javaType="com.accp.domain.DataRepairItems">
       <id column="driid" property="id"/>
-      <result column="dmiid" property="itemId"/>
+      <result column="dmiid" property="itemid"/>
       <result column="drirescuerepairid" property="rescuerepairid"/>
     </association>
   </resultMap>
@@ -70,7 +70,6 @@
     STRAIGHT_JOIN `data_car` AS da
     ON cc.`carId` = da.`id`
     WHERE mrs.`number` LIKE #{number} AND cc.`carNumber` LIKE #{carNumber} AND cc.`frameNumber` LIKE #{frameNumber}
-    AND mc.`eligibility` LIKE #{eligibility}
   </select>
   <sql id="Example_Where_Clause" >
     <where >

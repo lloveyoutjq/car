@@ -136,12 +136,12 @@
     mr.`company` as mrcompany ,cc.`counselorName` as cccounselorname , mr.`beforedate` as mrbeforedate ,mr.`price` as mrprice ,mr.`remark` as mrremark ,mr.`state` as mrstate,
     cc.`number` as ccnumber , ca.`clientId` as caclientid , deb.`id` as debid ,dc.`id` as dcid
     FROM `front_cashier` AS fc
-    STRAIGHT_JOIN `client_clientdata` AS cc
-    ON fc.`clientId` = cc.`number`
     STRAIGHT_JOIN `maintain_repair` AS mr
     ON fc.`number` = mr.`number`
     STRAIGHT_JOIN `client_carinfo` AS ca
-    ON cc.`number` = ca.`clientId`
+    ON mr.`carInfoId` = ca.`id`
+    STRAIGHT_JOIN `client_clientdata` AS cc
+    ON ca.`clientId` = cc.`number`
     STRAIGHT_JOIN `data_engine_brand` AS deb
     ON ca.`engineId` = deb.`id`
     STRAIGHT_JOIN `data_carbrand` AS dc
@@ -162,16 +162,16 @@
     mr.`price` as mrprice ,mr.`remark` as mrremark ,mr.`state` as mrstate,
     cc.`number` as ccnumber , ca.`clientId` as caclientid , deb.`id` as debid ,dc.`id` as dcid , pa.`artisanClassId` as paartisanclassid
     FROM `front_cashier` AS fc
-    STRAIGHT_JOIN `client_clientdata` AS cc
-    ON fc.`clientId` = cc.`number`
     STRAIGHT_JOIN `maintain_rescue` AS mr
     ON fc.`number` = mr.`number`
     STRAIGHT_JOIN `client_carinfo` AS ca
-    ON cc.`number` = ca.`clientId`
+    ON mr.`carInfoId` = ca.`id`
+    STRAIGHT_JOIN `client_clientdata` AS cc
+    ON ca.`clientId` = cc.`number`
     STRAIGHT_JOIN `data_engine_brand` AS deb
     ON ca.`engineId` = deb.`id`
     STRAIGHT_JOIN `data_carbrand` AS dc
-    ON ca.`carBrandId` = dc.`carBrandName`
+    ON ca.`carBrandId` = dc.`id`
     STRAIGHT_JOIN `personnel_artisanclass` AS pa
     ON mr.`rescueTeamId` = pa.`artisanClassId`
     WHERE mr.`number` = #{number}

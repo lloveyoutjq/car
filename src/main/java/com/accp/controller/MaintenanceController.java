@@ -30,9 +30,9 @@ public class MaintenanceController {
 
 
     @GetMapping("/selectCompleted")
-    public Map<String,Object> selectCompleted(String number,String carNumber,String frameNumber,String eligibility,Integer page,Integer limit){
+    public Map<String,Object> selectCompleted(String number,String carNumber,String frameNumber,Integer page,Integer limit){
         Map<String,Object> map = new HashMap<>();
-        PageInfo pageInfo = completedService.completionInspection(number,carNumber,frameNumber,eligibility,page,limit);
+        PageInfo pageInfo = completedService.completionInspection(number,carNumber,frameNumber,page,limit);
         map.put("code",0);
         map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());
