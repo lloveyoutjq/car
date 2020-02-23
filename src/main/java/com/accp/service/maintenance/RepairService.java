@@ -194,5 +194,9 @@ public class RepairService {
         return maintainRescueMapper.insertSelective(maintainRescue);
     }
 
+    //车主信息
+    public ClientCarinfo selectUser(String carNumber){
+        return clientCarinfoMapper.selectUser(carNumber);
+    }
 
 }

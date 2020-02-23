@@ -290,4 +290,13 @@ public class MaintenanceController {
         repairService.insertRescue(frontCashier.getMaintainRescue());
         return "1";
     }
+
+    //车主信息
+    @RequestMapping("/selectUser")
+    public  Map<String,Object> selectUser(String carNumber){
+        Map<String,Object> map = new HashMap<>();
+        map.put("code",0);
+        map.put("data",repairService.selectUser(carNumber));
+        return map;
+    }
 }
