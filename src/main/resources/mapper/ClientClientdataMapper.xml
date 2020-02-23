@@ -58,7 +58,6 @@
       <id column="cctid" property="id"/>
       <result column="cctclienttype" property="clienttype"/>
       <result column="cctvalidty" property="validty"/>
-
     </association>
   </resultMap>
   <select id="vip" resultMap="BaseResultMapPlus">

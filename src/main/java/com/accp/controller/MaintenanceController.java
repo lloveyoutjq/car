@@ -1,6 +1,7 @@
 package com.accp.controller;
 
 import com.accp.domain.DataMaintenanceItems;
+import com.accp.domain.FrontCashier;
 import com.accp.domain.MaintainCompleted;
 import com.accp.domain.MaintainEwitem;
 import com.accp.service.front.SettlementService;
@@ -62,7 +63,7 @@ public class MaintenanceController {
         Map<String,Object> map = new HashMap<>();
         PageInfo pageInfo = repairService.vehiclesInOperation(page,limit);
         map.put("code",0);
-        map.put("code",pageInfo.getList());
+        map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());
         return map;
     }
@@ -72,7 +73,7 @@ public class MaintenanceController {
         Map<String,Object> map = new HashMap<>();
         PageInfo pageInfo = repairService.maintenanceHistory(carnumber, page, limit);
         map.put("code",0);
-        map.put("code",pageInfo.getList());
+        map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());
         return map;
     }
@@ -82,7 +83,7 @@ public class MaintenanceController {
         Map<String,Object> map = new HashMap<>();
         PageInfo pageInfo = repairService.items(carNumber, page, limit);
         map.put("code",0);
-        map.put("code",pageInfo.getList());
+        map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());
         return map;
     }
@@ -123,7 +124,7 @@ public class MaintenanceController {
         Map<String,Object> map = new HashMap<>();
         PageInfo pageInfo = repairService.selectByExample(number, page, limit);
         map.put("code",0);
-        map.put("code",pageInfo.getList());
+        map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());
         return map;
     }
@@ -133,7 +134,7 @@ public class MaintenanceController {
     public Map<String,Object> selectByEwitemId(String id){
         Map<String,Object> map = new HashMap<>();
         map.put("code",0);
-        map.put("code",repairService.selectByEwitemId(Integer.getInteger(id)));
+        map.put("data",repairService.selectByEwitemId(Integer.getInteger(id)));
         return map;
     }
 
@@ -165,7 +166,7 @@ public class MaintenanceController {
         Map<String,Object> map = new HashMap<>();
         PageInfo pageInfo = repairService.attached(number, page, limit);
         map.put("code",0);
-        map.put("code",pageInfo.getList());
+        map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());
         return map;
     }
@@ -179,7 +180,7 @@ public class MaintenanceController {
         Map<String,Object> map = new HashMap<>();
         PageInfo pageInfo = repairService.itemsSels(number, page, limit);
         map.put("code",0);
-        map.put("code",pageInfo.getList());
+        map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());
         return map;
     }
@@ -203,7 +204,7 @@ public class MaintenanceController {
     public Map<String,Object> selectItem(String id){
         Map<String,Object> map = new HashMap<>();
         map.put("code",0);
-        map.put("code",repairService.selectByPrimaryKey(Integer.getInteger(id)));
+        map.put("data",repairService.selectByPrimaryKey(Integer.getInteger(id)));
         return map;
     }
     @RequestMapping("/updateItem")
@@ -260,5 +261,33 @@ public class MaintenanceController {
     /**
      * 接单
      * */
+    @RequestMapping("/insertRepair")
+    public String insertRepair(String data) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        FrontCashier frontCashier = null;
+        try {
+            frontCashier = objectMapper.readValue(data, FrontCashier.class);
+        } catch (JsonProcessingException e) {
+            System.out.println("发送异常");
+        }
+        frontCashier.setNumber(frontCashier.getMaintainRepair().getNumber());
+        settlementService.insertF(frontCashier);
+        repairService.insertRepair(frontCashier.getMaintainRepair());
+        return "1";
+    }
 
+    @RequestMapping("/insertReuce")
+    public String insertReuce(String data) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        FrontCashier frontCashier = null;
+        try {
+            frontCashier = objectMapper.readValue(data, FrontCashier.class);
+        } catch (JsonProcessingException e) {
+            System.out.println("发送异常");
+        }
+        frontCashier.setNumber(frontCashier.getMaintainRescue().getNumber());
+        settlementService.insertF(frontCashier);
+        repairService.insertRescue(frontCashier.getMaintainRescue());
+        return "1";
+    }
 }

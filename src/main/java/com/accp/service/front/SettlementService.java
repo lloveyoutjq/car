@@ -82,4 +82,10 @@ public class SettlementService {
     public int recharge(ClientClientdata record){
         return clientClientdataMapper.updateByPrimaryKeySelective(record);
     }
+    /**
+     * 建表
+     * */
+    public int insertF(FrontCashier frontCashier){
+        return frontCashierMapper.insertSelective(frontCashier);
+    }
 }
