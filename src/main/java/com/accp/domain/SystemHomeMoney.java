@@ -6,6 +6,8 @@ import java.util.Date;
 public class SystemHomeMoney {
     private Integer id;
 
+    private Integer clientid;
+
     private Integer type;
 
     private BigDecimal money;
@@ -16,12 +18,24 @@ public class SystemHomeMoney {
 
     private Date updateTime;
 
+    private String default1;
+
+    private String default2;
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getClientid() {
+        return clientid;
+    }
+
+    public void setClientid(Integer clientid) {
+        this.clientid = clientid;
     }
 
     public Integer getType() {
@@ -62,5 +76,21 @@ public class SystemHomeMoney {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getDefault1() {
+        return default1;
+    }
+
+    public void setDefault1(String default1) {
+        this.default1 = default1;
+    }
+
+    public String getDefault2() {
+        return default2;
+    }
+
+    public void setDefault2(String default2) {
+        this.default2 = default2;
     }
 }

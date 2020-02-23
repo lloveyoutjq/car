@@ -1,6 +1,7 @@
 package com.accp.controller;
 
 import com.accp.domain.SystemPermissions;
+import com.accp.entity.User;
 import com.accp.service.PermissionsService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,7 +48,11 @@ public class PermissionsController {
     @RequestMapping("/selectUserPerm")
     public String selectUserPerm(HttpSession session,Integer uid,String callback) throws JsonProcessingException {
         System.out.println(session.getId()+"权限");
-        List<SystemPermissions> lists = permissionsService.selectUserPerm(1,uid);
+        User user = (User)session.getAttribute("user");
+        List<SystemPermissions> lists = null;
+        if (user != null) {
+            lists = this.permissionsService.selectUserPerm(Integer.valueOf(user.getType()), user.getUid());
+        }
         ObjectMapper objectMapper = new ObjectMapper();
 
         Map<String,Object> code = new HashMap<>();

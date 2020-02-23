@@ -166,6 +166,66 @@ public class SystemHomeMoneyExample {
             return (Criteria) this;
         }
 
+        public Criteria andClientidIsNull() {
+            addCriterion("clientId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidIsNotNull() {
+            addCriterion("clientId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidEqualTo(Integer value) {
+            addCriterion("clientId =", value, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidNotEqualTo(Integer value) {
+            addCriterion("clientId <>", value, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidGreaterThan(Integer value) {
+            addCriterion("clientId >", value, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("clientId >=", value, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidLessThan(Integer value) {
+            addCriterion("clientId <", value, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidLessThanOrEqualTo(Integer value) {
+            addCriterion("clientId <=", value, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidIn(List<Integer> values) {
+            addCriterion("clientId in", values, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidNotIn(List<Integer> values) {
+            addCriterion("clientId not in", values, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidBetween(Integer value1, Integer value2) {
+            addCriterion("clientId between", value1, value2, "clientid");
+            return (Criteria) this;
+        }
+
+        public Criteria andClientidNotBetween(Integer value1, Integer value2) {
+            addCriterion("clientId not between", value1, value2, "clientid");
+            return (Criteria) this;
+        }
+
         public Criteria andTypeIsNull() {
             addCriterion("type is null");
             return (Criteria) this;
@@ -473,6 +533,146 @@ public class SystemHomeMoneyExample {
 
         public Criteria andUpdateTimeNotBetween(Date value1, Date value2) {
             addCriterion("update_time not between", value1, value2, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault1IsNull() {
+            addCriterion("default1 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault1IsNotNull() {
+            addCriterion("default1 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault1EqualTo(String value) {
+            addCriterion("default1 =", value, "default1");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault1NotEqualTo(String value) {
+            addCriterion("default1 <>", value, "default1");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault1GreaterThan(String value) {
+            addCriterion("default1 >", value, "default1");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault1GreaterThanOrEqualTo(String value) {
+            addCriterion("default1 >=", value, "default1");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault1LessThan(String value) {
+            addCriterion("default1 <", value, "default1");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault1LessThanOrEqualTo(String value) {
+            addCriterion("default1 <=", value, "default1");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault1Like(String value) {
+            addCriterion("default1 like", value, "default1");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault1NotLike(String value) {
+            addCriterion("default1 not like", value, "default1");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault1In(List<String> values) {
+            addCriterion("default1 in", values, "default1");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault1NotIn(List<String> values) {
+            addCriterion("default1 not in", values, "default1");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault1Between(String value1, String value2) {
+            addCriterion("default1 between", value1, value2, "default1");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault1NotBetween(String value1, String value2) {
+            addCriterion("default1 not between", value1, value2, "default1");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault2IsNull() {
+            addCriterion("default2 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault2IsNotNull() {
+            addCriterion("default2 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault2EqualTo(String value) {
+            addCriterion("default2 =", value, "default2");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault2NotEqualTo(String value) {
+            addCriterion("default2 <>", value, "default2");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault2GreaterThan(String value) {
+            addCriterion("default2 >", value, "default2");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault2GreaterThanOrEqualTo(String value) {
+            addCriterion("default2 >=", value, "default2");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault2LessThan(String value) {
+            addCriterion("default2 <", value, "default2");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault2LessThanOrEqualTo(String value) {
+            addCriterion("default2 <=", value, "default2");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault2Like(String value) {
+            addCriterion("default2 like", value, "default2");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault2NotLike(String value) {
+            addCriterion("default2 not like", value, "default2");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault2In(List<String> values) {
+            addCriterion("default2 in", values, "default2");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault2NotIn(List<String> values) {
+            addCriterion("default2 not in", values, "default2");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault2Between(String value1, String value2) {
+            addCriterion("default2 between", value1, value2, "default2");
+            return (Criteria) this;
+        }
+
+        public Criteria andDefault2NotBetween(String value1, String value2) {
+            addCriterion("default2 not between", value1, value2, "default2");
             return (Criteria) this;
         }
     }

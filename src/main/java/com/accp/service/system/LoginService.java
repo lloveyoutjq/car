@@ -42,7 +42,7 @@ public class LoginService {
 
                 userMsg.setType(Integer.valueOf(type));
                 userMsg.setUid(lists.get(0).getId());
-
+                userMsg.setPassword(pwd);
                 userMsg.setUser(user);
                 userMsg.setUserName(lists.get(0).getStaffname());
                 userMsg.setHeadImgUrl(lists.get(0).getPicture());
@@ -60,11 +60,11 @@ public class LoginService {
                 PersonnelArtisan record = new PersonnelArtisan();
                 record.setPastcodedate(new Date());
                 record.setAuthcode("1");
-                this.personnelArtisanMapper.updateByExampleSelective(record, example);
+                personnelArtisanMapper.updateByExampleSelective(record, example);
 
                 userMsg.setType(Integer.valueOf(type));
                 userMsg.setUid(lists.get(0).getArtisanid());
-
+                userMsg.setPassword(pwd);
                 userMsg.setUser(user);
                 userMsg.setUserName(lists.get(0).getArtisanname());
                 userMsg.setHeadImgUrl(lists.get(0).getDefault1());
@@ -80,11 +80,25 @@ public class LoginService {
 
     /**
      * 退出登录
-     * @param session
+     * @param id
+     * @param type
      * @return
      */
-    public int logOut(HttpSession session){
-        return 0;
+    public int logOut(Integer id, String type){
+        int count = 0;
+        if("0".equals(type)){
+            PersonnelStaff record = new PersonnelStaff();
+            record.setId(id);
+            record.setAuthcode("0");
+            count = personnelStaffMapper.updateByPrimaryKeySelective(record);
+
+        }else if("1".equals(type)) {
+            PersonnelArtisan record = new PersonnelArtisan();
+            record.setArtisanid(id);
+            record.setAuthcode("0");
+            count = personnelArtisanMapper.updateByPrimaryKeySelective(record);
+        }
+        return count;
     }
 
     /**

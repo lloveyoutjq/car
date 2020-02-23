@@ -3,11 +3,14 @@
 <mapper namespace="com.accp.mapper.SystemHomeMoneyMapper" >
   <resultMap id="BaseResultMap" type="com.accp.domain.SystemHomeMoney" >
     <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="clientId" property="clientid" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="money" property="money" jdbcType="DECIMAL" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="default1" property="default1" jdbcType="VARCHAR" />
+    <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
 
   <select id="selectByDate" resultMap="BaseResultMap">
@@ -16,7 +19,6 @@
     `type`= #{type}
     AND DATEDIFF(`create_time`,#{date}) = #{index}
   </select>
-
 
   <sql id="Example_Where_Clause" >
     <where >
@@ -77,7 +79,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, type, money, remark, create_time, update_time
+    id, clientId, type, money, remark, create_time, update_time, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.SystemHomeMoneyExample" >
     select
@@ -110,11 +112,13 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.accp.domain.SystemHomeMoney" >
-    insert into system_home_money (id, type, money, 
-      remark, create_time, update_time
+    insert into system_home_money (id, clientId, type, 
+      money, remark, create_time, 
+      update_time, default1, default2
       )
-    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{money,jdbcType=DECIMAL}, 
-      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+    values (#{id,jdbcType=INTEGER}, #{clientid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{money,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.SystemHomeMoney" >
@@ -122,6 +126,9 @@
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
+      </if>
+      <if test="clientid != null" >
+        clientId,
       </if>
       <if test="type != null" >
         type,
@@ -138,10 +145,19 @@
       <if test="updateTime != null" >
         update_time,
       </if>
+      <if test="default1 != null" >
+        default1,
+      </if>
+      <if test="default2 != null" >
+        default2,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
+      </if>
+      <if test="clientid != null" >
+        #{clientid,jdbcType=INTEGER},
       </if>
       <if test="type != null" >
         #{type,jdbcType=INTEGER},
@@ -158,6 +174,12 @@
       <if test="updateTime != null" >
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="default1 != null" >
+        #{default1,jdbcType=VARCHAR},
+      </if>
+      <if test="default2 != null" >
+        #{default2,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.accp.domain.SystemHomeMoneyExample" resultType="java.lang.Integer" >
@@ -171,6 +193,9 @@
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.clientid != null" >
+        clientId = #{record.clientid,jdbcType=INTEGER},
       </if>
       <if test="record.type != null" >
         type = #{record.type,jdbcType=INTEGER},
@@ -187,6 +212,12 @@
       <if test="record.updateTime != null" >
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.default1 != null" >
+        default1 = #{record.default1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.default2 != null" >
+        default2 = #{record.default2,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -195,11 +226,14 @@
   <update id="updateByExample" parameterType="map" >
     update system_home_money
     set id = #{record.id,jdbcType=INTEGER},
+      clientId = #{record.clientid,jdbcType=INTEGER},
       type = #{record.type,jdbcType=INTEGER},
       money = #{record.money,jdbcType=DECIMAL},
       remark = #{record.remark,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      default1 = #{record.default1,jdbcType=VARCHAR},
+      default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -207,6 +241,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.SystemHomeMoney" >
     update system_home_money
     <set >
+      <if test="clientid != null" >
+        clientId = #{clientid,jdbcType=INTEGER},
+      </if>
       <if test="type != null" >
         type = #{type,jdbcType=INTEGER},
       </if>
@@ -222,16 +259,25 @@
       <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="default1 != null" >
+        default1 = #{default1,jdbcType=VARCHAR},
+      </if>
+      <if test="default2 != null" >
+        default2 = #{default2,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.domain.SystemHomeMoney" >
     update system_home_money
-    set type = #{type,jdbcType=INTEGER},
+    set clientId = #{clientid,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
       money = #{money,jdbcType=DECIMAL},
       remark = #{remark,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      default1 = #{default1,jdbcType=VARCHAR},
+      default2 = #{default2,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
