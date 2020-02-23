@@ -9,8 +9,6 @@
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="discount" property="discount" jdbcType="REAL" />
-    <result column="startTime" property="starttime" jdbcType="TIMESTAMP" />
-    <result column="endTime" property="endtime" jdbcType="TIMESTAMP" />
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
@@ -73,8 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, clientType, validty, cost, address, type, discount, startTime, endTime, default1, 
-    default2
+    id, clientType, validty, cost, address, type, discount, default1, default2
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ClientClienttypeExample" >
     select
@@ -109,12 +106,10 @@
   <insert id="insert" parameterType="com.accp.domain.ClientClienttype" >
     insert into client_clienttype (id, clientType, validty, 
       cost, address, type, discount, 
-      startTime, endTime, default1, 
-      default2)
+      default1, default2)
     values (#{id,jdbcType=INTEGER}, #{clienttype,jdbcType=VARCHAR}, #{validty,jdbcType=INTEGER}, 
       #{cost,jdbcType=REAL}, #{address,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{discount,jdbcType=REAL}, 
-      #{starttime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{default1,jdbcType=VARCHAR}, 
-      #{default2,jdbcType=VARCHAR})
+      #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.domain.ClientClienttype" >
     insert into client_clienttype
@@ -139,12 +134,6 @@
       </if>
       <if test="discount != null" >
         discount,
-      </if>
-      <if test="starttime != null" >
-        startTime,
-      </if>
-      <if test="endtime != null" >
-        endTime,
       </if>
       <if test="default1 != null" >
         default1,
@@ -174,12 +163,6 @@
       </if>
       <if test="discount != null" >
         #{discount,jdbcType=REAL},
-      </if>
-      <if test="starttime != null" >
-        #{starttime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endtime != null" >
-        #{endtime,jdbcType=TIMESTAMP},
       </if>
       <if test="default1 != null" >
         #{default1,jdbcType=VARCHAR},
@@ -219,12 +202,6 @@
       <if test="record.discount != null" >
         discount = #{record.discount,jdbcType=REAL},
       </if>
-      <if test="record.starttime != null" >
-        startTime = #{record.starttime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.endtime != null" >
-        endTime = #{record.endtime,jdbcType=TIMESTAMP},
-      </if>
       <if test="record.default1 != null" >
         default1 = #{record.default1,jdbcType=VARCHAR},
       </if>
@@ -245,8 +222,6 @@
       address = #{record.address,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=VARCHAR},
       discount = #{record.discount,jdbcType=REAL},
-      startTime = #{record.starttime,jdbcType=TIMESTAMP},
-      endTime = #{record.endtime,jdbcType=TIMESTAMP},
       default1 = #{record.default1,jdbcType=VARCHAR},
       default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -274,12 +249,6 @@
       <if test="discount != null" >
         discount = #{discount,jdbcType=REAL},
       </if>
-      <if test="starttime != null" >
-        startTime = #{starttime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endtime != null" >
-        endTime = #{endtime,jdbcType=TIMESTAMP},
-      </if>
       <if test="default1 != null" >
         default1 = #{default1,jdbcType=VARCHAR},
       </if>
@@ -297,8 +266,6 @@
       address = #{address,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},
       discount = #{discount,jdbcType=REAL},
-      startTime = #{starttime,jdbcType=TIMESTAMP},
-      endTime = #{endtime,jdbcType=TIMESTAMP},
       default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
