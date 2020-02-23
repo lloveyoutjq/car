@@ -14,10 +14,28 @@
   </resultMap>
 
   <select id="selectUserMenuAll" resultMap="BaseResultMap">
+    /*    SELECT `system_permissions`.* ,`system_roles_perms`.`state` AS state FROM `system_permissions`
+    INNER JOIN `system_roles_perms` ON `system_roles_perms`.`pid` = `system_permissions`.`id`
+    INNER JOIN `system_roles` ON `system_roles`.`id` = `system_roles_perms`.`rid`
+    WHERE `system_roles_perms`.`state` = 1*/
     SELECT `system_permissions`.* ,`system_roles_perms`.`state` AS state FROM `system_permissions`
     INNER JOIN `system_roles_perms` ON `system_roles_perms`.`pid` = `system_permissions`.`id`
     INNER JOIN `system_roles` ON `system_roles`.`id` = `system_roles_perms`.`rid`
+    <if test="type == 0">
+      INNER JOIN `personnel_staff` ON `personnel_staff`.`roleId` = `system_roles`.`id`
+    </if>
+    <if test="type == 1">
+      INNER JOIN`personnel_artisan` ON `personnel_artisan`.`roleId` = `system_roles`.`id`
+    </if>
     WHERE `system_roles_perms`.`state` = 1
+    <if test="type == 0">
+      AND `personnel_staff`.`id` = #{uid}
+    </if>
+    <if test="type == 1">
+      AND `personnel_artisan`.`artisanId` = #{uid}
+    </if>
+
+
   </select>
   <select id="selectUserMenuById" resultMap="BaseResultMap">
     SELECT `system_permissions`.* ,`system_roles_perms`.`state` AS state FROM `system_permissions`

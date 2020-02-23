@@ -1,0 +1,105 @@
+[33m86439a9[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m HEAD@{0}: pull --progress --no-stat -v --progress origin master: Fast-forward
+[33m715536a[m HEAD@{1}: reset: moving to HEAD
+[33m715536a[m HEAD@{2}: commit: 谭佳庆
+[33m0964f4b[m HEAD@{3}: pull --progress --no-stat -v --progress origin master: Merge made by the 'recursive' strategy.
+[33md4cb64d[m HEAD@{4}: commit: 谭佳庆
+[33md948470[m HEAD@{5}: commit: 谭佳庆
+[33m511e2a3[m HEAD@{6}: commit: 谭佳庆
+[33me50bf43[m HEAD@{7}: commit: 谭佳庆
+[33me801396[m HEAD@{8}: commit: 谭佳庆
+[33m0d65ec1[m HEAD@{9}: pull --progress --no-stat -v --progress origin master: Fast-forward
+[33me88415d[m HEAD@{10}: commit: 谭佳庆
+[33m311ee82[m HEAD@{11}: pull --progress --no-stat -v --progress origin master: Fast-forward
+[33m851a342[m HEAD@{12}: commit: 谭佳庆
+[33m6d71f7a[m HEAD@{13}: checkout: moving from tanjiaqing to master
+[33m8b28aca[m[33m ([m[1;31morigin/tanjiaqing[m[33m, [m[1;32mtanjiaqing[m[33m)[m HEAD@{14}: checkout: moving from master to tanjiaqing
+[33m6d71f7a[m HEAD@{15}: commit: 谭佳庆
+[33mde0c15e[m HEAD@{16}: checkout: moving from tanjiaqing to master
+[33m8b28aca[m[33m ([m[1;31morigin/tanjiaqing[m[33m, [m[1;32mtanjiaqing[m[33m)[m HEAD@{17}: commit: 谭佳庆
+[33m3c8b98b[m HEAD@{18}: checkout: moving from master to tanjiaqing
+[33mde0c15e[m HEAD@{19}: reset: moving to HEAD
+[33mde0c15e[m HEAD@{20}: checkout: moving from tanjiaqing to master
+[33m3c8b98b[m HEAD@{21}: checkout: moving from master to tanjiaqing
+[33mde0c15e[m HEAD@{22}: commit: 谭佳庆
+[33meaa06e4[m HEAD@{23}: checkout: moving from tanjiaqing to master
+[33m3c8b98b[m HEAD@{24}: checkout: moving from master to tanjiaqing
+[33meaa06e4[m HEAD@{25}: commit: 谭佳庆
+[33m13c8706[m HEAD@{26}: pull --progress --no-stat -v --progress origin master: Fast-forward
+[33m209f453[m HEAD@{27}: commit: 谭佳庆
+[33mb0d905b[m HEAD@{28}: pull --progress --no-stat -v --progress origin master: Fast-forward
+[33mc3df62c[m HEAD@{29}: checkout: moving from tanjiaqing to master
+[33m3c8b98b[m HEAD@{30}: checkout: moving from master to tanjiaqing
+[33mc3df62c[m HEAD@{31}: commit (merge): Merge remote-tracking branch 'remotes/origin/tanjiaqing'
+[33m94e2314[m HEAD@{32}: checkout: moving from tanjiaqing to master
+[33m3c8b98b[m HEAD@{33}: checkout: moving from master to tanjiaqing
+[33m94e2314[m HEAD@{34}: commit: 谭佳庆
+[33m0597946[m HEAD@{35}: checkout: moving from tanjiaqing to master
+[33m3c8b98b[m HEAD@{36}: commit: 谭佳庆
+[33mb6a795d[m HEAD@{37}: commit: 谭佳庆
+[33mbf7b023[m HEAD@{38}: commit: 谭佳庆
+[33m4583e27[m HEAD@{39}: checkout: moving from master to tanjiaqing
+[33m0597946[m HEAD@{40}: commit: Merge remote-tracking branch 'remotes/origin/tanjiaqing'
+[33m6757b7d[m HEAD@{41}: checkout: moving from tanjiaqing to master
+[33m4583e27[m HEAD@{42}: checkout: moving from master to tanjiaqing
+[33m6757b7d[m HEAD@{43}: commit (merge): Merge remote-tracking branch 'remotes/origin/tanjiaqing'
+[33m553ceac[m HEAD@{44}: checkout: moving from tanjiaqing to master
+[33m4583e27[m HEAD@{45}: checkout: moving from master to tanjiaqing
+[33m553ceac[m HEAD@{46}: commit: Merge remote-tracking branch 'remotes/origin/tanjiaqing'
+[33m58df209[m HEAD@{47}: pull --progress --no-stat -v --progress origin master: Fast-forward
+[33m1e2a8f6[m HEAD@{48}: reset: moving to HEAD
+[33m1e2a8f6[m HEAD@{49}: checkout: moving from luozhu to master
+[33m236d380[m[33m ([m[1;31morigin/luozhu[m[33m, [m[1;32mluozhu[m[33m)[m HEAD@{50}: reset: moving to HEAD
+[33m236d380[m[33m ([m[1;31morigin/luozhu[m[33m, [m[1;32mluozhu[m[33m)[m HEAD@{51}: pull --progress --no-stat -v --progress origin luozhu: Fast-forward
+[33m0ac21a8[m HEAD@{52}: checkout: moving from tanjiaqing to luozhu
+[33m4583e27[m HEAD@{53}: commit: Merge remote-tracking branch 'remotes/origin/tanjiaqing'
+[33mb6f8e7e[m HEAD@{54}: commit: Merge remote-tracking branch 'remotes/origin/tanjiaqing'
+[33m2aad240[m HEAD@{55}: checkout: moving from master to tanjiaqing
+[33m1e2a8f6[m HEAD@{56}: reset: moving to HEAD
+[33m1e2a8f6[m HEAD@{57}: commit (merge): Merge remote-tracking branch 'remotes/origin/tanjiaqing'
+[33m99caacf[m HEAD@{58}: pull --progress --no-stat -v --progress origin master: Fast-forward
+[33m905f256[m HEAD@{59}: checkout: moving from tanjiaqing to master
+[33m2aad240[m HEAD@{60}: commit: 谭佳庆
+[33ma35d626[m[33m ([m[1;31morigin/chenyuxin[m[33m, [m[1;32mchenyuxin[m[33m)[m HEAD@{61}: checkout: moving from chenyuxin to tanjiaqing
+[33ma35d626[m[33m ([m[1;31morigin/chenyuxin[m[33m, [m[1;32mchenyuxin[m[33m)[m HEAD@{62}: checkout: moving from tanjiaqing to chenyuxin
+[33ma35d626[m[33m ([m[1;31morigin/chenyuxin[m[33m, [m[1;32mchenyuxin[m[33m)[m HEAD@{63}: checkout: moving from chenyuxin to tanjiaqing
+[33ma35d626[m[33m ([m[1;31morigin/chenyuxin[m[33m, [m[1;32mchenyuxin[m[33m)[m HEAD@{64}: checkout: moving from tanjiaqing to chenyuxin
+[33ma35d626[m[33m ([m[1;31morigin/chenyuxin[m[33m, [m[1;32mchenyuxin[m[33m)[m HEAD@{65}: checkout: moving from chenyuxin to tanjiaqing
+[33ma35d626[m[33m ([m[1;31morigin/chenyuxin[m[33m, [m[1;32mchenyuxin[m[33m)[m HEAD@{66}: merge remotes/origin/tanjiaqing: Fast-forward
+[33md349572[m[33m ([m[1;32mbeiyon[m[33m)[m HEAD@{67}: checkout: moving from tanjiaqing to chenyuxin
+[33ma35d626[m[33m ([m[1;31morigin/chenyuxin[m[33m, [m[1;32mchenyuxin[m[33m)[m HEAD@{68}: commit: 谭佳庆
+[33m473b734[m HEAD@{69}: commit: 谭佳庆
+[33mb1f9410[m HEAD@{70}: checkout: moving from master to tanjiaqing
+[33m905f256[m HEAD@{71}: merge remotes/origin/tanjiaqing: Merge made by the 'recursive' strategy.
+[33m4bb86ad[m HEAD@{72}: checkout: moving from tanjiaqing to master
+[33mb1f9410[m HEAD@{73}: checkout: moving from luoliangwu to tanjiaqing
+[33m50a61b2[m[33m ([m[1;31morigin/luoliangwu[m[33m, [m[1;32mluoliangwu[m[33m)[m HEAD@{74}: merge remotes/origin/tanjiaqing: Merge made by the 'recursive' strategy.
+[33m2f495ec[m HEAD@{75}: checkout: moving from tanjiaqing to luoliangwu
+[33mb1f9410[m HEAD@{76}: commit: 后端
+[33m0ac21a8[m HEAD@{77}: merge remotes/origin/luozhu: Fast-forward
+[33mceaaf1a[m HEAD@{78}: checkout: moving from luozhu to tanjiaqing
+[33m0ac21a8[m HEAD@{79}: commit: 后端
+[33mceaaf1a[m HEAD@{80}: merge remotes/origin/tanjiaqing: Fast-forward
+[33m1ef4187[m HEAD@{81}: checkout: moving from tanjiaqing to luozhu
+[33mceaaf1a[m HEAD@{82}: commit: 后端
+[33m0483652[m HEAD@{83}: checkout: moving from luozhu to tanjiaqing
+[33m1ef4187[m HEAD@{84}: reset: moving to HEAD
+[33m1ef4187[m HEAD@{85}: checkout: moving from tanjiaqing to luozhu
+[33m0483652[m HEAD@{86}: reset: moving to HEAD
+[33m0483652[m HEAD@{87}: checkout: moving from luoliangwu to tanjiaqing
+[33m2f495ec[m HEAD@{88}: merge remotes/origin/tanjiaqing: Merge made by the 'recursive' strategy.
+[33m2f1e188[m HEAD@{89}: checkout: moving from tanjiaqing to luoliangwu
+[33m0483652[m HEAD@{90}: commit: 后端
+[33m40441fc[m HEAD@{91}: commit: 后端
+[33md349572[m[33m ([m[1;32mbeiyon[m[33m)[m HEAD@{92}: checkout: moving from beiyon to tanjiaqing
+[33md349572[m[33m ([m[1;32mbeiyon[m[33m)[m HEAD@{93}: checkout: moving from tanjiaqing to beiyon
+[33md349572[m[33m ([m[1;32mbeiyon[m[33m)[m HEAD@{94}: checkout: moving from chenyuxin to tanjiaqing
+[33md349572[m[33m ([m[1;32mbeiyon[m[33m)[m HEAD@{95}: merge remotes/origin/tanjiaqing: Fast-forward
+[33m1ef4187[m HEAD@{96}: checkout: moving from tanjiaqing to chenyuxin
+[33md349572[m[33m ([m[1;32mbeiyon[m[33m)[m HEAD@{97}: commit: 后端
+[33mca41345[m HEAD@{98}: commit: 后端
+[33m911ce7b[m HEAD@{99}: checkout: moving from master to tanjiaqing
+[33m4bb86ad[m HEAD@{100}: merge remotes/origin/tanjiaqing: Merge made by the 'recursive' strategy.
+[33m88e4579[m HEAD@{101}: checkout: moving from tanjiaqing to master
+[33m911ce7b[m HEAD@{102}: commit: 后端
+[33m1ef4187[m HEAD@{103}: checkout: moving from luozhu to tanjiaqing
+[33m1ef4187[m H
