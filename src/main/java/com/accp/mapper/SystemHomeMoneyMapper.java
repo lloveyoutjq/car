@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface SystemHomeMoneyMapper {
+
+    List<SystemHomeMoney> selectByDate(@Param("type")int type,@Param("index")int index,@Param("date")String date);
+
     int countByExample(SystemHomeMoneyExample example);
 
     int deleteByExample(SystemHomeMoneyExample example);

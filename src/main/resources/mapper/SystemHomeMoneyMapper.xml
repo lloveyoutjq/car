@@ -10,7 +10,12 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
 
-
+  <select id="selectByDate" resultMap="BaseResultMap">
+    SELECT * FROM `system_home_money`
+    WHERE
+    `type`= #{type}
+    AND DATEDIFF(`create_time`,#{date}) = #{index}
+  </select>
 
 
   <sql id="Example_Where_Clause" >
