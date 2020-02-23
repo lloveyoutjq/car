@@ -160,9 +160,9 @@
     <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.affiliation !=null and clientClientdata.clientCarinfo.affiliation !=''">/*车辆归属*/
       AND `client_carinfo`.affiliation LIKE CONCAT("%",#{clientClientdata.clientCarinfo.affiliation},"%")
     </if>
-    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.drivingLicence !=null and clientClientdata.clientCarinfo.drivingLicence !=''">/*驾驶证到期时间*/
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.drivinglicence !=null and clientClientdata.clientCarinfo.drivinglicence !=''">/*驾驶证到期时间*/
       AND client_carinfo.drivingLicence
-      BETWEEN SUBSTRING_INDEX(CONCAT('',#{clientClientdata.clientCarinfo.drivingLicence},' 23:59:59'),' - ', 1) AND SUBSTRING_INDEX(CONCAT('',#{clientClientdata.clientCarinfo.drivingLicence},' 23:59:59'),' - ', -1)
+      BETWEEN SUBSTRING_INDEX(CONCAT('',#{clientClientdata.clientCarinfo.drivinglicence},' 23:59:59'),' - ', 1) AND SUBSTRING_INDEX(CONCAT('',#{clientClientdata.clientCarinfo.drivinglicence},' 23:59:59'),' - ', -1)
 
     </if>
     <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.framenumber !=null and clientClientdata.clientCarinfo.framenumber !=''">/*车架号*/
