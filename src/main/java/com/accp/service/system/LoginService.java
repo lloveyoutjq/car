@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -36,6 +37,7 @@ public class LoginService {
             if(lists.size()>0){
                 PersonnelStaff record = new PersonnelStaff();
                 record.setPastcodedate(new Date());
+                record.setAuthcode("1");
                 personnelStaffMapper.updateByExampleSelective(record, example);
 
                 userMsg.setType(Integer.valueOf(type));
@@ -57,6 +59,7 @@ public class LoginService {
             if(lists.size()>0){
                 PersonnelArtisan record = new PersonnelArtisan();
                 record.setPastcodedate(new Date());
+                record.setAuthcode("1");
                 this.personnelArtisanMapper.updateByExampleSelective(record, example);
 
                 userMsg.setType(Integer.valueOf(type));
@@ -73,6 +76,15 @@ public class LoginService {
             userMsg.setState(0);
         }
         return userMsg;
+    }
+
+    /**
+     * 退出登录
+     * @param session
+     * @return
+     */
+    public int logOut(HttpSession session){
+        return 0;
     }
 
     /**
