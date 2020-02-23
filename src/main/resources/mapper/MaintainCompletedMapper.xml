@@ -42,10 +42,6 @@
       <id column="daid" property="id"/>
       <result column="dacartypename" property="cartypename"/>
     </association>
-    <association property="personnelStaff" javaType="com.accp.domain.PersonnelStaff">
-      <id column="psid" property="id"/>
-      <result column="psstaffname" property="staffname"/>
-    </association>
     <association property="dataRepairItems" javaType="com.accp.domain.DataRepairItems">
       <id column="driid" property="id"/>
       <result column="dmiid" property="itemId"/>
@@ -55,9 +51,9 @@
   <select id="completionInspection" resultMap="BaseResultMapPlus">
     SELECT mc.`id` ,mrs.`number` as mrsnumber ,di.`name` as diname , mrs.`workTeam` as mrsworkteam,ccd.`name` as ccdname ,
     cc.`carNumber` as cccarnumber, da.`carTypeName` as dacartypename ,cc.`frameNumber` as ccframenumber ,mrs.`pickDate` as mrspickdate,
-    mc.`predictTime`,mc.`nowTime`,mc.`reason`,mc.`reworkCount`,mc.`reasonforRework`,ps.`staffName` as psstaffname ,mc.`price`,
+    mc.`predictTime`,mc.`nowTime`,mc.`reason`,mc.`reworkCount`,mc.`reasonforRework` ,mc.`price`,
     dmi.`id` as dmiid , di.`id` as diid , cc.`id` as ccid , ccd.`number` as ccdnumber ,dri.`rescueRepairId` as drirescuerepairid ,dri.`id` as driid ,
-    da.`id` as daid , ps.`id` as psid ,mc.`eligibility`
+    da.`id` as daid , mc.`eligibility`
     FROM `maintain_completed` AS mc
     STRAIGHT_JOIN `data_maintenance_items` AS dmi
     ON mc.`maintenanceId` = dmi.`id`
@@ -73,8 +69,6 @@
     ON cc.`clientId` = ccd.`number`
     STRAIGHT_JOIN `data_car` AS da
     ON cc.`carId` = da.`id`
-    STRAIGHT_JOIN `personnel_staff` AS ps
-    ON mc.`dutyId` = ps.`id`
     WHERE mrs.`number` LIKE #{number} AND cc.`carNumber` LIKE #{carNumber} AND cc.`frameNumber` LIKE #{frameNumber}
     AND mc.`eligibility` LIKE #{eligibility}
   </select>

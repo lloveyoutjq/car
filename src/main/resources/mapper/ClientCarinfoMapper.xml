@@ -85,7 +85,7 @@
     SELECT ccd.`name` as ccdname ,ccd.`address` as ccdaddress ,cci.`carer`,
     cci.`carerPhone`,dcb.`carBrandName` as dcbcarbrandname ,deb.`engineBrandName` as debenginebrandname ,
     cci.`engineNumber` , ccd.`number` as ccdnumber , dcb.`id` as dcbid , deb.`id` as debid ,
-    ,ccd.`balance` AS ccdbalance  , ccd.`integral` AS ccdintegral
+    ccd.`balance` AS ccdbalance  , ccd.`integral` AS ccdintegral
     FROM `client_carinfo` AS cci
     STRAIGHT_JOIN `client_clientdata` AS ccd
     ON cci.`clientId` = ccd.`number`

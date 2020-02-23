@@ -32,4 +32,9 @@ public class CompletedService {
     public int updateComplete(MaintainCompleted completed){
         return maintainCompletedMapper.updateByPrimaryKeySelective(completed);
     }
+
+    //添加竣工单
+    public int insertComplete(MaintainCompleted completed){
+        return  maintainCompletedMapper.insertSelective(completed);
+    }
 }

@@ -33,6 +33,9 @@ public class RepairService {
     @Autowired
     FrontCashierMapper frontCashierMapper;
 
+    @Autowired
+    DataRepairItemsMapper dataRepairItemsMapper;
+
     //作业中车辆tab显示
     public PageInfo vehiclesInOperation(Integer pages,Integer limit){
         Page page = PageHelper.startPage(pages,limit);
@@ -96,23 +99,23 @@ public class RepairService {
     }
 
     //维修项目单个新增
-    public int insert(DataMaintenanceItems record){
-        return  dataMaintenanceItemsMapper.insert(record);
+    public int insert(DataRepairItems record){
+        return  dataRepairItemsMapper.insert(record);
     }
 
     //修改所用
-    public DataMaintenanceItems selectByPrimaryKey(Integer id){
-        return dataMaintenanceItemsMapper.selectByPrimaryKey(id);
+    public DataRepairItems selectByPrimaryKey(Integer id){
+        return dataRepairItemsMapper.selectByPrimaryKey(id);
     }
 
     //删除维修项目
     public int deleteByPrimaryKey(Integer id){
-        return dataMaintenanceItemsMapper.deleteByPrimaryKey(id);
+        return dataRepairItemsMapper.deleteByPrimaryKey(id);
     }
 
     //修改维修项目
-    public int updateByPrimaryKey(DataMaintenanceItems record){
-        return dataMaintenanceItemsMapper.updateByPrimaryKey(record);
+    public int updateByPrimaryKey(DataRepairItems record){
+        return dataRepairItemsMapper.updateByPrimaryKey(record);
     }
 
     /**

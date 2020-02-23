@@ -1,9 +1,6 @@
 package com.accp.controller;
 
-import com.accp.domain.DataMaintenanceItems;
-import com.accp.domain.FrontCashier;
-import com.accp.domain.MaintainCompleted;
-import com.accp.domain.MaintainEwitem;
+import com.accp.domain.*;
 import com.accp.service.front.SettlementService;
 import com.accp.service.maintenance.CompletedService;
 
@@ -189,13 +186,13 @@ public class MaintenanceController {
     @RequestMapping("/insertItem")
     public String insertItem(String data){
         ObjectMapper objectMapper = new ObjectMapper();
-        DataMaintenanceItems dataMaintenanceItems = null;
+        DataRepairItems dataRepairItems = null;
         try {
-            dataMaintenanceItems = objectMapper.readValue(data,DataMaintenanceItems.class);
+            dataRepairItems = objectMapper.readValue(data,DataRepairItems.class);
         }catch (JsonProcessingException e){
             System.out.println("发送异常");
         }
-        repairService.insert(dataMaintenanceItems);
+        repairService.insert(dataRepairItems);
         return "1";
     }
 
@@ -210,13 +207,13 @@ public class MaintenanceController {
     @RequestMapping("/updateItem")
     public String updateItem(String data){
         ObjectMapper objectMapper = new ObjectMapper();
-        DataMaintenanceItems dataMaintenanceItems = null;
+        DataRepairItems dataRepairItems = null;
         try {
-            dataMaintenanceItems = objectMapper.readValue(data,DataMaintenanceItems.class);
+            dataRepairItems = objectMapper.readValue(data,DataRepairItems.class);
         }catch (JsonProcessingException e){
             System.out.println("发送异常");
         }
-        repairService.updateByPrimaryKey(dataMaintenanceItems);
+        repairService.updateByPrimaryKey(dataRepairItems);
         return "1";
     }
 
@@ -298,5 +295,19 @@ public class MaintenanceController {
         map.put("code",0);
         map.put("data",repairService.selectUser(carNumber));
         return map;
+    }
+
+    //竣工检测单
+    @RequestMapping("/insertComplete")
+    public String insertComplete(String data) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        MaintainCompleted maintainCompleted = null;
+        try {
+            maintainCompleted = objectMapper.readValue(data, MaintainCompleted.class);
+        } catch (JsonProcessingException e) {
+            System.out.println("发送异常");
+        }
+        completedService.insertComplete(maintainCompleted);
+        return "1";
     }
 }
