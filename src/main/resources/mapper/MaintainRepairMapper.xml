@@ -62,6 +62,15 @@
     ON cca.`clientId` = ccd.`number`
     WHERE cca.`carNumber` = #{carnumber}
   </select>
+  <select id="selectPrice" resultMap="BaseResultMap">
+    SELECT number,price FROM
+    (
+    SELECT mrp.`number`,mrp.`price` FROM `maintain_repair` AS mrp
+    UNION ALL
+    SELECT mrs.`number`,mrs.`price` FROM `maintain_rescue` AS mrs
+    ) AS mr
+    WHERE number = #{number}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

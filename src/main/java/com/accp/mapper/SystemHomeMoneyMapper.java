@@ -3,10 +3,13 @@ package com.accp.mapper;
 import com.accp.domain.SystemHomeMoney;
 import com.accp.domain.SystemHomeMoneyExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface SystemHomeMoneyMapper {
+    SystemHomeMoney selectMoney(Integer clientId);
 
     List<SystemHomeMoney> selectByDate(@Param("type")int type,@Param("index")int index,@Param("date")String date);
 

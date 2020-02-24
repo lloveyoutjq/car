@@ -1,10 +1,7 @@
 package com.accp.service.front;
 
 import com.accp.domain.*;
-import com.accp.mapper.ClientClientdataMapper;
-import com.accp.mapper.DataMaintenanceItemsMapper;
-import com.accp.mapper.FrontCashierMapper;
-import com.accp.mapper.MaintainEwitemMapper;
+import com.accp.mapper.*;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -29,6 +26,12 @@ public class SettlementService {
 
     @Autowired
     ClientClientdataMapper clientClientdataMapper;
+
+    @Autowired
+    MaintainRepairMapper maintainRepairMapper;
+
+    @Autowired
+    SystemHomeMoneyMapper systemHomeMoneyMapper;
 
 
     //销售单据查询
@@ -85,5 +88,20 @@ public class SettlementService {
      * */
     public int insertF(FrontCashier frontCashier){
         return frontCashierMapper.insertSelective(frontCashier);
+    }
+
+    /**
+     * 算钱
+     * */
+    public  MaintainRepair selectPrice(String number){
+        return maintainRepairMapper.selectPrice(number);
+    }
+
+    public SystemHomeMoney selectMoney(Integer clientId){
+        return systemHomeMoneyMapper.selectMoney(clientId);
+    }
+
+    public ClientClientdata selectInv(String number){
+        return clientClientdataMapper.selectInv(number);
     }
 }

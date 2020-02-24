@@ -175,7 +175,9 @@
     </if>
   </select>
 
-
+  <select id="selectInv" resultMap="BaseResultMap">
+    SELECT `integral`,`balance` FROM `client_clientdata` WHERE number = #{number}
+  </select>
 
 
 
