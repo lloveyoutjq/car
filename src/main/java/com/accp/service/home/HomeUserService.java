@@ -29,7 +29,7 @@ public class HomeUserService
 
         PersonnelStaffExample personnelStaffExample = new PersonnelStaffExample();
         personnelStaffExample.setOrderByClause(" pastCodeDate desc limit 0,10");
-        List<PersonnelStaff> list1 = this.personnelStaffMapper.selectByExample(personnelStaffExample);
+        List<PersonnelStaff> list1 = personnelStaffMapper.selectByExample(personnelStaffExample);
         for (PersonnelStaff item : list1)
         {
             HomeUserList homeUserList= new HomeUserList();
@@ -42,7 +42,7 @@ public class HomeUserService
         }
         PersonnelArtisanExample personnelArtisanExample = new PersonnelArtisanExample();
         personnelStaffExample.setOrderByClause(" pastCodeDate desc limit 0,10");
-        List<PersonnelArtisan> list2 = this.personnelArtisanMapper.selectByExample(personnelArtisanExample);
+        List<PersonnelArtisan> list2 = personnelArtisanMapper.selectByExample(personnelArtisanExample);
         for (PersonnelArtisan item : list2)
         {
             HomeUserList homeUserList = new HomeUserList();

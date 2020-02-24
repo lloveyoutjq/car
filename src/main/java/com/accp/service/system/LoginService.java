@@ -37,6 +37,8 @@ public class LoginService {
             if(lists.size()>0){
                 PersonnelStaff record = new PersonnelStaff();
 
+                record.setAuthcode("0");
+                personnelStaffMapper.updateByExampleSelective(record, example);
                 record.setAuthcode("1");
                 personnelStaffMapper.updateByExampleSelective(record, example);
 
@@ -59,6 +61,8 @@ public class LoginService {
             if(lists.size()>0){
                 PersonnelArtisan record = new PersonnelArtisan();
 
+                record.setAuthcode("0");
+                personnelArtisanMapper.updateByExampleSelective(record, example);
                 record.setAuthcode("1");
                 personnelArtisanMapper.updateByExampleSelective(record, example);
 
