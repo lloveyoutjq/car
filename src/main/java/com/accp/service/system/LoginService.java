@@ -36,7 +36,7 @@ public class LoginService {
             userMsg.setState(lists.size());
             if(lists.size()>0){
                 PersonnelStaff record = new PersonnelStaff();
-                record.setPastcodedate(new Date());
+
                 record.setAuthcode("1");
                 personnelStaffMapper.updateByExampleSelective(record, example);
 
@@ -58,7 +58,7 @@ public class LoginService {
             userMsg.setState(lists.size());
             if(lists.size()>0){
                 PersonnelArtisan record = new PersonnelArtisan();
-                record.setPastcodedate(new Date());
+
                 record.setAuthcode("1");
                 personnelArtisanMapper.updateByExampleSelective(record, example);
 

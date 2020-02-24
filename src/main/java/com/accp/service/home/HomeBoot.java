@@ -13,7 +13,7 @@ public class HomeBoot {
      * @param past
      * @return
      */
-    public static String getPastDate(int past) {
+    public  String getPastDate(int past) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) - past);
         Date today = calendar.getTime();

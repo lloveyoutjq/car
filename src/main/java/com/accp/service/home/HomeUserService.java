@@ -8,11 +8,8 @@ import com.accp.entity.HomeUserList;
 import com.accp.mapper.PersonnelArtisanMapper;
 import com.accp.mapper.PersonnelStaffMapper;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +28,7 @@ public class HomeUserService
         List<HomeUserList> homeUserLists = new ArrayList();
 
         PersonnelStaffExample personnelStaffExample = new PersonnelStaffExample();
-        personnelStaffExample.setOrderByClause("pastCodeDate limit 0,10");
+        personnelStaffExample.setOrderByClause(" pastCodeDate desc limit 0,10");
         List<PersonnelStaff> list1 = this.personnelStaffMapper.selectByExample(personnelStaffExample);
         for (PersonnelStaff item : list1)
         {
@@ -44,7 +41,7 @@ public class HomeUserService
             homeUserLists.add(homeUserList);
         }
         PersonnelArtisanExample personnelArtisanExample = new PersonnelArtisanExample();
-        personnelStaffExample.setOrderByClause("pastCodeDate limit 0,10");
+        personnelStaffExample.setOrderByClause(" pastCodeDate desc limit 0,10");
         List<PersonnelArtisan> list2 = this.personnelArtisanMapper.selectByExample(personnelArtisanExample);
         for (PersonnelArtisan item : list2)
         {
@@ -57,7 +54,12 @@ public class HomeUserService
             homeUserLists.add(homeUserList);
         }
         ListSort(homeUserLists);
-        return homeUserLists;
+
+        List<HomeUserList> newHomeUserLists = new ArrayList();
+        for(int i= 0 ; i < 7 ; i++){
+            newHomeUserLists.add(homeUserLists.get(i));
+        }
+        return newHomeUserLists;
     }
 
     private static void ListSort(List<HomeUserList> list)
@@ -85,6 +87,27 @@ public class HomeUserService
             }
 
         });
+    }
+
+    public Map<String, Object> getUserOnLine(){
+        List<PersonnelStaff> lists1 = personnelStaffMapper.selectByExample(null);
+        List<PersonnelArtisan> lists2 = personnelArtisanMapper.selectByExample(null);
+        int count = 0;
+        for(PersonnelStaff item : lists1){
+            if(!"0".equals(item.getAuthcode())){
+                count ++;
+            }
+        }
+
+        for(PersonnelArtisan item : lists2){
+            if(!"0".equals(item.getAuthcode())){
+                count ++;
+            }
+        }
+        Map<String,Object> map = new HashMap<>();
+        map.put("count",count);
+        map.put("sum",lists1.size() + lists2.size());
+        return map;
     }
 }
 
