@@ -2,6 +2,7 @@ package com.accp.controller;
 
 import com.accp.domain.ClientClientdata;
 
+import com.accp.domain.SystemHomeMoney;
 import com.accp.service.front.SettlementService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -86,4 +87,16 @@ public class FrontController {
         return map;
     }
 
+    @RequestMapping("/updateMeun")
+    public String updateMeun(String data){
+        ObjectMapper objectMapper = new ObjectMapper();
+        SystemHomeMoney systemHomeMoney = null;
+        try {
+            systemHomeMoney = objectMapper.readValue(data, SystemHomeMoney.class);
+        } catch (JsonProcessingException e) {
+            System.out.println("发送异常");
+        }
+        int index = settlementService.updateMeun(systemHomeMoney);
+        return index+"";
+    }
 }

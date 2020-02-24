@@ -2,6 +2,7 @@ package com.accp.service.front;
 
 import com.accp.domain.*;
 import com.accp.mapper.*;
+import com.accp.service.ToolService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 
 
 @Transactional
@@ -103,5 +105,26 @@ public class SettlementService {
 
     public ClientClientdata selectInv(String number){
         return clientClientdataMapper.selectInv(number);
+    }
+
+    /**
+     * 收钱
+     * */
+    public int updateMeun(SystemHomeMoney systemHomeMoney){
+        //收银，结算单
+        FrontCashier frontCashier = new FrontCashier();
+        frontCashier.setSettlementstatus("已结算");
+        frontCashier.setCashierid(systemHomeMoney.getCashierid());
+        frontCashier.setTotalnum(Float.parseFloat(systemHomeMoney.getMoney().toString()));
+        frontCashierMapper.updateByPrimaryKeySelective(frontCashier);
+        //积分扣除
+        ClientClientdata clientClientdata = new ClientClientdata();
+        clientClientdata.setNumber(systemHomeMoney.getClientid());
+        ClientClientdata clientClientdata1 = clientClientdataMapper.selectByPrimaryKey(systemHomeMoney.getClientid());
+        //计算积分
+        clientClientdata.setIntegral(clientClientdata1.getIntegral()-systemHomeMoney.getIntegral());
+        clientClientdataMapper.updateByPrimaryKeySelective(clientClientdata);
+        //计算收益
+        return systemHomeMoneyMapper.insertSelective(systemHomeMoney);
     }
 }

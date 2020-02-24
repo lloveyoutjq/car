@@ -22,6 +22,10 @@ public class SystemHomeMoney {
 
     private String default2;
 
+    private Integer cashierid;   //临时字段，用于结算
+
+    private Integer integral;   //临时字段，用于计算积分
+
     public Integer getId() {
         return id;
     }
@@ -92,5 +96,22 @@ public class SystemHomeMoney {
 
     public void setDefault2(String default2) {
         this.default2 = default2;
+    }
+
+
+    public Integer getCashierid() {
+        return cashierid;
+    }
+
+    public void setCashierid(Integer cashierid) {
+        this.cashierid = cashierid;
+    }
+
+    public Integer getIntegral() {
+        return integral;
+    }
+
+    public void setIntegral(Integer integral) {
+        this.integral = integral;
     }
 }
