@@ -16,7 +16,7 @@ public interface PersonnelStaffMapper {
     List<PersonnelStaff> departureSelect(@Param("personnelStaff") PersonnelStaff personnelStaff);
     List<PersonnelStaff> departureSelectTwo();
     List<PersonnelStaff> departureSelectId(@Param("personnelStaff") PersonnelStaff personnelStaff);
-
+    List<PersonnelStaff> selectByDateDeparture(@Param("date")String date,@Param("index")int index);
 
 
 
