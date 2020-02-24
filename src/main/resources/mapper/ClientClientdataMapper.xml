@@ -63,7 +63,7 @@
   <select id="vip" resultMap="BaseResultMapPlus">
     SELECT ccd.`number`,cct.`id` as cctid ,ccd.`name`,ccd.`phone`,
     cct.`clientType` as cctclienttype ,cct.`validty` as cctvalidty ,ccd.`integral` ,ccd.`balance` ,
-    cct.`startTime` as cctstarttime ,cct.`endTime` cctendtime
+    ccd.`startTime`  ,ccd.`endTime`
     FROM `client_clientdata` AS ccd
     STRAIGHT_JOIN `client_clienttype` AS cct
     ON ccd.`typeId` = cct.`id`
