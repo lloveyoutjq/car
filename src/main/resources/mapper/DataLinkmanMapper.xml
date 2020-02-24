@@ -12,6 +12,40 @@
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+
+  <resultMap id="BaseResultMapSix" type="com.accp.domain.DataLinkman" extends="BaseResultMap">
+    <association property="dataManufacturer" javaType="com.accp.domain.DataManufacturer">
+      <id column="number" property="number" jdbcType="INTEGER" />
+      <result column="name" property="name" jdbcType="VARCHAR" />
+      <result column="address" property="address" jdbcType="VARCHAR" />
+      <result column="manage" property="manage" jdbcType="VARCHAR" />
+      <result column="url" property="url" jdbcType="VARCHAR" />
+      <result column="bank" property="bank" jdbcType="VARCHAR" />
+      <result column="bankNumber" property="banknumber" jdbcType="VARCHAR" />
+      <result column="payment" property="payment" jdbcType="VARCHAR" />
+      <result column="laver" property="laver" jdbcType="VARCHAR" />
+      <result column="brank" property="brank" jdbcType="VARCHAR" />
+      <result column="type" property="type" jdbcType="VARCHAR" />
+      <result column="default1" property="default1" jdbcType="VARCHAR" />
+      <result column="default2" property="default2" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+
+  <select id="selectDataLinkman" resultMap="BaseResultMapSix">
+    SELECT `data_manufacturer`.*,`data_linkman`.* FROM `data_manufacturer`
+    INNER JOIN `data_linkman` ON `data_linkman`.`manufacture`=`data_manufacturer`.`number`
+    where 1=1
+    <if test="dataLinkman.ids !=null and dataLinkman.ids.size()>0">
+      and (
+      <foreach collection="dataLinkman.ids" item="item" separator="or">
+        <if test="item != null and item != ''">
+          `data_manufacturer`.id = #{item}
+        </if>
+
+      </foreach>
+      )
+    </if>
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

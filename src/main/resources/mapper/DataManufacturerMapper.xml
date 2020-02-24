@@ -16,6 +16,34 @@
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+
+
+  <resultMap id="BaseResultMapSix" type="com.accp.domain.DataManufacturer" extends="BaseResultMap">
+    <association property="dataSupplierTree" javaType="com.accp.domain.DataSupplierTree">
+      <result column="id" property="id" jdbcType="INTEGER" />
+      <result column="name" property="name" jdbcType="VARCHAR" />
+      <result column="parentId" property="parentid" jdbcType="INTEGER" />
+      <result column="default1" property="default1" jdbcType="VARCHAR" />
+      <result column="default2" property="default2" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+
+  <select id="selectDataManufacturer" resultMap="BaseResultMapSix">
+    SELECT `data_manufacturer`.*,`data_supplier_tree`.* FROM `data_manufacturer`
+    INNER JOIN `data_supplier_tree` ON `data_manufacturer`.`type`=`data_supplier_tree`.`id`
+    where 1=1
+    <if test="dataManufacturer.ids !=null and dataManufacturer.ids.size()>0">
+      and (
+      <foreach collection="dataManufacturer.ids" item="item" separator="or">
+        <if test="item != null and item != ''">
+          `data_supplier_tree`.id = #{item}
+        </if>
+
+      </foreach>
+      )
+    </if>
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

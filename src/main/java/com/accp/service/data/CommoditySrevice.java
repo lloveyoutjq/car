@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class CommoditySrevice {
@@ -17,10 +19,14 @@ public class CommoditySrevice {
     DataCommodityMapper dataCommodityMapper;
 
 
-    public PageInfo<DataCommodity> selectDataCommodity(Integer page, Integer limit){
-        Page<DataCommodity> pageInfo = PageHelper.startPage(page,limit);
-        dataCommodityMapper.selectByExample(null);
-        return pageInfo.toPageInfo();
+    public PageInfo<DataCommodity> selectDataCommodity(Integer index, Integer limit, List<Integer> ids){
+        Page<DataCommodity> page = PageHelper.startPage(index,limit);
+        DataCommodity personnelStaff = new DataCommodity();
+        /*ids.add(1);
+        ids.add(2);*/
+        personnelStaff.setIds(ids);
+        dataCommodityMapper.selectDataCommodity(personnelStaff);
+        return page.toPageInfo();
     }
 
     public int  insertDataCommodity(DataCommodity dataCommodity){

@@ -6,6 +6,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface DataCommodityMapper {
+
+    List<DataCommodity> selectDataCommodity(@Param("dataCommodity") DataCommodity dataCommodity);
+
     int countByExample(DataCommodityExample example);
 
     int deleteByExample(DataCommodityExample example);

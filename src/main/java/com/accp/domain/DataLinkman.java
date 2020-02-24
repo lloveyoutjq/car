@@ -1,5 +1,7 @@
 package com.accp.domain;
 
+import java.util.List;
+
 public class DataLinkman {
     private Integer id;
 
@@ -18,6 +20,26 @@ public class DataLinkman {
     private String default1;
 
     private String default2;
+
+    private  DataManufacturer dataManufacturer;
+
+    public DataManufacturer getDataManufacturer() {
+        return dataManufacturer;
+    }
+
+    public void setDataManufacturer(DataManufacturer dataManufacturer) {
+        this.dataManufacturer = dataManufacturer;
+    }
+
+    public List<Integer> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
+    }
+
+    private List<Integer> ids;
 
     public Integer getId() {
         return id;

@@ -45,7 +45,7 @@ public class CarTypeService {
         return  count;
     }
 
-    public int updateDataCar(DataCarbrand dataCarbrand){
+    public int updateDataCarbrand(DataCarbrand dataCarbrand){
         return dataCarbrandMapper.updateByPrimaryKeySelective(dataCarbrand);
     }
 

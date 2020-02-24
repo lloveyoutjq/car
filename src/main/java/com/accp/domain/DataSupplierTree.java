@@ -1,5 +1,8 @@
 package com.accp.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DataSupplierTree {
     private Integer id;
 
@@ -10,6 +13,26 @@ public class DataSupplierTree {
     private String default1;
 
     private String default2;
+
+    private String title;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<DataSupplierTree> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<DataSupplierTree> children) {
+        this.children = children;
+    }
+
+    private List<DataSupplierTree> children = new ArrayList<>();
 
     public Integer getId() {
         return id;

@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface DataLinkmanMapper {
+    List<DataLinkman> selectDataLinkman(@Param("dataLinkman") DataLinkman dataLinkman);
+
     int countByExample(DataLinkmanExample example);
 
     int deleteByExample(DataLinkmanExample example);

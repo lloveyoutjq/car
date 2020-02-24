@@ -1,5 +1,7 @@
 package com.accp.domain;
 
+import java.util.List;
+
 public class DataCommodity {
     private Integer id;
 
@@ -56,6 +58,26 @@ public class DataCommodity {
     private String default1;
 
     private String default2;
+
+    public List<Integer> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
+    }
+
+    public DataCommoditytype getDataCommoditytype() {
+        return dataCommoditytype;
+    }
+
+    public void setDataCommoditytype(DataCommoditytype dataCommoditytype) {
+        this.dataCommoditytype = dataCommoditytype;
+    }
+
+    private List<Integer> ids;
+
+    private  DataCommoditytype dataCommoditytype;
 
     public Integer getId() {
         return id;

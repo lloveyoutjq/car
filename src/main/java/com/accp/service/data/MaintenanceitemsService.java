@@ -42,7 +42,7 @@ public class MaintenanceitemsService {
     }
 
     public int updateMaintenanceItems(DataMaintenanceItems dataMaintenanceItems){
-        return dataMaintenanceItemsMapper.updateByPrimaryKey(dataMaintenanceItems);
+        return dataMaintenanceItemsMapper.updateByPrimaryKeySelective(dataMaintenanceItems);
     }
 
 

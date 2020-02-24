@@ -1,5 +1,7 @@
 package com.accp.domain;
 
+import java.util.List;
+
 public class DataManufacturer {
     private Integer number;
 
@@ -26,6 +28,27 @@ public class DataManufacturer {
     private String default1;
 
     private String default2;
+
+    public List<Integer> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
+    }
+
+    public DataSupplierTree getDataSupplierTree() {
+        return dataSupplierTree;
+    }
+
+    public void setDataSupplierTree(DataSupplierTree dataSupplierTree) {
+        this.dataSupplierTree = dataSupplierTree;
+    }
+
+    private List<Integer> ids;
+
+    private  DataSupplierTree dataSupplierTree;
+
 
     public Integer getNumber() {
         return number;

@@ -31,6 +31,33 @@
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+
+  <resultMap id="BaseResultMapSix" type="com.accp.domain.DataCommodity" extends="BaseResultMap">
+    <association property="dataCommoditytype" javaType="com.accp.domain.DataCommoditytype">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="typeName" property="typename" jdbcType="VARCHAR" />
+      <result column="parentId" property="parentid" jdbcType="INTEGER" />
+      <result column="default1" property="default1" jdbcType="VARCHAR" />
+      <result column="default2" property="default2" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+
+  <select id="selectDataCommodity" resultMap="BaseResultMapSix">
+    SELECT * FROM `data_commoditytype`
+    INNER JOIN `data_commodity` ON `data_commodity`.commdityTypeId = `data_commoditytype`.`id`
+    where 1=1
+    <if test="dataCommodity.ids !=null and dataCommodity.ids.size()>0">
+      and (
+      <foreach collection="dataCommodity.ids" item="item" separator="or">
+        <if test="item != null and item != ''">
+          `data_commoditytype`.id = #{item}
+        </if>
+
+      </foreach>
+      )
+    </if>
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

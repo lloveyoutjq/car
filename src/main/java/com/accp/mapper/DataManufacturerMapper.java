@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface DataManufacturerMapper {
+    List<DataManufacturer> selectDataManufacturer(@Param("dataManufacturer") DataManufacturer dataManufacturer);
+
     int countByExample(DataManufacturerExample example);
 
     int deleteByExample(DataManufacturerExample example);
