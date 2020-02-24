@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MaintainRepairMapper {
+    MaintainRepair selectPrice(String number);
+
     List<MaintainRepair> maintenanceHistory(String carnumber);
 
     List<MaintainRepair> vehiclesInOperation();

@@ -4,10 +4,14 @@ import com.accp.domain.ClientCarinfo;
 import com.accp.domain.ClientCarinfoExample;
 import com.accp.domain.ClientClientdata;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface ClientCarinfoMapper {
+    ClientCarinfo selectUser(String carNumber);  //车主信息
+
     ClientCarinfo rescueS(String carnumber);   //维修救援
 
     ClientCarinfo repairS(String carnumber);   //维修接车

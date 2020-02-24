@@ -1,8 +1,6 @@
 package com.accp.controller;
 
-import com.accp.domain.DataMaintenanceItems;
-import com.accp.domain.MaintainCompleted;
-import com.accp.domain.MaintainEwitem;
+import com.accp.domain.*;
 import com.accp.service.front.SettlementService;
 import com.accp.service.maintenance.CompletedService;
 
@@ -32,9 +30,9 @@ public class MaintenanceController {
 
 
     @GetMapping("/selectCompleted")
-    public Map<String,Object> selectCompleted(String number,String carNumber,String frameNumber,String eligibility,Integer page,Integer limit){
+    public Map<String,Object> selectCompleted(String number,String carNumber,String frameNumber,Integer page,Integer limit){
         Map<String,Object> map = new HashMap<>();
-        PageInfo pageInfo = completedService.completionInspection(number,carNumber,frameNumber,eligibility,page,limit);
+        PageInfo pageInfo = completedService.completionInspection(number,carNumber,frameNumber,page,limit);
         map.put("code",0);
         map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());
@@ -45,7 +43,7 @@ public class MaintenanceController {
     public Map<String,Object> selectByPrimaryKey(String id){
         Map<String,Object> map = new HashMap<>();
         map.put("code",0);
-        map.put("data",completedService.selectByPrimaryKey(Integer.getInteger(id)));
+        map.put("data",completedService.selectByPrimaryKey(Integer.parseInt(id)));
         return map;
     }
 
@@ -57,12 +55,20 @@ public class MaintenanceController {
         return map;
     }
 
+    @RequestMapping("/repair")
+    public Map<String,Object> repair(String number){
+        Map<String,Object> map = new HashMap<>();
+        map.put("code",0);
+        map.put("data", settlementService.repair(number));
+        return map;
+    }
+
     @RequestMapping("/vehiclesInOperation")
     public Map<String,Object> vehiclesInOperation(Integer page,Integer limit){
         Map<String,Object> map = new HashMap<>();
         PageInfo pageInfo = repairService.vehiclesInOperation(page,limit);
         map.put("code",0);
-        map.put("code",pageInfo.getList());
+        map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());
         return map;
     }
@@ -72,7 +78,7 @@ public class MaintenanceController {
         Map<String,Object> map = new HashMap<>();
         PageInfo pageInfo = repairService.maintenanceHistory(carnumber, page, limit);
         map.put("code",0);
-        map.put("code",pageInfo.getList());
+        map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());
         return map;
     }
@@ -82,7 +88,7 @@ public class MaintenanceController {
         Map<String,Object> map = new HashMap<>();
         PageInfo pageInfo = repairService.items(carNumber, page, limit);
         map.put("code",0);
-        map.put("code",pageInfo.getList());
+        map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());
         return map;
     }
@@ -123,7 +129,7 @@ public class MaintenanceController {
         Map<String,Object> map = new HashMap<>();
         PageInfo pageInfo = repairService.selectByExample(number, page, limit);
         map.put("code",0);
-        map.put("code",pageInfo.getList());
+        map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());
         return map;
     }
@@ -133,7 +139,7 @@ public class MaintenanceController {
     public Map<String,Object> selectByEwitemId(String id){
         Map<String,Object> map = new HashMap<>();
         map.put("code",0);
-        map.put("code",repairService.selectByEwitemId(Integer.getInteger(id)));
+        map.put("data",repairService.selectByEwitemId(Integer.getInteger(id)));
         return map;
     }
 
@@ -165,7 +171,7 @@ public class MaintenanceController {
         Map<String,Object> map = new HashMap<>();
         PageInfo pageInfo = repairService.attached(number, page, limit);
         map.put("code",0);
-        map.put("code",pageInfo.getList());
+        map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());
         return map;
     }
@@ -179,7 +185,7 @@ public class MaintenanceController {
         Map<String,Object> map = new HashMap<>();
         PageInfo pageInfo = repairService.itemsSels(number, page, limit);
         map.put("code",0);
-        map.put("code",pageInfo.getList());
+        map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());
         return map;
     }
@@ -188,13 +194,13 @@ public class MaintenanceController {
     @RequestMapping("/insertItem")
     public String insertItem(String data){
         ObjectMapper objectMapper = new ObjectMapper();
-        DataMaintenanceItems dataMaintenanceItems = null;
+        DataRepairItems dataRepairItems = null;
         try {
-            dataMaintenanceItems = objectMapper.readValue(data,DataMaintenanceItems.class);
+            dataRepairItems = objectMapper.readValue(data,DataRepairItems.class);
         }catch (JsonProcessingException e){
             System.out.println("发送异常");
         }
-        repairService.insert(dataMaintenanceItems);
+        repairService.insert(dataRepairItems);
         return "1";
     }
 
@@ -203,19 +209,19 @@ public class MaintenanceController {
     public Map<String,Object> selectItem(String id){
         Map<String,Object> map = new HashMap<>();
         map.put("code",0);
-        map.put("code",repairService.selectByPrimaryKey(Integer.getInteger(id)));
+        map.put("data",repairService.selectByPrimaryKey(Integer.getInteger(id)));
         return map;
     }
     @RequestMapping("/updateItem")
     public String updateItem(String data){
         ObjectMapper objectMapper = new ObjectMapper();
-        DataMaintenanceItems dataMaintenanceItems = null;
+        DataRepairItems dataRepairItems = null;
         try {
-            dataMaintenanceItems = objectMapper.readValue(data,DataMaintenanceItems.class);
+            dataRepairItems = objectMapper.readValue(data,DataRepairItems.class);
         }catch (JsonProcessingException e){
             System.out.println("发送异常");
         }
-        repairService.updateByPrimaryKey(dataMaintenanceItems);
+        repairService.updateByPrimaryKey(dataRepairItems);
         return "1";
     }
 
@@ -252,13 +258,66 @@ public class MaintenanceController {
         } catch (JsonProcessingException e) {
             System.out.println("发送异常");
         }
-        completedService.updateComplete(maintainCompleted);
-        return "1";
+
+        return completedService.updateComplete(maintainCompleted)+"";
     }
 
 
     /**
      * 接单
      * */
+    @RequestMapping("/insertRepair")
+    public String insertRepair(String data) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        FrontCashier frontCashier = null;
+        try {
+            frontCashier = objectMapper.readValue(data, FrontCashier.class);
+        } catch (JsonProcessingException e) {
+            System.out.println("发送异常");
+        }
+        frontCashier.setNumber(frontCashier.getMaintainRepair().getNumber());
+        frontCashier.setSettlementstatus("未结算");
+        settlementService.insertF(frontCashier);
+        repairService.insertRepair(frontCashier.getMaintainRepair());
+        return "1";
+    }
 
+    @RequestMapping("/insertReuce")
+    public String insertReuce(String data) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        FrontCashier frontCashier = null;
+        try {
+            frontCashier = objectMapper.readValue(data, FrontCashier.class);
+        } catch (JsonProcessingException e) {
+            System.out.println("发送异常");
+        }
+        frontCashier.setNumber(frontCashier.getMaintainRescue().getNumber());
+        frontCashier.setSettlementstatus("未结算");
+        settlementService.insertF(frontCashier);
+        repairService.insertRescue(frontCashier.getMaintainRescue());
+        return "1";
+    }
+
+    //车主信息
+    @RequestMapping("/selectUser")
+    public  Map<String,Object> selectUser(String carNumber){
+        Map<String,Object> map = new HashMap<>();
+        map.put("code",0);
+        map.put("data",repairService.selectUser(carNumber));
+        return map;
+    }
+
+    //竣工检测单
+    @RequestMapping("/insertComplete")
+    public String insertComplete(String data) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        MaintainCompleted maintainCompleted = null;
+        try {
+            maintainCompleted = objectMapper.readValue(data, MaintainCompleted.class);
+        } catch (JsonProcessingException e) {
+            System.out.println("发送异常");
+        }
+        completedService.insertComplete(maintainCompleted);
+        return "1";
+    }
 }

@@ -58,7 +58,6 @@
       <id column="cctid" property="id"/>
       <result column="cctclienttype" property="clienttype"/>
       <result column="cctvalidty" property="validty"/>
-
     </association>
   </resultMap>
   <select id="vip" resultMap="BaseResultMapPlus">
@@ -176,7 +175,9 @@
     </if>
   </select>
 
-
+  <select id="selectInv" resultMap="BaseResultMap">
+    SELECT `integral`,`balance` FROM `client_clientdata` WHERE number = #{number}
+  </select>
 
 
 

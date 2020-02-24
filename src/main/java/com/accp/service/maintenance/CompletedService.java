@@ -17,9 +17,9 @@ public class CompletedService {
     MaintainCompletedMapper maintainCompletedMapper;
 
     //竣工检测主页面
-    public PageInfo completionInspection(String number, String carNumber, String frameNumber, String eligibility,Integer pages,Integer limit){
+    public PageInfo completionInspection(String number, String carNumber, String frameNumber,Integer pages,Integer limit){
         Page page = PageHelper.startPage(pages,limit);
-        maintainCompletedMapper.completionInspection("%"+number+"%","%"+carNumber+"%","%"+frameNumber+"%","%"+eligibility+"%");
+        maintainCompletedMapper.completionInspection("%"+number+"%","%"+carNumber+"%","%"+frameNumber+"%");
         return  page.toPageInfo();
     }
 
@@ -31,5 +31,10 @@ public class CompletedService {
     //修改竣工
     public int updateComplete(MaintainCompleted completed){
         return maintainCompletedMapper.updateByPrimaryKeySelective(completed);
+    }
+
+    //添加竣工单
+    public int insertComplete(MaintainCompleted completed){
+        return  maintainCompletedMapper.insertSelective(completed);
     }
 }

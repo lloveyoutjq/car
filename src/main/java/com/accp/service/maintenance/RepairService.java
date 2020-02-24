@@ -33,6 +33,9 @@ public class RepairService {
     @Autowired
     FrontCashierMapper frontCashierMapper;
 
+    @Autowired
+    DataRepairItemsMapper dataRepairItemsMapper;
+
     //作业中车辆tab显示
     public PageInfo vehiclesInOperation(Integer pages,Integer limit){
         Page page = PageHelper.startPage(pages,limit);
@@ -96,23 +99,23 @@ public class RepairService {
     }
 
     //维修项目单个新增
-    public int insert(DataMaintenanceItems record){
-        return  dataMaintenanceItemsMapper.insert(record);
+    public int insert(DataRepairItems record){
+        return  dataRepairItemsMapper.insert(record);
     }
 
     //修改所用
-    public DataMaintenanceItems selectByPrimaryKey(Integer id){
-        return dataMaintenanceItemsMapper.selectByPrimaryKey(id);
+    public DataRepairItems selectByPrimaryKey(Integer id){
+        return dataRepairItemsMapper.selectByPrimaryKey(id);
     }
 
     //删除维修项目
     public int deleteByPrimaryKey(Integer id){
-        return dataMaintenanceItemsMapper.deleteByPrimaryKey(id);
+        return dataRepairItemsMapper.deleteByPrimaryKey(id);
     }
 
     //修改维修项目
-    public int updateByPrimaryKey(DataMaintenanceItems record){
-        return dataMaintenanceItemsMapper.updateByPrimaryKey(record);
+    public int updateByPrimaryKey(DataRepairItems record){
+        return dataRepairItemsMapper.updateByPrimaryKey(record);
     }
 
     /**
@@ -165,10 +168,10 @@ public class RepairService {
             return "W10001";
         }
         int index = maintainRepairList.get(maintainRepairList.size()-1).getNumber().length();
-        String lastNum = maintainRepairList.get(maintainRepairList.size()-1).getNumber().substring(index);
-        int last = Integer.getInteger(lastNum);
-        String beforeNum = maintainRepairList.get(maintainRepairList.size()-1).getNumber().substring(0,index);
-        String num = beforeNum + last;
+        String lastNum = maintainRepairList.get(maintainRepairList.size()-1).getNumber().substring(index-1);
+        int last = Integer.parseInt(lastNum);
+        String beforeNum = maintainRepairList.get(maintainRepairList.size()-1).getNumber().substring(0,index-1);
+        String num = beforeNum + (last+1);
         return num;
 
     }
@@ -179,10 +182,24 @@ public class RepairService {
             return "J10001";
         }
         int index = maintainRescuesList.get(maintainRescuesList.size()-1).getNumber().length();
-        String lastNum = maintainRescuesList.get(maintainRescuesList.size()-1).getNumber().substring(index);
-        int last = Integer.getInteger(lastNum);
-        String beforeNum = maintainRescuesList.get(maintainRescuesList.size()-1).getNumber().substring(0,index);
-        String num = beforeNum + last;
+        String lastNum = maintainRescuesList.get(maintainRescuesList.size()-1).getNumber().substring(index-1);
+        int last = Integer.parseInt(lastNum);
+        String beforeNum = maintainRescuesList.get(maintainRescuesList.size()-1).getNumber().substring(0,index-1);
+        String num = beforeNum + (last+1);
         return num;
     }
+
+    public Integer insertRepair(MaintainRepair maintainRepair){
+        return maintainRepairMapper.insertSelective(maintainRepair);
+    }
+
+    public Integer insertRescue(MaintainRescue maintainRescue){
+        return maintainRescueMapper.insertSelective(maintainRescue);
+    }
+
+    //车主信息
+    public ClientCarinfo selectUser(String carNumber){
+        return clientCarinfoMapper.selectUser(carNumber);
+    }
+
 }

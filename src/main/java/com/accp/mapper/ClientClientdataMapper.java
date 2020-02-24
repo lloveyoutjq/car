@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClientClientdataMapper {
+    ClientClientdata selectInv(String number);
+
     List<ClientClientdata> vip(String id);
 
     int countByExample(ClientClientdataExample example);

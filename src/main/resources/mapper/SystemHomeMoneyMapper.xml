@@ -19,6 +19,10 @@
     `type`= #{type}
     AND DATEDIFF(`create_time`,#{date}) = #{index}
   </select>
+  <select id="selectMoney" resultMap="BaseResultMap">
+    SELECT SUM(money) as money FROM `system_home_money` WHERE clientId = #{clientId} AND TYPE = 0
+  </select>
+  
 
 
 
