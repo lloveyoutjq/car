@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -31,25 +33,76 @@ public class LoginService {
             example.createCriteria().andEmailEqualTo(user).andPasswordEqualTo(pwd);
             example.or().andStaffaccountEqualTo(user).andPasswordEqualTo(pwd);
             List<PersonnelStaff> lists = personnelStaffMapper.selectByExample(example);
-
-            userMsg.setUser(user);
-            userMsg.setUserName(lists.get(0).getStaffname());
-            userMsg.setHeadImgUrl(lists.get(0).getPicture());
             userMsg.setState(lists.size());
+            if(lists.size()>0){
+                PersonnelStaff record = new PersonnelStaff();
+
+                record.setAuthcode("0");
+                personnelStaffMapper.updateByExampleSelective(record, example);
+                record.setAuthcode("1");
+                personnelStaffMapper.updateByExampleSelective(record, example);
+
+                userMsg.setType(Integer.valueOf(type));
+                userMsg.setUid(lists.get(0).getId());
+                userMsg.setPassword(pwd);
+                userMsg.setUser(user);
+                userMsg.setUserName(lists.get(0).getStaffname());
+                userMsg.setHeadImgUrl(lists.get(0).getPicture());
+            }
+
+
         }else if("1".equals(type)){
             PersonnelArtisanExample example = new PersonnelArtisanExample();
             example.createCriteria().andAccountEqualTo(user).andPasswordEqualTo(pwd);
             example.or().andEmailEqualTo(user).andPasswordEqualTo(pwd);
             List<PersonnelArtisan> lists = personnelArtisanMapper.selectByExample(example);
 
-            userMsg.setUser(user);
-            userMsg.setUserName(lists.get(0).getArtisanname());
-            userMsg.setHeadImgUrl(lists.get(0).getDefault1());
             userMsg.setState(lists.size());
+            if(lists.size()>0){
+                PersonnelArtisan record = new PersonnelArtisan();
+
+                record.setAuthcode("0");
+                personnelArtisanMapper.updateByExampleSelective(record, example);
+                record.setAuthcode("1");
+                personnelArtisanMapper.updateByExampleSelective(record, example);
+
+                userMsg.setType(Integer.valueOf(type));
+                userMsg.setUid(lists.get(0).getArtisanid());
+                userMsg.setPassword(pwd);
+                userMsg.setUser(user);
+                userMsg.setUserName(lists.get(0).getArtisanname());
+                userMsg.setHeadImgUrl(lists.get(0).getDefault1());
+
+            }
+
+
         }else{
             userMsg.setState(0);
         }
         return userMsg;
+    }
+
+    /**
+     * 退出登录
+     * @param id
+     * @param type
+     * @return
+     */
+    public int logOut(Integer id, String type){
+        int count = 0;
+        if("0".equals(type)){
+            PersonnelStaff record = new PersonnelStaff();
+            record.setId(id);
+            record.setAuthcode("0");
+            count = personnelStaffMapper.updateByPrimaryKeySelective(record);
+
+        }else if("1".equals(type)) {
+            PersonnelArtisan record = new PersonnelArtisan();
+            record.setArtisanid(id);
+            record.setAuthcode("0");
+            count = personnelArtisanMapper.updateByPrimaryKeySelective(record);
+        }
+        return count;
     }
 
     /**

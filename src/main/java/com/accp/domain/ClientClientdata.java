@@ -52,6 +52,10 @@ public class ClientClientdata {
 
     private Integer typeid;
 
+    private String starttime;
+
+    private String endtime;
+
     private String date;
 
     private String password;
@@ -65,8 +69,8 @@ public class ClientClientdata {
     private String default4;
 
     private String default5;
-	
-	private ClientClienttype clientClienttype;
+
+    private ClientClienttype clientClienttype;
 
     private ClientCarinfo clientCarinfo;
 
@@ -286,6 +290,22 @@ public class ClientClientdata {
 
     public void setTypeid(Integer typeid) {
         this.typeid = typeid;
+    }
+
+    public String getStarttime() {
+        return starttime;
+    }
+
+    public void setStarttime(String starttime) {
+        this.starttime = starttime;
+    }
+
+    public String getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(String endtime) {
+        this.endtime = endtime;
     }
 
     public String getDate() {

@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.accp.mapper.ClientClienttypeMapper" >
-  <resultMap id="BaseResultMap" type="com.accp.domain.ClientClienttype" >
+<mapper namespace="com.accp.mapper.SystemHomeMoneyMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.SystemHomeMoney" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="clientType" property="clienttype" jdbcType="VARCHAR" />
-    <result column="validty" property="validty" jdbcType="INTEGER" />
-    <result column="cost" property="cost" jdbcType="REAL" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="VARCHAR" />
-    <result column="discount" property="discount" jdbcType="REAL" />
+    <result column="clientId" property="clientid" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+
+  <select id="selectByDate" resultMap="BaseResultMap">
+    SELECT * FROM `system_home_money`
+    WHERE
+    `type`= #{type}
+    AND DATEDIFF(`create_time`,#{date}) = #{index}
+  </select>
+  <select id="selectMoney" resultMap="BaseResultMap">
+    SELECT SUM(money) as money FROM `system_home_money` WHERE clientId = #{clientId} AND TYPE = 0
+  </select>
+  
+
+
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -71,15 +85,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, clientType, validty, cost, address, type, discount, default1, default2
+    id, clientId, type, money, remark, create_time, update_time, default1, default2
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ClientClienttypeExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.SystemHomeMoneyExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from client_clienttype
+    from system_home_money
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -90,50 +104,52 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from client_clienttype
+    from system_home_money
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from client_clienttype
+    delete from system_home_money
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.accp.domain.ClientClienttypeExample" >
-    delete from client_clienttype
+  <delete id="deleteByExample" parameterType="com.accp.domain.SystemHomeMoneyExample" >
+    delete from system_home_money
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.accp.domain.ClientClienttype" >
-    insert into client_clienttype (id, clientType, validty, 
-      cost, address, type, discount, 
-      default1, default2)
-    values (#{id,jdbcType=INTEGER}, #{clienttype,jdbcType=VARCHAR}, #{validty,jdbcType=INTEGER}, 
-      #{cost,jdbcType=REAL}, #{address,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{discount,jdbcType=REAL}, 
-      #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.accp.domain.SystemHomeMoney" >
+    insert into system_home_money (id, clientId, type, 
+      money, remark, create_time, 
+      update_time, default1, default2
+      )
+    values (#{id,jdbcType=INTEGER}, #{clientid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{money,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{default1,jdbcType=VARCHAR}, #{default2,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.accp.domain.ClientClienttype" >
-    insert into client_clienttype
+  <insert id="insertSelective" parameterType="com.accp.domain.SystemHomeMoney" >
+    insert into system_home_money
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="clienttype != null" >
-        clientType,
-      </if>
-      <if test="validty != null" >
-        validty,
-      </if>
-      <if test="cost != null" >
-        cost,
-      </if>
-      <if test="address != null" >
-        address,
+      <if test="clientid != null" >
+        clientId,
       </if>
       <if test="type != null" >
         type,
       </if>
-      <if test="discount != null" >
-        discount,
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
       </if>
       <if test="default1 != null" >
         default1,
@@ -146,23 +162,23 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="clienttype != null" >
-        #{clienttype,jdbcType=VARCHAR},
-      </if>
-      <if test="validty != null" >
-        #{validty,jdbcType=INTEGER},
-      </if>
-      <if test="cost != null" >
-        #{cost,jdbcType=REAL},
-      </if>
-      <if test="address != null" >
-        #{address,jdbcType=VARCHAR},
+      <if test="clientid != null" >
+        #{clientid,jdbcType=INTEGER},
       </if>
       <if test="type != null" >
-        #{type,jdbcType=VARCHAR},
+        #{type,jdbcType=INTEGER},
       </if>
-      <if test="discount != null" >
-        #{discount,jdbcType=REAL},
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="default1 != null" >
         #{default1,jdbcType=VARCHAR},
@@ -172,35 +188,35 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.accp.domain.ClientClienttypeExample" resultType="java.lang.Integer" >
-    select count(*) from client_clienttype
+  <select id="countByExample" parameterType="com.accp.domain.SystemHomeMoneyExample" resultType="java.lang.Integer" >
+    select count(*) from system_home_money
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update client_clienttype
+    update system_home_money
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.clienttype != null" >
-        clientType = #{record.clienttype,jdbcType=VARCHAR},
-      </if>
-      <if test="record.validty != null" >
-        validty = #{record.validty,jdbcType=INTEGER},
-      </if>
-      <if test="record.cost != null" >
-        cost = #{record.cost,jdbcType=REAL},
-      </if>
-      <if test="record.address != null" >
-        address = #{record.address,jdbcType=VARCHAR},
+      <if test="record.clientid != null" >
+        clientId = #{record.clientid,jdbcType=INTEGER},
       </if>
       <if test="record.type != null" >
-        type = #{record.type,jdbcType=VARCHAR},
+        type = #{record.type,jdbcType=INTEGER},
       </if>
-      <if test="record.discount != null" >
-        discount = #{record.discount,jdbcType=REAL},
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=DECIMAL},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.default1 != null" >
         default1 = #{record.default1,jdbcType=VARCHAR},
@@ -214,40 +230,40 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update client_clienttype
+    update system_home_money
     set id = #{record.id,jdbcType=INTEGER},
-      clientType = #{record.clienttype,jdbcType=VARCHAR},
-      validty = #{record.validty,jdbcType=INTEGER},
-      cost = #{record.cost,jdbcType=REAL},
-      address = #{record.address,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=VARCHAR},
-      discount = #{record.discount,jdbcType=REAL},
+      clientId = #{record.clientid,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
+      money = #{record.money,jdbcType=DECIMAL},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       default1 = #{record.default1,jdbcType=VARCHAR},
       default2 = #{record.default2,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.ClientClienttype" >
-    update client_clienttype
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.SystemHomeMoney" >
+    update system_home_money
     <set >
-      <if test="clienttype != null" >
-        clientType = #{clienttype,jdbcType=VARCHAR},
-      </if>
-      <if test="validty != null" >
-        validty = #{validty,jdbcType=INTEGER},
-      </if>
-      <if test="cost != null" >
-        cost = #{cost,jdbcType=REAL},
-      </if>
-      <if test="address != null" >
-        address = #{address,jdbcType=VARCHAR},
+      <if test="clientid != null" >
+        clientId = #{clientid,jdbcType=INTEGER},
       </if>
       <if test="type != null" >
-        type = #{type,jdbcType=VARCHAR},
+        type = #{type,jdbcType=INTEGER},
       </if>
-      <if test="discount != null" >
-        discount = #{discount,jdbcType=REAL},
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="default1 != null" >
         default1 = #{default1,jdbcType=VARCHAR},
@@ -258,14 +274,14 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.accp.domain.ClientClienttype" >
-    update client_clienttype
-    set clientType = #{clienttype,jdbcType=VARCHAR},
-      validty = #{validty,jdbcType=INTEGER},
-      cost = #{cost,jdbcType=REAL},
-      address = #{address,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
-      discount = #{discount,jdbcType=REAL},
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.SystemHomeMoney" >
+    update system_home_money
+    set clientId = #{clientid,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      money = #{money,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       default1 = #{default1,jdbcType=VARCHAR},
       default2 = #{default2,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

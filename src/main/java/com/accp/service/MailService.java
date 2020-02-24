@@ -1,6 +1,5 @@
 package com.accp.service;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -11,11 +11,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FrontCashierMapper {
-    List<FrontCashier> bill(@Param("cashierId") String cashierId, @Param("status") String status, @Param("carNumber") String carNumber, @Param("name") String name, @Param("counselorName") String counselorName, @Param("tname") String tname, @Param("settlementStatus") String settlementStatus, @Param("remark") String remark);
+    List<FrontCashier> bill(@Param("cashierId") String cashierId, @Param("carNumber") String carNumber, @Param("name") String name, @Param("counselorName") String counselorName, @Param("tname") String tname, @Param("settlementStatus") String settlementStatus, @Param("remark") String remark);
 
-    MaintainRescue rescue(String number);
+    FrontCashier rescue(String number);
 
-    MaintainRepair repair(String number);
+    FrontCashier repair(String number);
 
     int countByExample(FrontCashierExample example);
 

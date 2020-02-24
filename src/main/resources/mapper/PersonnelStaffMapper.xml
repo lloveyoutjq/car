@@ -333,7 +333,14 @@ SELECT `personnel_dimission`.*,`personnel_staff`.* FROM `personnel_staff`
 INNER JOIN `personnel_dimission` ON `personnel_staff`.`id`=`personnel_dimission`.`staffId`
 WHERE `personnel_staff`.`id`=#{id} OR `personnel_staff`.`staffName`=#{staffname}
   </select>
-
+<select id="selectByDateDeparture" resultMap="BaseResultMapThree">
+  SELECT `personnel_dimission`.*,`personnel_staff`.*,`personnel_department`.*,`personnel_post`.* FROM `personnel_staff`
+  INNER JOIN `personnel_dimission` ON `personnel_staff`.`id`=`personnel_dimission`.`staffId`
+  INNER JOIN `personnel_department` ON `personnel_dimission`.`departmentId`=`personnel_department`.`id`
+  INNER JOIN `personnel_post` ON `personnel_staff`.`departmentId`=`personnel_post`.`postId`
+  WHERE `personnel_staff`.`default2`= 2
+  AND DATEDIFF(`personnel_dimission`.`dimissionDate`,#{date}) = 0
+</select>
 
 
 

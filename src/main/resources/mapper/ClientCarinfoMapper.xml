@@ -63,6 +63,39 @@
     </association>
   </resultMap>
 
+  <resultMap id="BaseResultMapPlus2" type="com.accp.domain.ClientCarinfo" extends="BaseResultMap">
+    <association property="clientClientdata" javaType="com.accp.domain.ClientClientdata">
+      <id column="ccdnumber" property="number"/>
+      <result column="ccdname" property="name"/>
+      <result column="ccdaddress" property="address"/>
+      <result column="ccdbalance" property="balance"/>
+      <result column="ccdintegral" property="integral"/>
+    </association>
+    <association property="dataCarbrand" javaType="com.accp.domain.DataCarbrand">
+      <id column="dcbid" property="id"/>
+      <result column="dcbcarbrandname" property="carbrandname"/>
+    </association>
+    <association property="dataEngineBrand" javaType="com.accp.domain.DataEngineBrand">
+      <id column="debid" property="id"/>
+      <result column="debenginebrandname" property="enginebrandname"/>
+    </association>
+  </resultMap>
+
+  <select id="selectUser" resultMap="BaseResultMapPlus2">
+    SELECT ccd.`name` as ccdname ,ccd.`address` as ccdaddress ,cci.`carer`,
+    cci.`carerPhone`,dcb.`carBrandName` as dcbcarbrandname ,deb.`engineBrandName` as debenginebrandname ,
+    cci.`engineNumber` , ccd.`number` as ccdnumber , dcb.`id` as dcbid , deb.`id` as debid ,
+    ccd.`balance` AS ccdbalance  , ccd.`integral` AS ccdintegral
+    FROM `client_carinfo` AS cci
+    STRAIGHT_JOIN `client_clientdata` AS ccd
+    ON cci.`clientId` = ccd.`number`
+    STRAIGHT_JOIN `data_carbrand` AS dcb
+    ON cci.`carBrandId` = dcb.`id`
+    STRAIGHT_JOIN `data_engine_brand` AS deb
+    ON cci.`engineId` = deb.`id`
+    WHERE cci.`carNumber` = #{carNumber}
+  </select>
+
   <select id="ownerInformation" resultMap="BaseResultMapPlus">
     SELECT ccd.`name` as ccdname ,ccd.`address` as ccdaddress ,cci.`carer`, cci.`carerPhone`,dcb.`carBrandName` as dcbcarbrandname,
     deb.`engineBrandName` as debenginebrandname , cci.`engineNumber`,ccd.`number` as ccdnumber , dcb.`id` as dcbid , deb.`id` as debid
@@ -78,7 +111,7 @@
   </select>
 
   <select id="repairS" resultMap="BaseResultMapPlus1">
-    SELECT ca.`carNumber` ,ca.`frameNumber` , ca.`carId`, dc.`carBrandName` as dccarbrandname ,
+    SELECT ca.`id` , ca.`carNumber` ,ca.`frameNumber` , ca.`carId`, dc.`carBrandName` as dccarbrandname ,
     ca.`engineNumber`, deb.`engineBrandName` as debenginebrandname , cc.`name` as ccname ,ca.`carer`, cc.`phone` as ccphone ,
     cc.`number` as ccnumber ,deb.`id` as debid , dc.`id` as dcid
     FROM `client_carinfo` AS ca
@@ -92,7 +125,7 @@
   </select>
 
   <select id="rescueS" resultMap="BaseResultMapPlus1">
-    SELECT ca.`carNumber`, ca.`carId` ,dc.`carBrandName` as dccarbrandname , deb.`engineBrandName` as debenginebrandname ,
+    SELECT ca.`id` ,ca.`carNumber`, ca.`carId` ,dc.`carBrandName` as dccarbrandname , deb.`engineBrandName` as debenginebrandname ,
     cc.`name` as ccname ,ca.`carer`, cc.`phone` as ccphone ,ca.`mileage`,
     cc.`number` as ccnumber ,deb.`id` as debid , dc.`id` as dcid
     FROM `client_carinfo` AS ca
@@ -101,7 +134,7 @@
     STRAIGHT_JOIN `data_engine_brand` AS deb
     ON ca.`engineId` = deb.`id`
     STRAIGHT_JOIN `data_carbrand` AS dc
-    ON ca.`carBrandId` = dc.`carBrandName`
+    ON ca.`carBrandId` = dc.`id`
     WHERE ca.`carNumber` =  #{carnumber}
   </select>
 
@@ -124,6 +157,11 @@
     <if test="clientClientdata.typeid != null and clientClientdata.typeid != ''">/*客户类型*/
       AND clientClientdata.`typeid` = #{clientClientdata.`typeid`}
     </if>
+    <if test="clientClientdata.endtime != null and clientClientdata.endtime != ''"> /*会员过期时间*/
+      AND `client_clientdata`.`endTime`
+      BETWEEN SUBSTRING_INDEX(CONCAT('',#{clientClientdata.endtime},' 23:59:59'),' - ', 1) AND SUBSTRING_INDEX(CONCAT('',#{clientClientdata.endtime},' 23:59:59'),' - ', -1)
+    </if>
+
     <if test="clientClientdata.linkman != null and clientClientdata.linkman != ''">/*联系人*/
       AND `client_clientdata`.linkman like  CONCAT("%", #{clientClientdata.linkman},"%")
 
@@ -142,7 +180,7 @@
     </if>
     <if test="clientClientdata.borndate != null and clientClientdata.borndate != ''"> /*客户生日*/
       AND `client_clientdata`.`bornDate`
-      BETWEEN SUBSTRING_INDEX(#{clientClientdata.borndate},' - ', 1) AND SUBSTRING_INDEX(#{clientClientdata.borndate},' - ', -1)
+      BETWEEN SUBSTRING_INDEX(CONCAT('',#{clientClientdata.borndate},' 23:59:59'),' - ', 1) AND SUBSTRING_INDEX(CONCAT('',#{clientClientdata.borndate},' 23:59:59'),' - ', -1)
     </if>
     <if test="clientClientdata.banknumber != null and clientClientdata.banknumber !=''">/*银行卡号*/
       AND `client_clientdata`.banknumber like CONCAT("%",#{clientClientdata.banknumber},"%")
@@ -184,15 +222,17 @@
       AND `client_carinfo`.carerphone LIKE CONCAT("%",#{clientClientdata.clientCarinfo.carerphone},"%")
     </if>
     <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.borndate !=null and clientClientdata.clientCarinfo.borndate !=''">/*驾驶员出生日期*/
-      AND `client_carinfo`.`borndate`
-      BETWEEN SUBSTRING_INDEX(#{clientClientdata.clientCarinfo.`borndate`},' - ', 1) AND SUBSTRING_INDEX(#{clientClientdata.clientCarinfo.`borndate`},' - ', -1)
+      AND `client_carinfo`.borndate
+      BETWEEN SUBSTRING_INDEX(CONCAT('',#{clientClientdata.clientCarinfo.borndate},' 23:59:59'),' - ', 1) AND SUBSTRING_INDEX(CONCAT('',#{clientClientdata.clientCarinfo.borndate},' 23:59:59'),' - ', -1)
+
     </if>
     <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.affiliation !=null and clientClientdata.clientCarinfo.affiliation !=''">/*车辆归属*/
       AND `client_carinfo`.affiliation LIKE CONCAT("%",#{clientClientdata.clientCarinfo.affiliation},"%")
     </if>
-    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.drivingLicence !=null and clientClientdata.clientCarinfo.drivingLicence !=''">/*驾驶证到期时间*/
-      AND `client_carinfo`.`drivingLicence`
-      BETWEEN SUBSTRING_INDEX(#{clientClientdata.clientCarinfo.`drivingLicence`},' - ', 1) AND SUBSTRING_INDEX(#{clientClientdata.clientCarinfo.`drivingLicence`},' - ', -1)
+    <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.drivinglicence !=null and clientClientdata.clientCarinfo.drivinglicence !=''">/*驾驶证到期时间*/
+      AND client_carinfo.drivingLicence
+      BETWEEN SUBSTRING_INDEX(CONCAT('',#{clientClientdata.clientCarinfo.drivinglicence},' 23:59:59'),' - ', 1) AND SUBSTRING_INDEX(CONCAT('',#{clientClientdata.clientCarinfo.drivinglicence},' 23:59:59'),' - ', -1)
+
     </if>
     <if test="clientClientdata.clientCarinfo != null and clientClientdata.clientCarinfo.framenumber !=null and clientClientdata.clientCarinfo.framenumber !=''">/*车架号*/
       AND `client_carinfo`.framenumber LIKE CONCAT("%",#{clientClientdata.clientCarinfo.framenumber},"%")

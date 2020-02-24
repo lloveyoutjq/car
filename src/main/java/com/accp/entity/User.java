@@ -3,6 +3,7 @@ package com.accp.entity;
 import java.util.Date;
 
 public class User {
+    private int uid;
     private int type;
     private String user;
     private String userName;
@@ -11,6 +12,14 @@ public class User {
     private String code;
     private long pastCodeDate;
     private int state;
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
 
     public int getState() {
         return state;

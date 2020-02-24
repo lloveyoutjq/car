@@ -178,19 +178,36 @@ public class SystemController {
     @RequestMapping("logOut")
     public Map logOut(HttpSession session){
         Map map = new HashMap();
-        session.invalidate();
-        map.put("code",0);
-        map.put("msg","退出登录成功");
+
+        User user = (User)session.getAttribute("user");
+        int count = loginService.logOut(user.getUid(),user.getType()+"");
+        if(count>0){
+            session.invalidate();
+            map.put("code",0);
+            map.put("msg","退出登录成功");
+        }else{
+            session.invalidate();
+            map.put("code",0);
+            map.put("msg","退出登录成功，但修改状态出错");
+        }
         return map;
     }
     /**
      * 获取登录信息
      */
     @RequestMapping("getLoginMsg")
-    public Map getLoginMsg(HttpSession session){
+    public Map getLoginMsg(HttpSession session) throws JsonProcessingException {
         Map map = new HashMap();
+        ObjectMapper objectMapper = new ObjectMapper();
+
+
+        String str = objectMapper.writeValueAsString(session.getAttribute("user"));
+        User user = objectMapper.readValue(str,User.class);
+
+        user.setPassword(null);
         map.put("code",0);
-        map.put("data",session.getAttribute("user"));
+        map.put("data",user);
+
         return map;
     }
 
