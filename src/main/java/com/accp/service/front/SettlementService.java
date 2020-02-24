@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
-import java.util.List;
 
 
 @Transactional
@@ -34,9 +32,9 @@ public class SettlementService {
 
 
     //销售单据查询
-    public PageInfo bill(String cashierId, String status, String carNumber, String name, String counselorName, String tname, String settlementStatus, String remark,Integer pages,Integer limit){
+    public PageInfo bill(String cashierId, String carNumber, String name, String counselorName, String tname, String settlementStatus, String remark,Integer pages,Integer limit){
         Page page = PageHelper.startPage(pages,limit);
-        frontCashierMapper.bill("%"+cashierId+"%","%"+status+"%","%"+carNumber+"%","%"+name+"%","%"+counselorName+"%","%"+tname+"%",settlementStatus,"%"+remark+"%");
+        frontCashierMapper.bill("%"+cashierId+"%","%"+carNumber+"%","%"+name+"%","%"+counselorName+"%","%"+tname+"%",settlementStatus,"%"+remark+"%");
         return page.toPageInfo();
     }
 
@@ -44,21 +42,21 @@ public class SettlementService {
      * 打开单据
      * */
     //救援
-    public MaintainRescue rescue(String number){
-        MaintainRescue rescues = frontCashierMapper.rescue(number);
-        rescues.setDataMaintenanceItemsList(dataMaintenanceItemsMapper.itemsSels(number));   //维修项目
+    public FrontCashier rescue(String number){
+        FrontCashier rescues = frontCashierMapper.rescue(number);
+        rescues.getMaintainRescue().setDataMaintenanceItemsList(dataMaintenanceItemsMapper.itemsSels(number));   //维修项目
         MaintainEwitemExample example = new MaintainEwitemExample();
         example.createCriteria().andOuteridEqualTo(number);
-        rescues.setMaintainEwitemList(maintainEwitemMapper.selectByExample(example));   //附加项目
+        rescues.getMaintainRescue().setMaintainEwitemList(maintainEwitemMapper.selectByExample(example));   //附加项目
         return rescues;
     }
     //维修
-    public MaintainRepair repair(String number){
-        MaintainRepair repairs = frontCashierMapper.repair(number);
-        repairs.setDataMaintenanceItemsList(dataMaintenanceItemsMapper.itemsSels(number));   //维修项目
+    public FrontCashier repair(String number){
+        FrontCashier repairs = frontCashierMapper.repair(number);
+        repairs.getMaintainRepair().setDataMaintenanceItemsList(dataMaintenanceItemsMapper.itemsSels(number));   //维修项目
         MaintainEwitemExample example = new MaintainEwitemExample();
         example.createCriteria().andOuteridEqualTo(number);
-        repairs.setMaintainEwitemList(maintainEwitemMapper.selectByExample(example));    //附加项目
+        repairs.getMaintainRepair().setMaintainEwitemList(maintainEwitemMapper.selectByExample(example));    //附加项目
         return repairs;
     }
 

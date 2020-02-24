@@ -70,6 +70,7 @@
     STRAIGHT_JOIN `data_car` AS da
     ON cc.`carId` = da.`id`
     WHERE mrs.`number` LIKE #{number} AND cc.`carNumber` LIKE #{carNumber} AND cc.`frameNumber` LIKE #{frameNumber}
+    AND mc.`eligibility` &lt;&gt; 1
   </select>
   <sql id="Example_Where_Clause" >
     <where >

@@ -22,9 +22,9 @@ public class FrontController {
     SettlementService settlementService;
 
     @RequestMapping("/bill")
-    public Map<String,Object> bill(String cashierId, String status, String carNumber, String name, String counselorName, String tname, String settlementStatus, String remark,Integer page,Integer limit){
+    public Map<String,Object> bill(String cashierId, String carNumber, String name, String counselorName, String tname, String settlementStatus, String remark,Integer page,Integer limit){
         Map<String,Object> map = new HashMap<>();
-        PageInfo pageInfo = settlementService.bill(cashierId, status, carNumber, name, counselorName, tname, settlementStatus, remark, page, limit);
+        PageInfo pageInfo = settlementService.bill(cashierId, carNumber, name, counselorName, tname, settlementStatus, remark, page, limit);
         map.put("code",0);
         map.put("data",pageInfo.getList());
         map.put("count",pageInfo.getTotal());

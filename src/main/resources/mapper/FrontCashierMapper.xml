@@ -111,11 +111,7 @@
       <result column="mrcompany" property="company"/>
       <result column="mrcompletedate" property="completedate"/>
       <result column="mrremark" property="remark"/>
-      <result column="tname" property="tname"/>
-    </association>
-    <association property="personnelArtisan" javaType="com.accp.domain.PersonnelArtisan">
-      <id column="paartisanid" property="artisanid"/>
-      <result column="paartisanname" property="artisanname"/>
+      <result column="mrtname" property="tname"/>
     </association>
     <association property="clientCarinfo" javaType="com.accp.domain.ClientCarinfo">
       <id column="caclientid" property="clientid"/>
@@ -179,26 +175,24 @@
 
   <select id="bill" resultMap="BaseResultMapPlus3">
     SELECT fc.`cashierId` ,fc.`invoiceId`, fc.`paymentType`,mr.`status` as mrstatus ,
-    fc.`settlementStatus`,fc.`cashierTime`, pa.`artisanName` as paartisanname ,fc.`totalNum`,
+    fc.`settlementStatus`,fc.`cashierTime`,fc.`totalNum`,
     cc.`name` as ccname ,ca.`carNumber` as cacarnumber , dc.`carTypeName` as dccartypename ,ca.`frameNumber` as caframenumber , cc.`phone` as ccphone ,ca.`jqinsurance` as cajqinsurance ,
-    mr.`company` as mrcompany ,cc.`counselorName` as cccounselorname , mr.`completeDate` as mrcompletedate ,mr.`remark` as mrremark ,tname ,
-    pa.`artisanId` as paartisanid ,ca.`clientId` as caclientid , dc.`id` as dcid , cc.`number` as ccnumber ,mr.`number` as mrnumber
+    mr.`company` as mrcompany ,cc.`counselorName` as cccounselorname , mr.`completeDate` as mrcompletedate ,mr.`remark` as mrremark ,mr.`tname` as mrtname ,
+    ca.`clientId` as caclientid , dc.`id` as dcid , cc.`number` as ccnumber ,mr.`number` as mrnumber
     FROM `front_cashier` AS fc
-    STRAIGHT_JOIN `client_clientdata` AS cc
-    ON fc.`clientId` = cc.`number`
     STRAIGHT_JOIN (
-    SELECT mrp.`number`,mrp.`completeDate`,mrp.`status`,mrp.`company`,mrp.`remark`,'维修单' AS tname FROM `maintain_repair` AS mrp
+    SELECT mrp.`number`,mrp.`carInfoId`,mrp.`completeDate`,mrp.`status`,mrp.`company`,mrp.`remark`,'维修单' AS tname FROM `maintain_repair` AS mrp
     UNION ALL
-    SELECT mrs.`number`,mrs.`completeDate`,mrs.`status`,mrs.`company`,mrs.`remark`,'救援单' AS tname FROM `maintain_rescue` AS mrs
+    SELECT mrs.`number`,mrs.`carInfoId`,mrs.`completeDate`,mrs.`status`,mrs.`company`,mrs.`remark`,'救援单' AS tname FROM `maintain_rescue` AS mrs
     ) AS mr
     ON fc.`number` = mr.`number`
-    STRAIGHT_JOIN `personnel_artisan` AS pa
-    ON fc.`staffId` = pa.`artisanId`
     STRAIGHT_JOIN `client_carinfo` AS ca
-    ON cc.`number` = ca.`clientId`
+    ON mr.`carInfoId` = ca.`id`
+    STRAIGHT_JOIN `client_clientdata` AS cc
+    ON ca.`clientId` = cc.`number`
     STRAIGHT_JOIN `data_car` AS dc
     ON ca.`carId` = dc.`id`
-    WHERE fc.`cashierId` LIKE #{cashierId} AND mr.`status` LIKE #{status}
+    WHERE fc.`cashierId` LIKE #{cashierId}
     AND ca.`carNumber` LIKE #{carNumber} AND cc.`name` LIKE #{name}
     AND cc.`counselorName` LIKE #{counselorName} AND tname LIKE #{tname}
     AND fc.`settlementStatus` = #{settlementStatus} AND mr.`remark` LIKE #{remark}

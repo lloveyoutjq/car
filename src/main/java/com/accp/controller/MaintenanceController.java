@@ -43,7 +43,7 @@ public class MaintenanceController {
     public Map<String,Object> selectByPrimaryKey(String id){
         Map<String,Object> map = new HashMap<>();
         map.put("code",0);
-        map.put("data",completedService.selectByPrimaryKey(Integer.getInteger(id)));
+        map.put("data",completedService.selectByPrimaryKey(Integer.parseInt(id)));
         return map;
     }
 
@@ -52,6 +52,14 @@ public class MaintenanceController {
         Map<String,Object> map = new HashMap<>();
         map.put("code",0);
         map.put("data", settlementService.rescue(number));
+        return map;
+    }
+
+    @RequestMapping("/repair")
+    public Map<String,Object> repair(String number){
+        Map<String,Object> map = new HashMap<>();
+        map.put("code",0);
+        map.put("data", settlementService.repair(number));
         return map;
     }
 
@@ -250,8 +258,8 @@ public class MaintenanceController {
         } catch (JsonProcessingException e) {
             System.out.println("发送异常");
         }
-        completedService.updateComplete(maintainCompleted);
-        return "1";
+
+        return completedService.updateComplete(maintainCompleted)+"";
     }
 
 
@@ -268,6 +276,7 @@ public class MaintenanceController {
             System.out.println("发送异常");
         }
         frontCashier.setNumber(frontCashier.getMaintainRepair().getNumber());
+        frontCashier.setSettlementstatus("未结算");
         settlementService.insertF(frontCashier);
         repairService.insertRepair(frontCashier.getMaintainRepair());
         return "1";
@@ -283,6 +292,7 @@ public class MaintenanceController {
             System.out.println("发送异常");
         }
         frontCashier.setNumber(frontCashier.getMaintainRescue().getNumber());
+        frontCashier.setSettlementstatus("未结算");
         settlementService.insertF(frontCashier);
         repairService.insertRescue(frontCashier.getMaintainRescue());
         return "1";
