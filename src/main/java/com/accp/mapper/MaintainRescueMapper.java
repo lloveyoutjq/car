@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MaintainRescueMapper {
+    Integer selectByDateRescue(@Param("date") String date);
+
     int countByExample(MaintainRescueExample example);
 
     int deleteByExample(MaintainRescueExample example);

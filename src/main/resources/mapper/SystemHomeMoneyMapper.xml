@@ -13,11 +13,11 @@
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
 
-  <select id="selectByDate" resultMap="BaseResultMap">
+  <select id="selectByDateMoney" resultMap="BaseResultMap">
     SELECT * FROM `system_home_money`
     WHERE
     `type`= #{type}
-    AND DATEDIFF(`create_time`,#{date}) = #{index}
+    AND DATEDIFF(`create_time`,#{date}) = 0
   </select>
   <select id="selectMoney" resultMap="BaseResultMap">
     SELECT SUM(money) as money FROM `system_home_money` WHERE clientId = #{clientId} AND TYPE = 0

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MaintainRepairMapper {
+    Integer selectByDateRepair(@Param("date") String date);
+
     MaintainRepair selectPrice(String number);
 
     List<MaintainRepair> maintenanceHistory(String carnumber);

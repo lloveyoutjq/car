@@ -3,6 +3,7 @@ package com.accp.controller;
 import com.accp.entity.Charts;
 import com.accp.entity.HomeUserList;
 import com.accp.service.home.ChartService;
+import com.accp.service.home.HomeMoneyService;
 import com.accp.service.home.HomeUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,10 @@ public class HomeController {
     @Autowired
     HomeUserService homeUserService;
     @Autowired
+    HomeMoneyService homeMoneyService;
+    @Autowired
     ChartService chartService;
+
 /*    *//**
      *查询在线人数
      * @return
@@ -34,6 +38,10 @@ public class HomeController {
     @RequestMapping("/getUserOnLine")
     public Map<String, Object> getUserOnLine(){
         return homeUserService.getUserOnLine();
+    }
+
+    public Map<String, Object>  getCountAndSumMoney(){
+        return homeMoneyService.getCountAndSumMoney();
     }
 
     @RequestMapping("/charts")

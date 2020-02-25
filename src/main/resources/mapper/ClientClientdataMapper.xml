@@ -112,6 +112,11 @@
       AND `client_clientdata`.`bornDate`
       BETWEEN SUBSTRING_INDEX(CONCAT('',#{clientClientdata.borndate},' 23:59:59'),' - ', 1) AND SUBSTRING_INDEX(CONCAT('',#{clientClientdata.borndate},' 23:59:59'),' - ', -1)
     </if>
+    <if test="clientClientdata.date != null and clientClientdata.date != ''"> /*客户创建日期*/
+      AND `client_clientdata`.`bornDate`
+      BETWEEN SUBSTRING_INDEX(CONCAT('',#{clientClientdata.date},' 23:59:59'),' - ', 1) AND SUBSTRING_INDEX(CONCAT('',#{clientClientdata.date},' 23:59:59'),' - ', -1)
+    </if>
+
     <if test="clientClientdata.banknumber != null and clientClientdata.banknumber !=''">/*银行卡号*/
       AND `client_clientdata`.banknumber like CONCAT("%",#{clientClientdata.banknumber},"%")
 

@@ -197,6 +197,11 @@
     AND cc.`counselorName` LIKE #{counselorName} AND tname LIKE #{tname}
     AND fc.`settlementStatus` = #{settlementStatus} AND mr.`remark` LIKE #{remark}
   </select>
+  <select id="selectByDateCashier" resultType="integer">
+    SELECT COUNT(*) FROM `front_cashier`
+    WHERE DATEDIFF(`cashierTime`,#{date}) = 0
+  </select>
+
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

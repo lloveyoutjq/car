@@ -30,6 +30,10 @@
     <result column="default1" property="default1" jdbcType="VARCHAR" />
     <result column="default2" property="default2" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="selectByDateRescue" resultType="integer">
+    SELECT COUNT(*) FROM `maintain_rescue`
+    WHERE DATEDIFF(`completeDate`,#{date}) = 0
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

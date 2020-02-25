@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FrontCashierMapper {
+    Integer selectByDateCashier(@Param("date") String date);
+
     List<FrontCashier> bill(@Param("cashierId") String cashierId, @Param("carNumber") String carNumber, @Param("name") String name, @Param("counselorName") String counselorName, @Param("tname") String tname, @Param("settlementStatus") String settlementStatus, @Param("remark") String remark);
 
     FrontCashier rescue(String number);

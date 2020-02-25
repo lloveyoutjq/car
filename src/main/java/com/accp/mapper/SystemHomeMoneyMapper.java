@@ -11,7 +11,7 @@ import java.util.List;
 public interface SystemHomeMoneyMapper {
     SystemHomeMoney selectMoney(Integer clientId);
 
-    List<SystemHomeMoney> selectByDate(@Param("type")int type,@Param("index")int index,@Param("date")String date);
+    List<SystemHomeMoney> selectByDateMoney(@Param("type")int type,@Param("date")String date);
 
     int countByExample(SystemHomeMoneyExample example);
 

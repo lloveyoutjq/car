@@ -71,6 +71,10 @@
     ) AS mr
     WHERE number = #{number}
   </select>
+  <select id="selectByDateRepair" resultType="integer">
+    SELECT COUNT(*) FROM `maintain_repair`
+    WHERE DATEDIFF(`completeDate`,#{date}) = 0
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
