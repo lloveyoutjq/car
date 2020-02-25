@@ -39,7 +39,7 @@ public class CommodityTypeService {
     }
 
     public int updateCommodityType(DataCommoditytype dataCommoditytype){
-        return dataCommoditytypeMapper.updateByPrimaryKey(dataCommoditytype);
+        return dataCommoditytypeMapper.updateByPrimaryKeySelective(dataCommoditytype);
     }
 
     /**

@@ -1,6 +1,7 @@
 package com.accp.service.data;
 
 import com.accp.domain.DataLinkman;
+import com.accp.domain.DataLinkmanExample;
 import com.accp.mapper.DataLinkmanMapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -17,20 +18,22 @@ public class LinkmanService {
     @Autowired(required = false)
     DataLinkmanMapper dataLinkmanMapper;
 
-    public PageInfo<DataLinkman> selectDataLinkman(Integer index, Integer limit, List<Integer> ids){
+    public PageInfo<DataLinkman> selectDataLinkman(Integer index, Integer limit,String id){
         Page<DataLinkman> page = PageHelper.startPage(index,limit);
-        DataLinkman personnelStaff = new DataLinkman();
-        /*ids.add(1);
-        ids.add(2);*/
-        personnelStaff.setIds(ids);
-        dataLinkmanMapper.selectDataLinkman(personnelStaff);
+        DataLinkmanExample example = new DataLinkmanExample();
+        if(id != null){
+            example.createCriteria().andManufactureEqualTo(Integer.valueOf(id));
+        }
+
+
+        dataLinkmanMapper.selectByExample(example);
         return page.toPageInfo();
     }
 
 
 
     public int  insertDataLinkman(DataLinkman dataLinkman){
-        int count=dataLinkmanMapper.insert(dataLinkman);
+        int count=dataLinkmanMapper.insertSelective(dataLinkman);
         return  count;
     }
 
@@ -40,6 +43,6 @@ public class LinkmanService {
     }
 
     public int updateLinkman(DataLinkman dataLinkman){
-        return dataLinkmanMapper.updateByPrimaryKey(dataLinkman);
+        return dataLinkmanMapper.updateByPrimaryKeySelective(dataLinkman);
     }
 }

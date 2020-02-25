@@ -439,17 +439,11 @@ public class DataController {
     //联系人
 
     @RequestMapping("/selectDataLinkman")
-    public Map selectDataLinkman(Integer page,Integer limit,String ids){
+    public Map selectDataLinkman(Integer page,Integer limit,String id){
         ObjectMapper objectMapper = new ObjectMapper();
-        List<Integer> idsList = null;
-        if(ids != null && !"".equals(ids)){
-            try {
-                idsList = objectMapper.readValue(ids,List.class);
-            }catch (JsonProcessingException e){
-                System.out.println("发送异常");
-            }
-        }
-        PageInfo<DataLinkman> pageInfo =  linkmanService.selectDataLinkman(page,limit,idsList);
+
+
+        PageInfo<DataLinkman> pageInfo =  linkmanService.selectDataLinkman(page,limit,id);
         Map<String,Object> code = new HashMap<>();
         code.put("code",0);
         code.put("data",pageInfo.getList());

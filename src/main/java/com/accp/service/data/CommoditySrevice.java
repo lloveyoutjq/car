@@ -40,7 +40,7 @@ public class CommoditySrevice {
     }
 
     public int updateCommodity(DataCommodity dataCommodity){
-        return dataCommodityMapper.updateByPrimaryKey(dataCommodity);
+        return dataCommodityMapper.updateByPrimaryKeySelective(dataCommodity);
     }
 
 }
