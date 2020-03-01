@@ -39,7 +39,7 @@ public class HomeController {
     public Map<String, Object> getUserOnLine(){
         return homeUserService.getUserOnLine();
     }
-
+    @RequestMapping("/getCountAndSumMoney")
     public Map<String, Object>  getCountAndSumMoney(){
         return homeMoneyService.getCountAndSumMoney();
     }

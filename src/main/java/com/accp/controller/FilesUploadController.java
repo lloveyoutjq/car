@@ -52,7 +52,7 @@ public class FilesUploadController {
                 "  \"code\": 0\n" +
                 "  ,\"msg\": \"\"\n" +
                 "  ,\"data\": {\n" +
-                "    \"src\": \"http://127.0.0.1:8080/"+name+"\"\n" +
+                "    \"src\": \"http://120.27.93.156:8082/"+name+"\"\n" +
                 "  }\n" +
                 "} ";
     }

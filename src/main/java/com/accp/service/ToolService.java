@@ -18,6 +18,7 @@ public class ToolService{
         return r;
     }
 
+
     /**
      * object -> BigDecimal 转换.
      * @param value
@@ -34,7 +35,7 @@ public class ToolService{
                 ret = new BigDecimal((BigInteger) value);
             } else if (value instanceof Number) {
                 //转成String类型，然后new
-                ret = new BigDecimal(((Number) value).toString());
+                ret = new BigDecimal(value.toString());
             } else {
                 throw new ClassCastException("Not possible to coerce [" + value + "] from class "
                         + value.getClass() + " into a BigDecimal.");
